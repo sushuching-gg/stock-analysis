@@ -226,7 +226,7 @@ footer.foot {
   <a href="#s1" class="on cur"><span class="n">01</span>現金流六大規則</a>
   <a href="#s2" class="on"><span class="n">02</span>基本資訊查詢</a>
   <a href="#s3" class="on"><span class="n">03</span>法說會深入</a>
-  <a class="off"><span class="n">04</span>營收趨勢</a>
+  <a href="#s4" class="on"><span class="n">04</span>營收趨勢</a>
   <a class="off"><span class="n">05</span>前瞻本益比</a>
   <a class="off"><span class="n">06</span>投資決策推理</a>
 </nav>
@@ -814,6 +814,254 @@ footer.foot {
       </p>
       <p style="color:#E0DAC8;font-size:.92rem;margin:0;">
         <strong>美國投資 2,650 億美元：</strong>四層策略意義（綁定客戶、地緣保險、壓制競爭者、台灣根留），同時面臨兩大財務風險（美廠成本稀釋毛利 2–4%、出口管制法律不確定性）。短線毛利壓力是真實的，長線戰略價值也是真實的——這是市場評價台積電最核心的矛盾張力。
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════
+     第 4 步：營收趨勢視覺化
+════════════════════════════════════════ -->
+<section class="section" id="s4">
+
+  <div class="step-badge">【第 4 步／共 6 步：營收趨勢視覺化】</div>
+  <h2 class="stitle">近 13 個月月營收趨勢</h2>
+
+  <div class="callout">
+    <div class="lbl">資料來源</div>
+    <p>使用者提供 Goodinfo 月營收截圖（2025/06 – 2026/06），共 13 個月合併營收數字，非本次網路搜尋所得。</p>
+  </div>
+
+  <!-- 原始數據表 -->
+  <h3 class="rtitle">原始月營收數據</h3>
+  <table class="dt">
+    <caption>合併營收，單位：億元。資料來源：使用者截圖（Goodinfo）</caption>
+    <thead>
+      <tr>
+        <th>月份</th>
+        <th class="mn">月營收（億）</th>
+        <th class="mn">月增率</th>
+        <th class="mn">年增率</th>
+        <th>備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2025/06</td><td class="mn">2,637</td><td class="mn nv">-17.7%</td><td class="mn pv">+26.9%</td><td></td></tr>
+      <tr><td>2025/07</td><td class="mn">3,232</td><td class="mn pv">+22.5%</td><td class="mn pv">+25.8%</td><td></td></tr>
+      <tr><td>2025/08</td><td class="mn">3,358</td><td class="mn pv">+3.9%</td><td class="mn pv">+33.8%</td><td></td></tr>
+      <tr><td>2025/09</td><td class="mn">3,310</td><td class="mn nv">-1.42%</td><td class="mn pv">+31.4%</td><td></td></tr>
+      <tr><td>2025/10</td><td class="mn">3,675</td><td class="mn pv">+11%</td><td class="mn pv">+16.9%</td><td></td></tr>
+      <tr><td>2025/11</td><td class="mn">3,436</td><td class="mn nv">-6.49%</td><td class="mn pv">+24.5%</td><td></td></tr>
+      <tr><td>2025/12</td><td class="mn">3,350</td><td class="mn nv">-2.5%</td><td class="mn pv">+20.4%</td><td></td></tr>
+      <tr><td>2026/01</td><td class="mn">4,013</td><td class="mn pv">+19.8%</td><td class="mn pv">+36.8%</td><td>新年度首月強勁</td></tr>
+      <tr><td>2026/02</td><td class="mn">3,177</td><td class="mn nv">-20.8%</td><td class="mn pv">+22.2%</td><td>農曆年月少工作天</td></tr>
+      <tr><td>2026/03</td><td class="mn">4,152</td><td class="mn pv">+30.7%</td><td class="mn pv">+45.2%</td><td>年增率跳升</td></tr>
+      <tr><td>2026/04</td><td class="mn">4,107</td><td class="mn nv">-1.07%</td><td class="mn pv">+17.5%</td><td></td></tr>
+      <tr><td>2026/05</td><td class="mn">4,170</td><td class="mn pv">+1.52%</td><td class="mn pv">+30.1%</td><td></td></tr>
+      <tr><td>2026/06</td><td class="mn pv"><strong>4,427</strong></td><td class="mn pv"><strong>+6.16%</strong></td><td class="mn pv"><strong>+67.9%</strong></td><td>13個月最高，創40個月新高</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SVG 長條圖 -->
+  <h3 class="rtitle">月營收長條圖（2025/06–2026/06）</h3>
+  <div class="cbox">
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Noto Sans TC,sans-serif">
+
+      <!-- 背景格線 -->
+      <line x1="50" y1="20"  x2="840" y2="20"  stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="70"  x2="840" y2="70"  stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="120" x2="840" y2="120" stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="170" x2="840" y2="170" stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="220" x2="840" y2="220" stroke="#EDE8DC" stroke-width="1"/>
+      <!-- 零軸 -->
+      <line x1="50" y1="258" x2="840" y2="258" stroke="#C8C0A8" stroke-width="1.5"/>
+
+      <!-- Y 軸標籤 -->
+      <text x="44" y="24"  text-anchor="end" font-size="10" fill="#9a9284">5,000</text>
+      <text x="44" y="74"  text-anchor="end" font-size="10" fill="#9a9284">4,500</text>
+      <text x="44" y="124" text-anchor="end" font-size="10" fill="#9a9284">4,000</text>
+      <text x="44" y="174" text-anchor="end" font-size="10" fill="#9a9284">3,500</text>
+      <text x="44" y="224" text-anchor="end" font-size="10" fill="#9a9284">3,000</text>
+
+      <!-- 比例尺：5000→0 對應 y=20→258，每1億 = 0.0476px
+           bar高度 = (val-2200)*238/2800，bar頂y = 258-高度
+           2637=45.5 → h=45.5  3232=109.4  3358=122.2  3310=117.5  3675=157.2
+           3436=131.1 3350=122.1 4013=193.5  3177=82.6  4152=208.0
+           4107=203.4  4170=210.1  4427=239.0(peak) -->
+
+      <!-- 2025/06 trough 最低 -->
+      <rect x="58"  y="212.5" width="48" height="45.5"  fill="#D9776E"/>
+      <text x="82"  y="204"   text-anchor="middle" font-size="10" fill="#0B2027">2,637</text>
+      <text x="82"  y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/06</text>
+
+      <!-- 2025/07 -->
+      <rect x="122" y="148.6" width="48" height="109.4" fill="#1B5E63"/>
+      <text x="146" y="140"   text-anchor="middle" font-size="10" fill="#0B2027">3,232</text>
+      <text x="146" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/07</text>
+
+      <!-- 2025/08 -->
+      <rect x="186" y="135.8" width="48" height="122.2" fill="#1B5E63"/>
+      <text x="210" y="127"   text-anchor="middle" font-size="10" fill="#0B2027">3,358</text>
+      <text x="210" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/08</text>
+
+      <!-- 2025/09 -->
+      <rect x="250" y="140.5" width="48" height="117.5" fill="#1B5E63" opacity=".8"/>
+      <text x="274" y="132"   text-anchor="middle" font-size="10" fill="#0B2027">3,310</text>
+      <text x="274" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/09</text>
+
+      <!-- 2025/10 -->
+      <rect x="314" y="100.8" width="48" height="157.2" fill="#1B5E63"/>
+      <text x="338" y="92"    text-anchor="middle" font-size="10" fill="#0B2027">3,675</text>
+      <text x="338" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/10</text>
+
+      <!-- 2025/11 -->
+      <rect x="378" y="126.9" width="48" height="131.1" fill="#1B5E63" opacity=".8"/>
+      <text x="402" y="118"   text-anchor="middle" font-size="10" fill="#0B2027">3,436</text>
+      <text x="402" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/11</text>
+
+      <!-- 2025/12 -->
+      <rect x="442" y="135.9" width="48" height="122.1" fill="#1B5E63" opacity=".8"/>
+      <text x="466" y="127"   text-anchor="middle" font-size="10" fill="#0B2027">3,350</text>
+      <text x="466" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">25/12</text>
+
+      <!-- 年度分隔線 -->
+      <line x1="502" y1="10" x2="502" y2="265" stroke="#C8C0A8" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="504" y="12" font-size="9" fill="#9a9284">2026年↓</text>
+
+      <!-- 2026/01 -->
+      <rect x="506" y="64.5"  width="48" height="193.5" fill="#1B5E63"/>
+      <text x="530" y="56"    text-anchor="middle" font-size="10" fill="#0B2027">4,013</text>
+      <text x="530" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/01</text>
+
+      <!-- 2026/02 農曆低谷 -->
+      <rect x="570" y="175.4" width="48" height="82.6"  fill="#C97B3D" opacity=".8"/>
+      <text x="594" y="167"   text-anchor="middle" font-size="10" fill="#0B2027">3,177</text>
+      <text x="594" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/02</text>
+      <text x="594" y="287"   text-anchor="middle" font-size="9"  fill="#9a9284">農曆年</text>
+
+      <!-- 2026/03 -->
+      <rect x="634" y="50"    width="48" height="208"   fill="#1B5E63"/>
+      <text x="658" y="41"    text-anchor="middle" font-size="10" fill="#0B2027">4,152</text>
+      <text x="658" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/03</text>
+
+      <!-- 2026/04 -->
+      <rect x="698" y="54.6"  width="48" height="203.4" fill="#1B5E63"/>
+      <text x="722" y="46"    text-anchor="middle" font-size="10" fill="#0B2027">4,107</text>
+      <text x="722" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/04</text>
+
+      <!-- 2026/05 -->
+      <rect x="762" y="47.9"  width="48" height="210.1" fill="#1B5E63"/>
+      <text x="786" y="39"    text-anchor="middle" font-size="10" fill="#0B2027">4,170</text>
+      <text x="786" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/05</text>
+
+      <!-- 2026/06 peak 最高 -->
+      <rect x="826" y="19"    width="48" height="239"   fill="#E4B363"/>
+      <text x="850" y="11"    text-anchor="middle" font-size="10" font-weight="bold" fill="#0B2027">4,427</text>
+      <text x="850" y="275"   text-anchor="middle" font-size="10" fill="#6B6357">26/06</text>
+      <text x="850" y="287"   text-anchor="middle" font-size="9"  fill="#8a6d2c">40月新高</text>
+
+    </svg>
+  </div>
+  <div class="clegend">
+    <span><i style="background:#E4B363"></i>13 個月最高（2026/06，4,427 億）</span>
+    <span><i style="background:#D9776E"></i>13 個月最低（2025/06，2,637 億）</span>
+    <span><i style="background:#C97B3D;opacity:.8"></i>農曆年效應（2026/02）</span>
+    <span><i style="background:#1B5E63"></i>一般月份</span>
+  </div>
+
+  <!-- 年增率折線圖 -->
+  <h3 class="rtitle">年增率趨勢（年增率 %）</h3>
+  <div class="cbox">
+    <svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Noto Sans TC,sans-serif">
+      <!-- 格線 -->
+      <line x1="50" y1="30"  x2="840" y2="30"  stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="80"  x2="840" y2="80"  stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="130" x2="840" y2="130" stroke="#EDE8DC" stroke-width="1"/>
+      <line x1="50" y1="170" x2="840" y2="170" stroke="#C8C0A8" stroke-width="1.2"/>
+
+      <!-- Y 標籤 -->
+      <text x="44" y="33"  text-anchor="end" font-size="10" fill="#9a9284">80%</text>
+      <text x="44" y="83"  text-anchor="end" font-size="10" fill="#9a9284">50%</text>
+      <text x="44" y="133" text-anchor="end" font-size="10" fill="#9a9284">20%</text>
+      <text x="44" y="173" text-anchor="end" font-size="10" fill="#9a9284">0%</text>
+
+      <!--
+        比例：80%→y=30, 0%→y=170 → 每1% = 1.75px
+        26.9→ y=170-26.9*1.75=123.0  25.8→125.8  33.8→111.0  31.4→115.1
+        16.9→140.4  24.5→127.1  20.4→134.5  36.8→105.6  22.2→131.4
+        45.2→91.1  17.5→139.9  30.1→117.3  67.9→51.2
+        X 中心點：82,146,210,274,338,402,466,530,594,658,722,786,850
+      -->
+
+      <!-- 折線 -->
+      <polyline
+        points="82,123.0 146,125.8 210,111.0 274,115.1 338,140.4 402,127.1 466,134.5 530,105.6 594,131.4 658,91.1 722,139.9 786,117.3 850,51.2"
+        fill="none" stroke="#1B5E63" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- 資料點 -->
+      <circle cx="82"  cy="123.0" r="4" fill="#1B5E63"/>
+      <circle cx="146" cy="125.8" r="4" fill="#1B5E63"/>
+      <circle cx="210" cy="111.0" r="4" fill="#1B5E63"/>
+      <circle cx="274" cy="115.1" r="4" fill="#1B5E63"/>
+      <circle cx="338" cy="140.4" r="4" fill="#1B5E63"/>
+      <circle cx="402" cy="127.1" r="4" fill="#1B5E63"/>
+      <circle cx="466" cy="134.5" r="4" fill="#1B5E63"/>
+      <circle cx="530" cy="105.6" r="4" fill="#1B5E63"/>
+      <circle cx="594" cy="131.4" r="4" fill="#C97B3D"/>
+      <circle cx="658" cy="91.1"  r="4" fill="#1B5E63"/>
+      <circle cx="722" cy="139.9" r="4" fill="#1B5E63"/>
+      <circle cx="786" cy="117.3" r="4" fill="#1B5E63"/>
+      <!-- 2026/06 peak -->
+      <circle cx="850" cy="51.2"  r="6" fill="#E4B363" stroke="#C97B3D" stroke-width="1.5"/>
+
+      <!-- 數值標籤（選關鍵點） -->
+      <text x="82"  y="115" text-anchor="middle" font-size="9" fill="#6B6357">26.9%</text>
+      <text x="338" y="152" text-anchor="middle" font-size="9" fill="#6B6357">16.9%</text>
+      <text x="530" y="97"  text-anchor="middle" font-size="9" fill="#1B5E63">36.8%</text>
+      <text x="658" y="83"  text-anchor="middle" font-size="9" fill="#1B5E63">45.2%</text>
+      <text x="850" y="43"  text-anchor="middle" font-size="10" font-weight="bold" fill="#8a6d2c">67.9%</text>
+
+      <!-- X 標籤 -->
+      <text x="82"  y="193" text-anchor="middle" font-size="10" fill="#6B6357">25/06</text>
+      <text x="210" y="193" text-anchor="middle" font-size="10" fill="#6B6357">25/08</text>
+      <text x="338" y="193" text-anchor="middle" font-size="10" fill="#6B6357">25/10</text>
+      <text x="466" y="193" text-anchor="middle" font-size="10" fill="#6B6357">25/12</text>
+      <text x="594" y="193" text-anchor="middle" font-size="10" fill="#6B6357">26/02</text>
+      <text x="722" y="193" text-anchor="middle" font-size="10" fill="#6B6357">26/04</text>
+      <text x="850" y="193" text-anchor="middle" font-size="10" fill="#6B6357">26/06</text>
+
+      <!-- 年度分隔 -->
+      <line x1="502" y1="20" x2="502" y2="175" stroke="#C8C0A8" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="504" y="22" font-size="9" fill="#9a9284">2026↓</text>
+    </svg>
+  </div>
+  <div class="clegend">
+    <span><i style="background:#E4B363;border-radius:50%"></i>2026/06 年增率 67.9%（13個月最高）</span>
+    <span><i style="background:#C97B3D;border-radius:50%"></i>2026/02 農曆年（基期效應）</span>
+  </div>
+
+  <!-- 文字解讀 -->
+  <h3 class="rtitle">趨勢解讀</h3>
+  <div class="callout">
+    <div class="lbl">三個關鍵觀察</div>
+    <p><strong>① 2025H2 是「平台整理期」，非趨勢反轉。</strong>2025年 7–12 月月營收在 3,232–3,675 億之間震盪，年增率從 25–37% 小幅波動但從未轉負，這是台積電 2022–2023 年庫存修正後的第一個「高原期」——本業仍強勁，只是市場正等待下一波 AI 算力升級周期的產能啟動。</p>
+    <p><strong>② 2026 年是明顯的「量價齊揚」跳升。</strong>2026/01 起月營收突破 4,000 億大關（此前 13 個月只有一個月逼近這個水位），且除 2 月農曆年效應外，每個月都維持 4,000 億以上，2026/06 更以 4,427 億創下 40 個月新高。年增率在 2026/06 飆升至 <strong class="pv">67.9%</strong>，是 13 個月內的最大加速——這背後是 N3/N2 客戶（AI 加速器、旗艦手機 SoC）的全面拉貨。</p>
+    <p><strong>③ 2026/02 的月減 20.8% 不是警訊。</strong>農曆新年導致當月工作天數少，這個規律性的「2 月低谷」在台積電每年都會出現，對應的是 3 月的強力反彈（+30.7%），是季節性因素而非需求轉弱。</p>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--negv);">
+    <div class="lbl" style="color:var(--negv);">需要持續觀察的訊號</div>
+    <p>2026/03、04、05 的年增率出現 45.2% → 17.5% → 30.1% 的波動，4 月年增率短暫收斂至 17.5%，主因是去年同期（2025/04）有較高的基期。這並非需求轉弱，而是<strong>基期效應干擾年增率讀數</strong>——評估正確的方式應該看絕對金額（4,107 億仍屬歷史高位區），而非只看年增率的單月收縮。但若 2026 下半年月營收開始從 4,000 億以上回落，才需要真正警覺。</p>
+  </div>
+
+  <div class="verdict">
+    <div class="vtext">
+      <span class="badge">第 4 步：營收趨勢視覺化 ✅ 完成</span>
+      <h3>營收趨勢總結</h3>
+      <p style="color:#E0DAC8;font-size:.92rem;margin:0;">
+        2025H2 高原整理 → 2026 年全面突破 4,000 億大關 → 2026/06 以 4,427 億創 40 個月新高，年增 67.9%。累計 2026 年上半年營收年增 35.6%，與法說會揭露的「全年略高於 40%」展望完全一致。月增率受農曆年季節因素影響（2 月低、3 月反彈），不影響長期向上趨勢判讀。
       </p>
     </div>
   </div>
