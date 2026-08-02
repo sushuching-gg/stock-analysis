@@ -91,7 +91,7 @@
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
-  <a href="#" class="locked" data-step="5"><span class="num">05</span>前瞻本益比<span class="lock-mark">🔒</span></a>
+  <a href="#step5" class="enabled" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#" class="locked" data-step="6"><span class="num">06</span>投資決策推理<span class="lock-mark">🔒</span></a>
 </nav>
 
@@ -478,10 +478,58 @@
 
 </section>
 
+<section class="step-section" id="step5">
+  <div class="step-flag">【第 5 步／共 6 步】</div>
+  <h2 class="step-title">前瞻本益比／EPS 預估</h2>
+
+  <div class="callout">
+    FactSet最新調查（2026/05/15更新）：<strong>2026年EPS共識中位數94.51元</strong>（區間85.41~102.94元）、<strong>2027年EPS共識中位數113.83元</strong>（區間109.36~119.21元）。以股價2,020元計算，<strong>隱含2026年前瞻本益比約21.4倍、2027年約17.7倍</strong>。<strong>大和證券則明顯偏樂觀</strong>，將本益比假設由18倍上調至26倍、目標價一次上修至3,000元，是目前查得到的分析師中最高目標價之一（FactSet 17位分析師中位數目標價僅2,500元，最高3,533元、最低1,500元），估值假設分歧值得留意。
+  </div>
+
+  <h3 style="font-family:'Noto Serif TC',serif;">法人EPS共識預估（FactSet，2026/05/15）</h3>
+  <table>
+    <thead><tr><th>年度</th><th>最高值</th><th>最低值</th><th>平均值</th><th>中位數</th></tr></thead>
+    <tbody>
+      <tr><td>2025年（已確定）</td><td>72</td><td>67.69</td><td>69.72</td><td>69.52</td></tr>
+      <tr><td>2026年</td><td>102.94</td><td>85.41</td><td>94.4</td><td>94.51</td></tr>
+      <tr><td>2027年</td><td>119.21</td><td>109.36</td><td>114.14</td><td>113.83</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">來源：<a href="https://today.line.me/tw/v3/article/JPq5g7K" target="_blank">鉅亨速報：Factset調查嘉澤EPS預估表（2026/03/12版本）</a>。2025年實際EPS為70.17元（第2步已查證），略高於當時法人共識的69.52元，顯示過去一次的預估與實際落差不大（誤差約+0.9%），但2026年區間（85.41~102.94，最高最低相差約20%）本身分歧仍不小，代表市場對今年獲利成長幅度尚未收斂共識，不宜將單一數字當作篤定結果。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">前瞻本益比（已知股價，反推隱含倍數）</h3>
+  <p>採用第2步查得股價2,020元（2026/07/23收盤，查詢當下單一時間點快照）：</p>
+  <table>
+    <thead><tr><th>年度</th><th>共識EPS(中位數)</th><th>隱含前瞻本益比</th></tr></thead>
+    <tbody>
+      <tr><td>2026年</td><td>94.51元</td><td>約 21.4 倍</td></tr>
+      <tr><td>2027年</td><td>113.83元</td><td>約 17.7 倍</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">計算方式：股價 ÷ 預估EPS。此為「已知股價、反推市場目前隱含願意付出的倍數」，回答「現在貴不貴」。與第2步查得的即時本益比28.24倍（同業平均74.24倍）相比，用前瞻EPS計算出的倍數明顯較低，反映的是市場已將未來1-2年的獲利成長部分反映進目前股價中。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">目標本益比法（已知假設倍數，反推目標價）</h3>
+  <p>此方法與前瞻本益比是同一公式的不同用法：前者已知股價求隱含倍數，這裡則是已知假設倍數、反推目標價，用「預估EPS × 假設合理倍數」試算。以下用2026年共識EPS（94.4元，平均值）搭配20/25/30倍三組情境試算，僅為敏感度試算、不是預測，倍數的選擇本身沒有標準答案：</p>
+  <table>
+    <thead><tr><th>假設本益比倍數</th><th>2026年EPS×倍數＝目標價</th><th>2027年EPS×倍數＝目標價</th></tr></thead>
+    <tbody>
+      <tr><td>20倍</td><td>94.4 × 20 = 1,888元</td><td>114.14 × 20 = 2,283元</td></tr>
+      <tr><td>25倍</td><td>94.4 × 25 = 2,360元</td><td>114.14 × 25 = 2,853元</td></tr>
+      <tr><td>30倍</td><td>94.4 × 30 = 2,832元</td><td>114.14 × 30 = 3,424元</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">對照大和證券實際做法：大和是將倍數假設由18倍一次上調至26倍（接近上表25-30倍區間），搭配其自行上調2-9%後的EPS，算出3,000元目標價——這說明3,000元這個數字，高度倚賴「倍數要給到26倍」這個假設是否成立，而非單純的EPS成長本身。若市場最終只願意給20-22倍（較貼近傳統連接器/被動元件類股的估值水準），即便EPS如預期成長，目標價仍會明顯低於3,000元。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">分析師分歧與預估不確定性揭露</h3>
+  <p>FactSet中位數目標價2,500元（17位分析師，2026/05/15更新，較前次上修4.17%），區間最高3,533元、最低1,500元，區間跨度超過2倍，屬於分歧明顯的個股。大和證券3,000元目標價落在FactSet區間上段但非最高值，其樂觀立論主要建立在「NPO插槽商機」與「AI代理推升一般伺服器需求」兩個題材上——但對照第3步法說會查證結果，NPO專案目前仍處於2027年才量產、且管理層自己表示尚無具體營收比重預測的階段，屬於長線題材而非近1-2年可驗證的營收貢獻，這與大和報告將其提前反映進2026-2027年EPS上修的做法，兩者在時間點上存在一定的樂觀假設空間，建議使用者將3,000元目標價視為「情境上緣」而非基準情境。</p>
+  <p class="snap-note">來源：<a href="https://news.cnyes.com/news/id/6459329" target="_blank">鉅亨網：Factset調查嘉澤目標價中位數上修至2500元（2026/05/15）</a>；<a href="https://cmnews.com.tw/article/newsyoudeservetoknow-50a68412-2b6f-11f1-ad2d-91189ba590e6" target="_blank">大和資本上調嘉澤目標價至3000元報導</a>；<a href="https://www.yesmedia.com.tw/%E6%B3%95%E8%AA%AA%E5%A0%B1%E5%96%9C%EF%BC%8C%E9%80%A3%E6%8E%A5%E5%99%A8%E9%BE%8D%E9%A0%AD%E5%98%89%E6%BE%A4-3533-%E7%87%9F%E9%81%8B%E4%B8%89%E7%AE%AD%E9%BD%8A%E7%99%BC-%E6%B3%95%E4%BA%BA%E4%BC%B0-2/" target="_blank">YesMedia：法人估2026全年EPS挑戰95元（2026Q4法說會後報導）</a>。</p>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.3（第 4 步）</span>
+  <span>報告版本 v1.4（第 5 步）</span>
   <span id="gen-time"></span>
 </footer>
 
