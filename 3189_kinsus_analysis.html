@@ -292,7 +292,7 @@
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
-  <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
+  <a href="#step5" class="enabled" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
 
@@ -647,10 +647,64 @@
 
 </section>
 
+<section class="step-section" id="step5">
+  <div class="step-flag">【第 5 步／共 6 步】</div>
+  <h2 class="step-title">前瞻本益比／EPS 預估</h2>
+
+  <div class="callout">
+    <strong>法人對2026年EPS預估在過去3.5個月內從8.05元一路上修到10.57元（+31%），但14位分析師之間分歧極大（最低6.56元、最高13.36元，相差逾2倍）</strong>，且目標價同期從400元飆升至940元——這種急速且持續的上修，較可能是「跟著股價漲勢調高」而非獨立的前瞻判斷，使用時務必留意不確定性。次二年（2027年）EPS預估本次未能查到具參考性的市場共識數字，誠實告知資料有限。
+  </div>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:24px;color:#F0ECE2;">FactSet分析師共識EPS與目標價變化（2026年度預估）</h3>
+  <table>
+    <thead><tr><th>調查時間</th><th>分析師人數</th><th>EPS中位數</th><th>EPS最低</th><th>EPS最高</th><th>目標價</th></tr></thead>
+    <tbody>
+      <tr><td>2026/04/13</td><td>14位</td><td>8.51元</td><td>5.69</td><td>15.65</td><td>400元</td></tr>
+      <tr><td>2026/05/20</td><td>14位</td><td>8.99元</td><td>7.71</td><td>13.6</td><td>571.5元</td></tr>
+      <tr><td>2026/06/21</td><td>13位</td><td>9.33元</td><td>7.75</td><td>13.6</td><td>620元</td></tr>
+      <tr><td>2026/07/26左右</td><td>14位</td><td class="negv">10.57元(較前次10.92下修)</td><td>6.56</td><td>13.36</td><td class="posv">940元</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">來源：鉅亨網「Factset最新調查」系列速報（<a href="https://www.tradingview.com/news/cnyes:c4988d5a9acdf:0/" style="color:var(--steel);">4/13</a>、<a href="https://news.cnyes.com/news/id/6464587" style="color:var(--steel);">5/20</a>、<a href="https://news.cnyes.com/news/id/6505998" style="color:var(--steel);">6/21</a>、<a href="https://news.cnyes.com/news/id/6543847" style="color:var(--steel);">最新一期，發布約1週前</a>）。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:28px;color:#F0ECE2;">隱含前瞻本益比（現在貴不貴）</h3>
+  <p>由於第2、4步已發現股價快照存在來源落差（635~940元區間，各來源查詢時間不同），本處以第4步使用者截圖確認的<strong>2026年6月官方月收盤價891元</strong>為計算基礎，並同時列出以600-700元區間（近期多筆即時快照的粗略中段）試算作為對照：</p>
+  <table>
+    <caption>隱含前瞻本益比＝股價 ÷ 預估EPS</caption>
+    <thead><tr><th>股價基礎</th><th>÷ EPS中位數10.57元</th><th>÷ EPS最低6.56元</th><th>÷ EPS最高13.36元</th></tr></thead>
+    <tbody>
+      <tr><td>891元(6月官方月收盤)</td><td>84.3倍</td><td>135.8倍</td><td>66.7倍</td></tr>
+      <tr><td>650元(近期快照粗估中段)</td><td>61.5倍</td><td>99.1倍</td><td>48.7倍</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">請務必以你自己的看盤軟體核對現價後重新計算，本表僅為方法示範，不是即時精確值。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:28px;color:#F0ECE2;">目標本益比法（合理價可能落在哪）</h3>
+  <p>目標本益比法是反向操作：用「預估EPS × 假設合理倍數」推算目標價，倍數怎麼選沒有標準答案，只是敏感度試算。由於景碩目前實際市場交易的隱含本益比已高達60-85倍（遠高於傳統20-30倍區間），這裡同時列出「保守回歸」與「貼近當前市場」兩組情境供對照：</p>
+  <table>
+    <caption>目標價 = EPS中位數10.57元 × 假設倍數</caption>
+    <thead><tr><th>情境</th><th>假設倍數</th><th>推算目標價</th></tr></thead>
+    <tbody>
+      <tr><td>保守回歸(傳統成長股區間)</td><td>20倍</td><td>211元</td></tr>
+      <tr><td></td><td>25倍</td><td>264元</td></tr>
+      <tr><td></td><td>30倍</td><td>317元</td></tr>
+      <tr><td>貼近當前市場定價</td><td>50倍</td><td>529元</td></tr>
+      <tr><td></td><td>60倍</td><td>634元</td></tr>
+      <tr><td></td><td>70倍</td><td>740元</td></tr>
+    </tbody>
+  </table>
+  <p>兩組情境的落差本身就是重要資訊：如果你認為市場最終會回歸傳統20-30倍的本益比框架，目前股價（600-900元區間）隱含相當大的下修空間；但如果你認為AI/HPC結構性成長題材值得持續給予50-70倍甚至更高的溢價（目前市場實際上就是這樣定價），現價則相對合理甚至仍有上行空間。這完全取決於你對「這是短期主題炒作」還是「長期結構性重估」的判斷，本報告不代替你做這個判斷。</p>
+
+  <p style="margin-top:16px;"><strong>殖利率參考</strong>：近五年平均現金股利約3.1元，平均殖利率約2.31%；下次除息（2026/7/2）配發現金股利1.517元。以近期股價水準計算，現金殖利率已被股價飆漲大幅稀釋至1%左右，若以殖利率投資角度切入，目前並非有吸引力的進場時機。</p>
+
+  <p class="snap-note">來源：<a href="https://aiinvest.sinotrade.com.tw/Stock/Content/TW/3189" style="color:var(--steel);">豐存股（近四季殖利率1.19%）</a>；<a href="https://winvest.tw/Stock/Symbol/Comment/3189" style="color:var(--steel);">Win投資（近五年平均殖利率2.31%）</a>。次二年(2027年)EPS市場共識本次未查得具參考性數字，誠實告知資料有限，不硬湊估值。</p>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.3（第 1-4 步）</span>
+  <span>報告版本 v1.4（第 1-5 步）</span>
   <span id="gen-time"></span>
 </footer>
 
