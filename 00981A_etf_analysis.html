@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>00981A 主動統一台股增長｜規模帳本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#152018;
+    --ink-2:#1D2B21;
+    --ledger:#DCE3CE;
+    --ledger-line:#B9C4A6;
+    --paper-text:#EDF1E4;
+    --brass:#B08D3E;
+    --brass-bright:#D6AE5C;
+    --stamp-red:#A93E30;
+    --teal:#3F7C5D;
+    --muted:#8CA085;
+    --dim:#6B7A67;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper-text);
+    font-family:'Noto Sans TC',sans-serif;
+    line-height:1.75;
+  }
+  h1,h2,h3{font-family:'Noto Serif TC',serif;margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--brass-bright);text-decoration:none;border-bottom:1px solid rgba(214,174,92,.35);}
+  a:hover{border-bottom-color:var(--brass-bright);}
+
+  /* ===== 封面：存摺封面 ===== */
+  .cover{
+    max-width:920px;margin:0 auto;padding:64px 32px 40px;
+    border-bottom:1px dashed var(--dim);
+  }
+  .cover .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:.18em;color:var(--brass);font-size:12px;
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  .cover h1{
+    font-size:clamp(32px,6vw,52px);font-weight:900;color:var(--paper-text);
+    letter-spacing:.01em;
+  }
+  .cover .sub{color:var(--muted);font-size:15px;margin-top:10px;}
+  .cover .thesis{
+    margin-top:28px;padding:20px 24px;background:var(--ink-2);
+    border-left:3px solid var(--stamp-red);border-radius:2px;
+    font-size:16px;color:var(--ledger);
+  }
+  .cover .thesis b{color:#fff;}
+  .meta-row{
+    display:flex;gap:28px;flex-wrap:wrap;margin-top:32px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .meta-row div{min-width:120px;}
+  .meta-row .k{font-size:11px;color:var(--dim);letter-spacing:.05em;}
+  .meta-row .v{font-size:20px;color:var(--brass-bright);margin-top:4px;font-weight:600;}
+
+  section{max-width:920px;margin:0 auto;padding:48px 32px;border-bottom:1px dashed var(--dim);}
+  section:last-of-type{border-bottom:none;}
+  .stamp{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.1em;color:var(--dim);border:1px solid var(--dim);
+    padding:3px 10px;border-radius:20px;margin-bottom:14px;
+  }
+  h2{font-size:24px;color:#fff;margin-bottom:6px;}
+  .lede{color:var(--muted);font-size:14px;margin-bottom:24px;}
+
+  .callout{
+    background:var(--ink-2);border-left:3px solid var(--brass);
+    padding:16px 20px;border-radius:2px;margin:20px 0;font-size:15px;
+  }
+  .callout.risk{border-left-color:var(--stamp-red);}
+  .callout b{color:#fff;}
+  .negv{color:#E08C7D;font-weight:600;}
+  .posv{color:#8FD1AC;font-weight:600;}
+
+  /* ===== 存摺內頁表格 ===== */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;}
+  th,td{
+    padding:10px 12px;text-align:left;border-bottom:1px solid var(--ledger-line);
+    font-family:'IBM Plex Mono',monospace;color:var(--ledger);
+  }
+  th{
+    color:var(--ink);background:var(--ledger);font-family:'Noto Sans TC',sans-serif;
+    font-size:12px;letter-spacing:.03em;font-weight:700;
+  }
+  tr:last-child td{border-bottom:none;}
+  .note{font-size:12.5px;color:var(--dim);margin-top:8px;}
+
+  /* ===== 規模天花板量表（signature element）===== */
+  .gauge-wrap{margin:28px 0;}
+  .gauge{
+    position:relative;height:64px;background:var(--ink-2);border-radius:6px;
+    overflow:hidden;border:1px solid var(--ledger-line);
+  }
+  .gauge .fill{
+    position:absolute;top:0;left:0;height:100%;
+    background:linear-gradient(90deg,var(--teal),var(--brass));
+  }
+  .gauge .ceiling-line{
+    position:absolute;top:0;bottom:0;width:2px;background:var(--stamp-red);
+  }
+  .gauge .ceiling-label{
+    position:absolute;top:-22px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--stamp-red);white-space:nowrap;
+  }
+  .gauge .fig{
+    position:absolute;inset:0;display:flex;align-items:center;padding-left:14px;
+    font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0f150f;font-size:14px;
+  }
+  .gauge-caption{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);
+    font-family:'IBM Plex Mono',monospace;margin-top:6px;}
+
+  /* SVG 長條圖 */
+  .chart-wrap{margin:20px 0;background:var(--ink-2);border-radius:6px;padding:20px 16px 8px;}
+  svg text{font-family:'IBM Plex Mono',monospace;}
+
+  footer{max-width:920px;margin:0 auto;padding:36px 32px 64px;}
+  footer h3{font-size:14px;color:var(--muted);margin-bottom:12px;}
+  footer ol{padding-left:20px;font-size:12.5px;color:var(--dim);line-height:1.9;}
+  footer .disclaimer{
+    margin-top:24px;padding:14px 18px;background:var(--ink-2);border-radius:4px;
+    font-size:12.5px;color:var(--muted);
+  }
+  .version{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);margin-top:18px;}
+
+  @media (max-width:600px){
+    .cover{padding:48px 20px 32px;}
+    section{padding:36px 20px;}
+    .meta-row{gap:18px;}
+    table{font-size:12.5px;}
+    th,td{padding:8px 6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">ETF 觀察帳本 · 非個股六步驟框架</div>
+  <h1>00981A｜主動統一台股增長</h1>
+  <div class="sub">統一台股增長主動式ETF證券投資信託基金・經理人：陳釧瑤・2025年5月27日以淨值10元掛牌</div>
+  <div class="thesis">
+    這份帳本記錄的不是財報體質，而是<b>「成功正在稀釋自己的優勢」</b>——規模衝上台股主動式ETF之首後，兩條硬性外規（單一持股佔淨資產10%、佔該公司流通股10%）正把它的選股空間，從「市值前300大」逐漸壓縮向「市值前50大」，長期而言會讓這檔主動選股基金的持股風格向0050/0052這類被動指數ETF靠近。
+  </div>
+  <div class="meta-row">
+    <div><div class="k">掛牌至今漲幅</div><div class="v">約193%</div></div>
+    <div><div class="k">2026年迄今報酬</div><div class="v">62.64%</div></div>
+    <div><div class="k">2025年總費用率</div><div class="v">1.67–1.8%</div></div>
+    <div><div class="k">台股ETF規模排名</div><div class="v">第6大</div></div>
+  </div>
+</div>
+
+<section id="identity">
+  <div class="stamp">存摺頁 01 · 身分與定位</div>
+  <h2>它是什麼：主動選股，不是追蹤指數</h2>
+  <p class="lede">與被動追蹤指數的0050不同，00981A由基金經理人每日主動調整持股。</p>
+  <p>選股池鎖定<b>台股市值前300大企業</b>，至少六成配置在大型股，再由經理團隊依基本面研究、產業趨勢挑出約30〜50檔個股，策略核心是「大型、創新、成長」，強調每日靈活調整、加碼AI等強勢產業鏈。<a href="https://www.businessweekly.com.tw/business/blog/3021336" target="_blank">﹝商周﹞</a> <a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝股感﹞</a></p>
+  <div class="callout">
+    <b>與六步驟個股框架的關鍵差異：</b>ETF 本身沒有自己的營業活動現金流量表、EPS、法說會——它的「體質」要看的是<b>持股集中度、規模與選股靈活度的關係、配息的資金來源</b>，而不是六大現金流規則。這也是本份報告改用「存摺帳本」而非六步驟導覽的原因。
+  </div>
+</section>
+
+<section id="scale">
+  <div class="stamp">存摺頁 02 · 規模成長軌跡</div>
+  <h2>規模：不到一年衝上台股主動式ETF之首</h2>
+  <p class="lede">規模成長速度在台灣ETF歷史上相當罕見，同時也是本份分析的核心風險起點。</p>
+  <table>
+    <tr><th>時間點</th><th>規模／股價</th><th>備註</th></tr>
+    <tr><td>2025-05-27</td><td class="mono">淨值 10.00 元</td><td>掛牌發行價</td></tr>
+    <tr><td>2026-04</td><td class="mono">規模突破 1,800 億元</td><td>單日成交量多次登台股ETF冠軍</td></tr>
+    <tr><td>2026-05-12</td><td class="mono">股票部位 95.88%／現金 3.19%</td><td>統一投信官網公告資產配置</td></tr>
+    <tr><td>2026-05-13</td><td class="mono">收盤 29.28 元</td><td>約為發行價 2.93 倍</td></tr>
+    <tr><td>2026-05-15</td><td class="mono negv">網友測算規模約 2,700 億元</td><td>PTT個人測算，<b>非統一投信官方數字</b>，用於推估選股池濃縮效應</td></tr>
+    <tr><td>2026-06 初</td><td class="mono">股價最高突破 32 元</td><td>掛牌以來高點</td></tr>
+    <tr><td>2026-07（近期報導）</td><td class="mono">規模 1,833 億元</td><td>2026年迄今報酬 62.64%</td></tr>
+    <tr><td>2026-07-30</td><td class="mono">收盤 26.13 元</td><td>單日快照，非即時報價，查詢當下數字</td></tr>
+  </table>
+  <p class="note">資料來源：<a href="https://www.bnext.com.tw/article/90927/00981a-active-etf-taiwan-stock-growth-guide" target="_blank">數位時代</a>、<a href="https://www.sinotrade.com.tw/richclub/hotstock/00981A%E8%A6%8F%E6%A8%A1%E8%A1%9D1-800%E5%84%84%E7%99%BB%E9%A0%82-%E4%B8%BB%E5%8B%95%E5%BC%8FETF%E7%B8%BE%E6%95%88%E5%A4%A7%E6%AF%94%E6%8B%9A-%E7%82%BA%E4%BD%95%E7%B6%93%E7%90%86%E4%BA%BA%E5%A4%A7%E5%A4%9A%E7%9C%8B%E5%A5%BD%E9%80%993%E6%AA%94-%E5%A4%A7%E6%88%B6%E6%8A%95%E6%AF%8F%E6%97%A5%E6%9F%A5%E8%A9%A2%E6%9C%80%E6%96%B0%E6%88%90%E5%88%86%E8%82%A1%E6%95%99%E5%AD%B8-%E8%82%A1%E5%B8%82%E8%A9%B1%E9%A1%8C-69e994d68839d70af6f82875" target="_blank">Sinotrade豐雲學堂</a>、<a href="https://www.ptt.cc/bbs/Stock/M.1778827693.A.4C3.html" target="_blank">PTT Stock板</a>、<a href="https://www.etfinfo.tw/etf/00981A/holdings" target="_blank">ETF資訊網</a>。不同來源查詢時間點不同，規模數字並非統一時點的精確對照，故以時間序列表格呈現，而非合併成單一區間。</p>
+</section>
+
+<section id="ceiling">
+  <div class="stamp">存摺頁 03 · 規模天花板（本報告核心觀察）</div>
+  <h2>兩條外規，正在把「主動選股」推向「被動選股」</h2>
+  <p class="lede">主動式ETF受限於兩條硬性規則：單一持股不得超過基金淨資產10%（台積電因市值過大，2026年4月23日經金管會放寬至25%）<a href="https://udn.com/news/story/123006/9481995" target="_blank">﹝聯合新聞網﹞</a>，且不得超過該公司在外流通股數10%。</p>
+
+  <div class="gauge-wrap">
+    <div class="gauge">
+      <div class="ceiling-line" style="left:62%;"></div>
+      <div class="ceiling-label" style="left:calc(62% - 40px);">選股池濃縮臨界點（估）</div>
+      <div class="fill" style="width:44%;"></div>
+      <div class="fig">目前規模 ≈1,800～1,833億元</div>
+    </div>
+    <div class="gauge-caption">
+      <span>甜蜜點區間：300～500億元</span>
+      <span>網友測算規模：≈2,700億元（未經官方證實）</span>
+    </div>
+  </div>
+
+  <p>有投資人實測推算：當規模膨脹到約2,700億元時，這兩條外規會讓經理人實質上只能買進市值3,000億元以上的公司，選股範圍將從「市值前300大」濃縮到「前50大」左右，長期而言持股風格會逐漸向0050、0052這類被動指數ETF靠近，即便不會完全一樣<a href="https://www.ptt.cc/bbs/Stock/M.1778827693.A.4C3.html" target="_blank">﹝PTT﹞</a>。也有分析直接指出，規模超過1,800億後，經理人操作靈活度可能受限，大量買賣個股時的市場衝擊成本也會提高<a href="https://pttstock.tw/00981a-holdings/" target="_blank">﹝PTT股票公社﹞</a>。這篇分析甚至判斷經理人操作最舒服的規模區間是300～500億元——而00981A目前的規模已遠遠超出這個區間。</p>
+  <div class="callout risk">
+    <b>這是本份帳本要提醒你的第一件事：</b>你買00981A買的是「主動選股溢價」，但這個溢價正被它自己的成功稀釋。規模天花板不是假設性風險，而是已經發生中的結構轉變——2026年1月已出現成分股納入0050、0052兩檔ETF的紀錄，外界推測正是為了在單一持股上限下，仍能間接擴大台積電曝險<a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝股感﹞</a>。
+  </div>
+</section>
+
+<section id="holdings">
+  <div class="stamp">存摺頁 04 · 持股集中度</div>
+  <h2>前十大持股：中度集中，非重壓單一個股</h2>
+  <p class="lede">與0050單一持股逾五成的集中度相比，00981A走的是「核心均衡配置」路線。</p>
+  <table>
+    <tr><th>快照日期</th><th>前十大合計占比</th><th>台積電權重</th></tr>
+    <tr><td>2026-05-12</td><td class="mono">57.21%</td><td class="mono">－</td></tr>
+    <tr><td>2026-04（中旬）</td><td class="mono">－</td><td class="mono">約 8～9%（前九大權重集中在5%～8.5%）</td></tr>
+    <tr><td>2026-07-30</td><td class="mono">58.5%（中度集中）</td><td class="mono">9.71%（最大持股）</td></tr>
+  </table>
+  <p class="note">前十大集中度在數個查詢時點都落在57%～65%區間，趨勢上屬「中度集中」，尚未出現明顯往單一個股傾斜的訊號。資料來源：<a href="https://www.bnext.com.tw/article/90927/00981a-active-etf-taiwan-stock-growth-guide" target="_blank">數位時代</a>、<a href="https://pttstock.tw/00981a-holdings/" target="_blank">PTT股票公社</a>、<a href="https://www.etfinfo.tw/etf/00981A/holdings" target="_blank">ETF資訊網</a>。持股每日變動，實際權重請以證交所ETF專區當日公告為準。</p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 640 220" width="100%" height="220">
+      <!-- 零軸 -->
+      <line x1="60" y1="180" x2="600" y2="180" stroke="#8CA085" stroke-width="1"/>
+      <!-- bars: 前十大合計 across three snapshots -->
+      <!-- scale: 0-70% -> 0-150px height -->
+      <g>
+        <rect x="100" y="180" width="70" height="0" fill="none"/>
+        <rect x="100" y="112" width="70" height="68" rx="3" fill="#3F7C5D"/>
+        <text x="135" y="100" fill="#8FD1AC" font-size="14" text-anchor="middle">57.21%</text>
+        <text x="135" y="200" fill="#8CA085" font-size="12" text-anchor="middle">2026-05-12</text>
+      </g>
+      <g>
+        <rect x="290" y="105" width="70" height="75" rx="3" fill="#B08D3E"/>
+        <text x="325" y="93" fill="#D6AE5C" font-size="14" text-anchor="middle">58.50%</text>
+        <text x="325" y="200" fill="#8CA085" font-size="12" text-anchor="middle">2026-07-30</text>
+      </g>
+      <g>
+        <rect x="480" y="97" width="70" height="83" rx="3" fill="#A93E30"/>
+        <text x="515" y="85" fill="#E08C7D" font-size="14" text-anchor="middle">64.39%</text>
+        <text x="515" y="200" fill="#8CA085" font-size="12" text-anchor="middle">winvest（近期）</text>
+      </g>
+      <text x="30" y="40" fill="#6B7A67" font-size="12">前十大持股合計占比（%）— 不同來源／時點快照</text>
+    </svg>
+  </div>
+</section>
+
+<section id="income">
+  <div class="stamp">存摺頁 05 · 配息與成本</div>
+  <h2>配息：本質是資本利得，不是穩定收息</h2>
+  <table>
+    <tr><th>除息日</th><th>發放日</th><th>配息金額</th><th>單次殖利率</th></tr>
+    <tr><td>2026-03-17</td><td>2026-04-10</td><td class="mono">0.41 元</td><td class="mono">2.02%</td></tr>
+    <tr><td>2026-06-16</td><td>2026-07-09</td><td class="mono">0.63 元</td><td class="mono">2.00%～2.06%（不同來源估算略有差異）</td></tr>
+  </table>
+  <p>已改為季配息（原年配息），並納入「收益平準金」制度，除息月份為3、6、9、12月<a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝股感﹞</a>。第二次配息較首次成長，換算年化殖利率一度突破8%<a href="https://udn.com/news/story/123006/9481995" target="_blank">﹝聯合新聞網﹞</a>，但要清楚認知：<b>這檔ETF的配息來源主要是持股上漲後實現的資本利得</b>，不是企業穩定配發的股利現金流。若沒有現金流需求，將股利再投入更能加速資產累積。</p>
+  <div class="callout">
+    <b>成本：</b>經理費 1.0% 起，遠高於0050約0.077%<a href="https://www.threads.com/@opkevin95/post/DXnnLErkQm7/00981a%E6%98%AF%E4%BB%80%E9%BA%BC%E9%80%99%E6%98%AF%E4%B8%80%E6%AA%94%E7%94%B1%E7%B5%B1%E4%B8%80%E6%8A%95%E4%BF%A1%E7%99%BC%E8%A1%8C%E7%9A%84%E4%B8%BB%E5%8B%95%E5%BC%8Fetf%E4%B9%9F%E6%98%AF%E5%8F%B0%E7%81%A3%E9%A6%96%E6%89%B9%E6%8E%A8%E5%87%BA%E7%9A%84%E4%B8%BB%E5%8B%95etf%E9%80%8F%E9%81%8E%E7%B6%93%E7%90%86%E4%BA%BA%E4%B8%BB%E5%8B%95%E9%81%B8%E8%82%A1%E8%BF%BD%E6%B1%82%E8%B6%85%E8%B6%8A%E5%A4%A7%E7%9B%A4%E5%A0%B1%E9%85%AC%E7%9B%AE%E5%89%8D%E7%B6%93%E7%90%86%E4%BA%BA%E7%82%BA%E9%99%B3%E9%87%A7%E7%91%A4%E8%A2%AB%E7%B6%B2%E5%8F%8B%E7%A8%B1%E7%82%BA%E7%91%A4%E6%B1%A0%E9%87%91%E6%AF%8D-%E4%B8%BB%E5%8B%95%E5%BC%8F" target="_blank">﹝Threads﹞</a>。2025年總費用率推算約1.67%～1.8%，2026年可能逼近2%<a href="https://udn.com/news/story/123006/9481995" target="_blank">﹝聯合新聞網﹞</a>，換算每投資100萬元、一年約負擔2萬元成本，是否值得取決於經理人能否持續打敗大盤。
+  </div>
+</section>
+
+<section id="risk">
+  <div class="stamp">存摺頁 06 · 風險摘要</div>
+  <h2>三個容易被亮眼績效掩蓋的風險</h2>
+  <table>
+    <tr><th>風險</th><th>內容</th></tr>
+    <tr><td>規模稀釋選股靈活度</td><td>規模已遠超「經理人操作最舒服的300～500億元」區間，兩條持股上限外規正壓縮選股池，長期可能向0050/0052式被動配置靠近</td></tr>
+    <tr><td>操盤人集中風險</td><td>績效高度依賴經理人陳釧瑤個人判斷，若離職或選股失誤，績效可能明顯受影響</td></tr>
+    <tr><td>短期籌碼與地緣政治波動</td><td>2026年5月台股大漲後曾見外資、自營商逢高獲利了結賣壓；6月起地緣政治風險升高、震盪加劇</td></tr>
+  </table>
+  <p class="note">資料來源：<a href="https://www.businessweekly.com.tw/business/blog/3021336" target="_blank">商周ETF指南</a>、<a href="https://pttstock.tw/00981a-holdings/" target="_blank">PTT股票公社</a>、<a href="https://www.ptt.cc/bbs/Stock/M.1778827693.A.4C3.html" target="_blank">PTT Stock板</a>。</p>
+</section>
+
+<footer>
+  <h3>資料來源一覽</h3>
+  <ol>
+    <li>數位時代 BusinessNext｜<a href="https://www.bnext.com.tw/article/90927/00981a-active-etf-taiwan-stock-growth-guide" target="_blank">00981A成分股有什麼？配息好嗎？</a></li>
+    <li>Sinotrade 豐雲學堂｜<a href="https://www.sinotrade.com.tw/richclub/hotstock/00981A%E8%A6%8F%E6%A8%A1%E8%A1%9D1-800%E5%84%84%E7%99%BB%E9%A0%82-%E4%B8%BB%E5%8B%95%E5%BC%8FETF%E7%B8%BE%E6%95%88%E5%A4%A7%E6%AF%94%E6%8B%9A-%E7%82%BA%E4%BD%95%E7%B6%93%E7%90%86%E4%BA%BA%E5%A4%A7%E5%A4%9A%E7%9C%8B%E5%A5%BD%E9%80%993%E6%AA%94-%E5%A4%A7%E6%88%B6%E6%8A%95%E6%AF%8F%E6%97%A5%E6%9F%A5%E8%A9%A2%E6%9C%80%E6%96%B0%E6%88%90%E5%88%86%E8%82%A1%E6%95%99%E5%AD%B8-%E8%82%A1%E5%B8%82%E8%A9%B1%E9%A1%8C-69e994d68839d70af6f82875" target="_blank">00981A規模衝1,800億登頂</a></li>
+    <li>StockFeel 股感｜<a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">00981A 統一台股增長主動式 ETF</a></li>
+    <li>商周 ETF指南｜<a href="https://www.businessweekly.com.tw/business/blog/3021336" target="_blank">00981A是什麼？</a></li>
+    <li>Win投資｜<a href="https://winvest.tw/Stock/Symbol/EtfInformation/00981A" target="_blank">主動統一台股增長 (00981A) 可以買嗎？</a></li>
+    <li>ETF資訊網｜<a href="https://www.etfinfo.tw/etf/00981A/holdings" target="_blank">00981A 成分股名單 2026</a></li>
+    <li>PTT Stock板｜<a href="https://www.ptt.cc/bbs/Stock/M.1778827693.A.4C3.html" target="_blank">00981A 主動統一台股增長 從未跌破季線</a></li>
+    <li>PTT股票公社｜<a href="https://pttstock.tw/00981a-holdings/" target="_blank">00981A成分股前十五大持股完整解析</a></li>
+    <li>聯合新聞網｜<a href="https://udn.com/news/story/123006/9481995" target="_blank">10元漲到快30元！00981A績效碾壓0050</a></li>
+    <li>Threads @opkevin95｜<a href="https://www.threads.com/@opkevin95/post/DXnnLErkQm7/00981a%E6%98%AF%E4%BB%80%E9%BA%BC%E9%80%99%E6%98%AF%E4%B8%80%E6%AA%94%E7%94%B1%E7%B5%B1%E4%B8%80%E6%8A%95%E4%BF%A1%E7%99%BC%E8%A1%8C%E7%9A%84%E4%B8%BB%E5%8B%95%E5%BC%8Fetf%E4%B9%9F%E6%98%AF%E5%8F%B0%E7%81%A3%E9%A6%96%E6%89%B9%E6%8E%A8%E5%87%BA%E7%9A%84%E4%B8%BB%E5%8B%95etf%E9%80%8F%E9%81%8E%E7%B6%93%E7%90%86%E4%BA%BA%E4%B8%BB%E5%8B%95%E9%81%B8%E8%82%A1%E8%BF%BD%E6%B1%82%E8%B6%85%E8%B6%8A%E5%A4%A7%E7%9B%A4%E5%A0%B1%E9%85%AC%E7%9B%AE%E5%89%8D%E7%B6%93%E7%90%86%E4%BA%BA%E7%82%BA%E9%99%B3%E9%87%A7%E7%91%A4%E8%A2%AB%E7%B6%B2%E5%8F%8B%E7%A8%B1%E7%82%BA%E7%91%A4%E6%B1%A0%E9%87%91%E6%AF%8D-%E4%B8%BB%E5%8B%95%E5%BC%8F" target="_blank">00981A是什麼？（費用率比較）</a></li>
+  </ol>
+  <div class="disclaimer">
+    本報告內容整理自公開網路資料，僅供參考，非投資建議，亦不保證數字之即時性與完整性。持股、規模、股價、配息等數字均為查詢當下的快照，正式交易與決策應以官方公告（統一投信官網、證交所ETF專區）及自身券商App為準。本報告與「現金流優先，基本面在後」六步驟個股分析框架屬不同評估邏輯，不適用六大現金流規則評分。
+  </div>
+  <div class="version">v1.0 · 產生時間：2026-08-02 14:34（台北時間）</div>
+</footer>
+
+</body>
+</html>
