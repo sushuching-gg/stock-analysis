@@ -291,7 +291,7 @@
   <a href="#step1" class="enabled" data-step="1"><span class="num">01</span>現金流六大規則</a>
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
-  <a href="#step4" class="locked" data-step="4"><span class="num">04</span>營收趨勢</a>
+  <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
   <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
@@ -598,10 +598,59 @@
 
 </section>
 
+<section class="step-section" id="step4">
+  <div class="step-flag">【第 4 步／共 6 步】</div>
+  <h2 class="step-title">營收趨勢視覺化</h2>
+
+  <div class="callout">
+    <strong>近12個月(2025/07-2026/06)單月營收由33.48億元成長至42.24億元，年增率從24.4%擴大到32.3%</strong>，2026年6月創單月歷史新高。唯一例外是2026年2月受農曆年節季節性影響，單月營收回落至32.04億元（年增率降至個位數9.99%），但3月即恢復25%以上的年增速度。整體趨勢與第2、3步觀察到的「AI/HPC拉貨動能」、「ABF產能利用率提升」互相印證。
+  </div>
+
+  <table>
+    <caption>近12個月單月營收（億元，使用者提供Goodinfo截圖）</caption>
+    <thead><tr><th>月份</th><th>單月營收(億)</th><th>年增率</th><th>月增率</th></tr></thead>
+    <tbody>
+      <tr><td>2025/07</td><td>33.48</td><td class="posv">+24.4%</td><td class="posv">+4.84%</td></tr>
+      <tr><td>2025/08</td><td>34.21</td><td class="posv">+19.7%</td><td class="posv">+2.18%</td></tr>
+      <tr><td>2025/09</td><td>35.86</td><td class="posv">+35.5%</td><td class="posv">+4.82%</td></tr>
+      <tr><td>2025/10</td><td>36.01</td><td class="posv">+39.8%</td><td class="posv">+0.41%</td></tr>
+      <tr><td>2025/11</td><td>35.21</td><td class="posv">+39.7%</td><td class="negv">-2.21%</td></tr>
+      <tr><td>2025/12</td><td>36.89</td><td class="posv">+25.2%</td><td class="posv">+4.75%</td></tr>
+      <tr><td>2026/01</td><td>39.61</td><td class="posv">+54.9%</td><td class="posv">+7.38%</td></tr>
+      <tr><td>2026/02</td><td class="troughcell">32.04</td><td class="posv">+9.99%</td><td class="negv">-19.1%</td></tr>
+      <tr><td>2026/03</td><td>39.39</td><td class="posv">+25%</td><td class="posv">+22.9%</td></tr>
+      <tr><td>2026/04</td><td>40.72</td><td class="posv">+26.8%</td><td class="posv">+3.37%</td></tr>
+      <tr><td>2026/05</td><td>42</td><td class="posv">+33%</td><td class="posv">+3.13%</td></tr>
+      <tr><td>2026/06</td><td class="peakcell">42.24</td><td class="posv">+32.3%</td><td class="posv">+0.57%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar-col"><div class="bar-value">33.48</div><div class="bar pos" style="height:79%;"></div><div class="bar-label">25/07</div></div>
+    <div class="bar-col"><div class="bar-value">34.21</div><div class="bar pos" style="height:81%;"></div><div class="bar-label">25/08</div></div>
+    <div class="bar-col"><div class="bar-value">35.86</div><div class="bar pos" style="height:85%;"></div><div class="bar-label">25/09</div></div>
+    <div class="bar-col"><div class="bar-value">36.01</div><div class="bar pos" style="height:85%;"></div><div class="bar-label">25/10</div></div>
+    <div class="bar-col"><div class="bar-value">35.21</div><div class="bar pos" style="height:83%;"></div><div class="bar-label">25/11</div></div>
+    <div class="bar-col"><div class="bar-value">36.89</div><div class="bar pos" style="height:87%;"></div><div class="bar-label">25/12</div></div>
+    <div class="bar-col"><div class="bar-value">39.61</div><div class="bar pos" style="height:94%;"></div><div class="bar-label">26/01</div></div>
+    <div class="bar-col"><div class="bar-value">32.04</div><div class="bar pos trough" style="height:76%;"></div><div class="bar-label">26/02</div></div>
+    <div class="bar-col"><div class="bar-value">39.39</div><div class="bar pos" style="height:93%;"></div><div class="bar-label">26/03</div></div>
+    <div class="bar-col"><div class="bar-value">40.72</div><div class="bar pos" style="height:96%;"></div><div class="bar-label">26/04</div></div>
+    <div class="bar-col"><div class="bar-value">42.00</div><div class="bar pos" style="height:99%;"></div><div class="bar-label">26/05</div></div>
+    <div class="bar-col"><div class="bar-value">42.24</div><div class="bar pos peak" style="height:100%;"></div><div class="bar-label">26/06</div></div>
+  </div>
+  <div class="legend"><span><i style="background:var(--steel);"></i>一般月份</span><span><i style="background:var(--peak);"></i>單月新高(26/06)</span><span><i style="background:var(--trough);"></i>季節性低點(26/02，農曆年節)</span></div>
+
+  <p style="margin-top:20px;">2026年1月營收年增高達54.9%，除了本身基期較低，也與第3步法說會提及「Q4訂單遞延至隔年1月」的說法一致；2月農曆年節季節性下滑是每年常態，3月起迅速恢復高速成長，且4-6月連續三個月維持26%以上年增，並在6月創下單月歷史新高——與第2、3步「ABF產能利用率將由85%升至90%」、「AI伺服器/HPC/記憶體拉貨動能強勁」的說法互相呼應，顯示營收成長動能有基本面支撐，並非單純股價炒作。</p>
+
+  <p class="snap-note">資料來源：使用者提供之 Goodinfo 月營收截圖（2026/8/2上傳），非本次網路搜尋所得。月別股價欄位顯示的月收盤價（如2026/3收盤313元、4月528元、5月729元、6月891元）與第2步引用的CMoney官方回溯資料（3月313元、4月528元）完全一致，進一步確認第2步中Goodinfo現金流表「26Q1本期收盤635元」並非Q1季底收盤價，而是介於4月(528)與5月(729)之間、報告更新當下的即時價格快照。</p>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.2（第 1-3 步）</span>
+  <span>報告版本 v1.3（第 1-4 步）</span>
   <span id="gen-time"></span>
 </footer>
 
