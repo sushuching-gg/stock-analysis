@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>00991A 主動復華未來50｜規模帳本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#152018;
+    --ink-2:#1D2B21;
+    --ledger:#DCE3CE;
+    --ledger-line:#B9C4A6;
+    --paper-text:#EDF1E4;
+    --brass:#B08D3E;
+    --brass-bright:#D6AE5C;
+    --stamp-red:#A93E30;
+    --teal:#3F7C5D;
+    --muted:#8CA085;
+    --dim:#6B7A67;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper-text);
+    font-family:'Noto Sans TC',sans-serif;
+    line-height:1.75;
+  }
+  h1,h2,h3{font-family:'Noto Serif TC',serif;margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--brass-bright);text-decoration:none;border-bottom:1px solid rgba(214,174,92,.35);}
+  a:hover{border-bottom-color:var(--brass-bright);}
+
+  .cover{
+    max-width:920px;margin:0 auto;padding:64px 32px 40px;
+    border-bottom:1px dashed var(--dim);
+  }
+  .cover .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:.18em;color:var(--brass);font-size:12px;
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  .cover h1{
+    font-size:clamp(32px,6vw,52px);font-weight:900;color:var(--paper-text);
+    letter-spacing:.01em;
+  }
+  .cover .sub{color:var(--muted);font-size:15px;margin-top:10px;}
+  .cover .thesis{
+    margin-top:28px;padding:20px 24px;background:var(--ink-2);
+    border-left:3px solid var(--stamp-red);border-radius:2px;
+    font-size:16px;color:var(--ledger);
+  }
+  .cover .thesis b{color:#fff;}
+  .meta-row{
+    display:flex;gap:28px;flex-wrap:wrap;margin-top:32px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .meta-row div{min-width:120px;}
+  .meta-row .k{font-size:11px;color:var(--dim);letter-spacing:.05em;}
+  .meta-row .v{font-size:20px;color:var(--brass-bright);margin-top:4px;font-weight:600;}
+
+  section{max-width:920px;margin:0 auto;padding:48px 32px;border-bottom:1px dashed var(--dim);}
+  section:last-of-type{border-bottom:none;}
+  .stamp{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.1em;color:var(--dim);border:1px solid var(--dim);
+    padding:3px 10px;border-radius:20px;margin-bottom:14px;
+  }
+  h2{font-size:24px;color:#fff;margin-bottom:6px;}
+  .lede{color:var(--muted);font-size:14px;margin-bottom:24px;}
+
+  .callout{
+    background:var(--ink-2);border-left:3px solid var(--brass);
+    padding:16px 20px;border-radius:2px;margin:20px 0;font-size:15px;
+  }
+  .callout.risk{border-left-color:var(--stamp-red);}
+  .callout b{color:#fff;}
+  .negv{color:#E08C7D;font-weight:600;}
+  .posv{color:#8FD1AC;font-weight:600;}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;}
+  th,td{
+    padding:10px 12px;text-align:left;border-bottom:1px solid var(--ledger-line);
+    font-family:'IBM Plex Mono',monospace;color:var(--ledger);
+  }
+  th{
+    color:var(--ink);background:var(--ledger);font-family:'Noto Sans TC',sans-serif;
+    font-size:12px;letter-spacing:.03em;font-weight:700;
+  }
+  tr:last-child td{border-bottom:none;}
+  .note{font-size:12.5px;color:var(--dim);margin-top:8px;}
+  td.hi{color:#fff;font-weight:700;}
+
+  /* SVG 長條圖 */
+  .chart-wrap{margin:20px 0;background:var(--ink-2);border-radius:6px;padding:20px 16px 8px;}
+  svg text{font-family:'IBM Plex Mono',monospace;}
+
+  /* 重疊度量表 */
+  .overlap-wrap{margin:24px 0;}
+  .overlap-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+  .overlap-label{width:190px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ledger);flex-shrink:0;}
+  .overlap-bar{flex:1;height:20px;background:var(--ink);border-radius:4px;overflow:hidden;position:relative;}
+  .overlap-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--brass-bright));}
+  .overlap-pct{width:56px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--brass-bright);font-weight:600;}
+
+  footer{max-width:920px;margin:0 auto;padding:36px 32px 64px;}
+  footer h3{font-size:14px;color:var(--muted);margin-bottom:12px;}
+  footer ol{padding-left:20px;font-size:12.5px;color:var(--dim);line-height:1.9;}
+  footer .disclaimer{
+    margin-top:24px;padding:14px 18px;background:var(--ink-2);border-radius:4px;
+    font-size:12.5px;color:var(--muted);
+  }
+  .version{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);margin-top:18px;}
+
+  @media (max-width:600px){
+    .cover{padding:48px 20px 32px;}
+    section{padding:36px 20px;}
+    .meta-row{gap:18px;}
+    table{font-size:12.5px;}
+    th,td{padding:8px 6px;}
+    .overlap-label{width:120px;font-size:11.5px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">ETF 觀察帳本 · 非個股六步驟框架</div>
+  <h1>00991A｜主動復華未來50</h1>
+  <div class="sub">主動復華未來50證券投資信託基金・經理人：呂宏宇・復華投信發行・2025年12月以淨值10元掛牌</div>
+  <div class="thesis">
+    這份帳本記錄的核心矛盾是：<b>「上市半年的97%含息報酬，跟最近一個月的-31.90%,是同一檔基金的兩張臉」</b>。00991A靠著分散台積電集中度、重押國巨、台光電等AI供應鏈中型股，在多頭期間繳出遠勝0050的成績，但科技股比重逾85%的高度集中，也讓它在近一個月出現遠比大盤劇烈的回檔——漲的時候漲更多，跌的時候也跌更深，這正是主動式高集中策略的雙面刃。
+  </div>
+  <div class="meta-row">
+    <div><div class="k">成立日期</div><div class="v">2025-12</div></div>
+    <div><div class="k">發行淨值</div><div class="v">10.00元</div></div>
+    <div><div class="k">規模</div><div class="v">約700億+</div></div>
+    <div><div class="k">經理人</div><div class="v">呂宏宇</div></div>
+  </div>
+</div>
+
+<section id="identity">
+  <div class="stamp">存摺頁 01 · 身分與定位</div>
+  <h2>它是什麼：從市值前150大，挖「未來的台灣50」</h2>
+  <p>00991A是復華投信發行的主動式ETF，不追蹤任何固定指數，由基金經理人呂宏宇從台股市值前150大企業中，依產業前景與成長潛力主動挑選約50檔成分股，並可隨市場狀況調整權重<a href="https://pttstock.tw/00991a/" target="_blank">﹝PTT股票公社﹞</a>。與0050「只買市值前50大、每季固定換股」的被動邏輯不同，00991A的定位是「提前布局下一批可能晉升台灣50的企業」，也就是從市值51~150名裡挖掘潛力股，同時保留對現有前50大權值股的裁量空間<a href="https://www.stockfeel.com.tw/00991a-%E5%BE%A9%E8%8F%AF%E5%8F%B0%E7%81%A3%E6%9C%AA%E4%BE%8650%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝StockFeel股感﹞</a>。</p>
+  <div class="callout">
+    <b>與0050最大差異：</b>0050是「照表抄」，00991A是「經理人主觀選＋台積電可拉到30%上限」；目前台積電實際權重約<b>11.63%</b>，並非壓滿上限，顯示經理人選擇分散、而非重壓單一權值股。
+  </div>
+</section>
+
+<section id="performance">
+  <div class="stamp">存摺頁 02 · 績效軌跡（signature：漲跌兩張臉）</div>
+  <h2>上市不到7個月：從+97%到近一個月-31.9%</h2>
+  <p class="lede">以下為不同時間窗口的累積報酬率快照，查詢時間點2026-07-29～07-30，並非同一日資料。</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 820 300" width="100%" height="300">
+      <!-- zero line at y=180 -->
+      <line x1="40" y1="180" x2="800" y2="180" stroke="#B9C4A6" stroke-width="1"/>
+      <!-- bars: 成立以來+40.70, YTD+35.03, 近6個月+27.33, 近3個月-15.39, 近1個月-31.90 -->
+      <!-- scale: 1% = 2.2px -->
+      <!-- bar1 成立以來 +40.70 -->
+      <rect x="70" y="90" width="90" height="90" fill="#D6AE5C"/>
+      <text x="115" y="80" text-anchor="middle" fill="#D6AE5C" font-size="15" font-weight="600">+40.70%</text>
+      <text x="115" y="200" text-anchor="middle" fill="#8CA085" font-size="12">成立以來</text>
+      <!-- bar2 YTD +35.03 -->
+      <rect x="220" y="103" width="90" height="77" fill="#8FD1AC"/>
+      <text x="265" y="93" text-anchor="middle" fill="#8FD1AC" font-size="15" font-weight="600">+35.03%</text>
+      <text x="265" y="200" text-anchor="middle" fill="#8CA085" font-size="12">今年以來(YTD)</text>
+      <!-- bar3 近6個月 +27.33 -->
+      <rect x="370" y="120" width="90" height="60" fill="#8FD1AC"/>
+      <text x="415" y="110" text-anchor="middle" fill="#8FD1AC" font-size="15" font-weight="600">+27.33%</text>
+      <text x="415" y="200" text-anchor="middle" fill="#8CA085" font-size="12">近6個月</text>
+      <!-- bar4 近3個月 -15.39 -->
+      <rect x="520" y="180" width="90" height="34" fill="#E08C7D"/>
+      <text x="565" y="228" text-anchor="middle" fill="#E08C7D" font-size="15" font-weight="600">-15.39%</text>
+      <text x="565" y="248" text-anchor="middle" fill="#8CA085" font-size="12">近3個月</text>
+      <!-- bar5 近1個月 -31.90 (trough) -->
+      <rect x="670" y="180" width="90" height="70" fill="#A93E30"/>
+      <text x="715" y="264" text-anchor="middle" fill="#E08C7D" font-size="16" font-weight="700">-31.90%</text>
+      <text x="715" y="284" text-anchor="middle" fill="#8CA085" font-size="12">近1個月（谷底）</text>
+    </svg>
+  </div>
+  <p class="note">資料來源：<a href="https://zdsetf.com/etf/00991A" target="_blank">zdsetf.com 持股追蹤（2026-07-29／2026-07-30）</a>。近1個月數字為查詢當下快照，會隨股價每日變動，非固定區間。</p>
+  <div class="callout risk">
+    <b>解讀：</b>成立以來與YTD的正報酬，主要是2025年底台股從低點反彈、疊加AI供應鏈狂熱行情堆出來的成果；近1個月的<span class="negv">-31.90%</span>則顯示，一旦這波題材降溫，高度集中在少數科技股的組合會比0050跌得更深更快。長期績效與短期波動要分開看，不能只看「成立以來」的漂亮數字。
+  </div>
+</section>
+
+<section id="holdings">
+  <div class="stamp">存摺頁 03 · 持股集中度與產業分布</div>
+  <h2>前十大權重合計約61%，科技股比重逾85%</h2>
+  <table>
+    <tr><th>排名</th><th>個股</th><th>權重</th></tr>
+    <tr><td>1</td><td>台積電 (2330)</td><td class="mono hi">11.63%</td></tr>
+    <tr><td>2</td><td>國巨 (2327)</td><td class="mono">9.95%</td></tr>
+    <tr><td>3</td><td>台光電 (2383)</td><td class="mono">6.51%</td></tr>
+    <tr><td>4</td><td>南亞科 (2408)</td><td class="mono">5.78%</td></tr>
+    <tr><td>5</td><td>欣興 (3037)</td><td class="mono">5.47%</td></tr>
+    <tr><td>6</td><td>聯發科 (2454)</td><td class="mono">5.12%</td></tr>
+    <tr><td>7</td><td>群聯 (8299)</td><td class="mono">5.08%</td></tr>
+    <tr><td>8</td><td>台燿 (6274)</td><td class="mono">4.29%</td></tr>
+    <tr><td>9</td><td>旺矽 (6223)</td><td class="mono">3.72%</td></tr>
+    <tr><td>10</td><td>智邦 (2345)</td><td class="mono">3.54%</td></tr>
+  </table>
+  <p class="note">資料時間：2026-06-01，來源：<a href="https://tw.stock.yahoo.com/quote/00991A.TW/holding" target="_blank">Yahoo股市持股分析</a>。前十大合計約60.7%~61.1%（不同查詢時間點略有差異）<a href="https://pttstock.tw/00991a/" target="_blank">﹝PTT股票公社﹞</a>。</p>
+  <table>
+    <tr><th>行業</th><th>比重</th></tr>
+    <tr><td>半導體業</td><td class="mono hi">46.72%</td></tr>
+    <tr><td>電子零組件業</td><td class="mono hi">35.98%</td></tr>
+    <tr><td>電腦及週邊設備業</td><td class="mono">6.26%</td></tr>
+    <tr><td>通信網路業</td><td class="mono">4.50%</td></tr>
+    <tr><td>其他產業合計</td><td class="mono">6.54%</td></tr>
+  </table>
+  <p class="note">資料時間：2026-07-25，來源：<a href="https://tw.stock.yahoo.com/quote/00991A.TW/holding" target="_blank">Yahoo股市</a>。持股93.41%為股票、6.59%為現金。</p>
+  <div class="callout risk">
+    <b>集中度風險：</b>科技股比重超過85%，國巨、南亞科等中小型成長股的波動度又比台積電更大——如果台股科技業出現系統性回調，00991A的跌幅可能比0050更劇烈，近1個月-31.90%已是實際印證<a href="https://pttstock.tw/00991a/" target="_blank">﹝PTT股票公社﹞</a>。
+  </div>
+</section>
+
+<section id="cost">
+  <div class="stamp">存摺頁 04 · 配息與費用</div>
+  <h2>費用約0.84%~1.0%，是0050的3倍以上；配息頻率說法不一</h2>
+  <table>
+    <tr><th>項目</th><th>00991A</th><th>0050（對照）</th></tr>
+    <tr><td>經理費</td><td class="mono">200億以下1.00%／200億以上0.80%（目前適用0.80%）</td><td class="mono">約0.05%~0.08%</td></tr>
+    <tr><td>保管費</td><td class="mono">0.035%~0.040%</td><td class="mono">0.025%~0.03%</td></tr>
+    <tr><td>估計總費用率</td><td class="mono hi">約0.84%~0.90%（另一來源估0.84%~1.0%）</td><td class="mono">約0.32%</td></tr>
+  </table>
+  <p class="note">資料來源：<a href="https://www.threads.com/@meta.ai/post/DaSSEGjifhx/" target="_blank">Threads費用比較整理</a>、<a href="https://pttstock.tw/00991a/" target="_blank">PTT股票公社</a>。兩篇文章估算的總費用率上限略有差異（0.90% vs 1.0%），本報告如實並陳，不擅自選一個當定論。</p>
+  <div class="callout">
+    <b>配息資訊有出入，需注意：</b>PTT股票公社報導首次配息每單位<b>0.77元</b>，除息日<b>2026-07-21</b>、發放日2026-08-14，年化預估配息率約7.4%，暗示為季配<a href="https://pttstock.tw/00991a/" target="_blank">﹝PTT股票公社﹞</a>；但StockFeel股感的說明是採<b>半年配</b>，於每年6月底及12月底評價，第一次配息評價預計落在2026年6月底<a href="https://www.stockfeel.com.tw/00991a-%E5%BE%A9%E8%8F%AF%E5%8F%B0%E7%81%A3%E6%9C%AA%E4%BE%8650%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝StockFeel股感﹞</a>。兩者對配息頻率的描述不一致，本報告不代為判斷孰是孰非，建議以復華投信官網最新公告為準。
+  </div>
+</section>
+
+<section id="compare">
+  <div class="stamp">存摺頁 05 · 四檔主動式ETF比較</div>
+  <h2>00981A・00982A・00990A・00991A：同賭AI，不同配置</h2>
+  <table>
+    <tr><th>ETF代號</th><th>名稱／發行商</th><th>投資範圍</th><th>配息頻率</th><th>特色／風險提示</th></tr>
+    <tr><td class="mono hi">00981A</td><td>主動統一台股增長<br>統一投信</td><td>台灣市場為主</td><td class="mono">季配</td><td>電子股比重達9成，產業集中度高，科技類股下挫時衝擊大</td></tr>
+    <tr><td class="mono hi">00982A</td><td>主動群益台灣強棒<br>群益投信</td><td>台灣市場為主</td><td class="mono">季配</td><td>2025年配發股利在同類中最高，適合重視現金流的投資人</td></tr>
+    <tr><td class="mono hi">00990A</td><td>主動元大AI新經濟<br>元大投信</td><td>全球市場(聚焦AI)</td><td class="mono">不配息/待公告</td><td>唯一以全球市場為投資區域，聚焦AI基礎建設與應用雙引擎</td></tr>
+    <tr><td class="mono hi">00991A</td><td>主動復華未來50<br>復華投信</td><td>台灣市場(市值前150大)</td><td class="mono">季配/半年配（來源不一）</td><td>分散台積電集中度，挖掘市值51~150大潛力股，近1個月已回檔-31.9%</td></tr>
+  </table>
+
+  <h3 style="font-size:16px;color:#fff;margin-top:28px;margin-bottom:14px;">與00981A的持股重疊度：62.7%</h3>
+  <div class="overlap-wrap">
+    <div class="overlap-row">
+      <div class="overlap-label">00981A vs 00995A</div>
+      <div class="overlap-bar"><div class="overlap-fill" style="width:72.9%"></div></div>
+      <div class="overlap-pct">72.9%</div>
+    </div>
+    <div class="overlap-row">
+      <div class="overlap-label">00981A vs 00994A</div>
+      <div class="overlap-bar"><div class="overlap-fill" style="width:65.4%"></div></div>
+      <div class="overlap-pct">65.4%</div>
+    </div>
+    <div class="overlap-row">
+      <div class="overlap-label" style="color:#D6AE5C;">00981A vs 00991A</div>
+      <div class="overlap-bar"><div class="overlap-fill" style="width:62.7%;background:linear-gradient(90deg,var(--stamp-red),var(--brass-bright));"></div></div>
+      <div class="overlap-pct" style="color:#D6AE5C;">62.7%</div>
+    </div>
+    <div class="overlap-row">
+      <div class="overlap-label">00981A vs 00407A</div>
+      <div class="overlap-bar"><div class="overlap-fill" style="width:61.2%"></div></div>
+      <div class="overlap-pct">61.2%</div>
+    </div>
+  </div>
+  <p class="note">資料來源：<a href="https://www.etfinfo.tw/etf/00981A/holdings" target="_blank">ETF資訊網 00981A持股重疊比較</a>（2026-07-30快照）。00981A與00991A共同持股23檔，重疊率62.7%——四檔比較對象中排名第三，代表兩者選股邏輯有相當交集，同時持有的分散效果會比看起來小。</p>
+
+  <div class="callout">
+    <b>共同持股：</b>四檔主動式ETF的共同持股以台積電為標準配備，其次是奇鋐、緯穎、智邦、台光電、台達電、貿聯-KY、群聯等AI供應鏈零組件股——代表這幾檔本質上都在賭同一個AI主題，分散效果比想像中小，本質上是在分散「經理人風險」而非「產業風險」<a href="https://www.businesstoday.com.tw/article/category/183013/post/202512260003/" target="_blank">﹝今周刊﹞</a>。
+  </div>
+
+  <h3 style="font-size:16px;color:#fff;margin-top:28px;margin-bottom:10px;">00981A vs 00991A：最常被拿來比較的兩檔</h3>
+  <p>00991A分散台積電集中度、同時布局市值51~150大的中型成長股晉升機會；00981A的操盤風格歷史較長、驗證較充分，但電子股投資比重高達9成，一旦科技類股下挫，00981A會直接受到波及——2025年電子類指數曾在一季內下跌超過10%<a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">﹝StockFeel股感﹞</a>。若偏好分散台積電風險並押注中型股晉升機會，00991A較合適；若信任統一投信操盤風格且能接受較高的科技股集中度，00981A的長期驗證更充分。兩檔搭配也是一種策略，用來分散單一經理人風險<a href="https://pttstock.tw/00991a/" target="_blank">﹝PTT股票公社﹞</a>。</p>
+
+  <div class="callout">
+    <b>依風險屬性的實務建議（業界觀點整理，非投資建議）：</b>積極型投資人可用00981A搭配00991A分散單一經理人風險；需要穩定現金流的可考慮季配的00982A（2025年配發股利在同類中最高）；看好美股AI又不太需要配息的可選00990A<a href="https://www.businesstoday.com.tw/article/category/183013/post/202512260003/" target="_blank">﹝今周刊﹞</a>。
+  </div>
+</section>
+
+<section id="risk">
+  <div class="stamp">存摺頁 06 · 風險摘要</div>
+  <h2>三個容易被亮眼績效掩蓋的風險</h2>
+  <table>
+    <tr><th>風險</th><th>內容</th></tr>
+    <tr><td>高集中度是雙面刃</td><td>科技股比重逾85%，國巨、南亞科等波動度高於台積電，近1個月已實際回檔<span class="negv">-31.90%</span>，遠比0050劇烈</td></tr>
+    <tr><td>操盤人集中風險</td><td>績效高度依賴經理人呂宏宇個人判斷，2026上半年重押國巨、台光電等個股奏效，但過去績效不代表未來能持續選對</td></tr>
+    <tr><td>費用結構侵蝕長期報酬</td><td>總費用率約0.84%~1.0%，是0050的3倍以上，且成立時間不到一年，尚未經歷完整多空循環驗證</td></tr>
+  </table>
+  <p class="note">資料來源：<a href="https://pttstock.tw/00991a/" target="_blank">PTT股票公社</a>、<a href="https://www.stockfeel.com.tw/00991a-%E5%BE%A9%E8%8F%AF%E5%8F%B0%E7%81%A3%E6%9C%AA%E4%BE%8650%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">StockFeel股感</a>、<a href="https://zdsetf.com/etf/00991A" target="_blank">zdsetf.com</a>。</p>
+  <div class="callout risk">
+    <b>判斷框架：</b>這四檔本質上都是用更高的費用去賭經理人能否持續選對AI供應鏈股。投資人沒辦法即時驗證經理人的選股邏輯是否合理，只能事後看績效結果——這類決策屬於「代價高、且自己無法即時核對正確性」的高風險類型，建議以能逐步確認、隨時可調整持股的方式配置，並持續追蹤而非一次重押。
+  </div>
+</section>
+
+<footer>
+  <h3>資料來源一覽</h3>
+  <ol>
+    <li>PTT股票公社｜<a href="https://pttstock.tw/00991a/" target="_blank">【00991A復華未來50】首次配息0.77元！成分股、績效與費用完整解析</a></li>
+    <li>StockFeel 股感｜<a href="https://www.stockfeel.com.tw/00991a-%E5%BE%A9%E8%8F%AF%E5%8F%B0%E7%81%A3%E6%9C%AA%E4%BE%8650%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">00991A 復華台灣未來 50 主動式 ETF</a></li>
+    <li>zdsetf.com｜<a href="https://zdsetf.com/etf/00991A" target="_blank">00991A 復華未來50主動式 持股追蹤</a></li>
+    <li>Yahoo股市｜<a href="https://tw.stock.yahoo.com/quote/00991A.TW/holding" target="_blank">主動復華未來50(00991A.TW) 持股分析</a></li>
+    <li>Threads @meta.ai｜<a href="https://www.threads.com/@meta.ai/post/DaSSEGjifhx/" target="_blank">0050 vs 00991A 費用比較</a></li>
+    <li>今周刊｜<a href="https://www.businesstoday.com.tw/article/category/183013/post/202512260003/" target="_blank">4檔主動式ETF大比拼：管理費、配息</a></li>
+    <li>ETF資訊網｜<a href="https://www.etfinfo.tw/etf/00981A/holdings" target="_blank">00981A 持股重疊比較</a></li>
+    <li>StockFeel 股感｜<a href="https://www.stockfeel.com.tw/00981a-%E7%B5%B1%E4%B8%80%E5%8F%B0%E8%82%A1%E5%A2%9E%E9%95%B7%E4%B8%BB%E5%8B%95%E5%BC%8F-etf/" target="_blank">00981A 統一台股增長主動式 ETF</a></li>
+  </ol>
+  <div class="disclaimer">
+    本報告內容整理自公開網路資料，僅供參考，非投資建議，亦不保證數字之即時性與完整性。持股、規模、股價、配息等數字均為查詢當下的快照，不同來源、不同查詢時間點可能有落差（本報告已在配息頻率、費用率上限、持股比重等處如實並陳差異，不擅自選一個當定論）。正式交易與決策應以官方公告（復華投信官網、證交所ETF專區）及自身券商App為準。本報告與「現金流優先，基本面在後」六步驟個股分析框架屬不同評估邏輯，ETF無自身現金流量表，不適用六大現金流規則評分。
+  </div>
+  <div class="version">v1.0 · 產生時間：2026-08-02（台北時間）</div>
+</footer>
+
+</body>
+</html>
