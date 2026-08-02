@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>00929 復華台灣科技優息｜ETF 結構分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --paper-raise:#FFFFFF;
+    --ink:#1E2A28;
+    --ink-soft:#4A5654;
+    --gold:#A9762F;
+    --gold-soft:#F0E3C8;
+    --teal:#2E6B5E;
+    --teal-soft:#DCEAE4;
+    --negv:#A5333B;
+    --negv-soft:#F4DEE0;
+    --peak:#E9D9AC;
+    --trough:#F1D6D9;
+    --line:#DCD4C2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans TC',sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Noto Serif TC',serif;color:var(--ink);letter-spacing:.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--teal);text-decoration-color:var(--line);}
+  a:hover{text-decoration-color:var(--teal);}
+
+  /* ---------- Header ---------- */
+  header.hero{
+    padding:64px 8vw 48px;
+    background:
+      radial-gradient(circle at 82% -10%, var(--gold-soft) 0%, transparent 55%),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.78rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-size:clamp(2rem,4vw,3.1rem);
+    font-weight:900;
+    margin:0 0 10px;
+    line-height:1.15;
+  }
+  .subtitle{font-size:1.05rem;color:var(--ink-soft);max-width:640px;margin:0 0 28px;}
+  .heroGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    max-width:920px;
+    margin-top:12px;
+  }
+  .heroStat{background:var(--paper-raise);padding:16px 18px;}
+  .heroStat .lbl{font-size:.72rem;color:var(--ink-soft);letter-spacing:.04em;}
+  .heroStat .val{font-family:'IBM Plex Mono',monospace;font-size:1.28rem;font-weight:600;margin-top:4px;}
+  .heroStat .val.neg{color:var(--negv);}
+  .heroStat .sub{font-size:.72rem;color:var(--ink-soft);margin-top:2px;}
+
+  /* ---------- Nav ---------- */
+  nav.stepnav{
+    position:sticky;top:0;z-index:50;
+    display:flex;overflow-x:auto;
+    background:rgba(246,243,236,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.stepnav a{
+    flex:0 0 auto;
+    padding:14px 20px;
+    font-size:.86rem;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:3px solid transparent;
+    white-space:nowrap;
+  }
+  nav.stepnav a.active{color:var(--ink);border-bottom-color:var(--gold);font-weight:600;}
+
+  /* ---------- Layout ---------- */
+  main{max-width:920px;margin:0 auto;padding:0 8vw 90px;}
+  section{padding-top:56px;scroll-margin-top:64px;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+    color:var(--teal);letter-spacing:.08em;text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .kicker::before{content:'';width:18px;height:2px;background:var(--teal);display:inline-block;}
+  h2.stepTitle{font-size:1.6rem;margin:0 0 20px;}
+
+  .callout{
+    border-left:4px solid var(--gold);
+    background:var(--gold-soft);
+    padding:16px 20px;border-radius:2px;
+    margin-bottom:24px;font-size:.98rem;
+  }
+  .callout.teal{border-left-color:var(--teal);background:var(--teal-soft);}
+  .callout.neg{border-left-color:var(--negv);background:var(--negv-soft);}
+  .callout b{color:var(--ink);}
+
+  p{margin:0 0 16px;}
+  strong{color:var(--ink);}
+  .negv{color:var(--negv);font-weight:700;}
+  .posv{color:var(--teal);font-weight:700;}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0 8px;font-size:.92rem;background:var(--paper-raise);}
+  caption{text-align:left;font-size:.8rem;color:var(--ink-soft);margin-bottom:6px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:right;}
+  th{background:#EFE9D8;font-weight:600;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.82rem;}
+  td:first-child,th:first-child{text-align:left;}
+  td.mono{font-family:'IBM Plex Mono',monospace;}
+  td.peak{background:var(--peak);font-weight:700;}
+  td.trough{background:var(--trough);font-weight:700;}
+  .figNote{font-size:.82rem;color:var(--ink-soft);margin-top:6px;}
+
+  .swapWrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;
+  }
+  @media (max-width:640px){.swapWrap{grid-template-columns:1fr;}}
+  .swapCard{border:1px solid var(--line);background:var(--paper-raise);border-radius:3px;overflow:hidden;}
+  .swapCard .swapHead{
+    padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.06em;
+  }
+  .swapCard.out .swapHead{background:var(--negv-soft);color:var(--negv);}
+  .swapCard.in .swapHead{background:var(--teal-soft);color:var(--teal);}
+  .swapCard ul{margin:0;padding:14px 18px;columns:2;column-gap:14px;list-style:none;font-size:.87rem;}
+  .swapCard li{margin-bottom:6px;}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--ink-soft);}
+
+  .barChart{margin:20px 0;}
+  .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .bar-label{width:78px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;text-align:right;color:var(--ink-soft);flex:0 0 auto;}
+  .bar-track{flex:1;background:#EFE9D8;height:22px;border-radius:2px;position:relative;}
+  .bar-fill{height:100%;background:var(--gold);border-radius:2px;display:flex;align-items:center;}
+  .bar-fill.up{background:var(--teal);}
+  .bar-val{padding-left:8px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#fff;white-space:nowrap;}
+
+  .srcnote{
+    font-size:.8rem;color:var(--ink-soft);border-top:1px dashed var(--line);
+    margin-top:10px;padding-top:8px;
+  }
+  .srcnote a{color:var(--ink-soft);}
+
+  footer{
+    border-top:1px solid var(--line);padding:32px 8vw 60px;
+    font-size:.82rem;color:var(--ink-soft);
+  }
+  footer .verbox{font-family:'IBM Plex Mono',monospace;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">ETF 結構分析 · 非個股現金流框架</div>
+  <h1 class="title">00929 復華台灣科技優息</h1>
+  <p class="subtitle">追蹤「臺灣指數公司特選臺灣上市上櫃科技優息指數」。這份報告不套用個股現金流六大規則，改以「持股結構→配息→追蹤機制→規模流動性→淨值折溢價」五個切面檢視這檔ETF目前的樣貌。</p>
+  <div class="heroGrid">
+    <div class="heroStat"><div class="lbl">收盤價（07/31）</div><div class="val">27.47</div><div class="sub mono">+5.65% 單日</div></div>
+    <div class="heroStat"><div class="lbl">淨值（07/31）</div><div class="val">27.22</div><div class="sub mono">折溢價 +0.92%</div></div>
+    <div class="heroStat"><div class="lbl">資產規模</div><div class="val">約1,306~1,313億</div><div class="sub mono">07/31 資料</div></div>
+    <div class="heroStat"><div class="lbl">內扣費用率</div><div class="val">約0.33%</div><div class="sub mono">經理0.30%+保管0.03%</div></div>
+  </div>
+</header>
+
+<nav class="stepnav" id="stepnav">
+  <a href="#step1" data-step="1">01 持股與產業集中度</a>
+  <a href="#step2" data-step="2">02 配息狀況</a>
+  <a href="#step3" data-step="3">03 追蹤指數與誤差</a>
+  <a href="#step4" data-step="4">04 規模／流動性／費用率</a>
+  <a href="#step5" data-step="5">05 淨值走勢與折溢價</a>
+</nav>
+
+<main>
+
+<!-- ================= STEP 1 ================= -->
+<section id="step1">
+  <div class="kicker">01 · 持股成分股與產業集中度</div>
+  <h2 class="stepTitle">半年內兩次改版，風格從「AI半導體」轉向「代工＋電信防禦」</h2>
+
+  <div class="callout">
+    <b>重點：</b>00929 在 2025 年底完成指數 3.0 升級（成分股 40→50 檔，新增生技醫療／數位雲端／綠能環保三大產業），2026 年 6 月底又進行「22 進 22 出」的年度大換股，<b>剔除台積電、聯發科</b>，改由<b>鴻海、廣達</b>領軍的代工股與<b>電信三雄</b>接棒。半年兩次結構性大調整，代表這檔ETF的「風格」變動速度比多數高息ETF快，長期持有者較難用單一產業敘事去理解它。
+  </div>
+
+  <p>00929 追蹤的「特選臺灣上市上櫃科技優息指數」原本以電子類股為母體，經流動性檢驗後依波動、股息穩定度、本益比、財務指標篩選，再以股息殖利率擇優選取成分股並配置權重（單檔權重上限）。<span class="tag">[來源: Money101]</span> 2025年11月，指數規則升級至3.0版本：成分股從40檔擴增至50檔，選股範圍從純科技股延伸納入生技醫療、數位雲端、綠能環保三大新興產業；定期審核由每年一次改為每年兩次（6月、12月），權重審核固定在每年2月與8月<span class="tag">[來源: 商周ETF指南]</span>。</p>
+
+  <p>2026年6月26日，臺灣指數公司公告新一輪成分股調整，本次「22進22出」是掛牌以來最大幅度的換股之一：<b>剔除台積電（2330）與聯發科（2454）</b>——這兩檔在2025年底才剛被納入，等於僅持有半年就出場；同時剔除仁寶、宏碁、和碩、環球晶、力成、文曄、富邦媒、神基等多檔老牌代工與各領域指標股。新納入的22檔以電子代工與電信防禦股為主軸，調整自2026年6月29日生效，官方設有8個交易日的「調整過渡期」以緩衝籌碼進出對市場的衝擊。<span class="tag">[來源: 鉅亨網 2026/6/27]</span></p>
+
+  <div class="swapWrap">
+    <div class="swapCard out">
+      <div class="swapHead">剔除（部分，共22檔）</div>
+      <ul>
+        <li>台積電 2330</li>
+        <li>聯發科 2454</li>
+        <li>仁寶</li>
+        <li>宏碁</li>
+        <li>和碩</li>
+        <li>環球晶</li>
+        <li>力成</li>
+        <li>文曄</li>
+        <li>富邦媒</li>
+        <li>神基</li>
+      </ul>
+    </div>
+    <div class="swapCard in">
+      <div class="swapHead">新納入（22檔，官方公告全名單）</div>
+      <ul>
+        <li>鴻海 2317</li>
+        <li>佳世達 2352</li>
+        <li>英業達 2356</li>
+        <li>技嘉 2376</li>
+        <li>微星 2377</li>
+        <li>瑞昱 2379</li>
+        <li>廣達 2382</li>
+        <li>中華電 2412</li>
+        <li>信邦 3023</li>
+        <li>台灣大 3045</li>
+        <li>緯創 3231</li>
+        <li>神達 3706</li>
+        <li>遠傳 4904</li>
+        <li>祥碩 5269</li>
+        <li>崇越 5434</li>
+        <li>瀚宇博 5469</li>
+        <li>亞翔 6139</li>
+        <li>精成科 6191</li>
+        <li>旭隼 6409</li>
+        <li>洋基工程 6691</li>
+        <li>元太 8069</li>
+        <li>至上 8112</li>
+      </ul>
+    </div>
+  </div>
+  <p class="figNote">「剔除」清單僅列出媒體報導點名的部分個股，非完整22檔；「納入」清單則為鉅亨網轉引官方公告的完整22檔名單。<span class="tag">[來源: 鉅亨網、今周刊 2026/6/27]</span></p>
+
+  <p>值得留意的是換股前後的敘事落差：2025年底才因「追AI浪潮」納入台積電、聯發科，把00929的市場定位往「科技成長」推；半年後又因換股回歸電信三雄與代工股的「防禦＋高息」屬性。這種來回擺盪，代表00929的產業集中度不是穩定不變的，而是隨半年一次的審核而重新分配——若使用者是看好「特定產業敘事」才買進，需要接受這個敘事每半年可能被官方換股邏輯改寫一次的事實，這與追蹤市值加權指數（如0050）的ETF性質不同。<span class="tag">[來源: 商周ETF指南 2026/6/30]</span></p>
+
+  <div class="srcnote">
+    資料來源：<a href="https://www.money101.com.tw/blog/etf%E6%8E%A8%E8%96%A6-%E5%BE%A9%E8%8F%AF%E5%8F%B0%E7%81%A3%E7%A7%91%E6%8A%80%E5%84%AA%E6%81%AF00929-%E6%9C%88%E9%85%8D%E6%81%AF" target="_blank">Money101 成分股介紹</a>／
+    <a href="https://www.businessweekly.com.tw/business/blog/3014838" target="_blank">商周 ETF指南（2026/6/30）</a>／
+    <a href="https://news.cnyes.com/news/id/6514696" target="_blank">鉅亨網 換股公告（2026/6/27）</a>／
+    <a href="https://www.businesstoday.com.tw/article/category/183013/post/202606270004/" target="_blank">今周刊 換股名單細節（2026/6/27）</a>
+  </div>
+</section>
+
+<!-- ================= STEP 2 ================= -->
+<section id="step2">
+  <div class="kicker">02 · 配息狀況</div>
+  <h2 class="stepTitle">配息一路暴力上調，但含收益平準金，「調升」不完全等於「賺更多」</h2>
+
+  <div class="callout teal">
+    <b>重點：</b>00929 是全台首檔月配息股票型ETF，2026年以來配息從每股 <b>0.11 元 → 0.13 元 → 0.26 元 → 0.38 元</b>，年化配息率一路上調至約 <b>14.8%</b>（以6/30收盤價30.78元換算）。但配息可能包含「收益平準金」，規模成長時新申購資金會依比例提撥平準金用來補貼配息，代表配息數字調高不完全等於基金本身賺更多。
+  </div>
+
+  <table>
+    <caption>2026年配息調升軌跡（單位：元／股）</caption>
+    <thead><tr><th>公告時間</th><th>配息金額</th><th>較前期</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">2026年初</td><td class="mono">0.11</td><td class="mono">—</td><td>年度起始水準</td></tr>
+      <tr><td class="mono">2026年約4月</td><td class="mono">0.13</td><td class="mono posv">+18%</td><td>第2次上調</td></tr>
+      <tr><td class="mono">2026年6月公告</td><td class="mono peak">0.26</td><td class="mono posv">倍增</td><td>除息前股價約30.8元，單次配息率約0.84%，年化約10%</td></tr>
+      <tr><td class="mono">2026年6月底公告</td><td class="mono peak">0.38</td><td class="mono posv">再升</td><td>以6/30收盤30.78元換算，年化配息率逾14.8%，掛牌以來新高</td></tr>
+    </tbody>
+  </table>
+  <p class="figNote">上表為2026年內公告序列，非完整逐月資料；「2026年初」「約4月」為報導脈絡推斷順序，非官方標註的精確日期，若需精確到某月的配息公告日，建議直接查詢復華投信官網配息紀錄。</p>
+
+  <p>填息表現方面，報導指出截至2026年5月已連續19個月填息，其中多次達成除息當日即完成填息<span class="tag">[來源: 商周ETF指南]</span>；另有近期新聞提及某次除息首日即填息達陣，股息於除息後約一個月入帳<span class="tag">[來源: 搜尋摘要，未附完整原文連結，建議自行查證]</span>。長期現金股利方面，Yahoo股市股利政策頁面顯示已連續3年發放股利，合計3.40元，近3年平均現金殖利率5.99%。<span class="tag">[來源: Yahoo股市股利政策]</span></p>
+
+  <p><strong>收益平準金的提醒：</strong>金管會自2023年11月起要求投信業者在公開資訊觀測站揭露配息中「本期已實現損益」「本期未實現損益」「收益平準金」三項占比。00929作為規模持續有申贖變動的大型ETF，配息金額調升的原因，可能同時包含「成分股真實获利與資本利得增加」與「規模成長帶動平準金提撥增加」兩種成分，兩者混在一起看會高估基金的實際獲利能力。若使用者想精確判斷配息含金量，建議直接查閱公開資訊觀測站當期揭露的三項占比數字，而非只看配息金額本身的成長率。<span class="tag">[來源: 財經記者兔兔 00929配息機制解析]</span></p>
+
+  <div class="srcnote">
+    資料來源：<a href="https://finance.ettoday.net/news/3194798" target="_blank">ETtoday財經雲（陳重銘專欄）</a>／
+    <a href="https://www.businessweekly.com.tw/business/blog/3014838" target="_blank">商周ETF指南</a>／
+    <a href="https://tw.stock.yahoo.com/quote/00929.TW/dividend" target="_blank">Yahoo股市股利政策</a>／
+    <a href="https://financecony.com/etf/etf-guide/00929-monthly-dividend/" target="_blank">財經記者兔兔：配息機制解析</a>
+  </div>
+</section>
+
+<!-- ================= STEP 3 ================= -->
+<section id="step3">
+  <div class="kicker">03 · 追蹤指數與追蹤誤差</div>
+  <h2 class="stepTitle">指數審核機制清楚，但公開資料中未能取得明確的追蹤誤差數字</h2>
+
+  <div class="callout neg">
+    <b>誠實揭露：</b>本次搜尋能確認00929的指數編製規則與換股節奏，但<b>未能在公開報導中找到明確標示的「追蹤誤差」百分比數字</b>。這項數字通常需要到復華投信官網的「基金報告書」或「追蹤差異」專頁查詢，建議使用者自行查閱官網數字，本報告不臆測一個查無實據的百分比。
+  </div>
+
+  <p>00929追蹤「臺灣指數公司特選臺灣上市上櫃科技優息指數」，選股邏輯是先以市值、流動性做基本篩選，再依股東權益報酬率（ROE）、波動度、平均殖利率、現金股利穩定度與本益比等指標，以已宣告的現金股息加權選股，個別成分股權重設有上限。<span class="tag">[來源: 商周ETF指南]</span> 2025年底升級至3.0版本後，成分股定期審核由每年一次改為每年兩次（6月、12月），權重審核則固定於每年2月與8月，理論上能更快反映市場變化，但也意味著追蹤標的的組成變動頻率提高。<span class="tag">[來源: 商周ETF指南、ETtoday]</span></p>
+
+  <p>復華投信官網設有「即時預估淨值」頁面，明確定義「追蹤差異」為當日與年度以來的基金績效與標的指數表現之偏離度<span class="tag">[來源: 復華投信官網]</span>。這代表官方確實有揭露追蹤差異的機制與定義，只是本次搜尋抓取到的頁面內容未包含具體數字（該頁面多為即時性資料，搜尋快取難以取得當前數值）。若蘇淑卿需要精確的追蹤誤差百分比，建議直接開啟該頁面查詢當日數字，而非依賴本報告推估。</p>
+
+  <p>另需留意：00929官網與部分基金比較文件提到，本基金具配息機制，而標的指數報酬為含息報酬，比較基金與指數表現差異時應以基金「含息」報酬與指數含息報酬相比，否則會因配息機制本身造成的「追蹤差距」被誤判為基金操作不佳。<span class="tag">[來源: 富邦投信ETF網說明文字，適用於同類配息型ETF的一般性提醒]</span></p>
+
+  <div class="srcnote">
+    資料來源：<a href="https://www.fhtrust.com.tw/ETF/etf_data_value" target="_blank">復華投信 即時預估淨值頁</a>／
+    <a href="https://www.businessweekly.com.tw/business/blog/3014838" target="_blank">商周ETF指南</a>／
+    <a href="https://finance.ettoday.net/news/3194798" target="_blank">ETtoday財經雲</a>
+  </div>
+</section>
+
+<!-- ================= STEP 4 ================= -->
+<section id="step4">
+  <div class="kicker">04 · 規模與流動性、內扣費用率</div>
+  <h2 class="stepTitle">規模從高峰回落，內扣費用率在同類ETF中偏低</h2>
+
+  <div class="callout">
+    <b>重點：</b>00929資產規模在2025年9月一度達約<b>1,480.68億元</b>，到2026年7月底降至約<b>1,306~1,313億元</b>，即便同期股價大漲、報酬率亮眼，規模卻呈縮小趨勢——這通常反映「淨贖回大於淨申購」，值得留意是否有資金因配息水準波動或換股疑慮而流出。內扣費用率方面，在目前規模級距下約為<b>0.33%</b>（經理費0.30%＋保管費0.03%），相對同類主動調整成分股的高息ETF並不算高。
+  </div>
+
+  <table>
+    <caption>資產規模歷次快照（不同來源、不同時間點，非同一頁面的連續數列）</caption>
+    <thead><tr><th>資料時間</th><th>資產規模</th><th>受益人數</th><th>來源</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">2025年9月</td><td class="mono peak">約1,480.68億元</td><td class="mono">—</td><td>hi-money 內扣費用文章</td></tr>
+      <tr><td class="mono">2026年6月27日前後</td><td class="mono">約1,365億元</td><td class="mono">約40.8萬人</td><td>鉅亨網換股新聞</td></tr>
+      <tr><td class="mono">2026年6月8日</td><td class="mono">約1,380.05億元</td><td class="mono">—</td><td>Yahoo股市基本資料</td></tr>
+      <tr><td class="mono">2026年7月31日</td><td class="mono trough">約1,305.92~1,313.43億元</td><td class="mono">約40.97~43.09萬人</td><td>玩股網／台灣證交所ETFortune</td></tr>
+    </tbody>
+  </table>
+  <p class="figNote">四個數字來自四個不同頁面、不同抓取時間點，不是同一份連續時間序列，僅能看出「大致區間在1,300億~1,480億元之間、且近期略微下滑」的趨勢方向，不宜做精確的逐月比較。受益人數同樣存在不同來源間的小幅落差（40.97萬 vs 43.09萬，同為07/31資料但來源不同），推測是資料更新時間差所致。</p>
+
+  <div class="barChart">
+    <div class="bar-row"><div class="bar-label">25年09月</div><div class="bar-track"><div class="bar-fill" style="width:100%"><span class="bar-val">1,480.7億</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">26年06月08</div><div class="bar-track"><div class="bar-fill" style="width:93%"><span class="bar-val">1,380.1億</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">26年06月27</div><div class="bar-track"><div class="bar-fill" style="width:92%"><span class="bar-val">1,365.0億</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">26年07月31</div><div class="bar-track"><div class="bar-fill" style="width:89%"><span class="bar-val">1,309.7億（均值）</span></div></div></div>
+  </div>
+  <p class="figNote">長條圖以各快照數字對最高值（1,480.7億）的比例呈現，僅供直覺參考規模縮小的方向與大致幅度，非精確逐月數列。</p>
+
+  <p><strong>內扣費用率結構：</strong>00929的經理費以資產規模50億元為界，50億元（含）以下費率0.35%，超過50億元則降至0.30%；保管費分三個級距，20億元（含）以下0.0425%、20億～50億元（含）0.0350%、超過50億元則為0.0300%。以目前規模早已超過50億元的級距計算，00929的內扣費用（經理費＋保管費）約為<span class="mono">0.30%＋0.03%＝0.33%</span>。<span class="tag">[來源: hi-money、Yahoo股市基本資料交叉驗證]</span> 這個費用率放在同類高息主題型ETF中屬中低水位，但仍需留意：這是「經理費＋保管費」，未涵蓋指數授權費、換股產生的手續費與交易稅等其他隱藏成本，若00929持續維持半年兩次的高頻換股節奏，實際「總費用率」可能略高於這個0.33%的基本數字，精確總費用率須查詢投信投顧公會公告的年度數字。</p>
+
+  <p><strong>流動性：</strong>07/31當日成交量約34,330張，成交金額約9.38億元，屬於台股ETF中流動性充足的等級，一般散戶買賣不易遇到明顯的流動性折溢價問題。<span class="tag">[來源: Yahoo股市走勢圖]</span></p>
+
+  <div class="srcnote">
+    資料來源：<a href="https://www.hi-money.com.tw/new/00929-etf-monthly-dividend/" target="_blank">hi-money 內扣費用說明</a>／
+    <a href="https://tw.stock.yahoo.com/quote/00929.TW/profile" target="_blank">Yahoo股市基本資料</a>／
+    <a href="https://news.cnyes.com/news/id/6514696" target="_blank">鉅亨網換股新聞</a>／
+    <a href="https://www.twse.com.tw/zh/ETFortune/etfInfo/00929" target="_blank">台灣證交所 ETFortune</a>／
+    <a href="https://www.wantgoo.com/stock/etf/00929/dividend-policy/ex-dividend" target="_blank">玩股網 除權息頁</a>
+  </div>
+</section>
+
+<!-- ================= STEP 5 ================= -->
+<section id="step5">
+  <div class="kicker">05 · 淨值走勢與折溢價</div>
+  <h2 class="stepTitle">07/31當日折溢價健康，但月初與月底的淨值落差需誠實揭露、不硬找原因</h2>
+
+  <div class="callout neg">
+    <b>資料落差，誠實呈現：</b>玩股網同一系列頁面顯示，00929淨值在<b>2026/07/05為31.28元</b>，到<b>2026/07/31為27.22元</b>，一個月內下降約4.06元（約13%）。這不是同一天的兩個數字合併成區間，而是兩個不同交易日的真實快照，中間可能經歷了除息（扣除配息金額）與成分股股價回落雙重因素，但本報告未能取得逐日淨值數列，無法精確拆解兩者各佔多少比例，如實告知這是資料限制，不做無根據的精確歸因。
+  </div>
+
+  <table>
+    <caption>兩個時間點的淨值與折溢價快照</caption>
+    <thead><tr><th>資料日期</th><th>市價</th><th>淨值</th><th>折溢價</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">2026/07/05</td><td class="mono">—</td><td class="mono peak">31.28</td><td class="mono">+0.26%</td><td>申購買回淨單位數 -1,500,000（買回大於申購）</td></tr>
+      <tr><td class="mono">2026/07/31</td><td class="mono">27.47（+5.65%單日）</td><td class="mono trough">27.22</td><td class="mono">+0.92%</td><td>當日大漲，昨收26.00</td></tr>
+    </tbody>
+  </table>
+
+  <p>07/31當日的折溢價幅度（市價27.47元 較 淨值27.22元 溢價約0.92%）落在ETF申購買回機制正常收斂的範圍內，沒有出現明顯脫節。<span class="tag">[來源: Yahoo股市走勢圖、玩股網淨值頁]</span> 07/05的申購買回淨單位數為負150萬單位，代表當時買回（贖回）大於申購，方向上與第4節觀察到的「規模從高峰回落」相互呼應——顯示這段期間確實存在資金淨流出的訊號，而非單純數字誤差。<span class="tag">[來源: 玩股網淨值及折溢價頁]</span></p>
+
+  <p><strong>查詢即時報價的提醒：</strong>上表兩個淨值數字是「查詢當下」的單一快照，不是頁面本身顯示一個範圍區間；ETF市價與淨值會隨盤中即時跳動，正式決策應以復華投信官網當日公告的淨值或看盤軟體即時報價為準，不宜直接引用本報告中任一數字做為進出場依據。<span class="tag">[來源: 復華投信即時預估淨值頁說明]</span></p>
+
+  <div class="srcnote">
+    資料來源：<a href="https://www.wantgoo.com/stock/etf/00929/discount-premium" target="_blank">玩股網 淨值及折溢價</a>／
+    <a href="https://www.wantgoo.com/stock/etf/00929/dividend-policy/ex-dividend" target="_blank">玩股網 除權息頁（07/31快照）</a>／
+    <a href="https://tw.stock.yahoo.com/quote/00929.TW" target="_blank">Yahoo股市走勢圖</a>／
+    <a href="https://www.fhtrust.com.tw/ETF/etf_data_value" target="_blank">復華投信 即時預估淨值</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="verbox">報告版本 v1.0 · 生成時間：2026/08/02（分析當時最新可查證資料，多數數據時間點落在2026年7月）</div>
+  <div>本報告資料來源均為公開網頁搜尋結果，已於各節標註實際查詢連結；ETF規模、淨值、折溢價等即時性數字僅反映查詢當下快照，非連續即時資料，正式投資決策請以復華投信官網公告與看盤軟體即時報價為準。本報告不構成投資建議。</div>
+</footer>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.stepnav a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.querySelector(a.getAttribute('href'));
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  function setActive(){
+    var scrollPos = window.scrollY + 90;
+    var current = sections[0];
+    for(var i=0;i<sections.length;i++){
+      if(sections[i] && sections[i].offsetTop <= scrollPos){ current = sections[i]; }
+    }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    var idx = sections.indexOf(current);
+    if(idx>=0){ links[idx].classList.add('active'); }
+  }
+
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var idx = sections.indexOf(entry.target);
+          links.forEach(function(a){ a.classList.remove('active'); });
+          if(idx>=0){ links[idx].classList.add('active'); }
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px', threshold:0});
+    sections.forEach(function(s){ if(s) obs.observe(s); });
+  } else {
+    window.addEventListener('scroll', setActive);
+    setActive();
+  }
+})();
+</script>
+
+</body>
+</html>
