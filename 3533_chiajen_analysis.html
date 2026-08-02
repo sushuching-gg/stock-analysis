@@ -89,7 +89,7 @@
 <nav class="stepnav" id="stepnav">
   <a href="#step1" class="enabled" data-step="1"><span class="num">01</span>現金流六大規則</a>
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
-  <a href="#" class="locked" data-step="3"><span class="num">03</span>法說會深入<span class="lock-mark">🔒</span></a>
+  <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#" class="locked" data-step="4"><span class="num">04</span>營收趨勢<span class="lock-mark">🔒</span></a>
   <a href="#" class="locked" data-step="5"><span class="num">05</span>前瞻本益比<span class="lock-mark">🔒</span></a>
   <a href="#" class="locked" data-step="6"><span class="num">06</span>投資決策推理<span class="lock-mark">🔒</span></a>
@@ -381,10 +381,57 @@
 
 </section>
 
+<section class="step-section" id="step3">
+  <div class="step-flag">【第 3 步／共 6 步】</div>
+  <h2 class="step-title">法說會資料深入討論</h2>
+
+  <div class="callout">
+    依您指定的三個方向深入討論最近一場法說會（2026/05/14，對應2026 Q1財報）：<strong>①伺服器業務放量</strong>——Q1伺服器營收年增60%、佔比首度過半，下半年將較上半年再增15%；<strong>②CPU插槽ASP成長</strong>——受惠AMD Venice(SP7)、Intel Oak Stream新平台腳位數大增，ASP預期至少提升15%；<strong>③NPO/CPO布局</strong>——嘉澤本業攻電訊號NPO、子公司嘉基攻純光學CPO，預計2027年量產。同時提醒：短期毛利率因原物料上漲及新品良率問題承壓，屬需追蹤的風險。
+  </div>
+
+  <p class="snap-note">資料來源說明：本節內容整理自第三方媒體（vocus.cc「價值成長方程式」專欄）於2026/05/25發布的法說會逐字稿摘要整理，該文本身標註含AI輔助生成/轉錄內容，屬「已讀第三方摘要」而非「本次直接分析官方原始簡報」。官方法說會PDF原文連結為 <span class="mono">https://mopsov.twse.com.tw/nas/STR/353320260514M002.pdf</span>，實測會被公開資訊觀測站的robots.txt擋下無法直接讀取，僅能附上給您自行點開查看；法說影音原始連結：<a href="https://www.youtube.com/watch?v=6VvdvPtnUE8" target="_blank">YouTube法說影音</a>。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">① 伺服器業務放量</h3>
+  <p><cite index="32-1">2026年第一季合併營收來到93.28億元的歷史新高水準，其中伺服器相關產品貢獻的營收較去年同期成長六成，占整體營收比重也首次超越五成大關，晉升為公司最主要的成長動能</cite>。展望上，公司預估Q2伺服器出貨量季增15%，下半年再較上半年成長15%，2027年伺服器出貨量預估年增至少20%。管理層在問答環節說明，Q1這60%的年增中，出貨量成長與ASP/產品組合提升（如E1、SP5滲透率提升）的貢獻大約各佔一半。滲透率細節：E1與SP5平台滲透率已來到75-80%（去年同期僅約18%），Birch Stream平台目前約10-15%、年底預估達20-30%，AMD Venice平台年底預估滲透率20-25%。</p>
+  <table>
+    <caption>伺服器出貨成長指引</caption>
+    <thead><tr><th>期間</th><th>指引</th></tr></thead>
+    <tbody>
+      <tr><td>2026 Q2</td><td>季增 15%</td></tr>
+      <tr><td>2026 下半年</td><td>較上半年再增 15%</td></tr>
+      <tr><td>2027 全年</td><td>年增至少 20%</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">需求端背景：管理層表示目前伺服器市場「需求遠大於供給」，CPU、記憶體、PCB及被動元件/機構件皆有不同程度缺料，這也是支撐出貨指引信心的背景因素之一，但同時也是潛在的供應鏈瓶頸風險。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">② CPU插槽 ASP 成長</h3>
+  <p>ASP成長的核心驅動來自新一代CPU平台腳位數大幅增加：AMD Venice平台採用的SP7插槽腳位數超過7,500，遠高於已在市場約四年的SP5平台（約6,100腳位），加上Intel Oak Stream平台同步升級，帶動相關產品ASP預期至少提升15%。管理層在問答中進一步補充，未來世代CPU腳位數甚至可能來到12,000 pin等級，代表插槽產品的單顆價值有持續向上的長期趨勢，且Intel、AMD兩大原廠因處理器良率控制與維修成本考量，管理層認為不會捨棄Socket方案（不同於部分雲端業者自研CPU如AWS Graviton的路線）。</p>
+  <table>
+    <caption>新舊平台腳位數對照</caption>
+    <thead><tr><th>平台</th><th>腳位數</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>AMD SP5（現行）</td><td>約6,100</td><td>已量產約4年</td></tr>
+      <tr><td>AMD SP7（Venice，新）</td><td>超過7,500</td><td>今年下半年迅速放量，今年以SP7為主，2027年才會看到更多SP8應用</td></tr>
+      <tr><td>未來世代（展望）</td><td>最高可能達12,000</td><td>管理層於問答中提及的長期展望，非具體時程承諾</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">另一個ASP相關策略是「不降價」：管理層提到過去每季通常會降價2-3%，目前已停止此慣例，並表示希望能維持此定價常態，藉此部分抵銷原物料成本上升的壓力（詳見下方風險段落）。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">③ NPO/CPO 新技術布局</h3>
+  <p>公司將高階先進封裝的光通訊布局切分為兩塊：子公司嘉基（Lintes）專注於<strong>純光學CPO專案</strong>；嘉澤本業則負責<strong>電訊號傳輸的NPO專案</strong>（基板至光學引擎間的Socket）。管理層表示兩者面對的客戶群不同，且預計NPO技術將在未來3-5年內成為市場主流，相關產品預計於<strong>2027年量產</strong>。在問答環節中，管理層也坦承目前尚無具體的定價與營收比重預測，NPO專案的財務貢獻能見度仍低，屬於長線佈局而非近1-2年的營收挹注項目。</p>
+  <p>與NPO/CPO相關的其他新產品進度：SO-CAMM預計2026年下半年開始出貨（用於記憶體端連接）；GPU Socket（LGA連接器）目前仍在客戶驗證階段，尚無具體量產時程，目前GPU板對板連接器市場主要由Molex與TE寡占，嘉澤正積極推廣自家解決方案切入。管理層也說明，Nvidia的CPU/GPU機櫃設計中，CPU端因設計空間過於緊湊不會使用Socket，但記憶體端會使用SO-CAMM，這也是嘉澤在Nvidia供應鏈中的切入點之一。</p>
+  <p class="snap-note">提醒：NPO/CPO與GPU Socket(LGA)目前均屬「驗證中／布局中」階段，尚未貢獻實質營收，與①②已在放量階段的伺服器/CPU插槽業務屬於不同成熟度的成長引擎，若後續查詢財務預測時，不宜將這類長線題材的樂觀展望直接套用在1-2年內的營收貢獻上。</p>
+
+  <h3 style="font-family:'Noto Serif TC',serif;margin-top:26px;">需追蹤的風險：短期毛利率壓力</h3>
+  <p>2026 Q1毛利率49.55%，較上一季51.56%下滑，主因銅、塑膠、黃金等原物料（約佔銷貨成本15%）自2025年Q4起大幅上漲，加上多項新產品（含線纜與連接器）量產初期良率未達理想，兩者中管理層明確表示原物料上漲是主要衝擊。公司選擇「吸收成本不漲價」策略以搶奪市佔（第一季曾有同業嘗試漲價，結果流失市佔被嘉澤取得），目標PCIe連接器市佔由10%提升至15%以上、線纜產品市佔由不到3%提升至3-5%，但代價是Q2毛利率仍可能面臨壓力，管理層明確表示「不保證能持平」，僅預期下半年隨高ASP新產品放量而回溫。營業費用率（20.50%）也因擴編研發人力而難以下降，管理層目標是將營益率維持在Q1與2025年Q4左右的水準。</p>
+  <p class="snap-note">財務彈性方面，公司揭露流動比率381%、速動比率320%、負債比率僅19%，現金流相對充沛，具備支撐研發與擴產的財務彈性，這與第一步現金流分析中E期末餘額長期強力向上的結論方向一致。來源：<a href="https://vocus.cc/article/6a06639afd897800018b1b5c" target="_blank">2026/05/14嘉澤法說會逐字稿摘要整理（vocus.cc）</a>。</p>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.1（第 2 步）</span>
+  <span>報告版本 v1.2（第 3 步）</span>
   <span id="gen-time"></span>
 </footer>
 
