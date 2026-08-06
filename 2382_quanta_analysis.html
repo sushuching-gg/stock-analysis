@@ -169,8 +169,8 @@
 <nav class="stepnav">
   <a class="pad" href="#step1">① 現金流盲測</a>
   <a class="pad" href="#step2">② 基本資訊</a>
-  <a class="pad active" href="#step3">③ 法說會</a>
-  <span class="locked">④ 營收趨勢</span>
+  <a class="pad" href="#step3">③ 法說會</a>
+  <a class="pad active" href="#step4">④ 營收趨勢</a>
   <span class="locked">⑤ 前瞻估值</span>
   <span class="locked">⑥ 投資決策</span>
 </nav>
@@ -178,8 +178,8 @@
 <header class="hero">
   <div class="eyebrow">現金流優先，基本面在後 · 個股初步分析</div>
   <h1>2382　廣達電腦</h1>
-  <p class="sub">六步驟分析框架：第1步現金流盲測（需觀察，47%）、第2步基本資訊查詢已完成。第3步依使用者要求，依重要性依序深入討論法說會三大主題：AI伺服器動能、GDR/GDS資本市場動作、毛利率與獲利能力壓力。</p>
-  <div class="ticker-tag">STOCK_ID 2382 · 第3步：法說會深入討論</div>
+  <p class="sub">六步驟分析框架：第1～3步已完成（現金流需觀察47%、基本資訊、法說會三大主題深入討論）。第4步依使用者提供的 Goodinfo 截圖，繪製近12期月營收趨勢圖。</p>
+  <div class="ticker-tag">STOCK_ID 2382 · 第4步：營收趨勢視覺化</div>
 </header>
 
 <main>
@@ -482,11 +482,105 @@
   <p><b>展望：</b>公司預期2026Q2起，儘管毛利率仍可能因產品組合持續承壓，但在營運槓桿、ASIC伺服器與non-NVIDIA GPU伺服器逐步放量的帶動下，<b>營業利益率有機會改善</b>——這是「營收暴增但淨利率被稀釋，靠槓桿效益打平」的典型代工廠成長痛點，與第1步現金流分析中規則五（A&gt;D品質，通過率僅35%）呈現的「帳面淨利成長但實際現金收得沒那麼漂亮」現象相互呼應：高成長伴隨薄利，加上應收帳款與存貨同步暴增，正是現金流轉換效率偏弱的結構性原因之一。</p>
   <p class="note">資料來源：<a class="src" href="https://blog.fugle.tw/post/earnings-call-2382-2026-05-14" target="_blank">富果法說會重點整理（AI生成，根據官方影音摘要，非逐字稿原文）</a>，原始簡報／影音：<a class="src" href="https://mopsov.twse.com.tw/nas/STR/238220260514M001.pdf" target="_blank">MOPS簡報PDF</a>（僅供開啟，無法直接分析內容）；下一季法說會已排定 <b>2026/08/13</b>，屆時可對照Q2實際數字是否印證上述展望。</p>
 </section>
+
+<section id="step4">
+  <div class="step-label">【第 4 步／共 6 步：營收趨勢視覺化】</div>
+  <h2>近12個月合併營收趨勢（2025/07～2026/06）</h2>
+
+  <div class="callout">
+    <b>資料來源：</b>使用者提供之 Goodinfo 台灣股市資訊網「每月營收」截圖，非本次搜尋所得。與第2步透過 Yahoo股市 查得的近4個月數字互相對照，數值一致（如2026/06單月營收3,851.9億 vs 截圖3,852億，僅四捨五入差異），可視為交叉驗證。
+  </div>
+
+  <svg viewBox="0 0 800 300" style="width:100%; height:auto; margin:10px 0 6px;">
+    <line x1="20" y1="240" x2="770" y2="240" stroke="var(--line)" stroke-width="1"/>
+    <!-- bars -->
+    <g class="mono">
+      <rect x="30"  y="158" width="48" height="82"  rx="3" fill="var(--copper)"/>
+      <rect x="92"  y="161" width="48" height="79"  rx="3" fill="var(--copper)"/>
+      <rect x="154" y="144" width="48" height="96"  rx="3" fill="var(--copper)"/>
+      <rect x="216" y="150" width="48" height="90"  rx="3" fill="var(--copper)"/>
+      <rect x="278" y="140" width="48" height="100" rx="3" fill="var(--copper)"/>
+      <rect x="340" y="98"  width="48" height="142" rx="3" fill="var(--copper)"/>
+      <rect x="402" y="120" width="48" height="120" rx="3" fill="var(--copper)"/>
+      <rect x="464" y="128" width="48" height="112" rx="3" fill="var(--copper)"/>
+      <rect x="526" y="52"  width="48" height="188" rx="3" fill="var(--peak)"/>
+      <rect x="588" y="63"  width="48" height="177" rx="3" fill="var(--copper)"/>
+      <rect x="650" y="78"  width="48" height="162" rx="3" fill="var(--copper)"/>
+      <rect x="712" y="40"  width="48" height="200" rx="3" fill="var(--peak)"/>
+
+      <!-- value labels -->
+      <text x="54"  y="150" text-anchor="middle" font-size="11" fill="var(--ink)">1,583</text>
+      <text x="116" y="153" text-anchor="middle" font-size="11" fill="var(--ink)">1,528</text>
+      <text x="178" y="136" text-anchor="middle" font-size="11" fill="var(--ink)">1,841</text>
+      <text x="240" y="142" text-anchor="middle" font-size="11" fill="var(--ink)">1,732</text>
+      <text x="302" y="132" text-anchor="middle" font-size="11" fill="var(--ink)">1,929</text>
+      <text x="364" y="90"  text-anchor="middle" font-size="11" fill="var(--ink)">2,725</text>
+      <text x="426" y="112" text-anchor="middle" font-size="11" fill="var(--ink)">2,308</text>
+      <text x="488" y="120" text-anchor="middle" font-size="11" fill="var(--ink)">2,156</text>
+      <text x="550" y="44"  text-anchor="middle" font-size="11" fill="var(--peak)" font-weight="600">3,628</text>
+      <text x="612" y="55"  text-anchor="middle" font-size="11" fill="var(--ink)">3,399</text>
+      <text x="674" y="70"  text-anchor="middle" font-size="11" fill="var(--ink)">3,115</text>
+      <text x="736" y="32"  text-anchor="middle" font-size="11" fill="var(--peak)" font-weight="600">3,852</text>
+
+      <!-- month labels -->
+      <text x="54"  y="256" text-anchor="middle" font-size="11" fill="var(--muted)">07</text>
+      <text x="116" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">08</text>
+      <text x="178" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">09</text>
+      <text x="240" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">10</text>
+      <text x="302" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">11</text>
+      <text x="364" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">12</text>
+      <text x="426" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">01</text>
+      <text x="488" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">02</text>
+      <text x="550" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">03</text>
+      <text x="612" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">04</text>
+      <text x="674" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">05</text>
+      <text x="736" y="256" text-anchor="middle" font-size="11" fill="var(--muted)">06</text>
+
+      <!-- year tags -->
+      <text x="30" y="16" font-size="11" fill="var(--copper)">2025</text>
+      <text x="402" y="16" font-size="11" fill="var(--copper)">2026</text>
+
+      <!-- YoY% row -->
+      <text x="54"  y="274" text-anchor="middle" font-size="10" fill="var(--green)">+27.4%</text>
+      <text x="116" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+5.3%</text>
+      <text x="178" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+18.7%</text>
+      <text x="240" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+27.4%</text>
+      <text x="302" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+36.5%</text>
+      <text x="364" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+94.5%</text>
+      <text x="426" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+61.9%</text>
+      <text x="488" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+43.2%</text>
+      <text x="550" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+88.4%</text>
+      <text x="612" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+120.7%</text>
+      <text x="674" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+94.4%</text>
+      <text x="736" y="274" text-anchor="middle" font-size="10" fill="var(--green)">+102.9%</text>
+    </g>
+  </svg>
+  <p class="note" style="margin-top:0;">柱狀圖數字為單月合併營收（億元），下方為年增率。金色柱體（2026/03、2026/06）為期間內兩個「創新高」的月份。</p>
+
+  <table style="margin-top:20px;">
+    <tr><th>月份</th><th>營收（億）</th><th>月增率</th><th>年增率</th></tr>
+    <tr><td class="mono">2025/07</td><td>1,583</td><td class="neg">-16.6%</td><td class="pos">+27.4%</td></tr>
+    <tr><td class="mono">2025/08</td><td>1,528</td><td class="neg">-3.49%</td><td class="pos">+5.25%</td></tr>
+    <tr><td class="mono">2025/09</td><td>1,841</td><td class="pos">+20.5%</td><td class="pos">+18.7%</td></tr>
+    <tr><td class="mono">2025/10</td><td>1,732</td><td class="neg">-5.92%</td><td class="pos">+27.4%</td></tr>
+    <tr><td class="mono">2025/11</td><td>1,929</td><td class="pos">+11.4%</td><td class="pos">+36.5%</td></tr>
+    <tr><td class="mono">2025/12</td><td>2,725</td><td class="pos">+41.2%</td><td class="pos">+94.5%</td></tr>
+    <tr><td class="mono">2026/01</td><td>2,308</td><td class="neg">-15.3%</td><td class="pos">+61.9%</td></tr>
+    <tr><td class="mono">2026/02</td><td>2,156</td><td class="neg">-6.6%</td><td class="pos">+43.2%</td></tr>
+    <tr><td class="mono">2026/03</td><td class="pos">3,628</td><td class="pos">+68.3%</td><td class="pos">+88.4%</td></tr>
+    <tr><td class="mono">2026/04</td><td>3,399</td><td class="neg">-6.3%</td><td class="pos">+120.7%</td></tr>
+    <tr><td class="mono">2026/05</td><td>3,115</td><td class="neg">-8.36%</td><td class="pos">+94.4%</td></tr>
+    <tr><td class="mono">2026/06</td><td class="pos">3,852</td><td class="pos">+23.7%</td><td class="pos">+102.9%</td></tr>
+  </table>
+
+  <p style="margin-top:20px;">趨勢解讀：12個月裡月增率忽正忽負、波動明顯（單月營收在1,528億到3,852億之間跳動），但<b>年增率呈現持續加速的軌跡</b>——2025年下半年年增率約在5%～37%區間，進入2026年後迅速攀升，2026Q1三個月都在43%以上，4月甚至衝上120.7%，6月單月營收3,852億元創歷史新高，年增102.9%。這條曲線跟第3步法說會揭露的「AI伺服器占營收8成、季增逾三成」敘事完全對得起來——不是單月異常暴衝，是連續三個季度動能加速的結構性成長。</p>
+  <p>月增率本身的大幅波動（如12月+41.2%、隔月1月即-15.3%，3月+68.3%、隔月4月即-6.3%），則呼應AI伺服器出貨本身「機櫃級大單、批次交貨」的特性——單一大客戶或單一世代機種出貨完成後容易出現月度回檔，這種鋸齒狀波動在看單月數字時不必過度解讀，年增率與季度、半年度的趨勢線更能反映真實動能。這也再次與第1步現金流分析的疑慮呼應：營收加速成長的同時，存貨與應收帳款同步暴增（第3步法說會揭露存貨季增31.4%至6,739億元），這正是本業現金流（A）持續為負、需要靠融資活動（C）與這次GDR股權募資來補營運資金缺口的根本原因——營收和帳面獲利雖然亮眼，但現金真正回籠的速度跟不上業務擴張的速度。</p>
+</section>
 </main>
 
 <footer>
-  <div>報告版本：v1.2　生成時間：<span class="v" id="gen-time"></span></div>
-  <div style="margin-top:6px;">第1步資料來源：使用者提供之 Goodinfo 台灣股市資訊網（<a class="src" href="https://goodinfo.tw/tw/StockCashFlow.asp?STOCK_ID=2382" target="_blank">2382 歷史現金流量表</a>）截圖，非本次搜尋所得。</div>
+  <div>報告版本：v1.3　生成時間：<span class="v" id="gen-time"></span></div>
+  <div style="margin-top:6px;">第1、4步資料來源：使用者提供之 Goodinfo 台灣股市資訊網（<a class="src" href="https://goodinfo.tw/tw/StockCashFlow.asp?STOCK_ID=2382" target="_blank">現金流量表</a>、每月營收頁）截圖，非本次搜尋所得。</div>
   <div style="margin-top:4px;">第2、3步資料來源：本次搜尋所得，包含 Yahoo股市、玩股網、鉅亨網、散戶鬥嘴鼓（MOPS彙整）、富果法說會整理、工商時報、Business Insider Taiwan、優分析等公開網頁，個別數字出處已於各段落標註連結。法說會內容摘要來自財經媒體對官方影音的整理文章，非逐字稿原文，已於段落中註明。</div>
 </footer>
 
