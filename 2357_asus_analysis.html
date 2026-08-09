@@ -316,7 +316,7 @@ footer{
 
 <nav class="stepnav" id="stepnav">
   <a href="#step1" class="enabled active" data-step="1"><span class="num">01</span>現金流六大規則</a>
-  <a href="#step2" class="locked" data-step="2"><span class="num">02</span>基本資訊</a>
+  <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊</a>
   <a href="#step3" class="locked" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="locked" data-step="4"><span class="num">04</span>營收趨勢</a>
   <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻估值</a>
@@ -638,9 +638,48 @@ footer{
   <p class="snap-note">報告版本：v1.0（第 1 步完成）｜生成時間：2026-08-10｜資料來源：使用者提供 Goodinfo 現金流量表截圖，非本次搜尋所得，六大規則評分依現有截圖數字獨立判斷，未參考股價／EPS／產業背景。</p>
 </section>
 
-<section class="step-block" id="step2" style="opacity:0.35;">
-  <div class="step-progress" style="color:var(--locked);">【第 2 步／共 6 步：基本資訊查詢】── 待確認是否繼續</div>
-  <h2 style="border-left-color:var(--locked);color:var(--ink-dim);">基本資訊查詢（尚未開始）</h2>
+<section class="step-block" id="step2">
+  <div class="step-progress">【第 2 步／共 6 步：基本資訊查詢】</div>
+  <h2>基本資訊查詢</h2>
+
+  <div class="highlight-box">
+    <strong>先講重點：</strong>股價約 <strong>817 元</strong>（2026/08/07 收盤），本益比約 <strong>14.6 倍</strong>（同業平均 30.8 倍，明顯低於同業）；2026 Q1 EPS <strong>13.19 元</strong>，近四季 EPS 約 <strong>55.96 元</strong>；6 月營收首度突破千億元創新高；<strong>近一兩年無股票分割或減資</strong>，各期 EPS／每股淨值可直接比較，不需回溯調整。
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">股價與估值</h3>
+  <p>收盤 <strong>817.00 元</strong>（<cite index="11-1">資料時間 2026/08/10，收盤資料為 2026/08/07 14:30 更新</cite>），此為查詢當下的最後更新價格，非即時報價，正式交易請以看盤軟體/券商App為準。<cite index="11-1">本益比 14.60 倍，同業（電腦週邊）平均本益比 30.81 倍</cite>，華碩目前估值明顯低於同業平均。<cite index="11-1">每股淨值 386.25 元</cite>，換算股價淨值比約 2.1 倍。此股價數字與第一步 Goodinfo 現金流截圖中 26Q1「本期收盤」817 元一致，兩來源互相驗證。</p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">EPS 趨勢（近四年＋最新季）</h3>
+  <div class="table-wrap">
+    <table class="mono-table">
+      <thead><tr><th>期間</th><th>EPS(元)</th></tr></thead>
+      <tbody>
+        <tr><td>2026 Q1</td><td class="pos">13.19</td></tr>
+        <tr><td>2025 Q4</td><td>15.36</td></tr>
+        <tr><td>2025 Q3</td><td>14.21</td></tr>
+        <tr><td>2025 Q2</td><td>13.20</td></tr>
+        <tr><td>2025（全年）</td><td class="pos">59.99</td></tr>
+        <tr><td>2024（全年）</td><td>42.27</td></tr>
+        <tr><td>2023（全年）</td><td>21.44</td></tr>
+        <tr><td>2022（全年）</td><td>19.78</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note"><cite index="17-1">近四季（2025Q2～2026Q1）加總 EPS 為 55.96 元</cite>。這組數字與第一步 Goodinfo 現金流截圖中「稅後EPS」欄位（2025:59.99、2024:42.27、2023:21.44、2022:19.78）完全吻合，兩個獨立來源互相驗證一致，可信度高。</p>
+  <p class="snap-note">來源：<a href="https://tw.stock.yahoo.com/quote/2357.TW/profile" style="color:var(--accent)">Yahoo股市 華碩基本資料</a>；<a href="https://statementdog.com/analysis/2357/eps" style="color:var(--accent)">財報狗 華碩EPS頁</a></p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">股本異動檢查</h3>
+  <p>已查證「2357 華碩 股票分割 減資」相關新聞，唯一查到的減資訊息是<cite index="4-1">華碩重要子公司ACBZ IMPORTACAO E COMERCIO LTDA.（巴西子公司）辦理減資的公告</cite>，屬子公司層級財務操作，<strong>非華碩本身股本變動</strong>，不影響 2357 母公司層級的每股數字比較基礎。近一兩年查無華碩本身的股票分割或減資紀錄，因此上述 EPS／每股淨值可直接比較，不需回溯調整。</p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">近期營收與股利</h3>
+  <p><cite index="15-1">華碩 6 月營收 1,067 億元，月增年增雙增，首度突破千億元大關創新高</cite>（Anue鉅亨 07/09），延續近期成長動能，與 26Q1 法說會揭露的 PC／伺服器業務展望相呼應（詳見第 3 步）。<cite index="7-1">2025 年度現金股利 42.00 元，發放日 2026/07/22</cite>，以目前股價 817 元計算，現金殖利率約 5.1%。</p>
+  <p class="snap-note">來源：<a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=2357" style="color:var(--accent)">Goodinfo 華碩股價行情概況（新聞列表）</a>；<a href="https://tw.stock.yahoo.com/quote/2357.TW/profile" style="color:var(--accent)">Yahoo股市 華碩基本資料</a></p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">法說會資訊</h3>
+  <p>下一場法說會排定於 <strong>2026/08/12 16:00</strong>（線上會議），說明 115 年第 2 季營運結果，尚未召開，簡報尚未公告。最近一次<strong>已完成</strong>且有完整簡報的法說會為 <strong>2026/05/12</strong>（說明 2026 年第 1 季營運結果），<a href="https://mopsov.twse.com.tw/nas/STR/235720260512M001.pdf" style="color:var(--accent)">公開資訊觀測站簡報 PDF 連結</a>（此為 MOPS 官網連結，因 robots.txt 限制無法由 Claude 直接讀取內容，僅供你自行點閱）。第 3 步的法說會深入討論將以這場 2026 Q1 法說會的財經媒體整理摘要為主要依據。</p>
+  <p class="snap-note">來源：<a href="https://poorstock.com/earningcall/2357" style="color:var(--accent)">散戶鬥嘴鼓 華碩法說會彙整頁</a>（整理自公開資訊觀測站）</p>
+
+  <div class="score-line" style="margin-top:20px;"></div>
 </section>
 <section class="step-block" id="step3" style="opacity:0.35;">
   <div class="step-progress" style="color:var(--locked);">【第 3 步／共 6 步：法說會深入討論】── 待確認</div>
