@@ -319,7 +319,7 @@ footer{
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
-  <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻估值</a>
+  <a href="#step5" class="enabled" data-step="5"><span class="num">05</span>前瞻估值</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
 
@@ -830,9 +830,72 @@ footer{
   <p class="table-note">2026/01單月年增高達+80%需留意基期效應：2025/01單月營收377.5億為相對低基期(該月為全年最低點之一)，墊高了年增率百分比，實際單月營收金額(679.4億)並非全期最高，判讀年增率時建議搭配單月金額一起看,不宜只看百分比。</p>
   <p class="snap-note">snap-note：以上月營收數字取自使用者提供的 Goodinfo 月營收走勢圖截圖(2357 華碩-每月股價、營收概況)，非本次搜尋所得。</p>
 </section>
-<section class="step-block" id="step5" style="opacity:0.35;">
-  <div class="step-progress" style="color:var(--locked);">【第 5 步／共 6 步：前瞻本益比／EPS 預估】── 待確認</div>
-  <h2 style="border-left-color:var(--locked);color:var(--ink-dim);">前瞻本益比／EPS 預估（尚未開始）</h2>
+<section class="step-block" id="step5">
+  <div class="step-progress">【第 5 步／共 6 步：前瞻本益比／EPS 預估】</div>
+  <h2>前瞻本益比／EPS 預估</h2>
+
+  <div class="highlight-box warn">
+    <strong>先講重點：</strong>以現價 817 元計算,對照最新法人共識(FactSet,15位分析師)2026年EPS中位數49.66元,<strong>前瞻本益比約16.5倍</strong>；而現價已<strong>超過FactSet共識目標價640元約27.7%</strong>,隱含目前市場定價已高於多數分析師彙整後的共識水準——但同一時間點,也有多家個別券商在Q1法說會後喊出更高的目標價(780~850元),與FactSet彙整的共識目標價之間存在明顯落差,這個分歧本身就是需要留意的訊號。
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">法人 EPS 共識預估（FactSet彙整）</h3>
+  <div class="table-wrap">
+    <table class="mono-table">
+      <thead><tr><th>年度</th><th>中位數</th><th>平均值</th><th>最高值</th><th>最低值</th><th>分析師數</th><th>調查時間</th></tr></thead>
+      <tbody>
+        <tr><td>2026年</td><td class="pos">49.66</td><td>—</td><td>59.22</td><td>43.9</td><td>15位</td><td>2026/05/13</td></tr>
+        <tr><td>2027年</td><td>54.54</td><td>53.99</td><td>63.13</td><td>41.68</td><td>16位</td><td>2026/04/17</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">📌 2026年EPS共識自2026年初以來持續上修：3月中位數47.73元→4月48.7元(月中一度下修至48元)→5月49.66元，方向與第3步法說會揭露的伺服器成長目標上修（50~100%→至少100%）一致。2027年數據為4月17日的較舊快照,尚未反映Q1法說會後的上修,實際數字可能更高,此處如實標示調查時間差異。</p>
+  <p class="snap-note">來源：<a href="https://news.cnyes.com/news/id/6456037" style="color:var(--accent)">鉅亨網「Factset最新調查：華碩EPS預估上修至49.66元」(2026/05/13)</a>；<a href="https://today.line.me/tw/v3/article/pekwq8e" style="color:var(--accent)">鉅亨網「Factset最新調查：華碩EPS預估上修至48.7元」(2026/04/17，2027年數據)</a></p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">前瞻本益比（現在股價 ÷ 預估EPS，回答「現在貴不貴」）</h3>
+  <div class="table-wrap">
+    <table class="mono-table">
+      <thead><tr><th>EPS假設</th><th>數值(元)</th><th>現價(元)</th><th>隱含本益比</th></tr></thead>
+      <tbody>
+        <tr><td>2026 共識中位數</td><td>49.66</td><td>817</td><td class="negv">16.5倍</td></tr>
+        <tr><td>2027 共識中位數</td><td>54.54</td><td>817</td><td>15.0倍</td></tr>
+        <tr><td>2026 個別券商樂觀值(元大)</td><td>66.74</td><td>817</td><td class="pos">12.2倍</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>以共識中位數計算,目前隱含前瞻本益比約15~16.5倍,高於第2步查到的<strong>目前落後本益比14.6倍</strong>(表示市場對明年成長已有一定期待,而非現在賺的錢還沒反映)。相較同業(電腦週邊)平均30.8倍,即使用前瞻角度看仍明顯偏低,但同業平均本身可能受個別成分股結構影響,不宜直接等比例套用。</p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">目標本益比法（假設倍數 × 預估EPS，回答「合理價可能落在哪」）</h3>
+  <p><strong>提醒：前瞻本益比與目標本益比法是同一公式的不同用法，不是同一件事。</strong>前者已知股價、求隱含倍數；後者已知倍數、反推目標價。以下用2026年EPS共識中位數49.66元,搭配三組情境倍數進行敏感度試算(非預測):</p>
+  <div class="table-wrap">
+    <table class="mono-table">
+      <thead><tr><th>假設本益比倍數</th><th>2026 EPS(元)</th><th>反推目標價(元)</th></tr></thead>
+      <tbody>
+        <tr><td>12倍(低情境)</td><td>49.66</td><td>596</td></tr>
+        <tr><td>15倍(中性情境)</td><td>49.66</td><td>745</td></tr>
+        <tr><td>18倍(樂觀情境)</td><td>49.66</td><td>894</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">⚠️ 這組596~894元的區間對「倍數怎麼選」高度敏感,沒有標準答案,純粹是敏感度試算,不是目標價預測。可以看到只有18倍(樂觀情境)才會超過現價817元,12倍與15倍情境下現價都已高於試算結果——這與前段「現價已超過FactSet共識目標價」的觀察方向一致。</p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">法人目標價：共識與個別券商的分歧</h3>
+  <div class="table-wrap">
+    <table class="mono-table">
+      <thead><tr><th>來源</th><th>目標價(元)</th><th>依據</th></tr></thead>
+      <tbody>
+        <tr><td>FactSet共識(13位分析師)</td><td class="negv">640</td><td>共識中位數,較前次上修4.75%</td></tr>
+        <tr><td>元大投顧</td><td class="pos">850</td><td>12倍2H26~1H27預估EPS 70.89元</td></tr>
+        <tr><td>凱基投顧</td><td class="pos">835</td><td>15倍2026/27年EPS(53.65/57.64元)</td></tr>
+        <tr><td>統一投顧</td><td class="pos">825</td><td>14倍2026/27年EPS(52.8/59.4元)</td></tr>
+        <tr><td>富邦投顧</td><td class="pos">780</td><td>評等由中立升買進,上修30%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>這個分歧本身是重要訊號：</strong>FactSet彙整多家分析師後的共識目標價(640元)與現價(817元)已有明顯落差,現價已超出共識目標27.7%；但四家個別券商在Q1法說會後(2026/05/13)公開喊出的目標價(780~850元)全數高於現價,且都是以更高的個股EPS估值與較高本益比倍數推算而來。兩者的落差可能反映：①FactSet彙整的分析師群體較廣、涵蓋更保守的看法；②這四家券商是Q1法說會後最新表態、可能還沒被完整反映進FactSet的彙整快照裡。實際合理價落在哪個區間,取決於你認為哪個陣營的假設更可信,這裡誠實呈現分歧、不代替你做判斷。</p>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1.05rem;">預估不確定性的歷史校準</h3>
+  <p>回顧2025年,FactSet在2025年11月至2026年2月間對當年EPS的共識預估中位數落在53.85~54.73元之間，但2025年<strong>實際</strong>EPS為59.99元——法人共識當時<strong>低估</strong>了實際獲利近一成,顯示這家公司的分析師預估過去曾出現不小的落差(這次是低估、不是高估)。這提醒我們，現在看到的2026/2027年EPS預估同樣有機會被實際結果推翻，前述本益比與目標價試算都應保留一定的不確定性空間，不宜過度信任單一數字。</p>
+  <p class="snap-note">來源：<a href="https://tw.stock.yahoo.com/news/" style="color:var(--accent)">Yahoo股市／旺得富報導「華碩AI伺服器大爆發 4大投顧喊買 目標價EPS一表看」(2026/05/13)</a>；<a href="https://news.cnyes.com/news/id/6456034" style="color:var(--accent)">鉅亨網「Factset最新調查：華碩目標價調升至640元」(2026/05/13)</a>；2025年歷史共識數字取自多篇鉅亨網Factset速報彙整比對。</p>
 </section>
 <section class="step-block" id="step6" style="opacity:0.35;">
   <div class="step-progress" style="color:var(--locked);">【第 6 步／共 6 步：投資決策推理】── 僅使用者主動詢問才做</div>
