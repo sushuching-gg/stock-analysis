@@ -270,7 +270,7 @@
   <a href="#step1" class="enabled" data-step="1"><span class="num">01</span>現金流六大規則</a>
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
-  <a href="#step4" class="locked" data-step="4"><span class="num">04</span>營收趨勢</a>
+  <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
   <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
@@ -512,7 +512,38 @@
 <section class="step-section" id="step4">
   <div class="step-flag">【第 4 步／共 6 步】</div>
   <h2 class="step-title">營收趨勢視覺化</h2>
-  <p style="color:var(--muted)">（待完成）</p>
+
+  <div class="callout">
+    <strong>近12個月月營收整體呈上升趨勢，但6月出現明顯轉折</strong>——2025年7月至2026年5月大致維持年增（多數月份YoY兩位數成長），2026年6月卻轉為年減11.53%，結束連續正成長。對照第2、3步查得的資訊：這與Q2單季EPS較Q1季減逾6成、法說會提及CPO量產時程遞延到下半年（Q3才小量開出）的說法方向一致——目前營收成長動能主要還停留在既有產品線，市場高度期待的CPO放量效果尚未反映在營收數字上。
+  </div>
+
+  <h3 class="sub-title">近12個月單月合併營收（百萬元）</h3>
+  <div class="bar-chart" id="chartRev">
+    <div class="zero-line" style="bottom:0%;border-top:1px solid var(--line);"></div>
+  </div>
+
+  <table>
+    <thead><tr><th>月份</th><th>營收(百萬元)</th><th>年增率</th></tr></thead>
+    <tbody>
+      <tr><td>2025/07</td><td>163.28</td><td class="posv">+10.60%</td></tr>
+      <tr><td>2025/08</td><td>186.97</td><td class="posv">+14.51%</td></tr>
+      <tr><td>2025/09</td><td>190.10</td><td class="posv">+1.67%</td></tr>
+      <tr><td>2025/10</td><td>186.09</td><td class="negv">-2.11%</td></tr>
+      <tr><td>2025/11</td><td>213.42</td><td class="posv">+14.69%</td></tr>
+      <tr><td>2025/12</td><td>223.39</td><td class="posv">+4.67%</td></tr>
+      <tr class="hl-peak"><td>2026/01</td><td>234.70</td><td class="posv">+47.89%</td></tr>
+      <tr class="hl-trough"><td>2026/02</td><td>173.92</td><td class="posv">+5.34%</td></tr>
+      <tr class="hl-peak"><td>2026/03</td><td>247.47</td><td class="posv">+23.67%</td></tr>
+      <tr><td>2026/04</td><td>199.14</td><td class="posv">+16.50%</td></tr>
+      <tr><td>2026/05</td><td>211.52</td><td class="posv">+29.97%</td></tr>
+      <tr class="hl-trough"><td>2026/06</td><td>181.19</td><td class="negv">-11.53%</td></tr>
+    </tbody>
+  </table>
+
+  <p>營收波動明顯有淡旺季/單月拉貨節奏起伏（如2026年2月適逢農曆春節工作日較少，單月營收明顯較低；3月拉高補回），但整體12個月的年增率多為正值，顯示既有WDM/Branch/OIN既有產品線需求仍在成長。6月由盛轉衰的年減11.53%，是近12個月唯一一次轉負，需在第5、6步評估未來展望時特別留意這是短期雜訊，還是成長動能提早放緩的訊號——尤其法說會已明確提到CPO要等到Q3才小量開出、Q4才達月產千級，若下半年營收未能如期跟上題材面熱度，股價與基本面的落差可能擴大。</p>
+
+  <p class="snap-note">資料來源：<a href="https://tw.stock.yahoo.com/quote/3163.TWO/revenue" style="color:var(--cyan)">Yahoo股市3163.TWO營收表</a>（合併2026/08/06與2026/05/29兩批快照，取近12個月單月合併營收數字；2026年1月營收234,703仟元、年增47.89%已於官方頁面標示，非本次推算）。</p>
+
 </section>
 
 <section class="step-section" id="step5">
@@ -530,7 +561,7 @@
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.2（第 1-3 步完成，第 4-6 步待補）</span>
+  <span>報告版本 v1.3（第 1-4 步完成，第 5-6 步待補）</span>
   <span id="gen-time"></span>
 </footer>
 
@@ -621,6 +652,34 @@
       bar.appendChild(val);
       col.appendChild(bar);
       var yr = document.createElement('div'); yr.className='bar-yr'; yr.textContent=d.yr;
+      col.appendChild(yr);
+      chart.appendChild(col);
+    });
+  })();
+  // 第4步 營收趨勢長條圖（近12個月，單位百萬元）
+  (function(){
+    var data = [
+      {m:'25/07',v:163.28},{m:'25/08',v:186.97},{m:'25/09',v:190.10},{m:'25/10',v:186.09},
+      {m:'25/11',v:213.42},{m:'25/12',v:223.39},{m:'26/01',v:234.70},{m:'26/02',v:173.92},
+      {m:'26/03',v:247.47},{m:'26/04',v:199.14},{m:'26/05',v:211.52},{m:'26/06',v:181.19}
+    ];
+    var max = 260;
+    var chart = document.getElementById('chartRev');
+    var peakVal = Math.max.apply(null, data.map(function(d){return d.v;}));
+    var troughVal = Math.min.apply(null, data.map(function(d){return d.v;}));
+    data.forEach(function(d){
+      var col = document.createElement('div'); col.className='bar-col';
+      var bar = document.createElement('div'); bar.className='bar';
+      var heightPct = d.v / max * 100;
+      bar.style.height = heightPct + '%';
+      var color = 'var(--violet)';
+      if(d.v === peakVal) color = 'var(--peak)';
+      if(d.v === troughVal) color = 'var(--trough)';
+      bar.style.background = color;
+      var val = document.createElement('span'); val.className='bar-val'; val.textContent=d.v.toFixed(0);
+      bar.appendChild(val);
+      col.appendChild(bar);
+      var yr = document.createElement('div'); yr.className='bar-yr'; yr.textContent=d.m;
       col.appendChild(yr);
       chart.appendChild(col);
     });
