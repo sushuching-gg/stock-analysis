@@ -271,7 +271,7 @@
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
-  <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
+  <a href="#step5" class="enabled" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
 
@@ -549,7 +549,45 @@
 <section class="step-section" id="step5">
   <div class="step-flag">【第 5 步／共 6 步】</div>
   <h2 class="step-title">前瞻本益比／EPS 預估</h2>
-  <p style="color:var(--muted)">（待完成）</p>
+
+  <div class="callout warn">
+    <strong>先誠實揭露：這家公司的分析師預估過去曾嚴重偏離實際。</strong>查得一份2025年11月發布的預估報告，當時對2025全年EPS的預估區間是<strong>3.3～3.5元</strong>；但第1、2步查證的官方數字顯示2025年實際EPS是<strong>6.22元</strong>——實際值幾乎是預估上限的1.8倍，落差超過77%。這代表市場對這家公司獲利的預測能力（至少這份報告）相當有限，下方2026、2027年的預估數字請務必當作「參考區間」而非「準確預測」。
+  </div>
+
+  <h3 class="sub-title">市場法人EPS預估（次一年度／次二年度）</h3>
+  <table>
+    <thead><tr><th>年度</th><th>預估EPS區間</th><th>成長驅動力（法人說法）</th></tr></thead>
+    <tbody>
+      <tr><td>2026年（次一年度）</td><td>6.5～7.0元</td><td>CPO/矽光子產品放量、WDM需求回溫，毛利率預估回升至22%</td></tr>
+      <tr><td>2027年（次二年度）</td><td>9.5～10.0元（另一來源引用9.9元）</td><td>800G/1.6T規格升級、AI應用擴大</td></tr>
+    </tbody>
+  </table>
+  <p>2026年上半年實際EPS已達4.12元（Q1 3.03元＋Q2 1.09元），若要落在全年6.5～7.0元區間，下半年需再貢獻2.4～2.9元。對照2025年「上半年僅0.54元、下半年卻高達5.68元」的極端上下半年落差型態（法說會與公司過去季度EPS顯示此為高度季節性/客戶拉貨節奏波動的公司），下半年表現有機會顯著優於上半年，但也可能重演過去分析師低估或高估的情況——<strong>這裡刻意不做進一步外推，因為這已超出查證範圍，屬於我個人的假設性推算，不是法人共識，僅供你參考判斷時要留意這家公司獲利季度波動極大這個特性</strong>。</p>
+  <p class="snap-note">資料來源：<a href="https://vocus.cc/article/692c4fe6fd8978000168297f" style="color:var(--cyan)">波若威(3163)股價估值分析與未來展望</a>（2025/11發布，第三方部落格整理之法人預估區間，單一來源）；2027年EPS 9.9元另見<a href="https://readmo.cmoney.tw/article/1678a2fd-43d6-4c4b-a195-305f6d5e1bdc" style="color:var(--cyan)">CMoney：波若威基本面轉弱時如何下修最大可承受虧損</a>（技術分析類文章附帶引用，非獨立驗證來源，僅作交叉參考）。2026H1實際EPS取自第2、3步官方財報數字。</p>
+
+  <h3 class="sub-title">前瞻本益比（現在股價 ÷ 預估EPS，回答「現在貴不貴」）</h3>
+  <table>
+    <thead><tr><th>基準</th><th>股價</th><th>預估EPS</th><th>前瞻本益比</th></tr></thead>
+    <tbody>
+      <tr><td>以2026年預估EPS（6.5～7.0元）</td><td>671元</td><td>6.5～7.0元</td><td class="negv">95.9～103.2倍</td></tr>
+      <tr><td>以2027年預估EPS（9.5～10.0元）</td><td>671元</td><td>9.5～10.0元</td><td class="negv">67.1～70.6倍</td></tr>
+    </tbody>
+  </table>
+  <p>不論用哪個年度的預估EPS換算，目前股價隱含的前瞻本益比都遠高於一般電子零組件股常見的20～30倍區間，即使用最遠的2027年樂觀預估，倍數仍接近70倍。這代表市場目前的定價已經把「CPO放量兌現＋持續高速成長」的樂觀情境大幅計入股價，留給後續驚喜（或容錯）的空間相對有限。</p>
+
+  <h3 class="sub-title">目標本益比法（預估EPS × 假設倍數，回答「合理價可能落在哪」）</h3>
+  <p>這是另一個獨立的算法——不是用現在股價反推倍數，而是「假設」一個合理倍數，乘以預估EPS，推算目標價區間。以下用20/25/30倍三組情境試算（電子零組件股常見的傳統估值倍數區間），只是敏感度試算，不是預測：</p>
+  <table>
+    <thead><tr><th>基準EPS</th><th>20倍</th><th>25倍</th><th>30倍</th></tr></thead>
+    <tbody>
+      <tr><td>2026年EPS中值 6.75元</td><td>135元</td><td>169元</td><td>203元</td></tr>
+      <tr><td>2027年EPS中值 9.75元</td><td>195元</td><td>244元</td><td>293元</td></tr>
+    </tbody>
+  </table>
+  <p><strong>目標價對「倍數怎麼選」高度敏感，沒有標準答案</strong>：即使用最樂觀的2027年EPS中值搭配30倍計算，目標價也只有293元，遠低於目前671元的股價。這不代表股價「一定」會跌到這個區間——本益比倍數本身就會隨市場情緒、產業熱度、資金環境而變動，CPO/矽光子概念股近期普遍享有遠高於傳統電子零組件股的評價倍數（第2步查得同業平均本益比也高達56～58倍）。這張表真正的用途，是讓你看清楚：目前671元的股價，換算下來已經遠遠超出「傳統保守估值方法」所能支撐的價格，你如果要繼續持有或買進，等於是在賭這個評價溢價會持續，而不是賭公司基本面本身還有多少上漲空間。</p>
+
+  <p class="snap-note">資料來源：本節前瞻本益比與目標本益比計算，皆以第2步查得之2026/08/07收盤價671元、以及上方法人EPS預估區間為輸入自行換算，計算過程已完整揭露於表格中，非直接引用第三方現成結論。</p>
+
 </section>
 
 <section class="step-section" id="step6">
@@ -561,7 +599,7 @@
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.3（第 1-4 步完成，第 5-6 步待補）</span>
+  <span>報告版本 v1.4（第 1-5 步完成，第 6 步待補，僅使用者主動詢問時進行）</span>
   <span id="gen-time"></span>
 </footer>
 
