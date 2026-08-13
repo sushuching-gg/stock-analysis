@@ -284,7 +284,7 @@
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
   <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
-  <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
+  <a href="#step5" class="enabled" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
 
@@ -600,10 +600,74 @@
 
 </section>
 
+<section class="step-section" id="step5">
+  <div class="step-flag">【第 5 步／共 6 步】</div>
+  <h2 class="step-title">前瞻本益比／EPS預估</h2>
+
+  <div class="callout">
+    <strong>FactSet共識預估在過去半年持續、穩定上修：2026年EPS中位數從3月的8.62元，逐步上修到8月(Q2法說後最新調查)的8.8元，目標價同步從216元上調到250元。</strong>這是一段可追蹤的連續調整軌跡，而不是單一時間點的估計值，方向與第3、4步查到的營收/獲利加速吻合——分析師是跟著實際數字轉強才逐步調高，不是法說會喊話後就一次性大幅跳升，判斷依據相對紮實。但不同券商間對2026年EPS與目標價的估計仍存在相當大分歧（詳見下方），顯示市場對「AI故事能兌現到什麼程度」看法並不一致。
+  </div>
+
+  <h3 class="sub-title">FactSet共識預估半年調整軌跡</h3>
+  <table>
+    <caption>FactSet調查（12位分析師）2026年EPS與目標價中位數演進</caption>
+    <thead><tr><th>調查時間</th><th>分析師人數</th><th>2026EPS中位數</th><th>2026EPS最高／最低</th><th>目標價中位數</th></tr></thead>
+    <tbody>
+      <tr><td>2026年3月初</td><td>11-12位</td><td>8.62元</td><td>9.68元／7.87元</td><td>216元</td></tr>
+      <tr><td>2026年6月初</td><td>11位</td><td>8.55元</td><td>9.74元／8.01元</td><td>227.5元</td></tr>
+      <tr><td>2026年6月20日</td><td>12位</td><td>8.63元</td><td>9.74元／8.01元</td><td>230元</td></tr>
+      <tr class="hl-peak"><td>2026年8月3日（Q2法說後最新）</td><td>12位</td><td>8.8元</td><td>11.79元／8.01元</td><td>250元</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">最新一次調查（8/3）平均值為9.39元（前值8.73元），中位數與平均值都較前一輪明顯上修，且最高估值一口氣從9.74元跳升到11.79元——反映Q2法說會後有分析師大幅調升樂觀情境的預估，但最低估值8.01元完全沒有變動，顯示分析師之間對「AI故事能兌現到什麼程度」的看法分歧正在擴大，不是所有人都同步轉樂觀。</p>
+
+  <h3 class="sub-title">跨年度EPS展望（FactSet最新調查，2026/08/03）</h3>
+  <table>
+    <thead><tr><th>年度</th><th>最高值</th><th>最低值</th><th>平均值</th><th>中位數</th></tr></thead>
+    <tbody>
+      <tr><td>2026年</td><td>11.79元</td><td>8.01元</td><td>9.39元</td><td>8.8元</td></tr>
+      <tr><td>2027年</td><td>18.94元</td><td>10.13元</td><td>12.8元</td><td>12.06元</td></tr>
+      <tr><td>2028年</td><td>20.55元</td><td>12.5元</td><td>15.93元</td><td>15.19元</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">2026至2028年中位數EPS隱含年複合成長率約31%（8.8→15.19元），這已經是相當積極的假設；若用最高值估算（11.79→20.55元），隱含成長更快。年度愈遠，最高與最低值之間的分歧愈大（2026年最高/最低比約1.5倍，2028年擴大到約1.6倍），反映愈長期的預估愈難有共識，不確定性隨時間拉長而放大，屬於正常現象但仍值得留意。</p>
+
+  <h3 class="sub-title">個別券商報告：分歧明顯，需留意目標價喊價的認知定錨</h3>
+  <table>
+    <caption>近期查得的個別券商/投顧看法（時間點不同，非同一天發布，不可直接平均）</caption>
+    <thead><tr><th>約略時間</th><th>目標價</th><th>2026年EPS估</th><th>2026年營收估</th></tr></thead>
+    <tbody>
+      <tr><td>較早（Q1後）</td><td>182元</td><td>7.58元</td><td>—</td></tr>
+      <tr><td>7家券商一致看多（時間未標示）</td><td>212-240元</td><td>7.98-8.62元</td><td>2,001.51-2,158.24億元</td></tr>
+      <tr class="hl-peak"><td>2026/06/22（Q1法說後，龍頭券商投顧）</td><td>原246元→上調至300元</td><td>9.1元（年增36%）</td><td>2,176億元（+31%）</td></tr>
+    </tbody>
+  </table>
+  <p>其中喊出300元目標價的報告本身也附帶一個重要提醒，值得原文精神轉述：該報告估算光寶科2025至2027年EPS年複合成長率高達56%，同時股價已從低點翻倍，意味著市場已經提前反映相當多的成長預期——換句話說，即使是喊出最高目標價的機構自己，也承認目前股價已經包含了不少「還沒兌現」的樂觀假設，這是評估任何一份分析師報告時都該放在心上的提醒。</p>
+
+  <h3 class="sub-title">用不同EPS估計換算前瞻本益比</h3>
+  <table>
+    <caption>以第2步查得的股價快照，對照不同EPS估計反推的前瞻本益比</caption>
+    <thead><tr><th>EPS估計來源</th><th>2026EPS</th><th>股價247元對應PE</th><th>股價268.5元對應PE</th></tr></thead>
+    <tbody>
+      <tr><td>FactSet最低值</td><td>8.01元</td><td>30.8倍</td><td>33.5倍</td></tr>
+      <tr><td>FactSet中位數（最新）</td><td>8.8元</td><td>28.1倍</td><td>30.5倍</td></tr>
+      <tr><td>FactSet平均值（最新）</td><td>9.39元</td><td>26.3倍</td><td>28.6倍</td></tr>
+      <tr><td>龍頭券商樂觀情境</td><td>9.1元</td><td>27.1倍</td><td>29.5倍</td></tr>
+      <tr class="hl-trough"><td>FactSet最高值</td><td>11.79元</td><td>21.0倍</td><td>22.8倍</td></tr>
+    </tbody>
+  </table>
+  <p class="snap-note">同一股價對應不同EPS估計，前瞻本益比可以從21倍跳到33倍以上——這正是分析師預估分歧直接反映在估值判斷上的結果，沒有標準答案，端看投資人自己相信哪個獲利情境比較可能發生。目前trailng本益比（第2步查得，約29.5-31.4倍）落在FactSet中位數與平均值反推出的前瞻本益比區間內，代表市場目前的定價大致對應「中間偏樂觀」的分析師共識，還沒有完全反映最樂觀（11.79元EPS）的情境，也沒有跌到最保守（8.01元EPS）的估值水準。</p>
+
+  <div class="callout warn" style="margin-top:20px;">
+    <strong>觀察重點小結：</strong>分析師共識過去半年持續上修、方向與實際營收獲利加速吻合，判斷依據相對紮實；但個別機構之間對2026年EPS（8.01-11.79元）與目標價（182-300元）的分歧幅度都超過50%，前瞻本益比隨EPS估計不同可以在21-33倍之間游移。目前股價落在中間偏樂觀的區間，尚未完全反映最樂觀情境，但也已經包含相當多尚未兌現的成長預期——這與第3、4步觀察到的「AI故事有具體支撐、但現金流尚未跟上獲利」的落差，共同構成後續（第6步）評估投資決策時需要一併權衡的因素。
+  </div>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.3（第 1-4 步，其餘待續）</span>
+  <span>報告版本 v1.4（第 1-5 步，其餘待續）</span>
   <span id="gen-time"></span>
 </footer>
 
