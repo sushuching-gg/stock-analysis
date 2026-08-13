@@ -283,7 +283,7 @@
   <a href="#step1" class="enabled active" data-step="1"><span class="num">01</span>現金流六大規則</a>
   <a href="#step2" class="enabled" data-step="2"><span class="num">02</span>基本資訊查詢</a>
   <a href="#step3" class="enabled" data-step="3"><span class="num">03</span>法說會深入</a>
-  <a href="#step4" class="locked" data-step="4"><span class="num">04</span>營收趨勢</a>
+  <a href="#step4" class="enabled" data-step="4"><span class="num">04</span>營收趨勢</a>
   <a href="#step5" class="locked" data-step="5"><span class="num">05</span>前瞻本益比</a>
   <a href="#step6" class="locked" data-step="6"><span class="num">06</span>投資決策推理</a>
 </nav>
@@ -542,10 +542,68 @@
 
 </section>
 
+<section class="step-section" id="step4">
+  <div class="step-flag">【第 4 步／共 6 步】</div>
+  <h2 class="step-title">營收趨勢視覺化</h2>
+
+  <div class="callout ok">
+    <strong>近19個月（2025/01至2026/07）單月營收年增率全數為正值，且2026年上半年起明顯加速：年增率從2026年1月的+16.2%一路墊高到2026年7月的+37.6%，7月單月營收190.1億元創下本頁資料範圍內的單月新高。</strong>這段連續正成長且逐月加速的走勢，與第3步法說會查到的「雲端及物聯網部門年增超70%、AI營收占比目標30%以上」的說法方向一致，營收面的實際數字支持了法說會的樂觀敘事。
+  </div>
+
+  <h3 class="sub-title">近24個月營收走勢（2024/08–2026/07）</h3>
+  <div class="chart-legend">
+    <span><i class="dot" style="background:var(--peak)"></i>期間新高</span>
+    <span><i class="dot" style="background:var(--trough)"></i>期間新低</span>
+  </div>
+  <div class="bar-chart" id="chartRev"></div>
+  <p class="snap-note">資料來源：使用者提供之Goodinfo月營收走勢截圖，單位億元。與第2步查到的官方公告（2026年5月合併營收173.54億元、年增29.56%）互相吻合，數字一致無落差。</p>
+
+  <h3 class="sub-title">月營收與年增率明細</h3>
+  <table>
+    <caption>單月營收（億元）與年增率、累計年增率</caption>
+    <thead><tr><th>月份</th><th>單月營收</th><th>月增率</th><th>年增率</th><th>累計年增率</th></tr></thead>
+    <tbody>
+      <tr class="hl-peak"><td>2026/07</td><td>190.1</td><td>+1.87%</td><td class="posv">+37.6%</td><td class="posv">+27.0%</td></tr>
+      <tr><td>2026/06</td><td>186.6</td><td>+7.5%</td><td class="posv">+37.0%</td><td class="posv">+25.1%</td></tr>
+      <tr><td>2026/05</td><td>173.5</td><td>+3.94%</td><td class="posv">+29.6%</td><td class="posv">+22.5%</td></tr>
+      <tr><td>2026/04</td><td>166.9</td><td>+1.27%</td><td class="posv">+24.5%</td><td class="posv">+20.6%</td></tr>
+      <tr><td>2026/03</td><td>164.8</td><td>+28.6%</td><td class="posv">+23.4%</td><td class="posv">+19.2%</td></tr>
+      <tr><td>2026/02</td><td>128.1</td><td>-9.21%</td><td class="posv">+17.4%</td><td class="posv">+16.7%</td></tr>
+      <tr><td>2026/01</td><td>141.1</td><td>-5.33%</td><td class="posv">+16.2%</td><td class="posv">+16.2%</td></tr>
+      <tr><td>2025/12</td><td>149.1</td><td>+4.63%</td><td class="posv">+11.4%</td><td class="posv">+21.1%</td></tr>
+      <tr><td>2025/11</td><td>142.5</td><td>-6.3%</td><td class="posv">+13.8%</td><td class="posv">+22.2%</td></tr>
+      <tr><td>2025/10</td><td>152.0</td><td>-1.46%</td><td class="posv">+22.6%</td><td class="posv">+23.1%</td></tr>
+      <tr><td>2025/09</td><td>154.3</td><td>-1.39%</td><td class="posv">+30.2%</td><td class="posv">+23.2%</td></tr>
+      <tr><td>2025/08</td><td>156.5</td><td>+13.3%</td><td class="posv">+29.8%</td><td class="posv">+22.2%</td></tr>
+      <tr><td>2025/07</td><td>138.1</td><td>+1.4%</td><td class="posv">+7.35%</td><td class="posv">+21.0%</td></tr>
+      <tr><td>2025/06</td><td>136.2</td><td>+1.68%</td><td class="posv">+16.0%</td><td class="posv">+23.8%</td></tr>
+      <tr><td>2025/05</td><td>133.9</td><td>-0.1%</td><td class="posv">+22.3%</td><td class="posv">+25.6%</td></tr>
+      <tr><td>2025/04</td><td>134.1</td><td>+0.41%</td><td class="posv">+26.6%</td><td class="posv">+26.6%</td></tr>
+      <tr><td>2025/03</td><td>133.5</td><td>+22.3%</td><td class="posv">+23.8%</td><td class="posv">+26.6%</td></tr>
+      <tr class="hl-trough"><td>2025/02</td><td>109.2</td><td>-10.1%</td><td class="posv">+35.1%</td><td class="posv">+28.2%</td></tr>
+      <tr><td>2025/01</td><td>121.5</td><td>-9.26%</td><td class="posv">+22.6%</td><td class="posv">+22.6%</td></tr>
+      <tr><td>2024/12</td><td>133.9</td><td>+6.99%</td><td class="posv">+8.62%</td><td class="negv">-7.55%</td></tr>
+      <tr><td>2024/11</td><td>125.1</td><td>+0.93%</td><td class="posv">+1.33%</td><td class="negv">-9.02%</td></tr>
+      <tr><td>2024/10</td><td>124.0</td><td>+4.6%</td><td class="posv">+1.28%</td><td class="negv">-10.0%</td></tr>
+      <tr><td>2024/09</td><td>118.5</td><td>-1.69%</td><td class="negv">-16.0%</td><td class="negv">-11.3%</td></tr>
+      <tr><td>2024/08</td><td>120.5</td><td>-6.31%</td><td class="negv">-9.29%</td><td class="negv">-10.6%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">分水嶺：2024年下半年低迷 vs 2025年起強勁反彈</h3>
+  <p>把時間拉長看，2024年下半年（8-11月）營收年增率多數是負值或僅微幅正成長（8月-9.29%、9月-16.0%、10月+1.28%、11月+1.33%），累計營收年增率一路探底到11月的-9.02%，全年呈現營收停滯甚至衰退的格局——這正好和第1步觀察到「2024年A營業現金流從273億重摔到124億」的現金流警訊在時間點上完全對得起來：2024年的現金流惡化，背後確實有營收面同步走弱的基本面事實支撐，不是單純的會計認列時點問題。</p>
+  <p>轉折點出現在2025年初：從2025年1月開始，單月營收年增率轉為連續正值，且多數維持在20%以上，一路延續到2026年7月，形成長達19個月的正成長軌跡，2026年第二季起更明顯加速（3月+23.4%→7月+37.6%）。這段加速期與第3步法說會查到的「Q2雲端及物聯網部門營收年增超70%、單季289億元」時間點吻合，數字之間可以互相印證：法說會的樂觀敘事不是單純的口頭喊話，近兩年的實際月營收數字確實支持這個成長故事。</p>
+
+  <div class="callout warn">
+    <strong>但要注意：</strong>26H1營收強勁成長（H1累計年增22.5%）與同期A營業現金流轉負（-42.4億元）同時存在，代表「營收好、獲利好、但現金沒跟上」並非營收造假或衰退造成，比較可能的解釋方向是應收帳款/存貨隨營收快速擴張同步墊高（营运资金被占用），這通常是营收高速成长期的常見現象，但仍需要在第5步查詢財報附註或分析師報告時進一步確認，暫不下定論。
+  </div>
+
+</section>
+
 </main>
 
 <footer class="report-footer" style="max-width:980px;margin:0 auto;padding:0 8vw 40px;">
-  <span>報告版本 v1.2（第 1-3 步，其餘待續）</span>
+  <span>報告版本 v1.3（第 1-4 步，其餘待續）</span>
   <span id="gen-time"></span>
 </footer>
 
@@ -674,6 +732,45 @@
       col.appendChild(yr);
       chart.appendChild(col);
     });
+  })();
+
+  // 第4步 近24個月月營收長條圖（2024/08-2026/07）
+  (function(){
+    var data = [
+      {yr:'24/08',v:120.5},{yr:'24/09',v:118.5},{yr:'24/10',v:124.0},{yr:'24/11',v:125.1},
+      {yr:'24/12',v:133.9},{yr:'25/01',v:121.5},{yr:'25/02',v:109.2},{yr:'25/03',v:133.5},
+      {yr:'25/04',v:134.1},{yr:'25/05',v:133.9},{yr:'25/06',v:136.2},{yr:'25/07',v:138.1},
+      {yr:'25/08',v:156.5},{yr:'25/09',v:154.3},{yr:'25/10',v:152.0},{yr:'25/11',v:142.5},
+      {yr:'25/12',v:149.1},{yr:'26/01',v:141.1},{yr:'26/02',v:128.1},{yr:'26/03',v:164.8},
+      {yr:'26/04',v:166.9},{yr:'26/05',v:173.5},{yr:'26/06',v:186.6},{yr:'26/07',v:190.1}
+    ];
+    var max = 200;
+    var chart = document.getElementById('chartRev');
+    if(chart){
+      chart.style.height = '220px';
+      var peakVal = Math.max.apply(null, data.map(function(d){return d.v;}));
+      var troughVal = Math.min.apply(null, data.map(function(d){return d.v;}));
+      data.forEach(function(d){
+        var col = document.createElement('div'); col.className='bar-col';
+        var bar = document.createElement('div'); bar.className='bar';
+        var heightPct = d.v / max * 100;
+        bar.style.height = heightPct + '%';
+        bar.style.maxWidth = '22px';
+        var color = 'var(--slate)';
+        if(d.v === peakVal) color = 'var(--peak)';
+        if(d.v === troughVal) color = 'var(--trough)';
+        bar.style.background = color;
+        var val = document.createElement('span'); val.className='bar-val'; val.textContent=d.v.toFixed(0);
+        val.style.fontSize='.58rem';
+        bar.appendChild(val);
+        col.appendChild(bar);
+        var yr = document.createElement('div'); yr.className='bar-yr'; yr.textContent=d.yr;
+        yr.style.fontSize='.58rem';
+        yr.style.writingMode = window.innerWidth < 640 ? 'vertical-rl' : 'horizontal-tb';
+        col.appendChild(yr);
+        chart.appendChild(col);
+      });
+    }
   })();
 </script>
 
