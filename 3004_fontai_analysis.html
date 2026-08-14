@@ -221,7 +221,7 @@
   <div class="pad active" data-target="step1"><span class="n">01</span>現金流盲測</div>
   <div class="pad" data-target="step2"><span class="n">02</span>基本資訊</div>
   <div class="pad" data-target="step3"><span class="n">03</span>法說會</div>
-  <div class="pad locked" data-target="step4"><span class="n">04</span>營收趨勢</div>
+  <div class="pad" data-target="step4"><span class="n">04</span>營收趨勢</div>
   <div class="pad locked" data-target="step5"><span class="n">05</span>本益比估值</div>
   <div class="pad locked" data-target="step6"><span class="n">06</span>投資決策</div>
 </nav>
@@ -476,8 +476,33 @@
     <p class="cap">資料來源：<a href="https://finance.biggo.com.tw/quote/3004.TW/earnings-call/TW_3004.TW_2026-05-26" target="_blank">BigGo財經 2026/05/26 法說會摘要</a>；<a href="https://vocus.cc/article/6a2e6fdffd89780001637aa0" target="_blank">法說最速報轉載摘要</a>；<a href="https://news.cnyes.com/news/id/6262107" target="_blank">鉅亨網／優分析 2025/12/05「豐達科營收創高動能強勁短期毛利承壓」</a>（2025Q3 毛利率數字）；statementdog 財報狗（2025Q3 淨利率）。以上內容為財經媒體對法說會的整理摘要，非本報告直接解析官方簡報 PDF（該檔案受 robots.txt 限制無法自動讀取），完整簡報請自行開啟第 2 步提供之官方連結查看。</p>
 
   </section>
-    <p>報告版本：v1.2（第 3 步／共 6 步已完成）｜最後更新：2026-08-14</p>
-    <p>第一步資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「3004 豐達科 現金流量」截圖（截圖顯示查詢時間 2026-08-02 10:45）。第二、三步所有股價、EPS、營收、法說會資訊皆為本次搜尋所得，並附上實際查詢連結，非憑印象填寫。</p>
+
+  <section class="step" id="step4">
+    <div class="step-flag">【第 4 步／共 6 步：營收趨勢視覺化】</div>
+    <h2 class="step-title">近 24 個月月營收與年增率</h2>
+    <p class="step-desc">依使用者提供之 Goodinfo 月營收截圖整理，資料涵蓋 2026/07 最新月營收。</p>
+
+    <div class="callout">
+      <p><b>重點：</b>2024/09～2026/07 共 23 個月連續正成長，2026/05～2026/07 三個月年增率更加速到 46～56% 區間，是全期最強的一段。但這股加速成長，恰好與第一步查出的「2026H1 營業現金流 −1.14 億元」同一時期發生——營收與獲利快速衝高，現金卻沒有跟上腳步，這是成長期公司常見的應收帳款／存貨墊高現象，但也可能是收現品質變差的訊號，兩種可能性都存在，需要更多資訊才能確認，這裡先如實揭露這個時間點上的矛盾，不下定論。</p>
+    </div>
+
+    <h3 style="font-size:18px; margin-top:30px;">月營收（億元）</h3>
+    <div class="chart-wrap"><svg class="chart" id="chart-rev" viewBox="0 0 760 260"></svg></div>
+    <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>月營收</span><span><span class="sw" style="background:var(--peak)"></span>期間新高</span><span><span class="sw" style="background:var(--trough)"></span>期間新低</span></p>
+
+    <h3 style="font-size:18px; margin-top:34px;">單月營收年增率（%）</h3>
+    <div class="chart-wrap"><svg class="chart" id="chart-yoy" viewBox="0 0 760 260"></svg></div>
+    <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>年增率為正</span><span><span class="sw" style="background:var(--neg-strong)"></span>年增率為負</span></p>
+
+    <p>觀察重點：2024/08 是這 24 個月裡唯一的年增負值（−0.52%），此後連續 23 個月保持正成長，且成長力道逐步墊高——2025 年多數月份落在 10～25% 區間，進入 2026 年後，1 月一度跳到 +35.2%（受惠訂單認列），3 月營收單月大增至 4.53 億元（月增 +25.1%），Q1 三個月合計 12.04 億元，正好與第二步查得的法說會數字（26Q1 營收 12.04 億元、年增 28%）完全吻合，兩份資料互相驗證一致。最新三個月（2026/05～07）年增率分別為 +56.2%、+46.6%、+53%，是全期最強的連續加速區間，累計至 7 月的年增率已達 +37.3%，較上半年（累計至 6 月 +34.7%）更進一步走高。</p>
+
+    <p class="cap">資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「3004 豐達科 月營收」截圖（截圖顯示查詢時間 2026/08/14 12:27），涵蓋期間 2026/07 回溯至 2024/08，共 24 個月。</p>
+
+  </section>
+
+  <footer class="report-footer">
+    <p>報告版本：v1.3（第 4 步／共 6 步已完成）｜最後更新：2026-08-14</p>
+    <p>第一步資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「3004 豐達科 現金流量」截圖（截圖顯示查詢時間 2026-08-02 10:45）。第四步月營收資料來源：使用者提供之 Goodinfo! 月營收截圖（截圖顯示查詢時間 2026/08/14 12:27）。第二、三步所有股價、EPS、法說會資訊皆為本次搜尋所得，並附上實際查詢連結。</p>
   </footer>
 
 </main>
@@ -601,6 +626,13 @@ renderBarChart('chart-A', YEARS, DATA.A);
 renderBarChart('chart-B', YEARS, DATA.B);
 renderBarChart('chart-E', YEARS, DATA.E);
 renderPairedChart('chart-BC', YEARS, DATA.B, DATA.C);
+
+// ---------- Step 4: Monthly revenue (24 months) ----------
+const MREV_MONTHS = ["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
+const MREV_VALUES = [2.79,2.84,2.87,3.06,3.39,2.88,3.03,3.45,3.48,3.00,3.39,3.23,3.24,3.43,3.61,3.76,4.05,3.89,3.62,4.53,4.19,4.69,4.98,4.94];
+const MREV_YOY = [-0.52,13.4,3.42,9.3,10.7,0.23,22.4,14.9,17.8,2.37,22.2,5.84,16.2,20.6,25.5,22.9,19.6,35.2,19.6,31.2,20.7,56.2,46.6,53];
+renderBarChart('chart-rev', MREV_MONTHS, MREV_VALUES);
+renderBarChart('chart-yoy', MREV_MONTHS, MREV_YOY);
 
 // ---------- Nav: click + scroll spy ----------
 document.querySelectorAll('nav.stepnav .pad').forEach(pad=>{
