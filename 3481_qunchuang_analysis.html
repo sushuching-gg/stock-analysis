@@ -200,7 +200,7 @@
   <a href="#step2" class="ready">02 <span>基本資訊</span></a>
   <a href="#step3" class="ready">03 <span>法說會</span></a>
   <a href="#step4" class="ready">04 <span>營收趨勢</span></a>
-  <a href="#" class="locked">05 <span>本益比估值</span></a>
+  <a href="#step5" class="ready">05 <span>本益比估值</span></a>
   <a href="#" class="locked">06 <span>投資決策推理</span></a>
 </nav>
 
@@ -788,7 +788,65 @@
 <section class="step" id="step5">
   <div class="step-eyebrow">【第 5 步／共 6 步】</div>
   <h2>前瞻本益比／EPS 預估</h2>
-  <div class="locked-body">尚未開始</div>
+
+  <div class="callout warn">
+    <p><b>先說最重要的一點：</b>市場對群創 2026 年 EPS 預估存在兩套截然不同的口徑——① FactSet 專業分析師共識（僅估算本業＋常態獲利）約落在 0.5 元上下；② 部分論壇／部落格文章估算的「全年總 EPS」（含第 3 步提到的南科三廠處分業外利得）則上看 2.96～3.5 元。兩者相差近 6～7 倍，並非同一件事，混用會嚴重誤導評價，以下分開列示。</p>
+  </div>
+
+  <h3 style="margin:28px 0 6px;">法人 EPS 預估（FactSet 分析師調查，多次快照）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>調查日期</th><th>分析師數</th><th>2026年EPS中位數</th><th>最高值</th><th>最低值</th><th>目標價</th></tr></thead>
+      <tbody>
+        <tr><td>2026/03/16</td><td class="mono">8位</td><td class="mono">0.42元</td><td class="mono">0.64元</td><td class="mono">0.27元</td><td class="mono">25.8元</td></tr>
+        <tr><td>2026/04/15</td><td class="mono">7位</td><td class="mono">0.49元</td><td class="mono">1.22元</td><td class="mono">0.35元</td><td class="mono">26.4元</td></tr>
+        <tr><td>2026/05/12</td><td class="mono">7位</td><td class="mono">0.50元</td><td class="mono">3.06元</td><td class="mono">0.35元</td><td class="mono">27.0元</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">三次快照個別呈現，不合併為單一區間。中位數逐步小幅上修（0.42→0.49→0.50），但最高值與最低值之間的分歧持續擴大（最新一次達 8.7 倍），反映分析師對「該把多少處分利益計入 2026 年 EPS」意見嚴重分歧。2027 年 EPS 中位數約 0.5～0.56 元（同期調查）。</p>
+  <p class="table-note">來源：<a href="https://today.line.me/tw/v3/article/60Q3B01" target="_blank">鉅亨速報 2026/03/16</a>／<a href="https://news.cnyes.com/news/id/6421300" target="_blank">鉅亨速報 2026/04/15</a>／<a href="https://today.line.me/tw/v3/article/DR7nppo" target="_blank">鉅亨速報 2026/05/12</a>（皆為 FactSet 分析師共識調查）</p>
+
+  <h3 style="margin:28px 0 6px;">市場估算（含一次性處分利得，可靠度較低）</h3>
+  <p>部分 CMoney 論壇文章估算，在本業虧轉盈與百億賣廠業外利益加持下，群創 2026 全年總 EPS 可望達 2.96～3.5 元，全年合併營收中位數估 2,662 億元（年增約 17.4%）；每股淨值預估約 27.2 元，法人目標價共識中位數約 26.4 元，樂觀情境以 1.1 倍股淨比估算最高看 29.9 元。<b>此估算來自個人論壇文章而非正式分析師報告，可靠度低於上方 FactSet 調查，僅供參考。</b></p>
+  <p class="table-note">來源：<a href="https://www.cmoney.tw/forum/article/178798750" target="_blank">CMoney股市爆料同學會：群創2026年全年總EPS深度解析（論壇文章）</a></p>
+
+  <h3 style="margin:28px 0 6px;">隱含本益比（現在貴不貴）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>股價基準</th><th>÷ 2026E EPS(法人中位0.50元)</th><th>÷ 2026E EPS(含業外估2.96~3.5元)</th></tr></thead>
+      <tbody>
+        <tr><td>49.40元(08/13收盤)</td><td class="mono">98.8倍</td><td class="mono">14.1～16.7倍</td></tr>
+        <tr><td>51.10元(08/13盤中)</td><td class="mono">102.2倍</td><td class="mono">14.6～17.3倍</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">同一股價，用不同 EPS 基準算出的本益比可以相差 6 倍以上——這正是本益比評價方法本身的局限：分母（EPS 基準）選擇不同，結論會完全不同，並非股價本身有問題。</p>
+
+  <h3 style="margin:28px 0 6px;">目標本益比法（合理價可能落在哪，敏感度試算）</h3>
+  <p class="table-note">目標本益比法與隱含本益比是同一公式的不同用法：隱含本益比是已知股價反推倍數，目標本益比法是已知倍數反推目標價。以下為敏感度試算，不是預測，倍數選擇沒有標準答案。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>情境</th><th>EPS基準</th><th>倍數</th><th>目標價</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3">A. 核心本業EPS（法人中位0.50元）</td><td class="mono">0.50元</td><td class="mono">40倍</td><td class="mono">20.0元</td></tr>
+        <tr><td class="mono">0.50元</td><td class="mono">60倍</td><td class="mono">30.0元</td></tr>
+        <tr><td class="mono">0.50元</td><td class="mono">80倍</td><td class="mono">40.0元</td></tr>
+        <tr><td rowspan="3">B. 含一次性業外EPS（論壇估2.96元）</td><td class="mono">2.96元</td><td class="mono">15倍</td><td class="mono">44.4元</td></tr>
+        <tr><td class="mono">2.96元</td><td class="mono">20倍</td><td class="mono">59.2元</td></tr>
+        <tr><td class="mono">2.96元</td><td class="mono">25倍</td><td class="mono">74.0元</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>情境 A 採較高倍數（40～80倍），因為 0.50 元已是排除一次性利得的核心本業 EPS，反映虧轉盈初期轉型股常見的高本益比評價，但也代表獲利基期極低、倍數本身波動風險大；情境 B 採較保守倍數（15～25倍），因為 2.96 元 EPS 中含大量不可持續的處分利得，若給予過高倍數會過度高估公司價值。<b>兩情境算出的目標價區間為 20～74 元，涵蓋目前股價（49.40～51.10元）的上下兩側，顯示目前市場定價已隱含相當程度的樂觀預期，對「該給多高倍數」高度敏感，沒有標準答案。</b></p>
+
+  <div class="callout warn">
+    <p><b>誠實揭露不確定性：</b>群創 2026 年 EPS 預估的分析師分歧幅度（最新一次調查最高 3.06 元、最低 0.35 元，相差 8.7 倍）遠大於多數穩定獲利公司常見的分歧程度，主要原因是「處分利益認列時點與金額」高度依賴交易進度（如第 3 步提到的 Fab5 交易與後續可能的 Fab2 產能整併），加上本業獲利仍在復甦初期、基期極低，任何小幅獲利變動都會造成年增率或本益比的巨幅波動。使用本步驟的估值數字時，務必意識到這是「高不確定性」情境下的敏感度試算，而非穩健預測。</p>
+  </div>
+
+  <div class="source-note">
+    版本 v1.4（第 1～5 步）｜第 5 步查詢時間：2026-08-14
+  </div>
 </section>
 <section class="step" id="step6">
   <div class="step-eyebrow">【第 6 步／共 6 步】</div>
