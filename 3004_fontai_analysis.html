@@ -219,7 +219,7 @@
 
 <nav class="stepnav" id="stepnav">
   <div class="pad active" data-target="step1"><span class="n">01</span>現金流盲測</div>
-  <div class="pad locked" data-target="step2"><span class="n">02</span>基本資訊</div>
+  <div class="pad" data-target="step2"><span class="n">02</span>基本資訊</div>
   <div class="pad locked" data-target="step3"><span class="n">03</span>法說會</div>
   <div class="pad locked" data-target="step4"><span class="n">04</span>營收趨勢</div>
   <div class="pad locked" data-target="step5"><span class="n">05</span>本益比估值</div>
@@ -234,7 +234,10 @@
     <p class="step-desc">代號定義：A 營業活動現金流量／B 投資活動現金流量／C 融資活動現金流量／D 稅前淨利／E 期末現金餘額（單位：億元）。以下分析嚴格排除股價、EPS、產業背景，僅依現金流量表數字盲測判斷。</p>
 
     <div class="callout">
-      <p><b>資料範圍說明：</b>使用者提供的 Goodinfo 截圖含 2002～2026Q2 資料，但 2009～2011 年的獲利與現金流欄位為空白，2002～2004 年僅有股價無現金流數據。六大規則評分主要採用 <b>2012～2025 年（14個完整年度）</b>的連續資料；2005～2008 年因公司股本僅 1.85～2.73 億元、規模極小，僅作歷史背景參考、不納入評分；2026Q2 為單季資料，依規則標註「單季，僅供參考，不列入計分」。</p>
+      <p><b>資料範圍說明：</b>使用者提供的 Goodinfo 截圖含 2002～2026 年資料，但 2009～2011 年的獲利與現金流欄位為空白，2002～2004 年僅有股價無現金流數據。六大規則評分主要採用 <b>2012～2025 年（14個完整年度）</b>的連續資料；2005～2008 年因公司股本僅 1.85～2.73 億元、規模極小，僅作歷史背景參考、不納入評分；截圖標示為「26Q2」的最新一列，經與第二步查得之官方公告交叉核對，確認為 <b>2026年上半年（H1）累計數字，並非單一季度</b>，依規則標註「半年累計，暫不納入年度計分」。</p>
+      <div class="callout warn" style="margin-top:14px;">
+        <p><b>資料校正（第二步回頭補正）：</b>本skill過往分析曾發現 Goodinfo 現金流量表「XXQ2」列習慣性代表「上半年累計」而非「當季」。第二步查得時報資訊 2026/08/03 報導：<b>26H1 稅後淨利 2.58 億元（年增 47.41%）、EPS 4.01 元創歷史新高</b>；換算稅前淨利（依約 18% 有效稅率反推）約 3.15 億元，與截圖「26Q2」列 D=3.15 億元完全吻合，確認該列即為 26H1 累計數，而非 Q2 單季。以下所有標註已改為「2026H1（累計）」，並將原本「單季雜訊、可忽略」的解讀，修正為「半年累計、與外部公告交叉驗證屬實、需認真看待」。</p>
+      </div>
     </div>
 
     <h3 style="font-size:18px; margin-top:36px;">現金流量數據總表（2012–2025，單位：億元）</h3>
@@ -244,7 +247,7 @@
       </tr></thead>
       <tbody id="cf-tbody"></tbody>
     </table>
-    <p class="cap">紅字為負值；資料來源：使用者提供 Goodinfo 台灣股市資訊網個股現金流量截圖（2026/08/02）。2026Q2 為單季資料，僅供參考。</p>
+    <p class="cap">紅字為負值；資料來源：使用者提供 Goodinfo 台灣股市資訊網個股現金流量截圖（2026/08/02）。2026H1（累計）已與官方公告交叉驗證，僅因非完整年度暫不納入六項評分。</p>
 
     <!-- ===== Rule 1 ===== -->
     <div class="rule-block">
@@ -253,9 +256,9 @@
         <span class="rule-name">A 逐季與逐年成長趨勢</span>
         <span class="rule-score" id="score1"></span>
       </div>
-      <p>年度資料顯示 A 從 2012 年的 1.81 億元穩步爬升，2016～2020 年間站上 2.3～5.3 億元的相對高原，2019、2020 年的 5.29、5.26 億元是全期最高點。但 2021 年驟降至 0.74 億元，之後雖在 2022、2023 年回到 2.5、2.2 億元的中段水準，2024 年卻出現全期唯一的 <b>負值 −1.41 億元</b>，2025 年僅小幅回升至 1.37 億元，而最新單季 2026Q2 又轉為 <b>−1.14 億元</b>（單季，僅供參考）。</p>
+      <p>年度資料顯示 A 從 2012 年的 1.81 億元穩步爬升，2016～2020 年間站上 2.3～5.3 億元的相對高原，2019、2020 年的 5.29、5.26 億元是全期最高點。但 2021 年驟降至 0.74 億元，之後雖在 2022、2023 年回到 2.5、2.2 億元的中段水準，2024 年卻出現全期唯一的 <b>負值 −1.41 億元</b>，2025 年僅小幅回升至 1.37 億元，而 2026H1（累計，非單季）又轉為 <b>−1.14 億元</b>——且同期 EPS 是創歷史新高的 4.01 元，A 與獲利方向完全背離。</p>
       <div class="persona">個性標籤：早熟型選手，巔峰期亮眼，但近兩年體力明顯下滑</div>
-      <p>把 A 的走勢想成選手的體能曲線：2016～2020 是巔峰期，接連跑出全場最快的成績；但 2021 年之後像是傷後復出、狀態時好時壞，2024 年更是直接掉出及格線（負值），這不是單一年度的雜訊，而是連續兩期（2024 全年＋2026 最新單季）都指向同一個方向，值得列為觀察重點，而非視為正常波動一次性帶過。</p>
+      <p>把 A 的走勢想成選手的體能曲線：2016～2020 是巔峰期，接連跑出全場最快的成績；但 2021 年之後像是傷後復出、狀態時好時壞，2024 年更是直接掉出及格線（負值），這不是單一年度的雜訊，而是連續兩期（2024 全年＋2026H1 累計半年）都指向同一個方向，且 2026H1 那期還伴隨 EPS 創新高，帳面與現金完全脫鉤，值得列為觀察重點，而非視為正常波動一次性帶過。</p>
       <div class="chart-wrap"><svg class="chart" id="chart-A" viewBox="0 0 760 260"></svg></div>
       <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>正值</span><span><span class="sw" style="background:var(--neg-strong)"></span>負值</span><span><span class="sw" style="background:var(--peak)"></span>全期高峰</span><span><span class="sw" style="background:var(--trough)"></span>全期谷底</span></p>
     </div>
@@ -287,11 +290,11 @@
         <tbody>
           <tr><td>2016</td><td class="neg">−14.4</td><td>2017：2.56</td><td>2018：2.9</td><td>2019：<b class="pos">5.29</b></td><td>延遲兌現，第 3 年才明顯放大</td></tr>
           <tr><td>2019</td><td class="neg">−4.63</td><td>2020：<b class="pos">5.26</b></td><td>2021：<b class="fail">0.74</b></td><td>2022：2.51</td><td>第 1 年延續高峰，但未能守住，第 2 年即回落</td></tr>
-          <tr><td>2024</td><td class="neg">−5.94</td><td>2025：1.37（僅小幅回升）</td><td>2026Q2：<b class="fail">−1.14</b>（單季）</td><td>—</td><td>尚未看到轉強，最新單季反而轉負</td></tr>
+          <tr><td>2024</td><td class="neg">−5.94</td><td>2025：1.37（僅小幅回升）</td><td>2026H1累計：<b class="fail">−1.14</b></td><td>—</td><td>尚未看到轉強，最新半年反而轉負</td></tr>
         </tbody>
       </table>
       <div class="persona">個性標籤：老將自費特訓型 —— 砸錢有時奏效，但沒有穩定的兌現節奏</div>
-      <p>2016 年那筆大投資最終在三年後（2019）看到 A 明顯放大，證明錢沒有白花；但 2019 年投資後的效益只維持一年就被 2021 年的驟降打斷，顯示轉化能力並不穩定。最關鍵的是最近一次重度投資（2024 年 −5.94 億元），至今（2025 全年＋2026 最新單季）都還沒看到 A 明顯轉強的跡象，2026Q2 甚至是負值，這筆投資是否能複製 2016 年的延遲兌現路徑,目前仍是未知數。</p>
+      <p>2016 年那筆大投資最終在三年後（2019）看到 A 明顯放大，證明錢沒有白花；但 2019 年投資後的效益只維持一年就被 2021 年的驟降打斷，顯示轉化能力並不穩定。最關鍵的是最近一次重度投資（2024 年 −5.94 億元），至今（2025 全年＋2026H1 累計半年）都還沒看到 A 明顯轉強的跡象，2026H1 甚至是負值，這筆投資是否能複製 2016 年的延遲兌現路徑,目前仍是未知數。</p>
     </div>
 
     <!-- ===== Rule 4 ===== -->
@@ -311,13 +314,13 @@
           <tr><td>2018</td><td class="neg">−4.42</td><td class="pos">+1.79</td><td>2.9</td><td>中度借款支應</td></tr>
           <tr style="background:#fdecea"><td><b>2024</b></td><td class="neg">−5.94</td><td class="pos">+7.91</td><td class="fail">−1.41</td><td><b>最高警戒：本業造血為負，仍靠外部資金撐著</b></td></tr>
           <tr style="background:#fdecea"><td><b>2025</b></td><td class="neg">−9.32</td><td class="pos">+8.47</td><td>1.37</td><td>大規模舉債支應重度投資，A 雖轉正但仍偏弱</td></tr>
-          <tr style="background:#fdecea; opacity:0.75"><td><i>2026Q2*</i></td><td class="neg">−5.69</td><td class="pos">+6.55</td><td class="fail">−1.14</td><td><i>單季重現最高警戒模式，僅供參考</i></td></tr>
+          <tr style="background:#fdecea"><td><i>2026H1*</i></td><td class="neg">−5.69</td><td class="pos">+6.55</td><td class="fail">−1.14</td><td><i>半年累計重現最高警戒模式，與新聞公告交叉驗證屬實</i></td></tr>
         </tbody>
       </table>
       <div class="chart-wrap"><svg class="chart" id="chart-BC" viewBox="0 0 760 280"></svg></div>
       <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>B 投資活動</span><span><span class="sw" style="background:var(--brass)"></span>C 融資活動</span><span><span class="sw" style="background:#fdecea; border:1px solid var(--neg-strong)"></span>最高警戒年度</span></p>
       <div class="callout warn">
-        <p><b>2024 年觸發規則四定義的最高警戒訊號：</b>A 為負值（−1.41）且 C 為正值（+7.91），代表本業現金流已經收不到錢，同時公司仍在對外募集資金——不是「借錢做大投資」的正常擴張姿態，而是「本業造血不足、又持續倚賴外部資金」。2026Q2 最新單季再次出現同樣組合（A −1.14、C +6.55），雖不列入年度計分，但方向上與 2024 年一致，值得列為後續追蹤重點。</p>
+        <p><b>2024 年觸發規則四定義的最高警戒訊號：</b>A 為負值（−1.41）且 C 為正值（+7.91），代表本業現金流已經收不到錢，同時公司仍在對外募集資金——不是「借錢做大投資」的正常擴張姿態，而是「本業造血不足、又持續倚賴外部資金」。<b>2026H1（上半年累計，非單季雜訊）再次出現同樣組合（A −1.14、C +6.55），且同期 EPS 4.01 元創歷史新高</b>——帳面獲利與實際現金流方向完全相反，是本次分析中最需要留意的訊號，不宜因為它不列入年度計分就輕忽。</p>
         <p><b>資料限制：</b>目前截圖僅有 C 的合計淨額，沒有拆解短期借款、公司債、長期借款或現金增資等組成。若 2024～2025 年的正 C 主要來自現金增資（股權募資），風險程度會低於全數依賴借款／票券湊出的正值。<b>建議後續取得法說會或財報附註中的融資活動細項，才能更精確判斷這波募資的資金結構</b>，目前的評分是在此資訊缺口下做出的保守判斷。</p>
       </div>
     </div>
@@ -346,7 +349,7 @@
         <span class="rule-name">E 期末現金餘額穩定性</span>
         <span class="rule-score" id="score6"></span>
       </div>
-      <p>2012～2023 年間 E 大致維持在 1.05～1.58 億元的窄幅區間，波動平緩、沒有出現長期下滑。2024、2025 兩年則明顯跳升至 1.81、2.25 億元，2026Q2 單季再升至 2.31 億元。</p>
+      <p>2012～2023 年間 E 大致維持在 1.05～1.58 億元的窄幅區間，波動平緩、沒有出現長期下滑。2024、2025 兩年則明顯跳升至 1.81、2.25 億元，2026H1 累計再升至 2.31 億元。</p>
       <div class="persona">個性標籤：手頭現金穩健增加，但錢是借來的還是賺來的要分清楚</div>
       <p>單看 E 這條線，長期走勢是穩定甚至向上的，若只套用規則六的字面標準（是否維持穩定或上升區間），分數應給高分。但必須提醒：2024、2025 年 E 的跳升，恰好與規則四揭露的「A 轉弱＋C 大幅舉債」同時發生——換句話說，這筆帳上變多的現金，有相當一部分可能是借來的，而不是本業真正賺回來的。這不影響規則六本身的分數（規則六只看穩定性，不判斷資金來源），但在整體解讀時，不能只看到「現金餘額創新高」就直覺解讀為體質變好，必須跟規則四的結論一起看。</p>
       <div class="chart-wrap"><svg class="chart" id="chart-E" viewBox="0 0 760 260"></svg></div>
@@ -368,16 +371,93 @@
       </table>
       <div class="big">55.0%</div>
       <div class="verdict">關卡判斷：需觀察，建議先不繼續深入</div>
-      <p>六項平均為 55.0%，落在「需觀察（&lt;60%）」區間。更重要的是，2024 年同時出現規則四定義的三重疊加訊號——<b>A 為負值（本業現金流收不到錢）＋ B 大幅負值（重度投資）＋ C 為正值（疑似舉債支應）</b>——這正是六步驟框架中最嚴重的警戒組合。2026Q2 最新單季又出現同一組合的重現，雖不列入年度計分，但方向一致，不宜忽略。</p>
+      <p>六項平均為 55.0%，落在「需觀察（&lt;60%）」區間。更重要的是，2024 年同時出現規則四定義的三重疊加訊號——<b>A 為負值（本業現金流收不到錢）＋ B 大幅負值（重度投資）＋ C 為正值（疑似舉債支應）</b>——這正是六步驟框架中最嚴重的警戒組合。2026H1（上半年累計，經新聞公告交叉驗證屬實）又出現同一組合的重現，且同期 EPS 創歷史新高，帳面獲利與現金流方向完全脫鉤，雖不列入年度計分，但這是本次分析中最不容忽視的訊號。</p>
       <p style="margin-top:14px;"><b>依照框架規則，這裡先停下來確認：</b>這檔股票的現金流體質偏弱、且有風險訊號，建議先不繼續深入基本面，除非你仍想往下看第二步（股價、EPS、殖利率等資訊）。你想繼續嗎？</p>
     </div>
 
-    <footer class="report-footer">
-      <p>報告版本：v1.0（第 1 步／共 6 步）｜生成時間：2026-08-02</p>
-      <p>資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「3004 豐達科 現金流量」截圖（截圖顯示查詢時間 2026-08-02 10:45），非本次搜尋所得。六大規則評分採用截圖中 2012～2025 年度資料；2005～2008 年因公司規模極小僅供背景參考；2026Q2 為單季資料，依規則不列入計分。</p>
-      <p>本步驟嚴格排除股價、EPS、產業背景等資訊，純粹依現金流量表數字盲測判斷，避免先入為主。</p>
-    </footer>
   </section>
+
+  <section class="step" id="step2">
+    <div class="step-flag">【第 2 步／共 6 步：基本資訊查詢】</div>
+    <h2 class="step-title">股價、EPS、營收與法說會</h2>
+    <p class="step-desc">現金流體質雖落在「需觀察」區間，使用者選擇繼續深入。以下資訊皆為本次搜尋所得，非使用者提供，逐項附上查詢連結與查詢時間。</p>
+
+    <div class="callout">
+      <p><b>重點：</b>2026H1 累計 EPS 4.01 元創歷史新高（年增 27%），與第一步查證出的「2026H1 營業現金流為 −1.14 億元」形成鮮明對比——帳面獲利創新高，現金卻收不進來，這正是第一步規則四／規則五所警示的型態，在這裡得到基本面數字的直接印證。</p>
+      <p><b>股價：</b>2026/08/13 收盤 128.00 元，距 52 週高點 163.00 元約有 21.5% 落差。</p>
+    </div>
+
+    <h3 style="font-size:18px; margin-top:34px;">公司基本資料</h3>
+    <table>
+      <tbody>
+        <tr><td>公司全名</td><td colspan="1" style="text-align:left;">豐達科技股份有限公司（National Aerospace Fasteners Corporation）</td></tr>
+        <tr><td>成立／上市日期</td><td style="text-align:left;">1997/10/14 成立｜2002/02/25 上市</td></tr>
+        <tr><td>董事長／總經理</td><td style="text-align:left;">蔡豐賜／林威村</td></tr>
+        <tr><td>資本額</td><td style="text-align:left;">6.42 億元</td></tr>
+        <tr><td>主要業務</td><td style="text-align:left;">飛機用及船舶用扣件、結構件之製造加工代理買賣；車輛用及工業用扣件、結構件；產品設計業（Yahoo 股市歸類於「鋼鐵」產業，但實際產品聚焦航太緊固件）</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">資料來源：<a href="https://www.cnyes.com/twstock/3004" target="_blank">鉅亨網 豐達科總覽</a>（查詢於 2026/08/14）</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">股價快照</h3>
+    <table>
+      <tbody>
+        <tr><td>收盤價（2026/08/13 05:30 收盤）</td><td>128.00 元　+2.00（+1.59%）</td></tr>
+        <tr><td>52 週高／低</td><td>163.00／96.00 元</td></tr>
+        <tr><td>本益比（PER）</td><td>18.85 倍</td></tr>
+        <tr><td>每股淨值／股價淨值比</td><td>58.64 元／2.18 倍</td></tr>
+        <tr><td>市值</td><td>82.25 億元</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">資料來源：<a href="https://www.cnyes.com/twstock/3004" target="_blank">鉅亨網 豐達科總覽</a>（查詢時間 2026/08/14，頁面顯示市場收盤時間為 08/13 05:30）。<b>此為查詢當下的單一快照，非即時報價</b>，正式交易請以看盤軟體／券商 App 為準。另有一筆較早查得的 Yahoo 股市快照（收盤 130.54 元，2026/05/22 13:30 更新，PER 24.44 倍）與此非同一時間點，兩者不合併為區間，僅供對照。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">EPS 與獲利趨勢</h3>
+    <table>
+      <thead><tr><th>期間</th><th>EPS（元）</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>近四季（截至查詢時）</td><td>6.79</td><td>-</td></tr>
+        <tr><td>2026 當季（Q2 單季）</td><td>2.09</td><td>依 26H1 累計 4.01 減 26Q1 的 1.92 反推，與鉅亨網當季EPS欄位一致</td></tr>
+        <tr><td>2026 H1（累計）</td><td class="pos"><b>4.01</b></td><td>年增 27%，<b>歷史新高</b>；去年同期 3.15 元</td></tr>
+        <tr><td>2026 Q1</td><td>1.92</td><td>季增 32.41%，年減 3.52%</td></tr>
+        <tr><td>2025 全年</td><td>5.85</td><td>-</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">資料來源：<a href="https://www.chinatimes.com/realtimenews/20260803002608-260410" target="_blank">工商時報／時報資訊 2026/08/03 報導</a>（26H1 EPS 4.01 元創歷史新高）；<a href="https://www.cnyes.com/twstock/3004" target="_blank">鉅亨網</a>（近四季／當季 EPS，查詢於 2026/08/14）；<a href="https://www.nstock.tw/%E8%B1%90%E9%81%94%E7%A7%91%E5%81%9A%E4%BB%80%E9%BA%BC.html" target="_blank">nStock 公司小百科</a>（2026Q1、2025全年 EPS）。查詢前已確認近兩年無股票分割或減資紀錄，各期 EPS 可直接比較，無需回溯換算基礎。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">股利與殖利率</h3>
+    <table>
+      <tbody>
+        <tr><td>2025 年度現金股利（2026/04/09 除息）</td><td>2.55 元，殖利率 2.02%（依 2026/08/14 股價）</td></tr>
+        <tr><td>2024 年度現金股利</td><td>3.01 元，配發率 43.76%，殖利率 3.1%</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">資料來源：<a href="https://www.cnyes.com/twstock/3004" target="_blank">鉅亨網</a>；<a href="https://www.nstock.tw/%E8%B1%90%E9%81%94%E7%A7%91%E5%81%9A%E4%BB%80%E9%BA%BC.html" target="_blank">nStock 公司小百科</a>。不同來源對 2025 年度股利的寫法略有差異（2.55 元 vs 2.547 元），屬四捨五入差異，如實並陳。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">近期營收</h3>
+    <table>
+      <tbody>
+        <tr><td>2025 全年合併營收</td><td>40.55 億元</td></tr>
+        <tr><td>2026 Q1 合併營收</td><td>12.04 億元，年增 28%</td></tr>
+        <tr><td>2026 H1 合併營收（累計）</td><td>25.90 億元，年增 34.67%</td></tr>
+        <tr><td>2026 年 5 月營收</td><td>4.69 億元，月增 11.86%，年增 56.16%</td></tr>
+        <tr><td>2026 年 6 月營收</td><td>4.975 億元，年增 46.56%，創 40 個月新高，連續 22 個月成長</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">資料來源：<a href="https://www.chinatimes.com/realtimenews/20260803002608-260410" target="_blank">工商時報／時報資訊 2026/08/03</a>（H1 累計營收）；<a href="https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E8%B1%90%E9%81%94%E7%A7%91-2026%E5%B9%B45%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B64-69%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E56-065302209.html" target="_blank">豐達科 5 月營收公告（Yahoo股市轉載）</a>；statementdog 財報狗（6 月營收）。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">最近一次法說會</h3>
+    <div class="callout">
+      <p><b>2026/05/26 法說會（公布 26Q1 業績）</b>——目前查得最新的一次公開法說會。截至查詢時（2026/08/14），26H1 財報雖已於 08/03 公告，但尚未查到對應的新場次法說會，若近期已召開請以官方公告為準。</p>
+    </div>
+    <p>重點摘要：航太業務營收占比 62%，四大發動機客戶（GE、賽峰、普惠、勞斯萊斯）訂單持續增溫，GE 為最大貢獻來源；工業燃氣渦輪發電（IGT）成為新成長動能；訂單能見度已看至 2027 年，台灣與崑山廠產能滿載；馬來西亞新廠 M1 已取得主要客戶認證、全力進行新產品開發，M2 廠房施工中目標 2027 年第四季完工；今年資本支出預計不低於去年的 8.2 億元。</p>
+    <p class="cap">資料來源：<a href="https://finance.biggo.com.tw/quote/3004.TW/earnings-call/TW_3004.TW_2026-05-26" target="_blank">BigGo財經 法說會摘要</a>；官方簡報 PDF：<a href="https://mopsov.twse.com.tw/nas/STR/300420260526M001.pdf" target="_blank">mopsov.twse.com.tw</a>（連結僅供自行開啟查看，MOPS 設有 robots.txt 限制，本報告未直接解析該 PDF 內容，以上摘要來自財經媒體整理）；法說影音：<a href="https://irconference.twse.com.tw/3004_11_20260526_ch.mp4" target="_blank">irconference.twse.com.tw</a>。</p>
+
+  </section>
+
+  <footer class="report-footer">
+    <p>報告版本：v1.1（第 2 步／共 6 步已完成）｜最後更新：2026-08-14</p>
+    <p>第一步資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「3004 豐達科 現金流量」截圖（截圖顯示查詢時間 2026-08-02 10:45）。第二步起所有股價、EPS、營收、法說會資訊皆為本次搜尋所得，並附上實際查詢連結，非憑印象填寫。</p>
+  </footer>
 
 </main>
 
@@ -390,8 +470,8 @@ const DATA = {
   D: [2.18,1.39,-0.16,2.76,2.72,2.34,3.88,4.58,0.51,-1.05,1.45,3.55,4.72,4.02],
   E: [1.34,1.49,1.06,1.26,1.43,1.29,1.58,1.24,1.36,1.1,1.39,1.05,1.81,2.25]
 };
-// 2026Q2 single-quarter reference (not scored)
-const Q_LABEL = "2026Q2*";
+// 2026H1 cumulative reference (not scored as full year; confirmed via news cross-check, not a single quarter)
+const Q_LABEL = "2026H1*";
 const Q = { A:-1.14, B:-5.69, C:6.55, D:3.15, E:2.31 };
 
 // ---------- Fill cashflow table ----------
