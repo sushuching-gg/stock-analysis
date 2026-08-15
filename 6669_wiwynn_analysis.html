@@ -103,8 +103,8 @@
 <nav class="stepnav" id="stepnav">
   <a href="#step1" data-target="step1">① 現金流盲測</a>
   <a href="#step2" data-target="step2">② 基本資訊</a>
-  <a href="#step3" data-target="step3" class="active">③ 法說會</a>
-  <a href="#step4" data-target="step4" class="locked">④ 營收趨勢</a>
+  <a href="#step3" data-target="step3">③ 法說會</a>
+  <a href="#step4" data-target="step4" class="active">④ 營收趨勢</a>
   <a href="#step5" data-target="step5" class="locked">⑤ 前瞻本益比</a>
   <a href="#step6" data-target="step6" class="locked">⑥ 投資決策</a>
 </nav>
@@ -363,6 +363,40 @@
   <div class="snap-note">報告版本 v1.2｜生成時間：2026-08-16（第3步）</div>
 </section>
 
+<section id="step4">
+  <div class="step-tag">第 4 步／共 6 步</div>
+  <h2>營收趨勢視覺化</h2>
+
+  <div class="callout">
+    近12期（2025/08-2026/07）合併營收持續維持高水位，年增率雖從2025下半年動輒150%以上逐步收斂至2026年上半年的13-40%區間，但這主要是「基期墊高」的自然效果，<b>絕對營收金額仍屢創新高或維持在800-1,200億元高原區間</b>，2026/07單月更創下1,176.86億元次高（僅次於2025/12的1,043億後再度突破）。
+  </div>
+
+  <h3>近12期合併月營收（億元）</h3>
+  <div id="chartRevenue"></div>
+
+  <table>
+    <tr><th>月份</th><th>合併營收(億)</th><th>月增率</th><th>年增率</th></tr>
+    <tr><td>2025/08</td><td>959.8</td><td>+13.5%</td><td class="posv">+198.1%</td></tr>
+    <tr><td>2025/09</td><td>863.2</td><td class="negv">-10.1%</td><td class="posv">+150.2%</td></tr>
+    <tr><td>2025/10</td><td>912.6</td><td>+5.73%</td><td class="posv">+157.9%</td></tr>
+    <tr><td>2025/11</td><td>968.9</td><td>+6.15%</td><td class="posv">+158.6%</td></tr>
+    <tr><td>2025/12</td><td class="bold">1,043</td><td>+7.64%</td><td class="posv">+143.8%</td></tr>
+    <tr><td>2026/01</td><td>832.3</td><td class="negv">-20.2%</td><td class="posv">+121.9%</td></tr>
+    <tr><td>2026/02</td><td>946.3</td><td>+13.7%</td><td class="posv">+103.4%</td></tr>
+    <tr><td>2026/03</td><td>986.5</td><td>+4.24%</td><td class="posv">+13.9%</td></tr>
+    <tr><td>2026/04</td><td class="negv">827.3</td><td class="negv">-16.1%</td><td class="posv">+29.7%</td></tr>
+    <tr><td>2026/05</td><td>840.5</td><td>+1.59%</td><td class="posv">+18.2%</td></tr>
+    <tr><td>2026/06</td><td>1,114</td><td>+32.5%</td><td class="posv">+29.8%</td></tr>
+    <tr><td>2026/07</td><td class="bold">1,177</td><td>+5.66%</td><td class="posv">+39.2%</td></tr>
+  </table>
+
+  <p>觀察重點：<b>2026年1月、4月出現月增率轉負（-20.2%、-16.1%）</b>，屬產業慣見的季節性波動（大客戶拉貨節奏、財會年度交替），從2月、5月即恢復成長可判斷波動屬正常訂單節奏調整，而非需求轉弱訊號——這與第三步法說會揭露「2026年出貨集中下半年」、「Q1相對Q4高原盤整、等待下半年新平台放量」的說法一致。<b>年增率從2025Q4的140-160%大幅收斂至2026上半年的13-40%，主因是比較基期（2025年同期）已大幅墊高，而非成長動能減弱</b>，需搭配絕對金額（維持800億以上高原）一起判讀，避免只看年增率下滑就誤判為衰退。</p>
+
+  <div class="snap-note">資料來源：使用者提供 Goodinfo「6669 緯穎 每月營收」截圖（2026/08/16）。</div>
+
+  <div class="snap-note">報告版本 v1.3｜生成時間：2026-08-16（第4步）</div>
+</section>
+
 </div>
 
 <footer>本報告依使用者提供之 Goodinfo 截圖資料製作，數據僅供研究參考，非投資建議。</footer>
@@ -465,6 +499,13 @@ drawPairedChart('chartBC', [
   {label:'24',b:-57,c:363,warn:true},
   {label:'25',b:-138,c:562,warn:false}
 ], {caption:'規則四：B投資活動 vs C融資活動對照（億元）｜淺紅底標示為「A為負+C為正」三重警訊年度'});
+
+renderBarChart('chartRevenue', [
+  {label:'25/08',value:960},{label:'25/09',value:863},{label:'25/10',value:913},
+  {label:'25/11',value:969},{label:'25/12',value:1043},{label:'26/01',value:832},
+  {label:'26/02',value:946},{label:'26/03',value:987},{label:'26/04',value:827},
+  {label:'26/05',value:841},{label:'26/06',value:1114},{label:'26/07',value:1177}
+], {caption:'近12期合併月營收（億元）｜峰值(米色)2026/07 1,177億／谷底(粉色)2026/04 827億'});
 </script>
 
 </body>
