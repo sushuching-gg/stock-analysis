@@ -212,7 +212,7 @@
   <a href="#step1" class="unlocked active" data-step="1">① 現金流盲測</a>
   <a href="#step2" class="unlocked" data-step="2">② 基本資訊</a>
   <a href="#step3" class="unlocked" data-step="3">③ 法說會</a>
-  <a href="#step4" class="locked" data-step="4">④ 營收趨勢</a>
+  <a href="#step4" class="unlocked" data-step="4">④ 營收趨勢</a>
   <a href="#step5" class="locked" data-step="5">⑤ 前瞻估值</a>
   <a href="#step6" class="locked" data-step="6">⑥ 投資推理</a>
 </nav>
@@ -445,6 +445,43 @@
 
 </section>
 
+<section class="step" id="step4">
+  <div class="stepnum">【第 4 步／共 6 步：營收趨勢視覺化】</div>
+  <h2>近 12 期月營收走勢（2025/08 – 2026/07）</h2>
+
+  <div class="callout">
+    <b>資料來源：使用者提供 Goodinfo 月營收截圖</b>，涵蓋2017年迄今完整月營收資料，以下取近12期呈現趨勢。
+  </div>
+
+  <table>
+    <tr><th>月份</th><th>單月營收(億)</th><th>月增(%)</th><th>年增(%)</th></tr>
+    <tr><td class="label">2026/07</td><td>394.7</td><td>-0.2</td><td class="posv">+71.7</td></tr>
+    <tr><td class="label">2026/06</td><td class="posv">395.5</td><td class="posv">+38.2</td><td class="posv">+61.2</td></tr>
+    <tr><td class="label">2026/05</td><td>286.2</td><td>+4.61</td><td class="posv">+56.6</td></tr>
+    <tr><td class="label">2026/04</td><td>273.6</td><td>+9.39</td><td class="posv">+53.9</td></tr>
+    <tr><td class="label">2026/03</td><td>250.1</td><td>+6.05</td><td class="posv">+44.4</td></tr>
+    <tr><td class="label">2026/02</td><td>235.8</td><td>+9.54</td><td class="posv">+82.7</td></tr>
+    <tr><td class="label">2026/01</td><td>215.3</td><td class="negv">-17.4</td><td class="posv">+71.9</td></tr>
+    <tr><td class="label">2025/12</td><td>260.5</td><td>+15.5</td><td class="posv">+67.6</td></tr>
+    <tr><td class="label">2025/11</td><td>225.5</td><td class="negv">-3.46</td><td class="posv">+79.7</td></tr>
+    <tr><td class="label">2025/10</td><td>233.6</td><td class="negv">-3.92</td><td class="posv">+114.7</td></tr>
+    <tr><td class="label">2025/09</td><td>243.2</td><td class="negv">-5.14</td><td class="posv">+142</td></tr>
+    <tr><td class="label">2025/08</td><td>256.4</td><td>+11.5</td><td class="posv">+172.2</td></tr>
+  </table>
+
+  <div class="chart-wrap">
+    <div class="chart-title">近12期單月營收（億元）</div>
+    <svg id="chartRev" width="100%" height="220" viewBox="0 0 880 220"></svg>
+  </div>
+
+  <p>近12個月每月營收<b>年增率全數維持在40%以上</b>，最高曾達172.2%（2025/08），呈現持續高速成長格局，與第二步、第三步觀察到的AI加速卡與交換器出貨動能一致。值得留意的是 <b class="posv">2026/06單月營收394.7億元較5月大幅跳增38.2%</b>，之後2026/07營收394.7億元與6月幾乎持平（月增-0.2%），呈現「單月急拉後打平」的型態——這可能代表6月出現一次性拉貨潮（例如客戶提前備貨、新產品線放量），或是營收規模已階段性到頂、進入消化期，兩者從月營收數字本身無法判斷，需搭配後續7-8月數據及公司後續公告觀察是否為新常態水準。</p>
+
+  <div class="callout">
+    整體而言，8-9月起年增率略有從高點（150-170%區間）收斂至50-80%區間的跡象，這是基期墊高後的自然現象，並非成長動能減弱的直接證據；仍建議持續追蹤月增率是否維持正值，判斷高速成長期是否延續。
+  </div>
+
+</section>
+
 </main>
 
 <footer>
@@ -593,6 +630,10 @@ drawBarChart('chartA', [33.8,-10.8,20.5,86.1,34.7,13.7,97.2,184,99.4,349], years
 drawBarChart('chartB', [-12.9,0.82,4.74,-50.6,-15,39,-61,-56.7,2.62,-191], years);
 drawBarChart('chartE', [65.2,39.4,43,62.2,48.9,62.6,87,141,187,279], years);
 drawPairedChart('chartBC', [-12.9,0.82,4.74,-50.6,-15,39,-61,-56.7,2.62,-191], [-9.07,-15.5,-22.5,-13.8,-33.7,-39.4,-12.8,-70.6,-62.2,-66.6], years);
+
+var revMonths = ['25/08','25/09','25/10','25/11','25/12','26/01','26/02','26/03','26/04','26/05','26/06','26/07'];
+var revValues = [256.4,243.2,233.6,225.5,260.5,215.3,235.8,250.1,273.6,286.2,395.5,394.7];
+drawBarChart('chartRev', revValues, revMonths);
 
 // scroll spy + smooth scroll
 var navLinks = document.querySelectorAll('nav.stepnav a.unlocked');
