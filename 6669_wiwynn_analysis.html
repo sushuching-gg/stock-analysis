@@ -104,8 +104,8 @@
   <a href="#step1" data-target="step1">① 現金流盲測</a>
   <a href="#step2" data-target="step2">② 基本資訊</a>
   <a href="#step3" data-target="step3">③ 法說會</a>
-  <a href="#step4" data-target="step4" class="active">④ 營收趨勢</a>
-  <a href="#step5" data-target="step5" class="locked">⑤ 前瞻本益比</a>
+  <a href="#step4" data-target="step4">④ 營收趨勢</a>
+  <a href="#step5" data-target="step5" class="active">⑤ 前瞻本益比</a>
   <a href="#step6" data-target="step6" class="locked">⑥ 投資決策</a>
 </nav>
 
@@ -395,6 +395,47 @@
   <div class="snap-note">資料來源：使用者提供 Goodinfo「6669 緯穎 每月營收」截圖（2026/08/16）。</div>
 
   <div class="snap-note">報告版本 v1.3｜生成時間：2026-08-16（第4步）</div>
+</section>
+
+<section id="step5">
+  <div class="step-tag">第 5 步／共 6 步</div>
+  <h2>前瞻本益比／EPS 預估</h2>
+
+  <div class="callout warn">
+    ⚠ <b>股本稀釋警示（承第2步）</b>：以下法人EPS預估數字，查無明確跡象顯示已完整反映緯穎08/07公告的股票股利配股（配股率約198.4%，除權基準日09/08，流通股數將增至近3倍）。2026年除權交易日僅在09/02，全年加權平均股數只會部分反映稀釋效果；但2027年將是完整反映稀釋後股本的第一個全年度。目前FactSet對2027年EPS中位數（469.23元）反而高於2026年（351.52元），若稀釋效果已充分反映，這樣的年增幅度隱含獲利需要成長超過3倍才能達成——這數字合理性存疑，較可能的解讀是<b>市場對2027年EPS預估目前仍是「除權前基礎」，尚未計入股本膨脹效果</b>。除權完成後，請重新查證分析師是否已調整預估基礎，再使用這些數字。
+  </div>
+
+  <h3>市場法人EPS預估（FactSet共識，20位分析師，查詢於2026/07/22）</h3>
+  <table>
+    <tr><th>年度</th><th>中位數</th><th>最高值</th><th>最低值</th><th>平均值</th></tr>
+    <tr><td>2026年</td><td class="bold">351.52元</td><td class="posv">385.48元</td><td class="negv">310.15元</td><td>348.54元</td></tr>
+    <tr><td>2027年</td><td class="bold">469.23元</td><td class="posv">552.96元</td><td class="negv">399.94元</td><td>470.29元</td></tr>
+    <tr><td>2028年</td><td class="bold">560.41元</td><td class="posv">648.01元</td><td class="negv">467.55元</td><td>563.82元</td></tr>
+  </table>
+  <p>2026年EPS預估區間（310-385元）差距約24%，屬中度分歧，非極端寬幅；且觀察近三個月的預估修正軌跡：<b>334→339→345→349→354元，7月22日最新一次出現小幅下修至351.52元</b>，顯示上修趨勢近期略微降溫，可能與AI伺服器類股整體評價修正的市場氛圍有關。FactSet同期預估目標價為<b>6,833元</b>。</p>
+  <div class="snap-note">資料來源：<a href="https://news.cnyes.com/news/id/6542063" style="color:var(--teal)">鉅亨網 Factset調查 2026/07/22</a>、<a href="https://today.line.me/tw/v3/article/KwV92vr" style="color:var(--teal)">鉅亨網／LINE TODAY Factset三年期預估</a>（2027/2028年資料，查詢於同時期）</div>
+
+  <h3>前瞻本益比（現在股價 ÷ 預估EPS，回答「現在貴不貴」）</h3>
+  <table>
+    <tr><th>基準</th><th>計算式</th><th>前瞻本益比</th></tr>
+    <tr><td>以2026年EPS中位數</td><td>6,435 ÷ 351.52</td><td class="bold">18.3倍</td></tr>
+    <tr><td>以2027年EPS中位數</td><td>6,435 ÷ 469.23</td><td class="bold">13.7倍</td></tr>
+  </table>
+  <p>另一份法人整理指出，緯穎目前實際P/E約11-12倍，相較AI概念股平均20-30倍估值明顯偏低，若以此為基準則具備一定安全邊際；但此差異可能反映市場已預先計入未來股本稀釋的疑慮，兩種觀點併陳供參考。</p>
+
+  <h3>目標本益比法（預估EPS × 假設倍數，回答「合理價可能落在哪」，敏感度試算非預測）</h3>
+  <table>
+    <tr><th>情境倍數</th><th>以2026年EPS(351.52)推算</th><th>以2027年EPS(469.23)推算</th></tr>
+    <tr><td>15倍（保守）</td><td>5,273元</td><td>7,038元</td></tr>
+    <tr><td>20倍（中性）</td><td>7,030元</td><td>9,385元</td></tr>
+    <tr><td>25倍（樂觀）</td><td>8,788元</td><td>11,731元</td></tr>
+  </table>
+  <p>目標本益比法算出的價格對「倍數怎麼選」高度敏感，沒有標準答案，僅為敏感度試算，並非預測。另有市場分析採本益比區間法給出更保守的估算：基本情境15倍對應2026年底目標價約4,890元，保守情境10倍僅約3,260元——與FactSet法人共識目標價6,833元存在顯著落差，顯示不同估值方法／不同分析者對「合理倍數」的認知差異極大，需自行判斷採信基礎。</p>
+
+  <h3>誠實揭露：預估不確定性</h3>
+  <p>緯穎2025年EPS實際年增117.3%，過去半年FactSet對2026年EPS預估持續上修（334→354元），顯示分析師對其成長動能信心穩定增強，近期出現的小幅下修（354→351.52元）差距不大，暫不構成「大幅偏離」的訊號。<b>但股本膨脹近3倍是這次分析中前所未見的特殊變數</b>，過往「分析師預估準確度」的參考價值在這個轉折點上會被削弱，除權後第一份完整反映新股本的分析師報告出爐前，現有預估的可信度應打折扣看待。</p>
+
+  <div class="snap-note">報告版本 v1.4｜生成時間：2026-08-16（第5步）</div>
 </section>
 
 </div>
