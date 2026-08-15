@@ -122,8 +122,8 @@
 
 <nav class="stepnav">
   <div class="pad" data-target="step1">① 現金流量六大規則</div>
-  <div class="pad active" data-target="step2">② 基本資訊</div>
-  <div class="pad locked" data-target="step3">③ 法說會深入</div>
+  <div class="pad" data-target="step2">② 基本資訊</div>
+  <div class="pad active" data-target="step3">③ 法說會深入</div>
   <div class="pad locked" data-target="step4">④ 營收趨勢</div>
   <div class="pad locked" data-target="step5">⑤ 前瞻本益比</div>
   <div class="pad locked" data-target="step6">⑥ 投資決策</div>
@@ -592,7 +592,41 @@
 <section id="step3">
   <span class="step-tag">第 3 步／共 6 步</span>
   <h2>法說會資料深入討論</h2>
-  <div class="locked-note">🔒 待前置步驟完成後解鎖</div>
+
+  <div class="callout">
+    以 <strong>2026/05/19 Q1 法說會</strong>（資訊量最完整的場次，含完整 Q&amp;A）為主要依據，深入討論兩個方向：<strong>營運資金效率與現金流連結</strong>、<strong>AI／記憶體排擠效應對獲利結構的影響</strong>。Q2、H1 之後的財報公告僅補數字，未見完整展望與 Q&amp;A 內容公開流通。
+  </div>
+  <div class="snap-note">snap-note：本節內容整理自第三方財經媒體對 2026/05/19 法說會的逐字稿摘要（vocus.cc，該平台聲明部分內容經 AI 輔助生成），MOPS 官方法說會 PDF（<a href="https://mopsov.twse.com.tw/nas/STR/313120251125M001.pdf" style="color:var(--teal)">連結</a>）因 robots.txt 限制無法直接讀取，僅供你自行點開查看，尚未經 Claude 逐字核對。</div>
+
+  <h3>方向一：營運資金效率與現金流連結 —— 回應第一步的震盪疑問</h3>
+  <p>第一步觀察到 A（營業活動現金流）劇烈震盪，法說會內容提供了部分解釋角度：</p>
+  <table>
+    <thead><tr><th>指標</th><th>25Q1</th><th>25Q4</th><th>26Q1</th></tr></thead>
+    <tbody>
+      <tr><td>存貨天數</td><td>59天</td><td>52天</td><td class="posv">47天</td></tr>
+      <tr><td>淨營運現金週期</td><td colspan="2">—</td><td class="posv">縮短至59天以下</td></tr>
+      <tr><td>營運資金/營收比率</td><td colspan="2">0.2以上</td><td class="posv">0.18</td></tr>
+    </tbody>
+  </table>
+  <p>管理層在 Q&amp;A 中明確指出，這個比率<strong>每改善 0.01 個百分點，就代表上百億元資金釋放</strong>——對照大聯大 2026 上半年營收已衝到 7,747.8 億元的規模，光是比率小幅波動，換算成現金流金額就是百億等級的變動，這正是規則一觀察到「A 震盪幅度隨營收規模放大而加劇」的部分機制：<strong>不是獲利品質變差，而是通路商的商業模式本身，讓存貨與應收帳款週轉的微幅變化，被巨大營收基期放大成現金流的劇烈波動</strong>。</p>
+
+  <div class="callout good">
+    <strong>2020 年重度投資（B=-90.9億）找到具體對應事件：</strong>根據 2025 年公開收購新聞回顧，大聯大<strong>2020年2月以公開收購方式取得文曄科技（3036）29.9%股權，2020年7月再取得台驊（2636）8.6%股權</strong>，這兩筆同業／物流策略性入股，很可能就是規則二、規則三觀察到 2019-2020 年重度投資（B=-93.3億、-90.9億）的主要成因之一，屬於「策略性入股」而非單純資本支出。2019年那筆目前查無對應的公開收購事件，可能是併購前置的股權布局或其他轉投資，尚待更多資料查證，先誠實標註「查證中」而非臆測。
+  </div>
+
+  <h3>方向二：AI／記憶體排擠效應對獲利結構的影響</h3>
+  <p>大聯大的毛利率結構有個反直覺的地方：<strong>核心元件（CPU、GPU、記憶體）名義毛利率較低，但貢獻的絕對獲利金額最大；小顆粒產品（離散、被動元件）毛利率較高，但單筆金額小。</strong>2026年AI熱潮讓這個結構被放大檢視——</p>
+  <ul style="padding-left:20px; font-size:14px; line-height:1.9;">
+    <li>HBM 需求量是傳統 DRAM 的 <strong>6-8倍</strong>，且 1GB HBM 的晶圓面積約等於 3GB DDR5，產生嚴重的<strong>產能排擠效應</strong>，壓縮傳統 DDR4、NAND Flash 等消費性記憶體供給</li>
+    <li>受此排擠，<strong>2026年PC與手機出貨量預估衰退約10%</strong>，但<strong>伺服器/加速卡逆勢成長19-20%，車用電子成長約26%</strong></li>
+    <li>算力相關產品佔大聯大營收比重從去年同期40%衝上<strong>49%</strong>（Q1'26），公司毛利率隨之從2025全年3.96%一路墊高到Q1'26的4.49%</li>
+  </ul>
+  <p>換句話說，即使核心元件單位毛利率偏低，AI伺服器/HBM帶動的<strong>營收規模放大</strong>加上<strong>客戶結構升級</strong>（CSP雲端客戶佔比從12%升至19%，享有較高附加價值服務空間），仍讓公司整體毛利率與獲利雙雙走高。但這也代表大聯大的獲利結構<strong>高度綁定AI資本支出循環</strong>——若2026年美國四大CSP資本支出（法說會提及已上修至7,200億美元）成長趨緩，或記憶體排擠效應緩解、傳統消費性產品需求回補，目前的毛利率墊高速度可能不易延續，這點在後續財測驗證時值得持續追蹤。</p>
+
+  <div class="callout">
+    <strong>小結：</strong>兩個方向的討論都指向同一個提醒——大聯大目前的高成長，同時疊加了「AI景氣循環」與「通路商營運資金槓桿」兩層放大器，獲利與現金流的波動性可能會比傳統想像中的通路股更大，這點會延續到第五步的估值判斷與第六步的投資決策推理中。
+  </div>
+
 </section>
 
 <section id="step4">
