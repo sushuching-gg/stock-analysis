@@ -115,7 +115,7 @@ footer{padding:2rem 1.5rem; text-align:center; color:var(--text-faint); font-siz
 
 <nav class="stepnav">
   <div class="pad active" data-target="step1">① 現金流盲測</div>
-  <div class="pad locked" data-target="step2">② 基本資訊</div>
+  <div class="pad" data-target="step2">② 基本資訊</div>
   <div class="pad locked" data-target="step3">③ 法說會</div>
   <div class="pad locked" data-target="step4">④ 營收趨勢</div>
   <div class="pad locked" data-target="step5">⑤ 本益比估值</div>
@@ -417,8 +417,51 @@ footer{padding:2rem 1.5rem; text-align:center; color:var(--text-faint); font-siz
 
 <section id="step2">
 <span class="step-label">第 2 步／共 6 步：基本資訊查詢</span>
-<h2 style="color:#5f7373;">基本資訊查詢（尚未開始）</h2>
-<p class="small">現金流關卡已通過，下一步將查詢股價、EPS、殖利率、營收與法說會連結。</p>
+<h2>基本資訊查詢</h2>
+
+<div class="callout">
+<strong>公司概況：</strong>聯亞光電工業股份有限公司，1997 年（民國 86 年）成立，2015 年 7 月 22 日於證券櫃檯買賣中心（上櫃）掛牌。主要產品為以磷化銦（InP）、砷化鎵（GaAs）等化合物半導體製作的雷射二極體（LD）與檢光器（PD）磊晶片，是台灣光通訊磊晶領域的主要供應商之一。
+</div>
+<p><strong>產業定位</strong>：近年營運動能主要來自 AI 資料中心對高速光通訊的需求——公司量產供應 800G／1.6T 矽光子（SiPh）模組所需的連續波雷射（CW Laser）磊晶片，客戶涵蓋北美雲端服務供應商（CSP）。目前 Datacom（矽光相關）產品約占營收 80%～85%，Telecom 占 5%～10%，其餘約 5%。<a href="https://dalabs.org/guide/tw-stock-guide/what-is-3081-doing/" target="_blank">DA Labs 公司介紹</a>、<a href="https://news.cnyes.com/news/id/6573688" target="_blank">鉅亨網 2026Q2 法說會報導</a></p>
+
+<h3>股價與估值快照</h3>
+<p class="snap-note">⚠️ 以下股價、本益比等即時報價類數字僅為「查詢當下」的單一快照，並非頁面顯示的區間，且已隨後續交易日變動；正式交易請以看盤軟體／券商 App 即時報價為準。</p>
+<table>
+<tr><th>查詢時間點</th><th>收盤價</th><th>PBR</th><th>PER</th><th>來源</th></tr>
+<tr><td>2026/08/14 收盤</td><td>2,540 元</td><td>49.79</td><td>239.6</td><td>使用者提供 Goodinfo 截圖</td></tr>
+<tr><td>2026/08/12 05:30 市場收盤</td><td>2,725 元</td><td>64.81（本淨比）</td><td>392.28</td><td><a href="https://www.cnyes.com/twstock/3081" target="_blank">鉅亨網</a></td></tr>
+</table>
+<p class="snap-note">兩個時間點的 PER 差異頗大（239.6 vs 392.28），推測與「近四季 EPS」採計基期不同有關：08/12 法說會當天公布 Q2 EPS 4.62 元創新高后，市場端 EPS 滾動基期可能尚未即時更新完成，兩者定義口徑可能不同，此處如實並陳，不代表其中一方錯誤，僅供參考，實際估值判斷建議以最新交易日資料為準。</p>
+<p class="snap-note">52 週高低：3,305 元／380 元（查詢於 2026/08/12，<a href="https://www.cnyes.com/twstock/3081" target="_blank">鉅亨網</a>）；市值約 2,773 億元（同一時間點，同來源）。</p>
+
+<h3>股本變動查證</h3>
+<p>查詢「3081 股票分割」「3081 減資」後確認：近 1–2 年<strong>未發生股票分割</strong>；2026/02/09 曾辦理一次小規模減資——<strong>註銷限制員工權利新股 4,100 股</strong>（減資前流通股數 92,521,377 股，減資後 92,517,277 股，每股淨值由 45.29 元微調為 45.30 元），佔比僅約 0.004%，屬極小規模的員工權益股份註銷，<strong>不影響 EPS／每股淨值等指標的可比性</strong>，後續各期比較無需回溯調整。<a href="https://tw.stock.yahoo.com/quote/3081.TW/announcement" target="_blank">Yahoo股市個股公告</a></p>
+
+<h3>EPS 近況（近四季／最新單季）</h3>
+<table>
+<tr><th>期間</th><th>單季/累計 EPS（元）</th><th>年增率</th><th>備註</th></tr>
+<tr><td>2026 Q2（單季）</td><td class="pos">4.62</td><td>+384%</td><td>單季獲利、EPS 雙創新高</td></tr>
+<tr><td>2026 H1（累計）</td><td class="pos">7.75</td><td>+465%</td><td>上半年累計，非全年數</td></tr>
+<tr><td>2026 Q1（單季）</td><td>3.44</td><td>+647.83%</td><td>季增 66%～67%（不同來源略有差異）</td></tr>
+<tr><td>2025 全年</td><td>4.66</td><td>+58.4%</td><td>對照 Goodinfo 年度表</td></tr>
+<tr><td>2024 全年</td><td class="negv">-0.59</td><td>—</td><td>轉虧</td></tr>
+</table>
+<p class="snap-note">來源：<a href="https://news.cnyes.com/news/id/6573688" target="_blank">鉅亨網法說會報導</a>、<a href="https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=3f9b054f-69b5-48a9-a93a-4e9767f89bb5" target="_blank">MoneyDJ</a>、<a href="https://www.ctee.com.tw/news/20260813700211-439901" target="_blank">工商時報</a>；2013–2025 年度 EPS 已於第一步現金流表中列出（Goodinfo 截圖）。</p>
+
+<h3>近期營收與獲利成長</h3>
+<p><strong>2026 上半年（H1）</strong>累計營收 <strong>21.26 億元</strong>，年增 111%；營業利益 9.46 億元，年增 388%；稅後純益 7.86 億元，年增 465%。<strong>2026 Q2 單季</strong>營收 12.21 億元（季增 35.1%、年增 120.8%），毛利率 57%（季增 2pp、年增 14pp），營益率 47%（季增 6pp、年增 20pp）。<strong>2025 全年</strong>營收 22.03 億元（年增 82.3%），淨利 4.28 億元（年增 885.6%）。<a href="https://www.ctee.com.tw/news/20260813700211-439901" target="_blank">工商時報</a>、<a href="https://vocus.cc/article/6a555031fd897800017ba520" target="_blank">股東會報導</a></p>
+<p>管理層在法說會中表示，Datacom（矽光相關）已占營收 80%～90%，過去三季（2025Q4–2026Q2）合計約近 60 億元資本支出全數投入 CW 雷射產能擴充，目標 2027 年產能達 2026 年的 2.5 倍。<a href="https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=3f9b054f-69b5-48a9-a93a-4e9767f89bb5" target="_blank">MoneyDJ</a></p>
+<p class="snap-note">此處大幅資本支出的規模與第一步現金流盲測中觀察到的 B（投資活動）持續負值、2023 年後 E（期末現金餘額）下滑的現象方向一致，屬於後續基本面驗證與盲測結論相互呼應的部分，將在第 5～6 步進一步串連討論。</p>
+
+<h3>股利政策</h3>
+<p>已連續 16 年發放股利，累計合計 74.00 元；近 5 年平均現金殖利率 1.74%。2025 年度股利（2026 年發放）：現金股利 3.00 元＋股票股利 1.00 元（盈餘轉增資），除息日 2026/07/15。<a href="https://tw.stock.yahoo.com/quote/3081.TWO/dividend" target="_blank">Yahoo股市股利政策</a></p>
+
+<h3>法說會資訊</h3>
+<p>最新一場法說會於 <strong>2026/08/12</strong> 舉行，說明 2026 年第 2 季暨上半年財報與未來展望。官方投資人關係專區：<a href="https://www.lmoc.com.tw/index.php?option=module&lang=cht&task=showlist&id=308&index=5" target="_blank">聯亞光電官網／法人說明會資訊</a>（建議直接於官網查看最新場次簡報公告）。</p>
+
+<div class="callout gate-pass">
+第 2 步基本資訊查詢完成。要不要針對法說會內容深入討論？（第 3 步）
+</div>
 </section>
 
 <section id="step3">
