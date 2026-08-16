@@ -118,7 +118,7 @@ footer{padding:2rem 1.5rem; text-align:center; color:var(--text-faint); font-siz
   <div class="pad" data-target="step2">② 基本資訊</div>
   <div class="pad" data-target="step3">③ 法說會</div>
   <div class="pad" data-target="step4">④ 營收趨勢</div>
-  <div class="pad locked" data-target="step5">⑤ 本益比估值</div>
+  <div class="pad" data-target="step5">⑤ 本益比估值</div>
   <div class="pad locked" data-target="step6">⑥ 投資決策</div>
 </nav>
 
@@ -576,7 +576,55 @@ footer{padding:2rem 1.5rem; text-align:center; color:var(--text-faint); font-siz
 
 <section id="step5">
 <span class="step-label">第 5 步／共 6 步：前瞻本益比／EPS 預估</span>
-<h2 style="color:#5f7373;">估值分析（尚未開始）</h2>
+<h2>前瞻本益比／EPS 預估</h2>
+
+<h3>法人 EPS 共識預估</h3>
+<table>
+<tr><th>年度</th><th>EPS 預估區間（元）</th><th>來源／發布時間</th></tr>
+<tr><td>2026E</td><td>15.21 ～ 17.6</td><td>永豐投顧（2026/02/04）／外資（2026/04/23）</td></tr>
+<tr><td>2027E</td><td>28.8 ～ 30.56</td><td>外資（2026/04/23）／永豐投顧（2026/02/04）</td></tr>
+<tr><td>2028E</td><td>50.6</td><td>外資（2026/04/23，唯一找到的 N+2 以上估計）</td></tr>
+</table>
+<p class="snap-note">來源：<a href="https://cmnews.com.tw/article/newsyoudeservetoknow-1f9b9dac-3ef1-11f1-96c3-b0a261d0fb8d" target="_blank">CMoney（04/23）</a>、<a href="https://wantrich.chinatimes.com/news/20260204900002-420101" target="_blank">旺得富理財網／永豐投顧（02/04）</a>。2026E、2027E 兩家機構預估頗為接近（差距約 16%、6%），但這兩份報告發布時間都在 2026 年 Q2 財報（08/12）公布之前，尚未反映最新一季優於預期的實際獲利，實際共識可能已隨最新財報調整，本報告仍如實標示估計發布時間，提醒此為「已知可能過時」的估計基期。</p>
+
+<h3>前瞻本益比（已知股價，反推隱含倍數）</h3>
+<p>以 2026/08/14 收盤價 2,540 元計算：</p>
+<table>
+<tr><th>估值基期</th><th>EPS 估值</th><th>隱含前瞻本益比</th></tr>
+<tr><td>2026E（低）</td><td>15.21 元</td><td>167.0 倍</td></tr>
+<tr><td>2026E（高）</td><td>17.6 元</td><td>144.3 倍</td></tr>
+<tr><td>2027E（低）</td><td>28.8 元</td><td>88.2 倍</td></tr>
+<tr><td>2027E（高）</td><td>30.56 元</td><td>83.1 倍</td></tr>
+</table>
+<p>即使用兩年後（2027E）的獲利預估回推，隱含本益比仍高達 83～88 倍，遠高於一般傳產或成熟電子股水準，反映市場已將高速成長的預期大幅計入現在的股價，即「現在貴不貴」的答案是：以目前的成長預期而言，估值已站在相當前緣的位置。</p>
+
+<h3>目標本益比法（已知假設倍數，反推目標價）</h3>
+<p>以 2027E EPS 28.8～30.56 元為基礎，分別套用 20／25／30 倍情境（敏感度試算，非預測）：</p>
+<table>
+<tr><th>假設本益比</th><th>2027E EPS 28.8 元 → 目標價</th><th>2027E EPS 30.56 元 → 目標價</th></tr>
+<tr><td>20 倍</td><td>576 元</td><td>611 元</td></tr>
+<tr><td>25 倍</td><td>720 元</td><td>764 元</td></tr>
+<tr><td>30 倍</td><td>864 元</td><td>917 元</td></tr>
+</table>
+<p class="snap-note">⚠️ 前瞻本益比法與目標本益比法是同一公式的不同用法，不是同一件事：前者已知股價、求隱含倍數（回答「現在貴不貴」）；後者已知倍數、求目標價（回答「合理價可能落在哪」）。上表用 20～30 倍是常見的敏感度試算區間，實際分析師報告用的倍數遠高於此（見下段），目標價對「倍數怎麼選」高度敏感，沒有標準答案。</p>
+
+<h3>實際分析師目標價：分歧極大，需誠實揭露</h3>
+<table>
+<tr><th>發布時間</th><th>機構</th><th>目標價</th><th>採用本益比／評等</th></tr>
+<tr><td>2026/02/04</td><td>永豐投顧</td><td>1,375 元</td><td>45 倍 × 2027E EPS 30.56 元，買進</td></tr>
+<tr><td>2026/04/23</td><td>本土法人</td><td>3,600～4,095 元</td><td>未揭露明確倍數，看好 2028 年 CPO 放量</td></tr>
+<tr><td>2026/04/23</td><td>美系外資</td><td>2,850 元（原 1,505 元上調）</td><td>維持中立（Equal-weight）</td></tr>
+<tr><td>2026/08/13（最新）</td><td>日系外資</td><td>900 元（原 586 元上調）</td><td class="negv">維持「賣出」評等</td></tr>
+</table>
+<p class="snap-note">來源：<a href="https://wantrich.chinatimes.com/news/20260204900002-420101" target="_blank">旺得富理財網</a>、<a href="https://tw.stock.yahoo.com/news/%E8%81%AF%E4%BA%9E%E6%B3%95%E8%AA%AA%E5%A0%B1%E5%96%9C-%E5%9C%8B%E5%85%A7%E5%A4%96%E6%B3%95%E4%BA%BA%E9%BD%8A%E8%AA%BF%E9%AB%98%E7%9B%AE%E6%A8%99%E5%83%B9-%E6%9C%80%E9%AB%98%E5%96%8A%E7%9C%8B4095%E5%85%83-015341322.html" target="_blank">Yahoo股市（04/23）</a>、<a href="https://www.chinatimes.com/realtimenews/20260813001637-260410" target="_blank">時報資訊（08/13）</a></p>
+
+<div class="callout warn">
+<strong>誠實揭露不確定性</strong>：目標價區間橫跨 900 元～4,095 元，相差超過 <strong>4.5 倍</strong>，是目前為止分析過的個股中分歧最大的案例之一。更值得留意的是，<strong>時間上最新的一份報告（2026/08/13，日系外資）雖然承認第二季財報與第三季財測「雙雙優於市場預期」，並將目標價從 586 元大幅上調至 900 元，卻仍維持「賣出」評等</strong>，理由是「考量評價過高」——換言之，即使基本面持續超預期，這家機構仍認為目前股價已經反映甚至超過合理價值。這與同期本土法人、部分外資給出的千元以上目標價形成鮮明對比，顯示市場對聯亞「這波成長能持續多久、該用多高倍數評價」存在根本性分歧，並非單純的資訊落差，而是評價方法論上的歧見。建議不要只看單一機構的目標價數字，而是把這個分歧本身當作重要訊號：高成長、高估值個股的目標價區間，本質上比一般個股承載更大的不確定性。
+</div>
+
+<div class="callout gate-pass">
+第 5 步完成。若要我進一步給出投資決策推理（第 6 步：續抱／進場的具體訊號），請告訴我。
+</div>
 </section>
 
 <section id="step6">
