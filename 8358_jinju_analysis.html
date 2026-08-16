@@ -219,8 +219,8 @@
   <div class="pad" data-target="step1"><span class="n">01</span>現金流盲測</div>
   <div class="pad" data-target="step2"><span class="n">02</span>基本資訊</div>
   <div class="pad" data-target="step3"><span class="n">03</span>法說會</div>
-  <div class="pad active" data-target="step4"><span class="n">04</span>營收趨勢</div>
-  <div class="pad locked" data-target="step5"><span class="n">05</span>本益比估值</div>
+  <div class="pad" data-target="step4"><span class="n">04</span>營收趨勢</div>
+  <div class="pad active" data-target="step5"><span class="n">05</span>本益比估值</div>
   <div class="pad locked" data-target="step6"><span class="n">06</span>投資決策</div>
 </nav>
 
@@ -500,6 +500,54 @@
     <p>唯一需要留意的是，截圖同時顯示的股價欄位波動極為劇烈（2025/08 收盤約 217.5 元、2026/06 一度衝上 758 元高點、2026/07 又回落到 298 元），股價的波動幅度遠大於營收本身的波動，顯示市場對這檔股票的評價已經包含大量對未來（而非當下）成長性的預期，這點會在第 5 步估值時進一步討論。</p>
 
     <p class="cap">資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「8358 金居 每月營收」截圖，涵蓋期間 2026/07 回溯至 2025/08，共 12 個月（合併營收口徑）。</p>
+
+  <section class="step" id="step5">
+    <div class="step-flag">【第 5 步／共 6 步：前瞻本益比／EPS 預估】</div>
+    <h2 class="step-title">法人 2026 年 EPS 預估與估值試算</h2>
+    <p class="step-desc">現金流體質＋基本面確認後的最後一塊估值拼圖。以下 2026 年 EPS 預估來自四個不同時間點、不同性質的來源，彼此存在巨大分歧，如實並陳，不硬湊成單一數字。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">法人／媒體 2026 年 EPS 預估（分歧懸殊）</h3>
+    <table>
+      <thead><tr><th>發布時間</th><th>2026年EPS預估</th><th>來源性質</th></tr></thead>
+      <tbody>
+        <tr><td>2026/05（約）</td><td>4.8 元</td><td style="text-align:left;">FindBillion 簡易外推模型（發布於 Q2 財報公布前）</td></tr>
+        <tr><td>2026/05/27</td><td>7～12 元（情境分歧，法人共識約 10 元）</td><td style="text-align:left;">領趨投資觀點深度報告，多空情境估算</td></tr>
+        <tr><td>2026/07</td><td>10.95 元（YoY +160.1%）</td><td style="text-align:left;">陳重銘「不敗存股術」法人系統</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <p><b>誠實揭露：FindBillion 4.8 元的預估已明顯過時，不宜採用。</b>這筆預估發布於 2026Q2 財報公布之前，屬於簡易外推模型；但金居實際 2026 上半年（H1）累計 EPS 已達 4.22 元（Q1 2.06 元＋Q2 2.16 元），且第 4 步驗證下半年首月（7 月）營收年增率不降反升、來到全期最高的 54.87%。若下半年比照上半年或加速的節奏，全年 EPS 落在 4.8 元的機率極低，這筆預估已被實際公布的財報數字推翻，本報告不採用，僅列出以呈現預估分歧的全貌。<b>較可信的區間是「領趨投資觀點」與「陳重銘系統」給出的 10～11 元附近</b>，但即使排除掉過時的 4.8 元，剩下兩個來源之間仍有約 10%～20% 的分歧。</p>
+    </div>
+
+    <h3 style="font-size:18px; margin-top:34px;">前瞻本益比（隱含倍數法：股價 ÷ 預估EPS）</h3>
+    <table>
+      <thead><tr><th>EPS 情境</th><th>2026 前瞻本益比</th></tr></thead>
+      <tbody>
+        <tr><td>保守（9 元）</td><td>47.6 倍</td></tr>
+        <tr><td>中性（10 元）</td><td>42.9 倍</td></tr>
+        <tr><td>樂觀（11 元）</td><td>39.0 倍</td></tr>
+      </tbody>
+    </table>
+    <p>以 2026/08/14 收盤價 428.50 元回推，目前股價對應的前瞻本益比落在 <b>39～48 倍</b>之間，較近四季本益比（63.82 倍）明顯偏低，主因是市場已提前反映 2026 全年 EPS 大幅成長的預期，股價漲幅跑在獲利成長前面，這也解釋了為何股價波動（52 週從 152 元到 758 元）遠比營收波動劇烈。</p>
+
+    <h3 style="font-size:18px; margin-top:34px;">目標本益比法（預估EPS × 假設倍數 → 目標價區間）</h3>
+    <p>與前瞻本益比是同一公式的不同用法：前者是「已知股價、求隱含倍數」，這裡則是「已知倍數、求目標價」，用意是回答「合理價可能落在哪裡」，而非「現在貴不貴」。以中性 EPS 10 元試算三組情境倍數（參考同業高階 CCL／載板廠的估值區間 25～70 倍）：</p>
+    <table>
+      <thead><tr><th>假設本益比倍數</th><th>目標價（元）</th></tr></thead>
+      <tbody>
+        <tr><td>30 倍（保守，回歸傳統銅箔股估值）</td><td>300</td></tr>
+        <tr><td>45 倍（貼近目前隱含倍數）</td><td>450</td></tr>
+        <tr><td>60 倍（維持高階材料成長溢價）</td><td>600</td></tr>
+      </tbody>
+    </table>
+    <p>目標本益比法算出的價格，對「倍數怎麼選」高度敏感，沒有標準答案，這裡只是敏感度試算，不是預測。作為對照，<b>外資高盛（Goldman Sachs）於 2026/05 首次評等金居，直接給出「買進」評等、12 個月目標價 900 元</b>，較目前股價（428.50 元）隱含超過一倍的潛在漲幅。但本次搜尋未能查得高盛報告內部所依據的具體 EPS 假設與計算年度（是以 2026、2027 或更長期獲利能力回推），只查得其論述核心是「HVLP3+ 高階銅箔市場 2025～2028 年 CAGR 上看 122%、2026～2028 年供給缺口達 28%～39%」的長期結構性供需故事，因此 900 元這個數字更接近「長期潛力價」而非「明年目標價」的性質，與本報告中性情境算出的 450 元存在相當大的落差，這個落差本身就是一個需要留意的訊號：市場對這檔股票的樂觀程度存在明顯分歧。</p>
+
+    <div class="callout">
+      <p><b>次二年度（2027）預估：</b>第 3 步已查得 2027 年 EPS 預估同樣分歧懸殊，從 12 元到 22.3 元不等，接近 2 倍差距。以中性 2027 EPS 約 15～16 元估算，若维持目前 40～45 倍前瞻本益比，對應目標價約 600～720 元；若市場情緒降溫、倍數回落到 25～30 倍（貼近傳統 CCL／PCB 供應鏈估值），對應目標價約 375～480 元，與目前股價相近甚至略低。<b>這個區間的寬度（375～720 元）本身就說明了 2027 年獲利與估值倍數兩個變數的不確定性都很大</b>，不宜只取其中一個樂觀組合當作預測。</p>
+    </div>
+
+    <p class="cap">資料來源：<a href="https://www.findbillion.com/twstock/8358/eps" target="_blank">FindBillion 金居EPS與本益比合理價分析</a>（查詢於 2026/08/16，頁面標註約 2026/05）；<a href="https://vocus.cc/article/6a16f208fd89780001d1f41d" target="_blank">領趨投資觀點 深度分析報告</a>（2026/05/27）；<a href="https://cmnews.com.tw/article/bubuypope-5174a022-8a4e-11f1-a9d3-9597b252cf1d" target="_blank">CMoney「不敗存股術」金居2026 EPS預估</a>（2026/07）；<a href="https://www.cmoney.tw/forum/article/179102553" target="_blank">CMoney論壇 高盛首次Coverage金居900元目標價整理</a>；<a href="https://www.ftnn.com.tw/news/547339" target="_blank">FTNN新聞網 2026/05「高盛喊900元天價」報導</a>；<a href="https://www.businesstoday.com.tw/article/category/183008/post/202605290013/" target="_blank">今周刊 2026/05/30「金居目標價900元何時到」</a>。2026 上半年實際 EPS（4.22 元）取自第 2、3 步查得之官方財報公告數字，用以驗證上表法人預估的合理性。</p>
 
   </section>
 
