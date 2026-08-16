@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8358 金居｜現金流優先，基本面在後</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20242b;
+    --paper:#f7f4ec;
+    --paper-2:#eee9db;
+    --steel:#3b5166;
+    --steel-deep:#25333f;
+    --brass:#a9824c;
+    --pos:#2f6b52;
+    --neg:#a13a2f;
+    --neg-strong:#c0392b;
+    --peak:#e8d9b0;
+    --trough:#f2d3ce;
+    --line:#d8d1bd;
+    --locked:#b9b2a0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans TC', sans-serif;
+    line-height:1.75;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  h1,h2,h3{font-family:'Noto Serif TC', serif; margin:0;}
+  a{color:var(--steel-deep);}
+
+  header.hero{
+    position:relative;
+    padding:56px 6vw 40px;
+    background:
+      radial-gradient(circle at 92% 8%, rgba(169,130,76,0.16), transparent 45%),
+      linear-gradient(180deg, #efe9d9 0%, var(--paper) 100%);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .thread{
+    position:absolute; right:-40px; top:-40px; width:260px; height:260px;
+    opacity:0.5;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.14em;
+    font-size:12.5px;
+    color:var(--steel);
+    text-transform:uppercase;
+  }
+  .ticker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    color:var(--brass);
+    font-weight:600;
+    letter-spacing:0.05em;
+  }
+  h1.title{
+    font-size:clamp(30px, 4.4vw, 50px);
+    font-weight:900;
+    margin-top:10px;
+    letter-spacing:0.01em;
+  }
+  .subtitle{
+    margin-top:12px;
+    font-size:16.5px;
+    color:#454b52;
+    max-width:640px;
+  }
+  .subtitle b{color:var(--steel-deep);}
+
+  nav.stepnav{
+    position:sticky; top:0; z-index:50;
+    display:flex; overflow-x:auto;
+    background:rgba(247,244,236,0.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    padding:0 6vw;
+  }
+  nav.stepnav .pad{
+    flex:0 0 auto;
+    padding:14px 18px 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#6b6555;
+    border-bottom:3px solid transparent;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:color .2s, border-color .2s;
+  }
+  nav.stepnav .pad .n{color:var(--brass); margin-right:6px;}
+  nav.stepnav .pad.active{color:var(--steel-deep); border-bottom-color:var(--steel-deep); font-weight:600;}
+  nav.stepnav .pad.locked{color:var(--locked); cursor:not-allowed;}
+  nav.stepnav .pad.locked .n{color:var(--locked);}
+  nav.stepnav .pad:not(.locked):hover{color:var(--steel-deep);}
+
+  main{max-width:960px; margin:0 auto; padding:0 6vw 100px;}
+
+  section.step{padding-top:56px; scroll-margin-top:64px;}
+  .step-flag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#fff;
+    background:var(--steel-deep);
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:2px;
+    letter-spacing:0.06em;
+    margin-bottom:16px;
+  }
+  h2.step-title{font-size:26px; font-weight:700; margin-bottom:6px;}
+  .step-desc{color:#5a5346; font-size:15px; margin-bottom:28px;}
+
+  .callout{
+    border-left:4px solid var(--steel-deep);
+    background:#ffffffaa;
+    padding:16px 20px;
+    margin:18px 0 30px;
+    border-radius:2px;
+  }
+  .callout.warn{border-left-color:var(--neg-strong); background:#fdf1ef;}
+  .callout p{margin:0 0 6px;}
+  .callout p:last-child{margin-bottom:0;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    margin:18px 0 8px;
+  }
+  th,td{padding:8px 10px; text-align:right; border-bottom:1px solid var(--line);}
+  th:first-child,td:first-child{text-align:left;}
+  th{color:#6b6555; font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.04em;}
+  .neg{color:var(--neg-strong); font-weight:600;}
+  .pos{color:var(--pos); font-weight:600;}
+  .pass{color:var(--pos); font-weight:600;}
+  .fail{color:var(--neg-strong); font-weight:600;}
+  .cap{font-size:12px; color:#8a8474; margin-top:2px;}
+
+  .rule-block{margin-top:44px; padding-top:26px; border-top:1px solid var(--line);}
+  .rule-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .rule-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:#fff; background:var(--brass);
+    padding:2px 9px; border-radius:2px;
+  }
+  .rule-name{font-family:'Noto Serif TC', serif; font-weight:700; font-size:19px;}
+  .rule-score{
+    margin-left:auto;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700; font-size:17px;
+  }
+  .persona{
+    display:inline-block; margin:10px 0 12px;
+    background:var(--paper-2); border:1px solid var(--line);
+    padding:4px 12px; border-radius:20px;
+    font-family:'Noto Serif TC', serif; font-weight:600; font-size:14.5px;
+  }
+
+  .chart-wrap{margin:16px 0 8px; background:#fffdf8; border:1px solid var(--line); border-radius:4px; padding:14px 10px 6px;}
+  svg.chart{width:100%; height:auto; display:block; font-family:'IBM Plex Mono', monospace;}
+  .legend{display:flex; gap:18px; font-size:12px; font-family:'IBM Plex Mono',monospace; color:#5a5346; margin:4px 4px 0; flex-wrap:wrap;}
+  .legend span{display:inline-flex; align-items:center; gap:5px;}
+  .sw{width:10px; height:10px; border-radius:2px; display:inline-block;}
+
+  .snap-note{
+    font-size:12px; color:#7a7466; font-family:'IBM Plex Mono', monospace;
+    margin-top:6px;
+  }
+
+  .score-table{margin-top:20px;}
+  .score-total{
+    margin-top:28px; padding:22px 24px; border-radius:4px;
+    background:var(--steel-deep); color:#f4f1e6;
+  }
+  .score-total .big{font-family:'IBM Plex Mono', monospace; font-size:38px; font-weight:700;}
+  .score-total .verdict{font-family:'Noto Serif TC', serif; font-size:19px; margin-top:6px; font-weight:700;}
+  .score-total p{color:#d8d3c2; font-size:14.5px;}
+  .score-total .verdict.warn{color:#f2b8ae;}
+
+  footer.report-footer{
+    margin-top:70px; padding-top:24px; border-top:1px solid var(--line);
+    font-size:12.5px; color:#8a8474; font-family:'IBM Plex Mono', monospace;
+  }
+  footer.report-footer p{margin:4px 0;}
+
+  @media (max-width:640px){
+    header.hero{padding:40px 5vw 28px;}
+    main{padding:0 5vw 80px;}
+    .rule-score{font-size:15px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="thread" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="none" stroke="#3b5166" stroke-width="1.4" opacity="0.55">
+      <path d="M100 10 A90 90 0 1 1 99.9 10"/>
+      <path d="M100 30 A70 70 0 1 1 99.9 30"/>
+      <path d="M100 50 A50 50 0 1 1 99.9 50"/>
+    </g>
+  </svg>
+  <div class="eyebrow">現金流優先，基本面在後 · 個股初步分析</div>
+  <div class="ticker mono">8358　金居</div>
+  <h1 class="title">現金流的個性測驗</h1>
+  <p class="subtitle">在看到任何股價、EPS 或產業地位之前，先讓數字自己說話。<b>本頁第一步採盲測進行</b>，結論只根據現金流量表本身。</p>
+</header>
+
+<nav class="stepnav" id="stepnav">
+  <div class="pad active" data-target="step1"><span class="n">01</span>現金流盲測</div>
+  <div class="pad locked" data-target="step2"><span class="n">02</span>基本資訊</div>
+  <div class="pad locked" data-target="step3"><span class="n">03</span>法說會</div>
+  <div class="pad locked" data-target="step4"><span class="n">04</span>營收趨勢</div>
+  <div class="pad locked" data-target="step5"><span class="n">05</span>本益比估值</div>
+  <div class="pad locked" data-target="step6"><span class="n">06</span>投資決策</div>
+</nav>
+
+<main>
+
+  <section class="step" id="step1">
+    <div class="step-flag">【第 1 步／共 6 步：現金流量表六大規則分析】</div>
+    <h2 class="step-title">六大規則說明</h2>
+    <p class="step-desc">代號定義：A 營業活動現金流量／B 投資活動現金流量／C 融資活動現金流量／D 稅前淨利／E 期末現金餘額（單位：億元）。以下分析嚴格排除股價、EPS、產業背景，僅依現金流量表數字盲測判斷。</p>
+
+    <div class="callout">
+      <p><b>資料範圍說明：</b>使用者提供的 Goodinfo 截圖含 2005～2026Q2 資料。六大規則評分採用 <b>2009～2025 年（17 個完整年度）</b>的連續資料；2005～2008 年財報評分明顯偏低（23～43 分）、獲利波動極大，屬於公司早期階段，僅作參考不納入評分。<b>26Q2 一列代表 2026 年「上半年（H1）累計」數字，不是單一第二季</b>——這是 Goodinfo 常見的資料陷阱，本報告已標註為「H1（累計）」，同樣不納入評分，僅列出供參考，後續步驟若需要正式計分仍需以官方公告的完整年度數字為準。</p>
+    </div>
+
+    <h3 style="font-size:18px; margin-top:36px;">現金流量數據總表（2009–2025，單位：億元）</h3>
+    <table id="cashflow-table">
+      <thead><tr>
+        <th>年度</th><th>A 營業活動</th><th>B 投資活動</th><th>C 融資活動</th><th>D 稅前淨利</th><th>E 期末餘額</th>
+      </tr></thead>
+      <tbody id="cf-tbody"></tbody>
+    </table>
+    <p class="cap">紅字為負值；2026H1（累計，僅供參考不列入計分）：A 4.01／B −2.17／C 2.86／D 13.4／E 12.1。資料來源：使用者提供 Goodinfo! 台灣股市資訊網「8358 金居 歷年現金流量」截圖（截圖顯示時間 2026/08/16 11:52）。</p>
+
+    <!-- ===== Rule 1 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則一</span>
+        <span class="rule-name">A 逐季與逐年成長趨勢</span>
+        <span class="rule-score" id="score1"></span>
+      </div>
+      <p>2009～2016 年 A 大致在 0.44～5.44 億元之間低檔震盪，2014 年 0.44 億元是全期最低點。2017 年首度躍升至 16.8 億元，之後 2018～2020 回落到 6.18～12 億元，2021 年再度衝上全期最高的 16.8 億元。但 2022 年起明顯降溫：10.4 → 2023 年 6.81 → 2024 年 9.12（小幅回升）→ <b>2025 年驟降至 3.62 億元</b>，是 2016 年以來的最低水準；2026H1（累計，僅供參考）僅 4.01 億元，若下半年沒有明顯加溫，全年恐怕仍落在近十年偏低區間。</p>
+      <div class="persona">個性標籤：兩度衝高後力不從心型——2017、2021 兩次登頂，近三年卻連續退燒</div>
+      <p>整體走勢不是穩定向上的曲線，而是兩次脈衝式高峰（2017、2021）加上高峰後的回落。2025 年的 3.62 億元特別值得留意：這不只是「比前一年低」，而是把 A 打回將近十年前的水準，需要在後續步驟查證是否有一次性因素（如客戶付款延遲、存貨墊高、營運周期轉變等）。</p>
+      <div class="chart-wrap"><svg class="chart" id="chart-A" viewBox="0 0 760 260"></svg></div>
+      <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>正值</span><span><span class="sw" style="background:var(--peak)"></span>全期高峰</span><span><span class="sw" style="background:var(--trough)"></span>全期谷底</span></p>
+    </div>
+
+    <!-- ===== Rule 2 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則二</span>
+        <span class="rule-name">B 投資紀律評估</span>
+        <span class="rule-score" id="score2"></span>
+      </div>
+      <p>17 年間 B 全數為負值，代表這家公司每一年都持續投資，沒有出現轉正的年度。多數年度 |B| 小於同年 A，屬於營業現金流能負擔的範圍；但有數個年度 |B| 明顯超過 A：<b>2015 年（|B|=4.05 vs A=1.85，約 2.2 倍）、2018 年（|B|=4.51 vs A=12，尚在可負擔範圍）、2022 年（|B|=11 vs A=10.4，接近 1:1）、2025 年（|B|=7.92 vs A=3.62，約 2.2 倍，投資規模是當年造血能力的兩倍以上）</b>。近三年（2023～2025）B 的負值規模在 6.55～7.92 億元之間，屬於全期相對重度的投資階段，且同期 A 卻在走弱，形成「投資力道不減、造血能力卻在下滑」的組合。</p>
+      <div class="persona">個性標籤：持續投資型，但近兩年投資規模開始超出當年造血能力</div>
+      <p>持續投資本身是正常經營行為，不直接扣分；但 2025 年投資規模達造血能力兩倍以上、且是在 A 本身已經下滑的情況下發生，這個組合需要在規則三（投資效益）與後續步驟中進一步追蹤，不能只看到「B 是負值」就當作單純的正常擴張。</p>
+      <div class="chart-wrap"><svg class="chart" id="chart-B" viewBox="0 0 760 260"></svg></div>
+      <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>投資支出（負值）</span><span><span class="sw" style="background:var(--trough)"></span>投資規模最大年度</span></p>
+    </div>
+
+    <!-- ===== Rule 3 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則三</span>
+        <span class="rule-name">B 投資效益分析</span>
+        <span class="rule-score" id="score3"></span>
+      </div>
+      <p>核心對照指標用 A（不用 D，避免業外損益干擾），觀察重度投資年之後 1～2 年 A 是否轉強：</p>
+      <table>
+        <thead><tr><th>投資年度</th><th>當年 B</th><th>投資後第 1 年 A</th><th>投資後第 2 年 A</th><th>效益判斷</th></tr></thead>
+        <tbody>
+          <tr><td>2018</td><td class="neg">−4.51</td><td>2019：6.18（下滑）</td><td>2020：7.58（略回升，仍不如 2018）</td><td>效果不明顯</td></tr>
+          <tr><td>2021</td><td class="neg">−7.94</td><td>2022：10.4（下滑）</td><td>2023：6.81（持續下滑）</td><td>投資後不升反降</td></tr>
+          <tr><td>2022</td><td class="neg">−11.0（全期最重）</td><td>2023：6.81（下滑）</td><td>2024：9.12（回升但仍不如 2021）</td><td>延遲 2 年才小幅回升</td></tr>
+          <tr><td>2024</td><td class="neg">−4.03</td><td>2025：<b class="fail">3.62</b>（大幅下滑）</td><td>—（尚待觀察）</td><td>目前為止效果最差的一次</td></tr>
+        </tbody>
+      </table>
+      <div class="persona">個性標籤：老將自費特訓型——持續砸錢投資，但轉化成造血能力的效果沒有保證</div>
+      <p>四次重度投資中，僅 2022 年那筆在延遲兩年後看到 A 小幅回升，其餘三次（2018、2021、2024）投資後 A 不升反降，且最近一次（2024 年投資、2025 年 A 驟降至 3.62 億元）是全期效果最差的一次。這代表近年的投資「有砸錢、但看不到明確的造血成效」，符合擬人化描述中「老將自費特訓」型——競爭力不如當年，只能不斷自費特訓搏一線生機，成效沒有保證，需要靠運氣與時機，是本次盲測中較明確的負面訊號。</p>
+    </div>
+
+    <!-- ===== Rule 4 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則四</span>
+        <span class="rule-name">C 融資活動合理性</span>
+        <span class="rule-score" id="score4"></span>
+      </div>
+      <p>先看最高警戒訊號的精確定義：A 為負值且 C 為正數或小幅負值。<b>17 年間 A 從未出現負值</b>（最低是 2014 年的 0.44 億元，仍為正），這個最嚴重的組合從未觸發，是相對正面的訊號。接著檢查「B 大幅負值同時 C 為正值」（借錢支應投資）的年度：</p>
+      <table>
+        <thead><tr><th>年度</th><th>B</th><th>C</th><th>A</th><th>模式</th></tr></thead>
+        <tbody>
+          <tr><td>2009</td><td class="neg">−3.98</td><td class="pos">+2.87</td><td>0.81</td><td>借款支應投資，且 A 已接近谷底</td></tr>
+          <tr><td>2013</td><td class="neg">−1.24</td><td class="neg">−3.64</td><td>2.4</td><td>非配對（C 亦為負，還債）</td></tr>
+          <tr><td>2014</td><td class="neg">−4.35</td><td class="pos">+5.64</td><td>0.44</td><td>借款支應投資，同年 A 為全期最低</td></tr>
+          <tr><td>2016</td><td class="neg">−1.3</td><td class="pos">+1.37</td><td>5.44</td><td>輕度配對，A 尚屬健康</td></tr>
+          <tr><td>2017</td><td class="neg">−0.15</td><td class="pos">+6.32</td><td>16.8</td><td>B 極輕度，融資額大，疑似擴產舉債／增資</td></tr>
+        </tbody>
+      </table>
+      <p>2018～2025 這 8 年間 C 全數為負值，代表公司近八年是<b>淨流出資金（還債或發放股利），沒有依賴外部舉債支撐投資</b>，其中 2022 年 C=−11.9 億元、2025 年 C=−8.16 億元的還款／配息規模較大。整體來看，「借錢投資」的模式集中在 2009、2014、2016、2017 這幾個早年（距今 9～17 年），近八年沒有再出現同樣的模式，屬於正面轉變。</p>
+      <div class="chart-wrap"><svg class="chart" id="chart-BC" viewBox="0 0 760 280"></svg></div>
+      <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>B 投資活動</span><span><span class="sw" style="background:var(--brass)"></span>C 融資活動</span><span><span class="sw" style="background:#fdecea; border:1px solid var(--neg-strong)"></span>借款支應投資年度</span></p>
+      <div class="persona">個性標籤：早年多次借錢投資，近八年轉為穩定還債／配息，未見舉債依賴</div>
+      <p>沒有觸發最高警戒訊號，且近八年趨勢正向。唯一保留的資訊缺口是：目前只有 C 的合計淨額，無法拆解究竟是短期借款、公司債、現金增資或現金股利發放，若使用者能提供融資活動細項，可再進一步判斷資金結構是偏債或偏股權。</p>
+    </div>
+
+    <!-- ===== Rule 5 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則五</span>
+        <span class="rule-name">A &gt; D 現金流品質（嚴格二分法）</span>
+        <span class="rule-score" id="score5"></span>
+      </div>
+      <p>逐年判斷 A 是否單純大於 D（D 為負值時 A 為正即算通過；A 為負值直接不通過），不看倍數、不設門檻：</p>
+      <table>
+        <thead><tr><th>年度</th><th>A</th><th>D</th><th>判斷</th></tr></thead>
+        <tbody id="rule5-tbody"></tbody>
+      </table>
+      <p class="cap">通過 10 年（2011、2012、2013、2014、2015、2017、2018、2019、2020、2023）／不通過 7 年（2009、2010、2016、2021、2022、2024、2025）→ 10 ÷ 17 ≈ <b>58.8%</b></p>
+      <div class="persona">個性標籤：勉強及格的收現品質，且最新一年是全期落差最大的一次不通過</div>
+      <p>17 年裡不到六成的年度帳上獲利收得到對應現金，本身就是六項規則中最弱的一項，符合 Skill 記憶中「規則五（A&gt;D）是最常見的弱點」這個一貫觀察。更值得留意的是 <b>2025 年是全期落差最大的一次不通過</b>：A 僅 3.62 億元，D 卻高達 13.4 億元，兩者相差近 3.7 倍，是「膨風灌水」型的典型樣態——帳面獲利亮眼，但現金收不回來。2021、2022、2024 年同樣不通過，顯示近五年（2021～2025）有四年 A≤D，收現品質整體呈現走弱趨勢。</p>
+    </div>
+
+    <!-- ===== Rule 6 ===== -->
+    <div class="rule-block">
+      <div class="rule-head">
+        <span class="rule-num">規則六</span>
+        <span class="rule-name">E 期末現金餘額穩定性</span>
+        <span class="rule-score" id="score6"></span>
+      </div>
+      <p>2009～2016 年 E 大致在 1.13～4.39 億元的低檔區間反覆震盪。2017 年起結構性跳升至 30.1 億元，此後 2017～2021 年維持在 25.9～30.1 億元的高原，是全期最穩定的一段。但 <b>2022 年起明顯滑落</b>：16.5 → 2023 年 15.5 → 2024 年 19.9（小幅回升）→ <b>2025 年僅剩 7.45 億元</b>，較 2021 年高峰（29 億元）下滑逾 74%，是 2016 年以來的最低水準；2026H1（累計，僅供參考）回升至 12.1 億元，但仍遠低於 2017～2021 的高原水準。</p>
+      <div class="persona">個性標籤：高原期已過，近三年明顯退回體質變差型</div>
+      <p>單看 E 這條線，2017～2021 年是一段穩健的高原期，但 2022 年之後的持續下滑（尤其 2025 年腰斬式的下滑）符合「A、期末餘額同步逐年下滑」的體質變差型態樣——恰好與規則一（A 走弱）、規則五（A&gt;D 近年連續失守）在同一段時間點重疊，三者共同指向近三年現金流體質確實在轉弱，而不是單一規則的個別雜訊。</p>
+      <div class="chart-wrap"><svg class="chart" id="chart-E" viewBox="0 0 760 260"></svg></div>
+      <p class="legend"><span><span class="sw" style="background:var(--steel)"></span>期末現金餘額</span><span><span class="sw" style="background:var(--peak)"></span>全期新高</span><span><span class="sw" style="background:var(--trough)"></span>全期新低</span></p>
+    </div>
+
+    <!-- ===== Total Score ===== -->
+    <div class="score-total">
+      <table class="score-table" style="color:#f4f1e6;">
+        <thead><tr style="color:#d8d3c2;"><th style="color:#d8d3c2;">規則</th><th style="color:#d8d3c2;">分數</th></tr></thead>
+        <tbody>
+          <tr><td>一｜A 逐年成長趨勢</td><td>50</td></tr>
+          <tr><td>二｜B 投資紀律評估</td><td>62</td></tr>
+          <tr><td>三｜B 投資效益分析</td><td>47</td></tr>
+          <tr><td>四｜C 融資活動合理性</td><td>68</td></tr>
+          <tr><td>五｜A &gt; D 現金流品質</td><td>59</td></tr>
+          <tr><td>六｜E 期末現金餘額穩定性</td><td>48</td></tr>
+        </tbody>
+      </table>
+      <div class="big">55.7%</div>
+      <div class="verdict warn">關卡判斷：現金流體質偏弱／需觀察，建議先不繼續深入，除非你仍想往下看基本面</div>
+      <p>六項平均為 55.7%，落在「需觀察（&lt;60%）」區間。好消息是：17 年間<b>從未出現規則四定義的最高警戒訊號</b>（本業造血為負＋疑似舉債支應），A 從未轉為負值，且近八年（2018～2025）融資活動穩定呈現淨流出（還債／配息），沒有依賴外部舉債。</p>
+      <p style="margin-top:14px;"><b>但三個弱項規則（一、三、六）都集中指向同一段時間——近三年（2023～2025），尤其 2025 年：</b>① A 驟降至 3.62 億元，是 2016 年以來最低；② 2024 年重度投資後，2025 年 A 不升反降，是四次投資中效果最差的一次；③ 期末現金餘額腰斬式下滑至 7.45 億元；④ 規則五顯示 2025 年 A 與 D 的落差是全期最大的一次（A 僅為 D 的 27%）。這四個訊號指向同一個結論：<b>2025 年是本次盲測中最需要留意的一年</b>，帳面獲利（D=13.4 億元）與實際現金流表現出現明顯背離。</p>
+      <p style="margin-top:10px;">建議先不急著往下看基本面，或者若你想了解「為什麼 2025 年 A 會大幅下滑」，可以繼續進入第 2 步（股價、EPS 等基本資訊）與第 3 步法說會內容，交叉查證是否有一次性因素（如存貨墊高、應收帳款周轉變慢、產能擴建等）造成這個落差。要繼續嗎？</p>
+    </div>
+
+  </section>
+
+  <section class="step locked-section" id="step2">
+    <div class="step-flag">【第 2 步／共 6 步：基本資訊查詢】</div>
+    <h2 class="step-title">尚未進行</h2>
+    <p class="step-desc">現金流體質評分落在「需觀察」區間，依流程先詢問使用者是否要繼續，此步驟待確認後才會執行。</p>
+  </section>
+
+</main>
+
+<footer class="report-footer">
+  <p>報告版本：v1.0（第一步完成，關卡判斷中）｜最後更新：2026-08-16</p>
+  <p>第一步資料來源：使用者提供之 Goodinfo! 台灣股市資訊網「8358 金居 歷年現金流量」截圖（截圖顯示時間 2026/08/16 11:52），涵蓋 2009～2025 年共 17 個完整年度，2005～2008 年資料不完整不納入評分，2026H1（累計）尚未結束不納入評分。</p>
+</footer>
+
+<script>
+const YEARS = ["2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025"];
+const DATA = {
+  A: [0.81,4.14,1.59,2.16,2.4,0.44,1.85,5.44,16.8,12,6.18,7.58,16.8,10.4,6.81,9.12,3.62],
+  B: [-3.98,-1.48,-1.14,-0.42,-1.24,-4.35,-4.05,-1.3,-0.15,-4.51,-0.87,-0.94,-7.94,-11,-6.55,-4.03,-7.92],
+  C: [2.87,-2.27,-2.38,-0.53,-3.64,5.64,1.01,1.37,6.32,-10.3,-5.63,-7.73,-5.74,-11.9,-1.21,-0.73,-8.16],
+  D: [1.84,4.92,-1.44,-0.92,-1.36,-3.18,-2.54,6.51,12.9,9.48,5.26,6.72,19,11.8,6.66,11.5,13.4],
+  E: [4.04,4.39,2.43,3.63,1.13,2.86,1.62,7.13,30.1,27.3,27,25.9,29,16.5,15.5,19.9,7.45]
+};
+
+// ---------- Fill cashflow table ----------
+const tbody = document.getElementById('cf-tbody');
+YEARS.forEach((y,i)=>{
+  const tr = document.createElement('tr');
+  const fmt = v => (v<0? `<span class="neg">${v.toFixed(2)}</span>` : v.toFixed(2));
+  tr.innerHTML = `<td>${y}</td><td>${fmt(DATA.A[i])}</td><td>${fmt(DATA.B[i])}</td><td>${fmt(DATA.C[i])}</td><td>${fmt(DATA.D[i])}</td><td>${fmt(DATA.E[i])}</td>`;
+  tbody.appendChild(tr);
+});
+
+// ---------- Rule 5 table ----------
+const r5body = document.getElementById('rule5-tbody');
+YEARS.forEach((y,i)=>{
+  const a = DATA.A[i], d = DATA.D[i];
+  const pass = a > d;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${y}</td><td>${a.toFixed(2)}</td><td>${d.toFixed(2)}</td><td class="${pass?'pass':'fail'}">${pass?'✓ 通過':'✕ 不通過'}</td>`;
+  r5body.appendChild(tr);
+});
+
+// ---------- Scores ----------
+document.getElementById('score1').textContent = '50 / 100';
+document.getElementById('score2').textContent = '62 / 100';
+document.getElementById('score3').textContent = '47 / 100';
+document.getElementById('score4').textContent = '68 / 100';
+document.getElementById('score5').textContent = '59 / 100';
+document.getElementById('score6').textContent = '48 / 100';
+
+// ---------- Generic single-series bar chart ----------
+function renderBarChart(svgId, years, values, opts={}){
+  const svg = document.getElementById(svgId);
+  const W = 760, H = 260;
+  const padL = 42, padR = 14, padT = 26, padB = 34;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const n = values.length;
+  const gap = 6;
+  const barW = (innerW / n) - gap;
+  const maxV = Math.max(...values, 0);
+  const minV = Math.min(...values, 0);
+  const range = (maxV - minV) || 1;
+  const zeroY = padT + innerH * (maxV / range);
+  const scaleY = innerH / range;
+  const maxIdx = values.indexOf(maxV), minIdx = values.indexOf(minV);
+
+  let s = `<line x1="${padL}" y1="${zeroY}" x2="${W-padR}" y2="${zeroY}" stroke="#8a8474" stroke-width="1"/>`;
+  values.forEach((v,i)=>{
+    const x = padL + i*(barW+gap);
+    const h = Math.abs(v)*scaleY;
+    const y = v>=0 ? zeroY-h : zeroY;
+    let fill = v<0 ? 'var(--neg-strong)' : 'var(--steel)';
+    if(i===maxIdx && v>0) fill = 'var(--peak)';
+    if(i===minIdx && v<0) fill = 'var(--trough)';
+    s += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(h,1)}" fill="${fill}" rx="1.5"/>`;
+    const labelY = v>=0 ? y-5 : y+h+13;
+    s += `<text x="${x+barW/2}" y="${labelY}" font-size="10.5" text-anchor="middle" fill="#3a352b">${v.toFixed(1)}</text>`;
+    s += `<text x="${x+barW/2}" y="${H-10}" font-size="10.5" text-anchor="middle" fill="#6b6555">${years[i].replace('20','')}</text>`;
+  });
+  svg.innerHTML = s;
+}
+
+// ---------- Paired bar chart (B vs C) ----------
+function renderPairedChart(svgId, years, seriesA, seriesB, highlightIdx=[]){
+  const svg = document.getElementById(svgId);
+  const W = 760, H = 280;
+  const padL = 42, padR = 14, padT = 26, padB = 34;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const n = years.length;
+  const groupGap = 8;
+  const groupW = (innerW / n) - groupGap;
+  const barW = groupW/2 - 2;
+  const all = seriesA.concat(seriesB);
+  const maxV = Math.max(...all, 0), minV = Math.min(...all, 0);
+  const range = (maxV - minV) || 1;
+  const zeroY = padT + innerH * (maxV / range);
+  const scaleY = innerH / range;
+
+  let s = `<line x1="${padL}" y1="${zeroY}" x2="${W-padR}" y2="${zeroY}" stroke="#8a8474" stroke-width="1"/>`;
+  years.forEach((y,i)=>{
+    const gx = padL + i*(groupW+groupGap);
+    const vB = seriesA[i], vC = seriesB[i];
+    if(highlightIdx.includes(i)){
+      s += `<rect x="${gx-3}" y="${padT-4}" width="${groupW+6}" height="${innerH+8}" fill="#fdecea" opacity="0.7"/>`;
+    }
+    let hB = Math.abs(vB)*scaleY, yB = vB>=0? zeroY-hB : zeroY;
+    s += `<rect x="${gx}" y="${yB}" width="${barW}" height="${Math.max(hB,1)}" fill="var(--steel)" rx="1.5"/>`;
+    s += `<text x="${gx+barW/2}" y="${vB>=0?yB-5:yB+hB+13}" font-size="9" text-anchor="middle" fill="#3a352b">${vB.toFixed(1)}</text>`;
+    let hC = Math.abs(vC)*scaleY, yC = vC>=0? zeroY-hC : zeroY;
+    const gx2 = gx+barW+3;
+    s += `<rect x="${gx2}" y="${yC}" width="${barW}" height="${Math.max(hC,1)}" fill="var(--brass)" rx="1.5"/>`;
+    s += `<text x="${gx2+barW/2}" y="${vC>=0?yC-5:yC+hC+13}" font-size="9" text-anchor="middle" fill="#3a352b">${vC.toFixed(1)}</text>`;
+    s += `<text x="${gx+groupW/2}" y="${H-10}" font-size="10" text-anchor="middle" fill="#6b6555">${y.replace('20','')}</text>`;
+  });
+  svg.innerHTML = s;
+}
+
+renderBarChart('chart-A', YEARS, DATA.A);
+renderBarChart('chart-B', YEARS, DATA.B);
+renderBarChart('chart-E', YEARS, DATA.E);
+renderPairedChart('chart-BC', YEARS, DATA.B, DATA.C, [0,5,7,8]);
+
+// ---------- Nav: click + scroll spy ----------
+document.querySelectorAll('nav.stepnav .pad').forEach(pad=>{
+  pad.addEventListener('click', ()=>{
+    if(pad.classList.contains('locked')) return;
+    const target = document.getElementById(pad.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const sections = document.querySelectorAll('section.step');
+if(sections.length){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        document.querySelectorAll('nav.stepnav .pad').forEach(p=>{
+          if(!p.classList.contains('locked')) p.classList.remove('active');
+        });
+        const match = document.querySelector(`nav.stepnav .pad[data-target="${entry.target.id}"]`);
+        if(match && !match.classList.contains('locked')) match.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+  sections.forEach(sec=>observer.observe(sec));
+}
+</script>
+</body>
+</html>
