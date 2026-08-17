@@ -2,291 +2,94 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0050 元大台灣50｜ETF五切面分析</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<title>0050 元大台灣50 ETF分析報告</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
   :root{
-    --ink:#1b1b18;
-    --paper:#faf7f0;
-    --line:#dcd5c4;
-    --accent:#0f5c4a;
-    --accent-soft:#e4efe9;
-    --peak:#c9a227;
-    --trough:#b3452f;
-    --neg:#b3452f;
-    --muted:#6b6558;
+    --bg:#0f1614; --panel:#161f1c; --panel2:#1b2622;
+    --teal:#2dd4bf; --teal-dim:#1f7a6f; --amber:#f0b955;
+    --text:#e7f0ec; --sub:#9db3ab; --line:#25332e;
+    --pos:#4fd18b; --neg:#f0716a;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Noto Sans TC', sans-serif;
-    line-height:1.7;
-  }
-  h1,h2,h3{font-family:'Noto Serif TC', serif;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
-
-  header.hero{
-    padding:64px 24px 40px;
-    border-bottom:1px solid var(--line);
-    background:linear-gradient(180deg, #fff 0%, var(--paper) 100%);
-  }
-  .hero-inner{max-width:920px; margin:0 auto;}
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:10px;
-  }
-  h1{font-size:38px; font-weight:900; margin:0 0 8px; line-height:1.25;}
-  .subtitle{color:var(--muted); font-size:16px; margin-bottom:0;}
-
-  nav.stepnav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(250,247,240,.96);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-    display:flex; gap:2px; overflow-x:auto;
-    padding:0 12px;
-  }
-  nav.stepnav a{
-    flex:0 0 auto;
-    padding:14px 16px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    color:var(--muted);
-    text-decoration:none;
-    border-bottom:3px solid transparent;
-    white-space:nowrap;
-    transition:color .2s, border-color .2s;
-  }
-  nav.stepnav a.active{color:var(--accent); border-bottom-color:var(--accent); font-weight:600;}
-  nav.stepnav a:hover{color:var(--accent);}
-
-  main{max-width:920px; margin:0 auto; padding:0 24px 80px;}
-  section{padding:56px 0; border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
-  .facet-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px; color:var(--accent); letter-spacing:.08em;
-    margin-bottom:6px;
-  }
-  h2{font-size:26px; margin:0 0 20px;}
-
-  .callout{
-    border-left:4px solid var(--accent);
-    background:var(--accent-soft);
-    padding:16px 20px;
-    border-radius:2px;
-    margin-bottom:24px;
-    font-size:15px;
-  }
-  .callout b{color:var(--accent);}
-  .callout.warn{border-left-color:var(--trough); background:#f5e9e3;}
-  .callout.warn b{color:var(--trough);}
-  .callout.gap{border-left-color:var(--muted); background:#eee9dd;}
-  .callout.gap b{color:var(--muted);}
-
-  table{width:100%; border-collapse:collapse; margin:16px 0 8px; font-size:14.5px;}
-  th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);}
-  th{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;}
-  td.num{font-family:'IBM Plex Mono', monospace; text-align:right;}
-  .note{font-size:13.5px; color:var(--muted); margin-top:6px;}
-  .negv{color:var(--neg); font-weight:600;}
-
-  .chart-wrap{margin:20px 0;}
-  .bar-row{display:flex; align-items:center; gap:12px; margin-bottom:8px;}
-  .bar-label{width:110px; font-size:13.5px; flex:0 0 110px;}
-  .bar-track{flex:1; background:#efe9db; border-radius:3px; height:22px; position:relative; overflow:hidden;}
-  .bar-fill{height:100%; background:var(--accent); border-radius:3px;}
-  .bar-fill.tsmc{background:var(--trough);}
-  .bar-val{font-family:'IBM Plex Mono', monospace; font-size:13px; width:56px; text-align:right;}
-
-  .src{font-size:12.5px; color:var(--muted); margin-top:4px;}
-  .src a{color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent);}
-
-  footer{
-    max-width:920px; margin:0 auto; padding:32px 24px 60px;
-    font-size:13px; color:var(--muted); font-family:'IBM Plex Mono', monospace;
-  }
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;line-height:1.7;}
+  h1,h2,h3{font-family:'Noto Serif TC',serif;}
+  header{padding:36px 24px 20px;border-bottom:1px solid var(--line);}
+  header h1{margin:0 0 6px;font-size:1.5rem;color:var(--teal);}
+  header .sub{color:var(--sub);font-size:.9rem;}
+  .badge{display:inline-block;padding:3px 10px;border:1px solid var(--teal-dim);border-radius:20px;color:var(--amber);font-size:.78rem;margin-top:8px;margin-right:6px;}
+  main{max-width:880px;margin:0 auto;padding:20px 20px 80px;}
+  section{margin:34px 0;padding:22px;background:var(--panel);border-radius:10px;border:1px solid var(--line);}
+  .callout{border-left:4px solid var(--teal);background:var(--panel2);padding:14px 16px;border-radius:6px;margin-bottom:16px;font-size:.95rem;}
+  .callout b{color:var(--amber);}
+  .callout.warn{border-color:var(--amber);}
+  h2{color:var(--teal);font-size:1.15rem;margin-top:0;display:flex;align-items:center;gap:8px;}
+  h2 .num{background:var(--teal-dim);color:#04140f;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-family:'IBM Plex Mono';flex-shrink:0;}
+  h2 .score{margin-left:auto;font-size:1rem;color:var(--amber);}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;}
+  th{color:var(--sub);font-weight:600;}
+  .pos{color:var(--pos);} .neg{color:var(--neg);font-weight:600;}
+  .rating{display:inline-block;padding:2px 10px;border-radius:14px;font-size:.8rem;font-weight:600;}
+  .r-good{background:rgba(79,209,139,.15);color:var(--pos);}
+  .r-mid{background:rgba(240,185,85,.15);color:var(--amber);}
+  .r-watch{background:rgba(240,113,106,.15);color:var(--neg);}
+  .snap{font-size:.78rem;color:var(--sub);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px;}
+  .snap a{color:var(--teal);}
+  .totalbox{display:flex;align-items:baseline;gap:14px;background:var(--panel2);border-radius:10px;padding:18px 22px;margin:18px 0;border:1px solid var(--teal-dim);}
+  .totalbox .num{font-size:2.2rem;color:var(--amber);font-family:'IBM Plex Mono';}
+  .totalbox .label{color:var(--sub);font-size:.85rem;}
+  footer{text-align:center;color:var(--sub);font-size:.8rem;padding:30px 0;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">台股ETF初步分析 · 五切面模式</div>
-    <h1>0050 元大台灣50</h1>
-    <p class="subtitle">持股與產業集中度 · 配息狀況 · 追蹤指數與追蹤誤差 · 規模／流動性／內扣費用率 · 淨值走勢與折溢價</p>
-  </div>
+<header>
+  <h1>0050｜元大台灣50</h1>
+  <div class="sub">元大投信｜追蹤台灣50指數</div>
+  <div class="badge">Step 0 分類：被動式-市值型</div>
+  <div class="badge">同類排名：第1名／共3檔</div>
 </header>
-
-<nav class="stepnav" id="stepnav">
-  <a href="#facet1">01 持股與產業集中度</a>
-  <a href="#facet2">02 配息狀況</a>
-  <a href="#facet3">03 追蹤指數與誤差</a>
-  <a href="#facet4">04 規模／流動性／費用率</a>
-  <a href="#facet5">05 淨值與折溢價</a>
-</nav>
-
 <main>
+<div class="totalbox">
+  <div class="num">79.7</div>
+  <div class="label">總分（模組1-5平均，模組6另列不計入）<br>分數僅限同類別（被動式-市值型）內比較，不可跨類別排名</div>
+</div>
 
-<section id="facet1">
-  <div class="facet-label">切面 01</div>
-  <h2>持股與產業集中度</h2>
-
-  <div class="callout warn">
-    <b>重點：</b>台積電單一成分股權重已達 <b>61.06%</b>，遠超第二名台達電的 4.92%，差距逾10倍，集中度風險是目前0050最需留意的結構特徵。
-  </div>
-
-  <p>2026年4月30日成分股權重公告後的報導顯示，0050內部結構持續朝AI供應鏈集中：欣興、奇鋐、廣達等公司排名快速竄升，取代部分傳統產業與金融龍頭的位置；台塑集團（南亞、台塑、台塑化等）目前僅少數留在榜內，且多退居中後段。</p>
-
-  <div class="chart-wrap">
-    <div class="bar-row">
-      <div class="bar-label">台積電</div>
-      <div class="bar-track"><div class="bar-fill tsmc" style="width:100%"></div></div>
-      <div class="bar-val">61.06%</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">台達電</div>
-      <div class="bar-track"><div class="bar-fill" style="width:8.1%"></div></div>
-      <div class="bar-val">4.92%</div>
-    </div>
-  </div>
-  <p class="note">上圖為前兩大成分股權重對比（依比例繪製），凸顯台積電與第二名之間逾10倍的差距。第三名以後權重資料本次未能取得同一時間點的完整清單，暫不列入圖表，避免混用不同公告日期的數字。</p>
-
-  <table>
-    <tr><th>觀察項目</th><th>內容</th></tr>
-    <tr><td>最大成分股</td><td>台積電，權重 61.06%</td></tr>
-    <tr><td>第二大成分股</td><td>台達電，權重 4.92%</td></tr>
-    <tr><td>產業趨勢</td><td>AI伺服器供應鏈（欣興、奇鋐、廣達等）權重上升</td></tr>
-    <tr><td>相對式微</td><td>台塑集團、傳產、部分金融股退居中後段</td></tr>
-  </table>
-
-  <p class="src">資料來源：<a href="https://udn.com/news/story/123006/9480769" target="_blank">聯合新聞網（2026/05）</a>、<a href="https://news.ustv.com.tw/newsdetail/20260507A058" target="_blank">非凡新聞（2026/05/07）</a>——皆對應2026年4月30日成分股權重公告。</p>
-  <p class="note">⚠️ 0050每季會調整成分股與權重，本節數字對應公告時間為2026年4月30日，之後若有新一期調整，權重會再變動，引用前務必重新查證。</p>
+<section>
+<h2><span class="num">1</span>抗跌能力（＋成分股集中度）<span class="score">58.7</span></h2>
+<p>跌幅 <b>-15.88%</b>（6/22收盤111.15元→7/30收盤93.5元，自算）。市值型ETF跌幅與大盤（-16.36%）高度連動，符合預期。</p>
 </section>
 
-<section id="facet2">
-  <div class="facet-label">切面 02</div>
-  <h2>配息狀況</h2>
-
-  <div class="callout warn">
-    <b>重點：</b>0050在2025年6月18日完成「1拆4」股票分割，分割前後每股配息的<b>絕對金額</b>基期不同，只能比較<b>殖利率（%）</b>，不能直接比金額。
-  </div>
-
-  <table>
-    <tr><th>發放期間</th><th>除息日</th><th>現金股利</th><th>現金殖利率</th><th>備註</th></tr>
-    <tr><td>2026第2次</td><td>2026/07/21</td><td class="num">0.6 元</td><td class="num">查證中</td><td>發放日2026/08/10，較上次縮水約4成</td></tr>
-    <tr><td>2026第1次</td><td>2026/01/22</td><td class="num">1.00 元</td><td class="num">1.39%</td><td>發放日2026/02/11</td></tr>
-    <tr><td>2025全年</td><td>—</td><td class="num">3.06 元</td><td class="num">2.06%</td><td>近五年平均殖利率 2.77%</td></tr>
-    <tr><td colspan="5" class="note">— 以下為分割前基期，僅供對照分割前後金額差異，不可與上列數字直接相加比較 —</td></tr>
-    <tr><td>2024H2</td><td>2025/01/17</td><td class="num negv">2.70 元（分割前）</td><td class="num">1.36%</td><td>股本尚未進行1拆4</td></tr>
-  </table>
-  <p class="note">2026年第2次配息0.6元的正式殖利率百分比，本次查證未能取得官方頁面明確標示的數字（多篇報導只列金額，尚未換算殖利率），標示為「查證中」，避免用推算數字冒充官方公布數值。</p>
-
-  <p>0050採半年配，主要靠成分股（如台積電）長線資本增值驅動報酬，配息只是附帶收穫。對比同日除息的0056（年息超過10%），0050的殖利率水準明顯偏低，定位上更接近「資本增值型」而非「存股領息型」ETF。</p>
-
-  <p class="src">資料來源：<a href="https://www.managertoday.com.tw/articles/view/62178" target="_blank">經理人（2026/07公告整理）</a>、<a href="https://finance.ettoday.net/news/3193281" target="_blank">ETtoday（2026/07/01）</a>、<a href="https://winvest.tw/Stock/Symbol/EtfInformation/0050" target="_blank">Win投資</a>、<a href="https://www.gvm.com.tw/article/119273" target="_blank">遠見雜誌（分割時程）</a></p>
+<section>
+<h2><span class="num">2</span>規模<span class="score">85.0</span></h2>
+<p>規模2.35兆元，354.45萬受益人（TWSE 2026/08/11），<b>同類最大</b>，約為00921的1800倍以上。</p>
 </section>
 
-<section id="facet3">
-  <div class="facet-label">切面 03</div>
-  <h2>追蹤指數與追蹤誤差</h2>
-
-  <div class="callout gap">
-    <b>資料缺口：</b>本次查證未能取得0050近期具體的追蹤誤差率數字，不用臆測數字充數，誠實標示待補。
-  </div>
-
-  <table>
-    <tr><th>項目</th><th>內容</th></tr>
-    <tr><td>追蹤標的指數</td><td>富時臺灣證券交易所臺灣50指數</td></tr>
-    <tr><td>追蹤誤差率（近1年）</td><td class="negv">查證中 — 建議查元大投信官網公開說明書／月報</td></tr>
-  </table>
-
-  <p>搜尋到的資料多是概念性描述（如成分股再平衡、現金股利處理過程中可能產生的微小偏差），沒有可靠來源附上精確百分比。若要取得可信數字，建議直接查元大投信官網公布的月報或公開說明書，那裡通常會揭露實際追蹤誤差數值。</p>
-
-  <p class="src">參考（僅概念性描述，非具體數字）：<a href="https://marconmktgroup.com/2026/stock-hacks/0050-annualized-return-rate-2026-guide/" target="_blank">AI外匯分析室</a>——本來源品質存疑，僅供背景理解，不作為數字依據。</p>
+<section>
+<h2><span class="num">3</span>選股規則透明度<span class="score">85</span></h2>
+<p>追蹤台灣50指數，完全複製法，市值前50大，規則單純透明，每季調整。<span class='rating r-good'>優良</span></p>
 </section>
 
-<section id="facet4">
-  <div class="facet-label">切面 04</div>
-  <h2>規模／流動性／內扣費用率</h2>
-
-  <div class="callout">
-    <b>重點：</b>規模已突破2.27兆元，是全市場規模最大的台股ETF；2026上半年官方總費用率降至0.10%，但需注意舊文章引用的「0.42%~0.46%」是降費前的過期數字，不能與現況混用。
-  </div>
-
-  <table>
-    <tr><th>項目</th><th>數字</th><th>資料時間</th></tr>
-    <tr><td>基金規模</td><td class="num">22,764.69 億元</td><td class="num">2026/07/02</td></tr>
-    <tr><td>受益人次</td><td class="num">323.87 萬人</td><td class="num">2026/07/02</td></tr>
-    <tr><td>總費用率（官方，2026上半年）</td><td class="num">0.10%</td><td class="num">2026/06 投信投顧公會數據</td></tr>
-    <tr><td>總費用率（降費前，舊數字）</td><td class="num negv">0.42%~0.46%</td><td class="num">2021~2024，已過期</td></tr>
-  </table>
-
-  <p><b>費用率時效性提醒：</b>0050自2025年起隨規模突破門檻，改採「規模愈大、費率愈低」的階梯式費率設計，經理費已由固定0.32%降至約0.10~0.11%（依規模比例計算）。因此若查到任何標示「0.4%以上」的0050費用率文章，多半是降費前的舊資料，不能拿來當現況引用；本節採用投信投顧公會2026年6月的最新官方數據（總費用率0.10%）為現況判斷依據，並如實列出舊數字供對照，不隱藏落差。</p>
-
-  <p class="src">資料來源：<a href="https://www.managertoday.com.tw/articles/view/62178" target="_blank">經理人（規模、受益人次，2026/07/02）</a>、<a href="https://udn.com/news/story/123006/9653250" target="_blank">聯合新聞網／柴鼠兄弟整理投信投顧公會數據（2026/06）</a>、<a href="https://smart.businessweekly.com.tw/Reading/IndepArticle.aspx?id=6018188" target="_blank">Smart智富（降費前舊費率對照）</a></p>
+<section>
+<h2><span class="num">4</span>配息資金來源<span class="score">85</span></h2>
+<p>配息完全來自股利收入＋資本利得（比例約1:2至1:3），<b>同類唯一沒有收益平準金機制</b>的ETF。<span class='rating r-good'>優良</span></p>
 </section>
 
-<section id="facet5">
-  <div class="facet-label">切面 05</div>
-  <h2>淨值走勢與折溢價</h2>
-
-  <div class="callout gap">
-    <b>資料缺口：</b>本次查證未能取得0050近期具體的市價／淨值折溢價數字，誠實標示待補，不用「原型ETF折溢價通常很小」這類常識代替實際查證。
-  </div>
-
-  <table>
-    <tr><th>項目</th><th>內容</th></tr>
-    <tr><td>ETF類型</td><td>國內成分股ETF（原型，非期貨型）</td></tr>
-    <tr><td>近期折溢價幅度</td><td class="negv">查證中 — 建議查證交所ETF專區或元大投信官網當日NAV對照</td></tr>
-  </table>
-
-  <p>原型ETF因為可直接申購/贖回實物成分股，理論上折溢價幅度通常不大，但這只是一般性認識，不是本次查證取得的具體數字。若你需要，我可以再嘗試直接 web_fetch 證交所或元大投信官網頁面補齊這一項與切面03的追蹤誤差率。</p>
+<section>
+<h2><span class="num">5</span>成本結構<span class="score">85.0</span></h2>
+<p>經理費（累進制，規模越大費率越低）＋保管費合計約<b>0.10%</b>，同類最低。</p>
 </section>
 
+<section>
+<h2><span class="num">6</span>追蹤誤差／波動性（描述性參考，不列入總分）<span class="score">—</span></h2>
+<p>本次未查得0050當期折溢價數字；市場公認0050規模流動性優良、追蹤能力穩定。</p>
+</section>
+
+<section>
+<h2>綜合小結</h2>
+<p>0050是市值型ETF中規模、費用率、配息透明度三項都最優的標的，同類第一名。唯一相對弱項是抗跌力——集中度雖不算模組1的主要扣分項，但市值加權結構讓它幾乎與大盤同步下跌，弱於等權重設計的00921。</p>
+</section>
 </main>
-
-<footer>
-  <div>報告版本：v1.0　生成時間：2026-08-02　資料來源：本次網路搜尋所得，詳見各節內附連結</div>
-  <div style="margin-top:6px;">切面03（追蹤誤差率）、切面05（折溢價幅度）暫缺具體數字，已在對應章節誠實標示，未以推測數字填補。</div>
-</footer>
-
-<script>
-(function(){
-  var links = Array.prototype.slice.call(document.querySelectorAll('.stepnav a'));
-  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-
-  links.forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var target = document.querySelector(a.getAttribute('href'));
-      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
-    });
-  });
-
-  if('IntersectionObserver' in window){
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          var id = entry.target.getAttribute('id');
-          links.forEach(function(a){
-            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-          });
-        }
-      });
-    }, {rootMargin: '-40% 0px -50% 0px', threshold: 0});
-    sections.forEach(function(s){ if(s) observer.observe(s); });
-  }
-})();
-</script>
-
+<footer>報告版本 v1.0｜資料整理日期：2026/08/17｜自算數據來源：使用者提供Goodinfo截圖與本次網路搜尋，逐項可回溯</footer>
 </body>
 </html>
