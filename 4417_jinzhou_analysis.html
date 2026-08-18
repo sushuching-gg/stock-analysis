@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4417 金洲 台股個股分析報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1115;
+    --bg-elev:#171a21;
+    --bg-card:#1c2028;
+    --border:#2a2f3a;
+    --text:#e8e9ec;
+    --text-dim:#9aa0ac;
+    --accent:#3ba7ff;
+    --accent-soft:#3ba7ff22;
+    --pos:#4fd18b;
+    --neg:#ff6b6b;
+    --peak:#e8c07d;
+    --trough:#ff9fc3;
+    --warn-bg:#3a2a12;
+    --warn-border:#e8a13d;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Mono',monospace;
+    line-height:1.7;
+    font-size:15px;
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif TC',serif;}
+  header.top{
+    padding:28px 20px 18px;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg,var(--bg-elev),var(--bg));
+  }
+  header.top h1{
+    margin:0 0 6px;
+    font-size:26px;
+    font-weight:700;
+  }
+  header.top .sub{
+    color:var(--text-dim);
+    font-size:13px;
+  }
+  nav.stepnav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    overflow-x:auto;
+    background:#12141aee;
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  nav.stepnav a.pad{
+    flex:1 0 auto;
+    white-space:nowrap;
+    padding:12px 14px;
+    text-align:center;
+    font-size:12.5px;
+    color:var(--text-dim);
+    text-decoration:none;
+    border-bottom:2px solid transparent;
+    transition:all .15s ease;
+  }
+  nav.stepnav a.pad.locked{
+    color:#565b66;
+    pointer-events:none;
+    cursor:default;
+  }
+  nav.stepnav a.pad.active{
+    color:var(--accent);
+    border-bottom:2px solid var(--accent);
+    background:var(--accent-soft);
+  }
+  main{max-width:920px;margin:0 auto;padding:0 18px 80px;}
+  section{padding-top:34px;}
+  .step-tag{
+    display:inline-block;
+    font-size:12px;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    border-radius:20px;
+    padding:3px 12px;
+    margin-bottom:12px;
+    letter-spacing:.5px;
+  }
+  h2.step-title{
+    font-size:20px;
+    margin:0 0 16px;
+  }
+  .callout{
+    border-left:4px solid var(--accent);
+    background:#3ba7ff14;
+    padding:14px 16px;
+    border-radius:6px;
+    margin-bottom:18px;
+    font-size:14px;
+  }
+  .callout.warn{
+    border-left-color:var(--warn-border);
+    background:var(--warn-bg);
+  }
+  .callout.ok{
+    border-left-color:var(--pos);
+    background:#4fd18b14;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0 8px;
+    font-size:13px;
+  }
+  th,td{
+    padding:7px 8px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+  }
+  th{
+    background:var(--bg-card);
+    color:var(--text-dim);
+    font-weight:600;
+    position:sticky;
+    top:44px;
+  }
+  td.rowlabel, th.rowlabel{ text-align:left; }
+  .pos{color:var(--pos);}
+  .negv{color:var(--neg);font-weight:700;}
+  .pass{color:var(--pos);font-weight:700;}
+  .fail{color:var(--neg);font-weight:700;}
+  .note{
+    font-size:12.5px;
+    color:var(--text-dim);
+    margin:4px 0 20px;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:22px;
+  }
+  .card h3{
+    margin:0 0 10px;
+    font-size:15.5px;
+    color:var(--accent);
+  }
+  .tag-label{
+    display:inline-block;
+    background:#2a2f3a;
+    color:var(--text);
+    font-size:12px;
+    padding:2px 9px;
+    border-radius:5px;
+    margin-bottom:6px;
+  }
+  .score-badge{
+    display:inline-block;
+    font-size:13px;
+    font-weight:700;
+    padding:2px 10px;
+    border-radius:5px;
+    margin-left:6px;
+  }
+  .score-good{background:#4fd18b22;color:var(--pos);}
+  .score-mid{background:#e8c07d22;color:var(--peak);}
+  .score-low{background:#ff6b6b22;color:var(--neg);}
+  svg.chart{width:100%;height:220px;display:block;margin:10px 0;}
+  .axis-label{font-size:10px;fill:var(--text-dim);}
+  .bar-label{font-size:10px;fill:var(--text);}
+  .legend{
+    display:flex;gap:16px;font-size:12px;color:var(--text-dim);margin-bottom:6px;
+  }
+  .legend span.dot{
+    display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;
+  }
+  .total-score{
+    text-align:center;
+    padding:24px 10px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--bg-card);
+  }
+  .total-score .num{
+    font-family:'Noto Serif TC',serif;
+    font-size:52px;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .snap-note{
+    font-size:11.5px;
+    color:#6c7280;
+    margin-top:4px;
+    font-style:normal;
+  }
+  footer.report-footer{
+    margin-top:40px;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  code{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>4417 金洲 — 台股個股初步分析報告</h1>
+  <div class="sub">現金流優先，基本面在後｜盲測分析框架｜報告版本 v1（進行中）</div>
+</header>
+
+<nav class="stepnav" id="stepnav">
+  <a href="#step1" class="pad active" data-step="1">① 現金流六大規則</a>
+  <a href="#step2" class="pad locked" data-step="2">② 基本資訊</a>
+  <a href="#step3" class="pad locked" data-step="3">③ 法說會深入</a>
+  <a href="#step4" class="pad locked" data-step="4">④ 營收趨勢</a>
+  <a href="#step5" class="pad locked" data-step="5">⑤ 本益比估值</a>
+  <a href="#step6" class="pad locked" data-step="6">⑥ 投資決策</a>
+</nav>
+
+<main>
+
+<section id="step1">
+  <span class="step-tag">【第 1 步／共 6 步】現金流量表六大規則分析（盲測）</span>
+  <h2 class="step-title">4417 金洲｜現金流量表六大規則分析</h2>
+
+  <div class="callout">
+    本階段依 Goodinfo 歷年現金流量表截圖（使用者提供，2000～2026Q2）進行盲測分析，
+    <strong>尚未查詢股價、EPS、產業別、公司背景等任何資訊</strong>，避免先入為主。
+    26Q2 為單季資料，僅列出參考，不列入六大規則計分，計分基準為 <strong>2009～2025 共 17 個完整年度</strong>。
+  </div>
+
+  <div class="card">
+    <h3>欄位定義</h3>
+    <table>
+      <tr><th class="rowlabel">代號</th><th class="rowlabel">意義</th></tr>
+      <tr><td class="rowlabel">A</td><td class="rowlabel">營業活動現金流量</td></tr>
+      <tr><td class="rowlabel">B</td><td class="rowlabel">投資活動現金流量</td></tr>
+      <tr><td class="rowlabel">C</td><td class="rowlabel">融資活動現金流量</td></tr>
+      <tr><td class="rowlabel">D</td><td class="rowlabel">稅前淨利（本次資料齊全，優先採用）</td></tr>
+      <tr><td class="rowlabel">E</td><td class="rowlabel">期末現金餘額</td></tr>
+    </table>
+    <div class="snap-note">資料來源：使用者提供 Goodinfo「4417 金洲 歷年現金流量」截圖，單位：億元。</div>
+  </div>
+
+  <div class="card">
+    <h3>現金流量原始數據（2009–2025，單位：億元）</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th class="rowlabel">年度</th><th>A 營業</th><th>B 投資</th><th>C 融資</th><th>D 稅前淨利</th><th>E 期末餘額</th>
+        </tr>
+      </thead>
+      <tbody id="rawTableBody"></tbody>
+    </table>
+    </div>
+    <div class="snap-note">26Q2（單季，僅供參考，不列入計分）：A=0.88　B=-0.85　C=-2.22　D=3.03　E=9.59</div>
+  </div>
+
+  <!-- 規則一 -->
+  <div class="card" id="rule1">
+    <div class="tag-label">規則一</div>
+    <h3>A 逐季與逐年成長趨勢</h3>
+    <p>金洲的 A（營業活動現金流）呈現「<strong>震盪中緩步墊高，近三年明顯加速</strong>」的個性——不是那種穩定線性成長的模範生，中間有幾次明顯的低谷（2012 年僅 1.25 億、2021 年 2.37 億），但每次低谷後都能重新走高，且 <strong>2023～2025 這三年連續創新高（6.68 → 5.99 → 8.12 億）</strong>，顯示近期本業造血能力明顯轉強。長期方向是向上的，只是過程不平順，比較像「爬坡型」而非「直線型」的成長股。</p>
+    <div class="legend"><span><span class="dot" style="background:var(--accent)"></span>A 營業活動現金流（億）</span></div>
+    <svg class="chart" id="chartA"></svg>
+    <div class="snap-note">高峰以米色標示（2025：8.12億），谷底以粉色標示（2012：1.25億）。</div>
+  </div>
+
+  <!-- 規則二 -->
+  <div class="card" id="rule2">
+    <div class="tag-label">規則二</div>
+    <h3>B 投資紀律評估</h3>
+    <p>B 在 17 個年度中有 <strong>15 年為負值</strong>（持續投資），僅 2020（+1.54億）與 2025（+0.92億）轉正，屬於正常經營行為。多數年度 |B| 都小於 A，代表投資力道大致在本業造血能力可負擔的範圍內；但 2017（B=-5.55億 vs A=3.88億）與 2024（B=-5.2億 vs A=5.99億）這兩年 |B| 明顯超過或接近 A，屬於「加碼投資」的年度，個性上偏向「<strong>該衝的時候敢衝</strong>」型，而非年年小額投資的保守型。</p>
+    <div class="legend"><span><span class="dot" style="background:#ff6b6b"></span>B 投資活動現金流（億，負值代表投資）</span></div>
+    <svg class="chart" id="chartB"></svg>
+  </div>
+
+  <!-- 規則三 -->
+  <div class="card" id="rule3">
+    <div class="tag-label">規則三</div>
+    <h3>B 投資效益分析（對照隔年 A 是否轉強）</h3>
+    <p>挑出幾個 B 明顯重度投資的年度，對照隔年 A 的變化：</p>
+    <table>
+      <thead>
+        <tr><th class="rowlabel">投資年度</th><th>當年 B</th><th>當年 A</th><th>隔年 A</th><th class="rowlabel">效益判讀</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2011</td><td class="negv">-3.32</td><td>2.47</td><td>1.25（2012）</td><td class="rowlabel negv">未轉強，反而下滑</td></tr>
+        <tr><td>2013</td><td class="negv">-2.20</td><td>4.77</td><td>3.20（2014）</td><td class="rowlabel negv">未立即轉強</td></tr>
+        <tr><td>2017</td><td class="negv">-5.55</td><td>3.88</td><td>2.52（2018）</td><td class="rowlabel negv">未立即轉強，隔一年（2019）才回升至4.87</td></tr>
+        <tr><td>2019</td><td class="negv">-4.63</td><td>4.87</td><td>4.39（2020）</td><td class="rowlabel">大致持平</td></tr>
+        <tr><td>2024</td><td class="negv">-5.20</td><td>5.99</td><td>8.12（2025）</td><td class="rowlabel pass">明顯轉強，效益兌現</td></tr>
+      </tbody>
+    </table>
+    <p>整體來看，金洲的投資效益比較像「<strong>老將自費特訓型</strong>」——重度投資後，A 不見得隔年立刻回升，效果需要 1～2 年才會浮現（如 2017 年的投資要等到 2019 年才明顯見效），但最近一次（2024 年投資、2025 年 A 大增至 8.12 億）效益兌現速度加快，是近期較正面的訊號。投資活動現金流的細項原始資料未提供，此處僅能依總額判斷方向，實際是否為固定資產增添或金融資產買賣，建議後續向使用者確認細項。</p>
+  </div>
+
+  <!-- 規則四 -->
+  <div class="card" id="rule4">
+    <div class="tag-label">規則四</div>
+    <h3>C 融資活動合理性（B 與 C 組合檢查）</h3>
+    <p>檢查「B 大幅負值同時 C 為正值（疑似舉債支應投資）」的年度：<strong>2011（B=-3.32, C=+0.65）、2012（B=-2.37, C=+1.23）、2017（B=-5.55, C=+0.59）、2018（B=-0.78, C=+0.03）</strong> 這四個年度出現此組合，其中 2011、2012 連續兩年出現，值得留意是否為同一輪擴產的舉債週期。</p>
+    <p><strong>好消息是：本次資料範圍內（2009～2025），A 從未出現負值</strong>，因此不構成「A為負＋C為正/小幅負」的最高警戒訊號組合。融資活動細項（短期借款、公司債、現金增資等組成）本次未提供，無法進一步拆解 C 為正的資金來源結構（是否偏股權或偏純舉債），建議後續有法說會資料時一併確認。</p>
+    <div class="legend">
+      <span><span class="dot" style="background:#ff6b6b"></span>B 投資活動</span>
+      <span><span class="dot" style="background:var(--accent)"></span>C 融資活動</span>
+    </div>
+    <svg class="chart" id="chartBC" style="height:240px;"></svg>
+    <div class="snap-note">淺色底標示「B負值+C正值」疑似舉債投資的年度（2011、2012、2017、2018）。</div>
+  </div>
+
+  <!-- 規則五 -->
+  <div class="card" id="rule5">
+    <div class="tag-label">規則五</div>
+    <h3>A &gt; D 現金流品質（嚴格二分法）</h3>
+    <p>逐年判斷該年 A 是否大於 D（稅前淨利），這是六項規則中<strong>金洲表現相對偏弱的一項</strong>：</p>
+    <table>
+      <thead>
+        <tr><th class="rowlabel">年度</th><th>A</th><th>D</th><th>結果</th></tr>
+      </thead>
+      <tbody id="rule5TableBody"></tbody>
+    </table>
+    <p><strong>17 年中通過 10 年、未通過 7 年，通過率 58.8%</strong>。未通過的年度（2012、2015、2016、2018、2020、2021、2022）中，2015、2016 是 A 僅些微低於 D（差距在 0.01～0.15 億之間，接近打平），2012、2018、2020、2021、2022 則是帳面獲利明顯高於實際現金流入，屬於「<strong>膨風灌水</strong>」型態偏強的年度，代表這些年度帳上賺的錢，有相當比例還沒真正變成現金落袋，可能卡在應收帳款、存貨或其他營運資金上，是本次分析中最需要留意的一項訊號。</p>
+  </div>
+
+  <!-- 規則六 -->
+  <div class="card" id="rule6">
+    <div class="tag-label">規則六</div>
+    <h3>E 期末現金餘額穩定性</h3>
+    <p>期末現金餘額從 2009 年的 1.94 億，一路成長到 2025 年的 11.2 億，長期方向明確向上，屬於「<strong>體質持續變強</strong>」型。中間雖有兩次較明顯的回落（2016→2017：7.48→5.89億；2018→2019：7.77→4.96億），但都在隔年重新回升，未出現長期同步下滑的疲弱訊號，5-10 年期間穩定維持在上升區間。</p>
+    <div class="legend"><span><span class="dot" style="background:var(--pos)"></span>E 期末現金餘額（億）</span></div>
+    <svg class="chart" id="chartE"></svg>
+    <div class="snap-note">高峰以米色標示（2025：11.2億），谷底以粉色標示（2009／2010並列：1.94億）。</div>
+  </div>
+
+  <!-- 總評分 -->
+  <div class="total-score" id="totalScore">
+    <div class="tag-label">總評分</div>
+    <div class="num">69.8<span style="font-size:22px;">分</span></div>
+    <div style="margin-top:6px;">
+      規則一 75　規則二 75　規則三 65　規則四 65　規則五 58.8　規則六 80
+      <span class="score-badge score-mid">良好（60–79%）</span>
+    </div>
+  </div>
+
+  <div class="callout ok" style="margin-top:20px;">
+    <strong>關卡判斷：現金流體質可以繼續看下去。</strong>
+    總分 69.8%，落在「良好」區間，且未出現「A為負＋重度投資＋C為正/小幅負」的三重疊加最高警戒訊號（A 全期間皆為正值）。
+    但<strong>規則五（A&gt;D品質）通過率僅 58.8%</strong>，是六項中唯一低於 60% 的項目，2012、2018、2020～2022 這幾年帳面獲利與實際現金流入的落差值得在後續步驟（法說會、營收趨勢）中留意是否與應收帳款或存貨變化有關。
+    <br><br>
+    要接著進入【第 2 步：基本資訊查詢】嗎？
+  </div>
+
+  <footer class="report-footer">
+    報告版本：v1.0（第 1 步完成）｜生成時間：<span id="genTime"></span><br>
+    資料來源：使用者提供 Goodinfo「4417 金洲 歷年現金流量」截圖（非本次搜尋所得），僅涵蓋 2009～2025 年度數據（另有 26Q2 單季資料，不列入計分）。
+  </footer>
+</section>
+
+<section id="step2"><span class="step-tag">【第 2 步／共 6 步】待進行</span></section>
+<section id="step3"><span class="step-tag">【第 3 步／共 6 步】待進行</span></section>
+<section id="step4"><span class="step-tag">【第 4 步／共 6 步】待進行</span></section>
+<section id="step5"><span class="step-tag">【第 5 步／共 6 步】待進行</span></section>
+<section id="step6"><span class="step-tag">【第 6 步／共 6 步】待進行</span></section>
+
+</main>
+
+<script>
+document.getElementById('genTime').textContent = new Date().toLocaleString('zh-TW', { hour12: false });
+
+const years = [2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const A = [2.52,2.28,2.47,1.25,4.77,3.20,4.04,5.24,3.88,2.52,4.87,4.39,2.37,3.31,6.68,5.99,8.12];
+const B = [-1.23,-0.49,-3.32,-2.37,-2.20,-1.04,-0.23,-0.99,-5.55,-0.78,-4.63,1.54,-1.32,-1.88,-2.06,-5.20,0.92];
+const C = [-1.08,-1.37,0.65,1.23,-2.08,-1.66,-0.71,-2.51,0.59,0.03,-2.60,-4.76,-0.89,-1.33,-2.54,-1.75,-4.50];
+const D = [0.73,1.91,1.48,4.95,2.16,2.70,4.05,5.39,3.59,4.88,4.03,5.27,3.54,5.67,4.39,5.41,7.70];
+const E = [1.94,1.94,2.02,1.84,2.75,3.68,6.68,7.48,5.89,7.77,4.96,5.45,5.39,6.31,7.95,8.01,11.20];
+
+// raw table
+const rawBody = document.getElementById('rawTableBody');
+years.forEach((y,i)=>{
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="rowlabel">${y}</td><td>${A[i].toFixed(2)}</td><td class="${B[i]<0?'negv':''}">${B[i].toFixed(2)}</td><td class="${C[i]<0?'negv':''}">${C[i].toFixed(2)}</td><td>${D[i].toFixed(2)}</td><td>${E[i].toFixed(2)}</td>`;
+  rawBody.appendChild(tr);
+});
+
+// rule5 table
+const r5Body = document.getElementById('rule5TableBody');
+years.forEach((y,i)=>{
+  const pass = A[i] > D[i];
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="rowlabel">${y}</td><td>${A[i].toFixed(2)}</td><td>${D[i].toFixed(2)}</td><td class="${pass?'pass':'fail'}">${pass?'✓ 通過':'✗ 未通過'}</td>`;
+  r5Body.appendChild(tr);
+});
+
+// simple bar chart renderer
+function drawBarChart(svgId, data, labels, opts={}){
+  const svg = document.getElementById(svgId);
+  const W = 900, H = opts.height || 220;
+  const padL = 34, padR = 10, padT = 20, padB = 26;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const maxV = Math.max(...data, 0);
+  const minV = Math.min(...data, 0);
+  const range = (maxV - minV) || 1;
+  const zeroY = padT + innerH * (maxV / range);
+  const barW = innerW / data.length * 0.62;
+  const step = innerW / data.length;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let html = '';
+  html += `<line x1="${padL}" y1="${zeroY}" x2="${W-padR}" y2="${zeroY}" stroke="#3a3f4a" stroke-width="1"/>`;
+
+  const maxIdx = data.indexOf(maxV);
+  const minIdx = data.indexOf(minV<0?minV:Math.min(...data));
+
+  data.forEach((v,i)=>{
+    const x = padL + i*step + (step-barW)/2;
+    const barH = Math.abs(v)/range * innerH;
+    const y = v>=0 ? zeroY - barH : zeroY;
+    let color = opts.color || '#3ba7ff';
+    if(i===maxIdx) color = '#e8c07d';
+    else if(v === minV) color = '#ff9fc3';
+    else if(v<0 && opts.negColor) color = opts.negColor;
+    html += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH,1)}" fill="${color}" rx="2"/>`;
+    const labelY = v>=0 ? y-4 : y+barH+11;
+    html += `<text class="bar-label" x="${x+barW/2}" y="${labelY}" text-anchor="middle">${v.toFixed(1)}</text>`;
+    if(i % 2 === 0 || data.length<10){
+      html += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${labels[i]}</text>`;
+    }
+  });
+  svg.innerHTML = html;
+}
+
+function drawPairedChart(svgId, dataB, dataC, labels, highlightIdx){
+  const svg = document.getElementById(svgId);
+  const W = 900, H = 240;
+  const padL = 34, padR = 10, padT = 20, padB = 30;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const allVals = [...dataB, ...dataC, 0];
+  const maxV = Math.max(...allVals);
+  const minV = Math.min(...allVals);
+  const range = (maxV - minV) || 1;
+  const zeroY = padT + innerH * (maxV/range);
+  const step = innerW / dataB.length;
+  const barW = step*0.34;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let html = '';
+
+  dataB.forEach((v,i)=>{
+    if(highlightIdx.includes(i)){
+      const gx = padL + i*step;
+      html += `<rect x="${gx}" y="${padT}" width="${step}" height="${innerH}" fill="#e8a13d18"/>`;
+    }
+  });
+
+  html += `<line x1="${padL}" y1="${zeroY}" x2="${W-padR}" y2="${zeroY}" stroke="#3a3f4a" stroke-width="1"/>`;
+
+  dataB.forEach((v,i)=>{
+    const x = padL + i*step + step*0.12;
+    const barH = Math.abs(v)/range*innerH;
+    const y = v>=0? zeroY-barH: zeroY;
+    html += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH,1)}" fill="#ff6b6b" rx="2"/>`;
+  });
+  dataC.forEach((v,i)=>{
+    const x = padL + i*step + step*0.54;
+    const barH = Math.abs(v)/range*innerH;
+    const y = v>=0? zeroY-barH: zeroY;
+    html += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH,1)}" fill="#3ba7ff" rx="2"/>`;
+  });
+  labels.forEach((l,i)=>{
+    const x = padL + i*step + step/2;
+    html += `<text class="axis-label" x="${x}" y="${H-8}" text-anchor="middle">${l}</text>`;
+  });
+  svg.innerHTML = html;
+}
+
+drawBarChart('chartA', A, years, {color:'#3ba7ff'});
+drawBarChart('chartB', B, years, {color:'#ff6b6b'});
+drawBarChart('chartE', E, years, {color:'#4fd18b'});
+drawPairedChart('chartBC', B, C, years, [2,3,8,9]); // indices of 2011,2012,2017,2018
+
+// stepnav scroll + click behavior
+const navLinks = document.querySelectorAll('nav.stepnav a.pad');
+navLinks.forEach(link=>{
+  link.addEventListener('click', function(e){
+    if(this.classList.contains('locked')){ e.preventDefault(); return; }
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      window.scrollTo({top: target.offsetTop - 50, behavior:'smooth'});
+    }
+  });
+});
+
+const sections = document.querySelectorAll('main section[id]');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(l=>{
+        l.classList.remove('active');
+        if(l.getAttribute('href') === '#'+id && !l.classList.contains('locked')){
+          l.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
