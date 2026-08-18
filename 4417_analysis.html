@@ -219,8 +219,8 @@
   <a href="#step1" class="pad" data-step="1">① 現金流六大規則</a>
   <a href="#step2" class="pad active" data-step="2">② 基本資訊</a>
   <a href="#step3" class="pad" data-step="3">③ 法說會深入</a>
-  <a href="#step4" class="pad active" data-step="4">④ 營收趨勢</a>
-  <a href="#step5" class="pad locked" data-step="5">⑤ 本益比估值</a>
+  <a href="#step4" class="pad" data-step="4">④ 營收趨勢</a>
+  <a href="#step5" class="pad active" data-step="5">⑤ 本益比估值</a>
   <a href="#step6" class="pad locked" data-step="6">⑥ 投資決策</a>
 </nav>
 
@@ -511,7 +511,49 @@
     第 3、4 步完成時間：<span id="genTime34"></span>
   </footer>
 </section>
-<section id="step5"><span class="step-tag">【第 5 步／共 6 步】待進行</span></section>
+<section id="step5">
+  <span class="step-tag">【第 5 步／共 6 步】前瞻本益比／EPS 預估</span>
+  <h2 class="step-title">4417 金洲｜估值試算</h2>
+
+  <div class="callout warn">
+    <strong>資料限制誠實揭露：</strong>多方查證（鉅亨網、Yahoo股市、nStock、Win投資等）後，<strong>查無任何券商或FactSet等機構針對金洲的正式EPS預估或目標價評等</strong>——小型上櫃股缺乏法人研究覆蓋，公司本身也未提供財測。散戶鬥嘴鼓網站的「目標價48.5-49.5元」僅為純技術指標的AI短線推算（非基本面預估，且為2026/07/06的舊資料），不採用為EPS預估依據。以下改用自行推算的情境試算，非法人共識。
+  </div>
+
+  <div class="card">
+    <h3>FY2026 EPS 情境試算</h3>
+    <p>已知：H1 2026累計EPS = 2.33元（Goodinfo 26Q2欄位）；2025年H2曾大幅優於H1；2026年7月營收出現強力反彈（年增26.8%）。</p>
+    <table>
+      <tr><th class="rowlabel">情境</th><th class="rowlabel">假設</th><th>推算FY2026 EPS</th><th>對應現價(47.10)隱含本益比</th></tr>
+      <tr><td class="rowlabel">保守</td><td class="rowlabel">H2持平於H1</td><td>4.66元</td><td>10.1倍</td></tr>
+      <tr><td class="rowlabel">中性</td><td class="rowlabel">H2略優於H1，反映7月反彈</td><td>5.33元</td><td>8.8倍</td></tr>
+      <tr><td class="rowlabel">樂觀</td><td class="rowlabel">H2延續7月強勁力道，全年追平2025年</td><td>6.13元</td><td>7.7倍</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>目標本益比法（以中性情境EPS 5.33元為基礎）</h3>
+    <table>
+      <tr><th class="rowlabel">假設倍數</th><th>目標價</th></tr>
+      <tr><td class="rowlabel">8倍</td><td>42.6元</td></tr>
+      <tr><td class="rowlabel">10倍</td><td>53.3元</td></tr>
+      <tr><td class="rowlabel">12倍</td><td>64.0元</td></tr>
+    </table>
+    <p>目前股價47.10元落在8-10倍區間內，本益比9.06倍（近四季EPS計算）本身不算貴，但<strong>這幾組數字對「倍數怎麼選」高度敏感，只是敏感度試算不是預測</strong>——金洲過去沒有穩定的法人估值錨點，倍數選擇缺乏外部參考依據。</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>次二年度（2027年）預估完全查無資料，誠實告知，不硬湊數字。</strong>
+  </div>
+
+  <div class="callout" style="margin-top:20px;">
+    第5步完成。要接著問我「該不該投資」進入第6步嗎？（僅使用者主動詢問才會進行）
+  </div>
+
+  <footer class="report-footer" style="margin-top:16px;">
+    第 5 步完成時間：<span id="genTime5"></span>｜EPS情境試算為自行推算，非法人共識，僅供敏感度參考。
+  </footer>
+</section>
+
 <section id="step6"><span class="step-tag">【第 6 步／共 6 步】待進行</span></section>
 
 </main>
@@ -520,6 +562,7 @@
 document.getElementById('genTime').textContent = new Date().toLocaleString('zh-TW', { hour12: false });
 document.getElementById('genTime2').textContent = new Date().toLocaleString('zh-TW', { hour12: false });
 document.getElementById('genTime34').textContent = new Date().toLocaleString('zh-TW', { hour12: false });
+document.getElementById('genTime5').textContent = new Date().toLocaleString('zh-TW', { hour12: false });
 
 const years = [2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
 const A = [2.52,2.28,2.47,1.25,4.77,3.20,4.04,5.24,3.88,2.52,4.87,4.39,2.37,3.31,6.68,5.99,8.12];
