@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>1773 勝一化工｜台股個股分析報告</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14181c;
+    --bg-card:#1c2126;
+    --bg-card-2:#20262c;
+    --border:#2c343b;
+    --text:#e8e6df;
+    --text-dim:#9aa3ab;
+    --text-faint:#5f6a72;
+    --accent:#c9a24b;
+    --accent-2:#7fb0a0;
+    --pos:#7fb0a0;
+    --neg:#d97a6c;
+    --peak:#e8cf8a;
+    --trough:#e0a49a;
+    --locked:#3a4048;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'IBM Plex Mono', monospace;
+    line-height:1.7;
+    padding-bottom:80px;
+  }
+  h1,h2,h3{ font-family:'Noto Serif TC', serif; font-weight:700; letter-spacing:0.02em; }
+  .header{
+    padding:36px 20px 24px; border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg, #191d22 0%, var(--bg) 100%);
+  }
+  .header .eyebrow{ color:var(--accent); font-size:13px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px;}
+  .header h1{ font-size:28px; margin:0 0 6px; color:var(--text); }
+  .header .sub{ color:var(--text-dim); font-size:13px; }
+
+  nav.stepnav{
+    position:sticky; top:0; z-index:50;
+    display:flex; overflow-x:auto;
+    background:rgba(20,24,28,0.97); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:0 8px;
+  }
+  nav.stepnav a{
+    flex:0 0 auto; padding:14px 16px; font-size:12.5px; color:var(--text-faint);
+    text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap;
+    transition:color .2s, border-color .2s;
+  }
+  nav.stepnav a.active{ color:var(--accent); border-bottom-color:var(--accent); }
+  nav.stepnav a.locked{ color:var(--locked); pointer-events:none; }
+
+  main{ max-width:840px; margin:0 auto; padding:0 18px; }
+  section{ padding:36px 0; border-bottom:1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+
+  .step-label{
+    display:inline-block; font-size:12px; letter-spacing:0.1em; color:var(--accent);
+    border:1px solid var(--accent); border-radius:3px; padding:3px 9px; margin-bottom:14px;
+  }
+  h2.step-title{ font-size:22px; margin:0 0 18px; }
+
+  .callout{
+    border-left:3px solid var(--accent); background:var(--bg-card);
+    padding:14px 18px; margin:0 0 22px; border-radius:0 4px 4px 0;
+    font-size:14.5px;
+  }
+  .callout b{ color:var(--accent); }
+  .callout.warn{ border-left-color:var(--neg); }
+  .callout.good{ border-left-color:var(--pos); }
+
+  p{ font-size:14.5px; color:var(--text); margin:0 0 14px; }
+  .dim{ color:var(--text-dim); }
+  .negv{ color:var(--neg); font-weight:600; }
+  .posv{ color:var(--pos); font-weight:600; }
+
+  table{ width:100%; border-collapse:collapse; margin:16px 0 8px; font-size:13px; }
+  th,td{ padding:8px 9px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap; }
+  th:first-child, td:first-child{ text-align:left; }
+  th{ color:var(--accent); font-weight:600; font-size:12px; letter-spacing:0.03em; }
+  tr:hover td{ background:rgba(255,255,255,0.02); }
+  .table-scroll{ overflow-x:auto; }
+  .note{ font-size:12.5px; color:var(--text-faint); margin-top:6px; }
+
+  .rule-block{
+    background:var(--bg-card); border:1px solid var(--border); border-radius:6px;
+    padding:20px; margin-bottom:18px;
+  }
+  .rule-block h3{ font-size:15.5px; margin:0 0 4px; color:var(--text); }
+  .rule-score{ float:right; font-family:'IBM Plex Mono'; font-size:13px; color:var(--accent); }
+  .chart-wrap{ margin:14px 0 6px; }
+  .badge-pass{ color:var(--pos); font-weight:600; }
+  .badge-fail{ color:var(--neg); font-weight:600; }
+
+  .score-summary{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0;
+  }
+  .score-card{ background:var(--bg-card-2); border:1px solid var(--border); border-radius:6px; padding:12px 14px; }
+  .score-card .label{ font-size:11.5px; color:var(--text-faint); }
+  .score-card .val{ font-size:20px; font-weight:600; color:var(--accent); font-family:'IBM Plex Mono'; }
+
+  .total-score{
+    text-align:center; padding:28px 10px; background:var(--bg-card);
+    border:1px solid var(--accent); border-radius:8px; margin:22px 0;
+  }
+  .total-score .num{ font-size:44px; font-weight:700; color:var(--accent); font-family:'Noto Serif TC'; }
+  .total-score .label{ color:var(--text-dim); font-size:13px; margin-top:4px; }
+
+  .version-footer{ padding:24px 0; color:var(--text-faint); font-size:12px; }
+
+  svg.bar-chart text{ font-family:'IBM Plex Mono'; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">台股個股初步分析｜現金流優先，基本面在後</div>
+  <h1>1773 勝一化工</h1>
+  <div class="sub">分析啟動：2026/08/19　｜　資料來源：使用者提供 Goodinfo 現金流量表截圖</div>
+</div>
+
+<nav class="stepnav" id="stepnav">
+  <a href="#step1" class="active">① 現金流六大規則</a>
+  <a href="#step2" class="locked">② 基本資訊</a>
+  <a href="#step3" class="locked">③ 法說會</a>
+  <a href="#step4" class="locked">④ 營收趨勢</a>
+  <a href="#step5" class="locked">⑤ 本益比／EPS</a>
+  <a href="#step6" class="locked">⑥ 投資決策</a>
+</nav>
+
+<main>
+
+<section id="step1">
+  <div class="step-label">第 1 步／共 6 步</div>
+  <h2 class="step-title">現金流量表六大規則分析（盲測階段）</h2>
+
+  <div class="callout">
+    本階段<b>刻意未查詢</b>股價、EPS、產業地位、法說會等任何背景資訊，僅根據現金流量表數字本身做客觀判斷，避免先入為主。基本資訊將於第 2 步後補上。
+  </div>
+
+  <p>資料涵蓋 2005～2026Q2（半年累計）共 22 期，主要評分區間採 <b>2013～2025 年（13個完整年度）</b>，26Q2 為半年累計數字，僅列入趨勢參考，不計入評分。</p>
+
+  <h3 style="font-size:16px;margin:26px 0 10px;">現金流量數據表格（億元）</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>年度</th><th>A 營業活動</th><th>B 投資活動</th><th>C 融資活動</th><th>D 稅前淨利</th><th>E 期末現金餘額</th></tr>
+    <tr><td>26Q2<span class="note">（半年）</span></td><td class="posv">11.70</td><td class="negv">-10.40</td><td class="negv">-0.70</td><td>16.40</td><td>3.74</td></tr>
+    <tr><td>2025</td><td class="posv">30.50</td><td class="negv">-19.40</td><td class="negv">-11.70</td><td>25.10</td><td>3.11</td></tr>
+    <tr><td>2024</td><td class="posv">23.50</td><td class="negv">-13.10</td><td class="negv">-9.46</td><td>22.00</td><td>3.73</td></tr>
+    <tr><td>2023</td><td class="posv">21.10</td><td class="negv">-19.10</td><td class="negv">-3.81</td><td>19.30</td><td>2.79</td></tr>
+    <tr><td>2022</td><td class="posv">22.70</td><td class="negv">-25.50</td><td class="posv">4.31</td><td>22.50</td><td>4.64</td></tr>
+    <tr><td>2021</td><td class="posv">14.20</td><td class="negv">-19.70</td><td class="posv">4.02</td><td>20.00</td><td>3.02</td></tr>
+    <tr><td>2020</td><td class="posv">14.10</td><td class="negv">-9.21</td><td class="negv">-1.74</td><td>14.50</td><td>4.44</td></tr>
+    <tr><td>2019</td><td class="posv">11.50</td><td class="negv">-14.90</td><td class="posv">0.51</td><td>10.90</td><td>1.28</td></tr>
+    <tr><td>2018</td><td class="posv">6.20</td><td class="negv">-6.45</td><td class="negv">-6.90</td><td>11.60</td><td>4.20</td></tr>
+    <tr><td>2017</td><td class="posv">11.50</td><td class="negv">-4.00</td><td class="negv">-5.98</td><td>10.60</td><td>11.40</td></tr>
+    <tr><td>2016</td><td class="posv">8.93</td><td class="negv">-1.71</td><td class="negv">-4.49</td><td>9.44</td><td>9.84</td></tr>
+    <tr><td>2015</td><td class="posv">12.60</td><td class="negv">-1.67</td><td class="negv">-5.51</td><td>7.44</td><td>7.11</td></tr>
+    <tr><td>2014</td><td class="posv">8.31</td><td class="negv">-2.99</td><td class="negv">-4.95</td><td>6.24</td><td>1.65</td></tr>
+    <tr><td>2013</td><td class="posv">4.31</td><td class="negv">-3.14</td><td class="negv">-1.07</td><td>6.56</td><td>1.29</td></tr>
+  </table>
+  </div>
+  <p class="note">資料來源：使用者提供 Goodinfo 截圖（1773 勝一化工 歷年現金流量表）。2005～2012 年資料因截圖字級較小、部分數字辨識信心較低，暫不納入評分，僅供背景參考。</p>
+
+  <h3 style="font-size:16px;margin:30px 0 6px;">六大規則詳細分析</h3>
+
+  <!-- Rule 1 -->
+  <div class="rule-block">
+    <span class="rule-score">90 分</span>
+    <h3>規則一：A 逐季與逐年成長趨勢</h3>
+    <p>A（營業活動現金流）從 2013 年 4.31 億穩定成長至 2025 年 30.50 億，13 年間成長約 <b>6.1 倍</b>。中間僅 2018 年出現明顯回落（6.20億，較2017年11.50億下滑46%），其餘年度大致維持成長或高原整理，2020～2025 年更是連續 5 年逐年墊高（14.1→14.2→22.7→21.1→23.5→30.5）。屬於<b>「本業造血能力持續增強」型</b>：不是曇花一現的單年暴衝，而是有中長期方向的成長軌跡。</p>
+    <div class="chart-wrap" id="chart-rule1"></div>
+  </div>
+
+  <!-- Rule 2 -->
+  <div class="rule-block">
+    <span class="rule-score">75 分</span>
+    <h3>規則二：B 投資紀律評估</h3>
+    <p>B（投資活動現金流）<b>連續 13 年全數為負值</b>，代表勝一持續進行資本支出／投資，屬正常經營行為。規模從 2013～2016 年的 -1.7～-3.1 億，逐步放大到 2021～2025 年的 -13～-25.5 億，投資力度明顯加大，對應同期 A 也同步走高，屬<b>「敢衝且有實力」型</b>：投資規模擴大的同時，本業現金流沒有被拖垮，反而同步成長。<br>需留意的是 2019、2021、2022 三個年度出現 |B| > A（2019: 14.9>11.5；2021: 19.7>14.2；2022: 25.5>22.7），代表這三年投資支出超過當年營業現金流入，資本支出強度偏高，屬觀察重點但非警訊（詳見規則四）。</p>
+    <div class="chart-wrap" id="chart-rule2"></div>
+  </div>
+
+  <!-- Rule 3 -->
+  <div class="rule-block">
+    <span class="rule-score">85 分</span>
+    <h3>規則三：B 投資效益分析（隔年 A 是否轉強）</h3>
+    <p>逐年比對「當年重度投資」與「隔年 A 是否成長」，核心對照指標為 A，非 D：</p>
+    <div class="table-scroll">
+    <table>
+      <tr><th>投資年度</th><th>當年 B</th><th>隔年</th><th>隔年 A</th><th>較投資年 A 變化</th><th>轉化結果</th></tr>
+      <tr><td>2018</td><td class="negv">-6.45</td><td>2019</td><td>11.50</td><td class="posv">+85%</td><td class="badge-pass">轉強</td></tr>
+      <tr><td>2019</td><td class="negv">-14.90</td><td>2020</td><td>14.10</td><td class="posv">+23%</td><td class="badge-pass">轉強</td></tr>
+      <tr><td>2020</td><td class="negv">-9.21</td><td>2021</td><td>14.20</td><td class="posv">+1%</td><td class="badge-pass">持平偏強</td></tr>
+      <tr><td>2021</td><td class="negv">-19.70</td><td>2022</td><td>22.70</td><td class="posv">+60%</td><td class="badge-pass">轉強</td></tr>
+      <tr><td>2022</td><td class="negv">-25.50</td><td>2023</td><td>21.10</td><td class="negv">-7%</td><td class="badge-fail">微幅回落</td></tr>
+      <tr><td>2023</td><td class="negv">-19.10</td><td>2024</td><td>23.50</td><td class="posv">+11%</td><td class="badge-pass">轉強</td></tr>
+      <tr><td>2024</td><td class="negv">-13.10</td><td>2025</td><td>30.50</td><td class="posv">+30%</td><td class="badge-pass">轉強</td></tr>
+    </table>
+    </div>
+    <p class="note">近 7 個重度投資年度中，6 個隔年 A 明顯轉強，僅 2022 年投資後隔年（2023）小幅回落 7%，但仍遠高於 2020 年以前的水準。屬<b>「投資有轉化為造血能力」型</b>，效益兌現速度快、一致性高。</p>
+  </div>
+
+  <!-- Rule 4 -->
+  <div class="rule-block">
+    <span class="rule-score">78 分</span>
+    <h3>規則四：C 融資活動合理性</h3>
+    <p>逐年檢查「B 大幅負值同時 C 為正數或小幅負值」（疑似舉債支應投資）的組合：</p>
+    <div class="chart-wrap" id="chart-rule4"></div>
+    <p>2021 年（B -19.7、C +4.02）與 2022 年（B -25.5、C +4.31）連續兩年出現 B 重度負值同時 C 為正值，代表這兩年除了本業現金流入外，還有外部資金（借款或增資）挹注支應投資。惟本 skill 尚未取得融資活動細項（短期借款／公司債／現金增資等組成），無法判斷這兩年 C 的正值是偏股權（增資）還是偏純舉債，暫標註「查證中」。</p>
+    <div class="callout good">
+      <b>最高警戒訊號檢查：A 為負且 C 為正／小幅負值</b> — 13 年間 A <b>從未轉負</b>（最低為 2013 年 4.31 億），因此本規則定義的三重警訊組合<b>完全未出現</b>。2021、2022 年的「B負C正」屬擴張期常見的融資搭配，而非本業造血不足下的舉債度日。
+    </div>
+  </div>
+
+  <!-- Rule 5 -->
+  <div class="rule-block">
+    <span class="rule-score">62 分</span>
+    <h3>規則五：A &gt; D 現金流品質（嚴格二分法）</h3>
+    <div class="table-scroll">
+    <table>
+      <tr><th>年度</th><th>A</th><th>D</th><th>A &gt; D？</th></tr>
+      <tr><td>2013</td><td>4.31</td><td>6.56</td><td class="badge-fail">不通過</td></tr>
+      <tr><td>2014</td><td>8.31</td><td>6.24</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2015</td><td>12.60</td><td>7.44</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2016</td><td>8.93</td><td>9.44</td><td class="badge-fail">不通過</td></tr>
+      <tr><td>2017</td><td>11.50</td><td>10.60</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2018</td><td>6.20</td><td>11.60</td><td class="badge-fail">不通過</td></tr>
+      <tr><td>2019</td><td>11.50</td><td>10.90</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2020</td><td>14.10</td><td>14.50</td><td class="badge-fail">不通過</td></tr>
+      <tr><td>2021</td><td>14.20</td><td>20.00</td><td class="badge-fail">不通過</td></tr>
+      <tr><td>2022</td><td>22.70</td><td>22.50</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2023</td><td>21.10</td><td>19.30</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2024</td><td>23.50</td><td>22.00</td><td class="badge-pass">通過</td></tr>
+      <tr><td>2025</td><td>30.50</td><td>25.10</td><td class="badge-pass">通過</td></tr>
+    </table>
+    </div>
+    <p>13 年中 8 年通過（2014、2015、2017、2019、2022、2023、2024、2025）＝ <b>61.5%</b>，落在「需觀察」臨界值上緣。屬<b>「時好時壞、非穩定膨風」型</b>：不是長期系統性帳面獲利大於現金流入的膨風型公司，但 2018、2020、2021 三個擴張投資年度出現獲利超前現金流入的情形，值得留意這些年度是否伴隨業外收益（如處分利益、匯兌）墊高稅前淨利。<b>近 4 年（2022～2025）連續全數通過</b>，顯示近期現金流品質有改善跡象。</p>
+  </div>
+
+  <!-- Rule 6 -->
+  <div class="rule-block">
+    <span class="rule-score">55 分</span>
+    <h3>規則六：E 期末現金餘額穩定性</h3>
+    <p>E 從 2013 年 1.29 億快速攀升至 2017 年高峰 11.40 億，隨後 2018～2019 年連續兩年大幅下滑（4.20 → 1.28 億，較高峰重挫 <b>89%</b>），2020 年後回升並在 3～4.6 億區間震盪至今（2025 年 3.11 億、26Q2 3.74 億）。屬<b>「先衝高、後回落、近期低位盤整」型</b>：長期未維持在穩定或持續上升區間，2017～2019 年間出現劇烈波動，雖然近 5 年（2021～26Q2）相對平穩，但穩定水位明顯低於 2016～2017 年的高峰，尚未回到當年水準。</p>
+    <div class="chart-wrap" id="chart-rule6"></div>
+  </div>
+
+  <h3 style="font-size:16px;margin:30px 0 10px;">總評分與關卡建議</h3>
+  <div class="score-summary">
+    <div class="score-card"><div class="label">規則一｜A成長趨勢</div><div class="val">90</div></div>
+    <div class="score-card"><div class="label">規則二｜B投資紀律</div><div class="val">75</div></div>
+    <div class="score-card"><div class="label">規則三｜投資效益</div><div class="val">85</div></div>
+    <div class="score-card"><div class="label">規則四｜融資合理性</div><div class="val">78</div></div>
+    <div class="score-card"><div class="label">規則五｜A&gt;D品質</div><div class="val">62</div></div>
+    <div class="score-card"><div class="label">規則六｜E穩定性</div><div class="val">55</div></div>
+  </div>
+
+  <div class="total-score">
+    <div class="num">74.2</div>
+    <div class="label">六項平均分數　｜　等級：良好（60-79%）</div>
+  </div>
+
+  <div class="callout good">
+    <b>關卡判斷：現金流體質可以繼續看下去。</b> 總分 74.2% 落在「良好」區間，且全程未出現「A為負＋重度投資＋C為正」的三重警戒訊號。主要觀察重點是規則五（A&gt;D 61.5%通過率）與規則六（現金餘額曾大幅波動），建議在第 2 步查基本資訊後，特別留意 2018～2021 年是否有一次性業外損益、以及近年現金水位偏低是否影響股利政策或再投資彈性。
+  </div>
+
+  <div class="note">
+    圖表數據資料來源：使用者提供 Goodinfo「1773 勝一 歷年現金流量表」截圖（2026/08/19 上傳）。分析基準年度：2013～2025（13個完整年度），26Q2 為半年累計數字，標示「半年累計，僅供參考，不列入計分」。
+  </div>
+</section>
+
+<section id="step2"><div class="step-label">第 2 步／共 6 步</div><h2 class="step-title">基本資訊查詢</h2><p class="dim">待進行。</p></section>
+<section id="step3"><div class="step-label">第 3 步／共 6 步</div><h2 class="step-title">法說會資料深入討論</h2><p class="dim">待進行。</p></section>
+<section id="step4"><div class="step-label">第 4 步／共 6 步</div><h2 class="step-title">營收趨勢視覺化</h2><p class="dim">待進行。</p></section>
+<section id="step5"><div class="step-label">第 5 步／共 6 步</div><h2 class="step-title">前瞻本益比／EPS 預估</h2><p class="dim">待進行。</p></section>
+<section id="step6"><div class="step-label">第 6 步／共 6 步</div><h2 class="step-title">投資決策推理</h2><p class="dim">僅使用者主動詢問才進行。</p></section>
+
+<div class="version-footer">
+  v1.0　｜　產生時間：2026-08-19　｜　1773 勝一化工 台股個股分析報告（現金流優先，基本面在後）
+</div>
+
+</main>
+
+<script>
+// ---------- 共用 SVG 長條圖函式 ----------
+function drawBarChart(containerId, labels, values, opts){
+  opts = opts || {};
+  var w = 780, h = 220, padL = 44, padR = 12, padT = 16, padB = 30;
+  var n = values.length;
+  var maxV = Math.max(0, ...values);
+  var minV = Math.min(0, ...values);
+  var range = (maxV - minV) || 1;
+  var chartH = h - padT - padB;
+  var chartW = w - padL - padR;
+  var barW = chartW / n * 0.62;
+  var gap = chartW / n;
+  function y(v){ return padT + chartH * (1 - (v - minV) / range); }
+  var zeroY = y(0);
+  var maxIdx = values.indexOf(maxV);
+  var minIdx = values.indexOf(minV === minV ? Math.min(...values) : minV);
+  var trueMinIdx = values.indexOf(Math.min(...values));
+  var trueMaxIdx = values.indexOf(Math.max(...values));
+
+  var svg = '<svg class="bar-chart" viewBox="0 0 '+w+' '+h+'" width="100%" style="overflow:visible">';
+  svg += '<line x1="'+padL+'" y1="'+zeroY+'" x2="'+(w-padR)+'" y2="'+zeroY+'" stroke="#3a4048" stroke-width="1"/>';
+  for(var i=0;i<n;i++){
+    var v = values[i];
+    var bx = padL + gap*i + (gap-barW)/2;
+    var by = v>=0 ? y(v) : zeroY;
+    var bh = Math.abs(y(v)-zeroY);
+    var color = v>=0 ? '#7fb0a0' : '#d97a6c';
+    if(i===trueMaxIdx) color = '#e8cf8a';
+    if(i===trueMinIdx) color = '#e0a49a';
+    svg += '<rect x="'+bx+'" y="'+by+'" width="'+barW+'" height="'+Math.max(bh,1)+'" fill="'+color+'" rx="1.5"/>';
+    var labelY = v>=0 ? by-5 : by+bh+13;
+    svg += '<text x="'+(bx+barW/2)+'" y="'+labelY+'" font-size="9.5" fill="#9aa3ab" text-anchor="middle">'+v.toFixed(1)+'</text>';
+    svg += '<text x="'+(bx+barW/2)+'" y="'+(h-8)+'" font-size="9.5" fill="#5f6a72" text-anchor="middle">'+labels[i]+'</text>';
+  }
+  svg += '</svg>';
+  document.getElementById(containerId).innerHTML = svg;
+}
+
+function drawPairedChart(containerId, labels, valuesA, valuesB, nameA, nameB, opts){
+  opts = opts || {};
+  var w = 780, h = 240, padL = 44, padR = 12, padT = 30, padB = 34;
+  var n = labels.length;
+  var all = valuesA.concat(valuesB);
+  var maxV = Math.max(0, ...all);
+  var minV = Math.min(0, ...all);
+  var range = (maxV - minV) || 1;
+  var chartH = h - padT - padB;
+  var chartW = w - padL - padR;
+  var gap = chartW / n;
+  var barW = gap*0.34;
+  function y(v){ return padT + chartH * (1 - (v - minV) / range); }
+  var zeroY = y(0);
+
+  var svg = '<svg class="bar-chart" viewBox="0 0 '+w+' '+h+'" width="100%" style="overflow:visible">';
+  svg += '<rect x="'+padL+'" y="10" width="10" height="10" fill="#d97a6c"/><text x="'+(padL+15)+'" y="19" font-size="10.5" fill="#9aa3ab">'+nameA+'</text>';
+  svg += '<rect x="'+(padL+110)+'" y="10" width="10" height="10" fill="#c9a24b"/><text x="'+(padL+125)+'" y="19" font-size="10.5" fill="#9aa3ab">'+nameB+'</text>';
+  svg += '<line x1="'+padL+'" y1="'+zeroY+'" x2="'+(w-padR)+'" y2="'+zeroY+'" stroke="#3a4048" stroke-width="1"/>';
+
+  for(var i=0;i<n;i++){
+    var vA = valuesA[i], vB = valuesB[i];
+    var flag = (opts.flagIdx && opts.flagIdx.indexOf(i) !== -1);
+    var cx = padL + gap*i + gap/2;
+    if(flag){
+      svg += '<rect x="'+(cx-gap/2+2)+'" y="'+padT+'" width="'+(gap-4)+'" height="'+chartH+'" fill="#c9a24b" opacity="0.08" rx="2"/>';
+    }
+    var byA = vA>=0 ? y(vA) : zeroY;
+    var bhA = Math.abs(y(vA)-zeroY);
+    svg += '<rect x="'+(cx-barW-1)+'" y="'+byA+'" width="'+barW+'" height="'+Math.max(bhA,1)+'" fill="#d97a6c" rx="1.5"/>';
+    var labelYA = vA>=0 ? byA-5 : byA+bhA+12;
+    svg += '<text x="'+(cx-barW/2-1)+'" y="'+labelYA+'" font-size="8.5" fill="#9aa3ab" text-anchor="middle">'+vA.toFixed(1)+'</text>';
+
+    var byB = vB>=0 ? y(vB) : zeroY;
+    var bhB = Math.abs(y(vB)-zeroY);
+    svg += '<rect x="'+(cx+1)+'" y="'+byB+'" width="'+barW+'" height="'+Math.max(bhB,1)+'" fill="#c9a24b" rx="1.5"/>';
+    var labelYB = vB>=0 ? byB-5 : byB+bhB+12;
+    svg += '<text x="'+(cx+barW/2+1)+'" y="'+labelYB+'" font-size="8.5" fill="#9aa3ab" text-anchor="middle">'+vB.toFixed(1)+'</text>';
+
+    svg += '<text x="'+cx+'" y="'+(h-10)+'" font-size="9.5" fill="#5f6a72" text-anchor="middle">'+labels[i]+'</text>';
+  }
+  svg += '</svg>';
+  document.getElementById(containerId).innerHTML = svg;
+}
+
+var years13 = ['13','14','15','16','17','18','19','20','21','22','23','24','25'];
+var A = [4.31,8.31,12.6,8.93,11.5,6.2,11.5,14.1,14.2,22.7,21.1,23.5,30.5];
+var B = [-3.14,-2.99,-1.67,-1.71,-4.0,-6.45,-14.9,-9.21,-19.7,-25.5,-19.1,-13.1,-19.4];
+var C = [-1.07,-4.95,-5.51,-4.49,-5.98,-6.9,0.51,-1.74,4.02,4.31,-3.81,-9.46,-11.7];
+var E = [1.29,1.65,7.11,9.84,11.4,4.2,1.28,4.44,3.02,4.64,2.79,3.73,3.11];
+
+drawBarChart('chart-rule1', years13, A);
+drawBarChart('chart-rule2', years13, B);
+drawPairedChart('chart-rule4', years13, B, C, 'B 投資活動', 'C 融資活動', {flagIdx:[8,9]});
+drawBarChart('chart-rule6', years13, E);
+
+// ---------- 導覽選單 scroll spy ----------
+(function(){
+  var navLinks = document.querySelectorAll('#stepnav a:not(.locked)');
+  var sections = [];
+  navLinks.forEach(function(a){
+    var id = a.getAttribute('href').substring(1);
+    var el = document.getElementById(id);
+    if(el) sections.push({id:id, el:el, link:a});
+  });
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = document.getElementById(a.getAttribute('href').substring(1));
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  function onScroll(){
+    var pos = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function(s){
+      if(s.el.offsetTop <= pos) current = s;
+    });
+    sections.forEach(function(s){ s.link.classList.remove('active'); });
+    if(current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
