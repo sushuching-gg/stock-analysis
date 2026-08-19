@@ -382,7 +382,39 @@
 
   <p class="note">資料來源：<a href="https://vocus.cc/article/6a15551ffd89780001ef5c2d" style="color:var(--accent)">2026/05/26 勝一法說會逐字稿整理（vocus.cc）</a>；法說會場次資訊另交叉比對<a href="https://poorstock.com/earningcall/1773" style="color:var(--accent)">散戶鬥嘴鼓法說會頁面</a>。此為財經媒體對官方法說會口述內容的整理，非本skill直接讀取官方PDF/影音，如需逐字確認請自行開啟<a href="https://mopsov.twse.com.tw/nas/STR/177320260525M001.pdf" style="color:var(--accent)">官方PDF</a>或<a href="http://irconference.twse.com.tw/1773_15_20260526_ch.MP4" style="color:var(--accent)">直播影音</a>。</p>
 </section>
-<section id="step4"><div class="step-label">第 4 步／共 6 步</div><h2 class="step-title">營收趨勢視覺化</h2><p class="dim">待進行。</p></section>
+<section id="step4">
+  <div class="step-label">第 4 步／共 6 步</div>
+  <h2 class="step-title">營收趨勢視覺化</h2>
+
+  <div class="callout good">
+    近12個月（2025/08～2026/07）合併營收呈現<b>逐步墊高</b>格局，2026/07單月13.37億創本區間新高，年增達<b>+33.6%</b>，與第3步法說會揭露的電子級溶劑放量、大客戶佔比攀升趨勢一致。
+  </div>
+
+  <h3 style="font-size:16px;margin:24px 0 10px;">近12個月合併營收（億元）</h3>
+  <div class="chart-wrap" id="chart-revenue"></div>
+
+  <div class="table-scroll">
+  <table>
+    <tr><th>月份</th><th>單月營收（億）</th><th>月增%</th><th>年增%</th></tr>
+    <tr><td>2025/08</td><td>9.58</td><td class="negv">-4.32</td><td class="negv">-9.07</td></tr>
+    <tr><td>2025/09</td><td>9.61</td><td class="posv">+0.35</td><td class="dim">0.00</td></tr>
+    <tr><td>2025/10</td><td>9.65</td><td class="posv">+0.46</td><td class="negv">-0.52</td></tr>
+    <tr><td>2025/11</td><td>10.49</td><td class="posv">+8.67</td><td class="posv">+8.30</td></tr>
+    <tr><td>2025/12</td><td>9.65</td><td class="negv">-8.04</td><td class="posv">+0.92</td></tr>
+    <tr><td>2026/01</td><td>10.19</td><td class="posv">+5.64</td><td class="posv">+28.5</td></tr>
+    <tr><td>2026/02</td><td>9.03</td><td class="negv">-11.4</td><td class="negv">-9.89</td></tr>
+    <tr><td>2026/03</td><td>11.22</td><td class="posv">+24.3</td><td class="posv">+17.1</td></tr>
+    <tr><td>2026/04</td><td>11.86</td><td class="posv">+5.64</td><td class="posv">+31.8</td></tr>
+    <tr><td>2026/05</td><td>11.72</td><td class="negv">-1.16</td><td class="posv">+28.4</td></tr>
+    <tr><td>2026/06</td><td>12.50</td><td class="posv">+6.70</td><td class="posv">+20.5</td></tr>
+    <tr><td>2026/07</td><td class="posv">13.37</td><td class="posv">+6.89</td><td class="posv">+33.6</td></tr>
+  </table>
+  </div>
+
+  <p><b>波動原因判讀：</b>2026/02單月營收9.03億（月減11.4%、年減9.89%）明顯是農曆春節假期出貨天數減少所致，屬季節性正常波動，隔月（2026/03）即單月大增24.3%回補，全年趨勢並未受影響。2025/12至2026/01也出現類似「先降後升」的月度鋸齒波動，同屬工作天數差異，並非營運轉弱訊號。</p>
+  <p><b>年增率轉強的關鍵時點：</b>從2025/08～2025/12年增率多在0%上下（甚至負值），到2026/01起年增率躍升至+28%以上並持續維持在+17%~+34%區間，時間點與第3步法說會所述「電子級溶劑佔比從2025年平均72.3%提升至2026Q1的75.8%」高度吻合，可視為產品組合轉型效益開始顯著反映在營收數字上的轉折點。</p>
+  <p class="note">資料來源：使用者提供 Goodinfo「1773 勝一 每月營收」截圖（2026/08/19 19:42上傳），涵蓋2025/08～2026/07共12個月合併營收數字。</p>
+</section>
 <section id="step5"><div class="step-label">第 5 步／共 6 步</div><h2 class="step-title">前瞻本益比／EPS 預估</h2><p class="dim">待進行。</p></section>
 <section id="step6"><div class="step-label">第 6 步／共 6 步</div><h2 class="step-title">投資決策推理</h2><p class="dim">僅使用者主動詢問才進行。</p></section>
 
@@ -486,6 +518,10 @@ drawBarChart('chart-rule1', years13, A);
 drawBarChart('chart-rule2', years13, B);
 drawPairedChart('chart-rule4', years13, B, C, 'B 投資活動', 'C 融資活動', {flagIdx:[8,9]});
 drawBarChart('chart-rule6', years13, E);
+
+var revMonths = ['25/08','25/09','25/10','25/11','25/12','26/01','26/02','26/03','26/04','26/05','26/06','26/07'];
+var revValues = [9.58,9.61,9.65,10.49,9.65,10.19,9.03,11.22,11.86,11.72,12.50,13.37];
+drawBarChart('chart-revenue', revMonths, revValues);
 
 // ---------- 導覽選單 scroll spy ----------
 (function(){
