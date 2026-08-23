@@ -62,7 +62,7 @@
   <a href="#step1" class="active">① 現金流六大規則</a>
   <a href="#step2">② 基本資訊</a>
   <a href="#step3">③ 法說會深入</a>
-  <a href="#step4" class="locked">④ 營收趨勢</a>
+  <a href="#step4">④ 營收趨勢</a>
   <a href="#step5" class="locked">⑤ 前瞻本益比</a>
   <a href="#step6" class="locked">⑥ 投資決策</a>
 </nav>
@@ -351,7 +351,61 @@
   </div>
 </section>
 
-<section id="step4" class="card" style="opacity:.5;"><span class="step-badge" style="background:var(--locked);">第 4 步：待進行營收趨勢視覺化</span></section>
+<section id="step4">
+  <div class="card">
+    <span class="step-badge">【第 4 步／共 6 步：營收趨勢視覺化】</span>
+    <h2>1582 信錦 近12期月營收趨勢</h2>
+
+    <div class="highlight">
+      <strong>2026年上半年營收確實低迷（2月營收月減33.1%探底），但7月營收8.69億元大幅回升，月增39.1%、年增22.5%，是近12個月最高點——初步呼應法說會「下半年優於上半年」的說法，但單月數字仍需觀察是否能延續，避免過早解讀為趨勢反轉。</strong>
+    </div>
+
+    <div class="bar-wrap">
+      <svg viewBox="0 0 620 190" width="100%" height="190">
+        <line x1="40" y1="150" x2="600" y2="150" stroke="#999" stroke-width="1"/>
+        <g font-size="9" fill="#333" text-anchor="middle">
+          <rect x="45" y="43.05" width="35" height="106.95" fill="#0f6d5c"/><text x="62" y="38">7.13</text><text x="62" y="163">25/08</text>
+          <rect x="90" y="38.25" width="35" height="111.75" fill="#0f6d5c"/><text x="107" y="33">7.45</text><text x="107" y="163">25/09</text>
+          <rect x="135" y="44.7" width="35" height="105.3" fill="#0f6d5c"/><text x="152" y="40">7.02</text><text x="152" y="163">25/10</text>
+          <rect x="180" y="41.4" width="35" height="108.6" fill="#0f6d5c"/><text x="197" y="37">7.24</text><text x="197" y="163">25/11</text>
+          <rect x="225" y="46.65" width="35" height="103.35" fill="#0f6d5c"/><text x="242" y="42">6.89</text><text x="242" y="163">25/12</text>
+          <rect x="270" y="26.55" width="35" height="123.45" fill="#0f6d5c"/><text x="287" y="22">8.23</text><text x="287" y="163">26/01</text>
+          <rect x="315" y="67.35" width="35" height="82.65" fill="var(--trough)" stroke="#c0392b"/><text x="332" y="63">5.51</text><text x="332" y="163">26/02</text>
+          <rect x="360" y="38.85" width="35" height="111.15" fill="#0f6d5c"/><text x="377" y="34">7.41</text><text x="377" y="163">26/03</text>
+          <rect x="405" y="34.35" width="35" height="115.65" fill="#0f6d5c"/><text x="422" y="30">7.71</text><text x="422" y="163">26/04</text>
+          <rect x="450" y="58.35" width="35" height="91.65" fill="#0f6d5c"/><text x="467" y="54">6.11</text><text x="467" y="163">26/05</text>
+          <rect x="495" y="56.25" width="35" height="93.75" fill="#0f6d5c"/><text x="512" y="52">6.25</text><text x="512" y="163">26/06</text>
+          <rect x="540" y="19.65" width="35" height="130.35" fill="var(--peak)" stroke="#0f6d5c"/><text x="557" y="15">8.69</text><text x="557" y="163">26/07</text>
+        </g>
+      </svg>
+      <div class="legend"><span><span class="dot" style="background:var(--peak);"></span>近12月高點</span><span><span class="dot" style="background:var(--trough);"></span>近12月低點</span></div>
+    </div>
+
+    <table>
+      <thead><tr><th>年月</th><th>單月營收（億）</th><th>月增率</th><th>年增率</th></tr></thead>
+      <tbody>
+        <tr><td>2026/07</td><td class="pos">8.69</td><td class="pos">+39.1%</td><td class="pos">+22.5%</td></tr>
+        <tr><td>2026/06</td><td>6.25</td><td class="pos">+2.24%</td><td class="negv">-9.5%</td></tr>
+        <tr><td>2026/05</td><td>6.11</td><td class="negv">-20.8%</td><td class="negv">-10.8%</td></tr>
+        <tr><td>2026/04</td><td>7.71</td><td class="pos">+3.98%</td><td class="negv">-1.13%</td></tr>
+        <tr><td>2026/03</td><td>7.41</td><td class="pos">+34.6%</td><td class="negv">-0.09%</td></tr>
+        <tr><td>2026/02</td><td class="negv">5.51</td><td class="negv">-33.1%</td><td class="negv">-22.9%</td></tr>
+        <tr><td>2026/01</td><td>8.23</td><td class="pos">+19.4%</td><td class="pos">+4.65%</td></tr>
+        <tr><td>2025/12</td><td>6.89</td><td class="negv">-4.78%</td><td class="negv">-20.6%</td></tr>
+        <tr><td>2025/11</td><td>7.24</td><td class="pos">+3.11%</td><td class="negv">-1.01%</td></tr>
+        <tr><td>2025/10</td><td>7.02</td><td class="negv">-5.7%</td><td class="pos">+7%</td></tr>
+        <tr><td>2025/09</td><td>7.45</td><td class="pos">+4.42%</td><td class="pos">+0.74%</td></tr>
+        <tr><td>2025/08</td><td>7.13</td><td class="pos">+0.54%</td><td class="negv">-12.2%</td></tr>
+      </tbody>
+    </table>
+
+    <p>整體來看，2025下半年至2026上半年營收在6～8億元區間波動，年增率多數為負，反映PC/顯示器產業庫存調整的壓力（呼應第3步法說會說法）。<strong>2026年2月營收明顯探底（5.51億，月減33.1%）</strong>，此為農曆春節工作天數較少的季節性因素影響，2月營收偏低在信錦歷年資料中屬常態，不宜過度解讀為基本面惡化。<strong>2026年7月營收8.69億，是近12個月最高，且年增率轉正達22.5%</strong>，值得後續追蹤是否為低軌衛星新專案開始貢獻，或僅是單月拉貨效應，建議留意8、9月是否能延續此增長動能。</p>
+
+    <div class="snap-note">📷 資料來源：使用者提供 Goodinfo 每月營收走勢圖截圖（1582信錦，資料涵蓋至2026/07）。</div>
+  </div>
+</section>
+
+<section id="step5" class="card" style="opacity:.5;"><span class="step-badge" style="background:var(--locked);">第 5 步：待進行前瞻本益比／EPS預估</span></section>
 
 </main>
 
