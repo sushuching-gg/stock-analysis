@@ -172,7 +172,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
     <button class="pad locked" data-target="step2">② 基本資訊</button>
     <button class="pad" data-target="step3">③ 法說會</button>
     <button class="pad" data-target="step4">④ 營收趨勢</button>
-    <button class="pad locked" data-target="step5">⑤ 前瞻本益比</button>
+    <button class="pad" data-target="step5">⑤ 前瞻本益比</button>
     <button class="pad locked" data-target="step6">⑥ 投資決策</button>
   </nav>
 </header>
@@ -1333,9 +1333,296 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
   </script>
 
 </section>
-<section id="step5" style="opacity:0.4; pointer-events:none;">
+<section id="step5">
   <h2><span class="step-badge">第 5 步 / 共 6 步</span> 前瞻本益比／EPS 預估</h2>
-  <p style="color:var(--text3); font-style:italic;">待完成第四步後解鎖……</p>
+
+  <style>
+    .scenario-table td.bear  { color: var(--neg);  font-weight:600; }
+    .scenario-table td.base  { color: var(--warn); font-weight:600; }
+    .scenario-table td.bull  { color: var(--pos);  font-weight:600; }
+    .scenario-table th.bear  { background: rgba(220,38,38,0.1); }
+    .scenario-table th.base  { background: rgba(217,119,6,0.1);  }
+    .scenario-table th.bull  { background: rgba(22,163,74,0.1);  }
+    .pe-meter-wrap { margin: 1.2rem 0; }
+    .pe-meter-track {
+      position:relative; height:28px; background:var(--bg3);
+      border:1px solid var(--border); border-radius:14px; overflow:visible;
+    }
+    .pe-meter-segment {
+      position:absolute; height:100%; border-radius:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:10px; color:#fff; font-weight:600;
+    }
+    .pe-pin {
+      position:absolute; top:-8px; width:4px; height:44px;
+      background: var(--accent); border-radius:2px; transform:translateX(-2px);
+    }
+    .pe-pin-label {
+      position:absolute; top:-22px; white-space:nowrap;
+      font-size:10px; font-weight:700; color:var(--accent);
+      transform:translateX(-50%);
+    }
+    .fair-val-bar {
+      display:flex; align-items:stretch; gap:0; border:1px solid var(--border);
+      border-radius:6px; overflow:hidden; margin:0.6rem 0;
+    }
+    .fair-val-seg {
+      flex:1; padding:6px 4px; text-align:center;
+      font-size:11px; line-height:1.4;
+    }
+  </style>
+
+  <!-- ── 0. 重要說明 ──────────────────────── -->
+  <div class="highlight-box" style="border-color:var(--warn); background:var(--tag-warn); color:var(--tag-warn-text); margin-bottom:1.5rem;">
+    ⚠️ <strong>本步驟為自行估算，非法人研究報告。</strong>H1 EPS 為公司自結數字，H2 為情境推算，存在高度不確定性。此分析僅供學習討論，不構成投資建議。
+  </div>
+
+  <!-- ── 1. 已知確認基礎 ──────────────────── -->
+  <h3>5-1　已知確認數字（截至 2026/08/21）</h3>
+  <div class="score-cards" style="margin-bottom:1.2rem;">
+    <div class="score-card" style="border-color:var(--pos);">
+      <div class="score-val" style="color:var(--pos); font-size:1.4rem;">3.66 元</div>
+      <div class="score-label">2026 H1 EPS（公司自結）</div>
+    </div>
+    <div class="score-card" style="border-color:var(--pos);">
+      <div class="score-val" style="color:var(--pos); font-size:1.4rem;">84.3 億</div>
+      <div class="score-label">H1 稅後純益（年增 +318%）</div>
+    </div>
+    <div class="score-card" style="border-color:var(--accent);">
+      <div class="score-val" style="color:var(--accent); font-size:1.4rem;">8.56 倍</div>
+      <div class="score-label">近四季追蹤 P/E（EPS 3.58 元）</div>
+    </div>
+    <div class="score-card" style="border-color:var(--warn);">
+      <div class="score-val" style="color:var(--warn); font-size:1.4rem;">30.65 元</div>
+      <div class="score-label">現股價（已含除股息調整）</div>
+    </div>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead><tr><th>項目</th><th>數字</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>2026 Q1 EPS</td><td class="pos-val">1.34 元</td><td>單季歷史新高；年增 +235%</td></tr>
+        <tr><td>2026 Q2 EPS（推算）</td><td class="pos-val">2.32 元</td><td>H1(3.66) − Q1(1.34)；4月高峰月（46.48億）的最大受益季</td></tr>
+        <tr><td>2025 H2 EPS（實際）</td><td>1.71 元</td><td>Q3=0.94 + Q4=0.77；作為 H2 2026 熊市情境基準</td></tr>
+        <tr><td>股票股利稀釋（已於 08/11 除息）</td><td class="warn-val">+13.1%</td><td>配發 1.31 元股票股利，除息後股本擴大約 13.1%</td></tr>
+        <tr><td>稀釋後 H1 EPS（估）</td><td>≈ 3.24 元</td><td>84.3 億 ÷ 新股本 26.05 億股</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 2. H2 情境分析 ───────────────────── -->
+  <h3 style="margin-top:2rem;">5-2　2026 全年 EPS 三情境估算</h3>
+  <p>H1 EPS 3.66 元已為確定，差異在於 <strong>H2 的市場環境</strong>。以 2025 H2（39.3 億稅後）為基準，建立三個場景：</p>
+
+  <div class="data-table-wrap">
+    <table class="data-table scenario-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th class="bear">🐻 熊市情境</th>
+          <th class="base">⚖ 基本情境</th>
+          <th class="bull">🐂 牛市情境</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>H2 情境假設</strong></td>
+          <td>H2 = 2025H2 水準<br>（市場大幅冷卻，月均~18-20億）</td>
+          <td>H2 年增 +25%<br>（市場溫和，月均~22-25億）</td>
+          <td>H2 年增 +50%<br>（AI牛市延續，月均~28億+）</td>
+        </tr>
+        <tr>
+          <td><strong>H2 稅後淨利</strong></td>
+          <td class="bear">≈ 39.3 億</td>
+          <td class="base">≈ 49.1 億</td>
+          <td class="bull">≈ 59.0 億</td>
+        </tr>
+        <tr>
+          <td><strong>H2 EPS（舊股本）</strong></td>
+          <td class="bear">≈ 1.71 元</td>
+          <td class="base">≈ 2.13 元</td>
+          <td class="bull">≈ 2.56 元</td>
+        </tr>
+        <tr>
+          <td><strong>全年 EPS（舊股本，未稀釋）</strong></td>
+          <td class="bear">≈ 5.37 元</td>
+          <td class="base">≈ 5.79 元</td>
+          <td class="bull">≈ 6.22 元</td>
+        </tr>
+        <tr>
+          <td><strong>全年 EPS（稀釋後 ÷1.131）</strong></td>
+          <td class="bear">≈ 4.75 元</td>
+          <td class="base">≈ 5.12 元</td>
+          <td class="bull">≈ 5.50 元</td>
+        </tr>
+        <tr style="background:var(--highlight);">
+          <td><strong>前瞻 P/E @ 30.65 元（稀釋後）</strong></td>
+          <td class="bear"><strong>6.5 倍</strong></td>
+          <td class="base"><strong>6.0 倍</strong></td>
+          <td class="bull"><strong>5.6 倍</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:0.82rem; color:var(--text3); margin-top:6px;">
+    ※ 「舊股本」≈23億股（除息前），「稀釋後」≈26.05億股。因股票股利於 08/11 除息，H1 EPS 財報將於 Q2 正式報表中依新股本追溯重編（約調降12%），稀釋後數字更接近正式財報。
+  </p>
+
+  <!-- ── 3. P/E 位置圖 ────────────────────── -->
+  <h3 style="margin-top:2rem;">5-3　前瞻 P/E 在歷史脈絡中的位置</h3>
+  <p>券商股本益比因業務週期波動大，牛市末段可達 15–25 倍，熊市底部可能跌破 5 倍：</p>
+
+  <!-- P/E 量尺視覺化 -->
+  <div class="pe-meter-wrap">
+    <div style="font-size:0.8rem; color:var(--text3); margin-bottom:8px;">▌ 券商股 P/E 歷史分佈示意（8–100% 範圍）</div>
+    <div class="pe-meter-track" style="margin:0 20px;">
+      <!-- 熊市區：P/E 4-7 → 0% to 30% -->
+      <div class="pe-meter-segment" style="left:0; width:30%; background:rgba(220,38,38,0.25); border-radius:14px 0 0 14px; font-size:9px; color:var(--neg);">熊市 4–7倍</div>
+      <!-- 合理區：P/E 7-13 → 30% to 72% -->
+      <div class="pe-meter-segment" style="left:30%; width:42%; background:rgba(217,119,6,0.2); font-size:9px; color:var(--warn);">合理 7–13倍</div>
+      <!-- 牛市區：P/E 13-25 → 72% to 100% -->
+      <div class="pe-meter-segment" style="left:72%; width:28%; background:rgba(22,163,74,0.2); border-radius:0 14px 14px 0; font-size:9px; color:var(--pos);">牛市 13–25倍</div>
+      <!-- 當前 P/E 指針：trailing 8.56 → (8.56-4)/(25-4) ≈ 21.7% → left ≈ 21.7% -->
+      <div class="pe-pin" style="left:21.7%;">
+        <div class="pe-pin-label">Trailing<br>8.56倍</div>
+      </div>
+      <!-- 前瞻 P/E 基本：6.0 → (6-4)/(21) ≈ 9.5% -->
+      <div class="pe-pin" style="left:9.5%; background:var(--pos);">
+        <div class="pe-pin-label" style="color:var(--pos);">前瞻基本<br>6.0倍</div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin:4px 20px 0; font-size:9px; color:var(--text3);">
+      <span>4×</span><span>7×</span><span>10×</span><span>13×</span><span>16×</span><span>20×</span><span>25×</span>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:0.8rem;">
+    <strong>估值訊號：前瞻 P/E 落在「熊市 / 合理」邊界區（6–6.5 倍），市場目前隱含著極度保守的定價</strong><br><br>
+    若以 Trailing P/E（8.56倍）看，已算合理偏低；但以 <strong>前瞻 EPS 計算（稀釋後 5.1 元）</strong>，P/E 僅 6 倍，顯示市場對下半年業績極不樂觀，或根本沒有把上半年超強 EPS 納入估值。<br><br>
+    關鍵問題是：「市場是在正確定價（下半年將大幅衰退），還是低估（熊市只是市場過度悲觀）？」這個問題的答案，就是 7 月之後月營收的走向。
+  </div>
+
+  <!-- ── 4. 合理股價情境 ───────────────────── -->
+  <h3 style="margin-top:2rem;">5-4　合理股價情境（以稀釋後 EPS × P/E 倍數）</h3>
+  <p>以基本情境 EPS 5.12 元為基準，乘以不同 P/E 倍數：</p>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>P/E 倍數</th><th>適用情境</th><th>對應股價（EPS 熊市 4.75）</th><th>對應股價（EPS 基本 5.12）</th><th>對應股價（EPS 牛市 5.50）</th><th>vs 現價 30.65</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(220,38,38,0.06);">
+          <td><strong>5 倍</strong></td><td>市場極度悲觀</td>
+          <td class="neg-val">23.8 元</td><td class="neg-val">25.6 元</td><td class="neg-val">27.5 元</td>
+          <td class="neg-val">-22% 到 -10%</td>
+        </tr>
+        <tr>
+          <td><strong>6 倍</strong></td><td>熊市偏低估值</td>
+          <td>28.5 元</td><td>30.7 元</td><td>33.0 元</td>
+          <td style="color:var(--warn);">≈ 現價（已隱含）</td>
+        </tr>
+        <tr style="background:rgba(217,119,6,0.06);">
+          <td><strong>8 倍</strong></td><td>合理中性（歷史均值偏低）</td>
+          <td>38.0 元</td><td class="warn-val">41.0 元</td><td>44.0 元</td>
+          <td class="pos-val">+24% 到 +44%</td>
+        </tr>
+        <tr style="background:rgba(22,163,74,0.06);">
+          <td><strong>10 倍</strong></td><td>正常牛市</td>
+          <td>47.5 元</td><td class="pos-val">51.2 元</td><td>55.0 元</td>
+          <td class="pos-val">+55% 到 +80%</td>
+        </tr>
+        <tr>
+          <td><strong>13 倍</strong></td><td>牛市高估值（較樂觀）</td>
+          <td>61.8 元</td><td class="pos-val">66.6 元</td><td>71.5 元</td>
+          <td class="pos-val">+101% 到 +133%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin:1rem 0; font-size:0.85rem; color:var(--text2);">
+    <strong>現價 30.65 元隱含的市場假設：</strong>市場目前將群益證定價在「全年 EPS 約 5.1 元，P/E 約 6 倍」的組合。換句話說，<em>市場已完全預期上半年的超強業績，但拒絕給予超過 6 倍本益比的估值溢價</em>——這通常發生在：(a) 市場認為業績高點不可持續，(b) 公司本身體質問題，(c) 整體券商股估值折價。
+  </div>
+
+  <!-- ── 5. 同業快速比較 ───────────────────── -->
+  <h3 style="margin-top:2rem;">5-5　同業快速比較（2026/08 當下快照）</h3>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>公司</th><th>代號</th><th>股價</th><th>2025 全年 EPS</th><th>2026 Q1 EPS</th><th>Trailing P/E</th><th>市場地位</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--highlight);">
+          <td><strong>群益金鼎證</strong></td><td>6005</td><td>30.65 元</td>
+          <td>2.64 元</td><td class="pos-val">1.34 元（↑235%）</td>
+          <td class="warn-val">8.56 倍</td>
+          <td>融資餘額全市場第8，權證第3，股務代理第4</td>
+        </tr>
+        <tr>
+          <td>統一證</td><td>2855</td><td>47.1 元</td>
+          <td>3.0 元</td><td class="pos-val">1.43 元（↑2960%）</td>
+          <td>—</td>
+          <td>全服務券商，規模略大於群益</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:0.82rem; color:var(--text3); margin-top:6px;">
+    注：元富證（2856）資料不足，未列入。統一證 Trailing P/E 因缺少 Q2–Q4 2025 季度拆分資料，暫不計算以避免誤導。<br>
+    相同環境下統一證 Q1 EPS 年增幅（+2960%）因 2025 Q1 基期極低（接近零獲利）所致，不代表本業能力優於群益。
+  </p>
+
+  <!-- ── 6. 核心評估與下半年關鍵觀察指標 ─── -->
+  <h3 style="margin-top:2rem;">5-6　核心評估：低估還是陷阱？</h3>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">🟢 支撐「低估論」的理由</div>
+    <div class="rule-body">
+      前瞻 P/E 6 倍、股價淨值比 1.4 倍，對一家 ROE 達 16.7%、H1 創歷史新高的公司來說，估值明顯偏低。H1 稅後純益 84.3 億已超過全年目標（管理層目標 100 億，H2 只需 15.7 億），技術上難以「滑鐵盧」。<br><br>
+      若以 8 倍 P/E 評價基本情境 EPS 5.12 元 → 合理股價 <strong>41 元</strong>，距現價有 34% 上行空間。
+    </div>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">🔴 支撐「陷阱論」的理由</div>
+    <div class="rule-body">
+      7 月月營收 20.46 億，MoM 驟降 43.9%，已接近 2025 年底的水準——若這代表行情高點已過，H2 可能比熊市情境還弱。<br><br>
+      更根本的問題：<strong>券商股的獲利能力是完全跟市場走的，EPS 高點往往是最好的賣點而不是買點。</strong> 看這支股票是否在 Q3 / Q4 維持月營收 25億+，是最關鍵的追蹤指標。此外，股票股利政策（稀釋舊股東）也降低了實際的報酬率。
+    </div>
+  </div>
+
+  <!-- 下半年關鍵觀察指標 -->
+  <div style="background:var(--bg2); border:2px solid var(--accent); border-radius:10px; padding:1.2rem 1.6rem; margin-top:1rem;">
+    <strong>📌 投資決策前必須追蹤的三個指標</strong>
+    <div style="margin-top:0.8rem; display:flex; flex-direction:column; gap:0.6rem;">
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <span style="min-width:28px; font-weight:700; color:var(--accent);">① </span>
+        <span><strong>2026/08 月營收（約10月初公布）</strong>：若月營收回到 25億以上，代表市場回溫，基本情境成立；若跌破 20億，熊市情境機率升高。</span>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <span style="min-width:28px; font-weight:700; color:var(--accent);">② </span>
+        <span><strong>2026 Q2 正式財報（8月底公布）</strong>：確認 Q2 EPS 是否接近推算的 2.32 元，以及是否有一次性項目影響。</span>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <span style="min-width:28px; font-weight:700; color:var(--accent);">③ </span>
+        <span><strong>台股整體成交量趨勢</strong>：群益證 47% 的收入來自手續費，台股日均成交量若持續低於 4,000 億元，下半年業績壓力確立。</span>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:1rem; font-size:0.8rem; color:var(--text3);">
+    資料來源：
+    <a href="https://money.udn.com/money/story/5710/9614798" target="_blank">經濟日報 群益證 H1 自結獲利</a> ✦
+    <a href="https://readmo.cmoney.tw/article/8cea4e61-8958-40f7-a1f8-bc454936d1d8" target="_blank">CMoney 群益證上半年 EPS 分析</a> ✦
+    <a href="https://tw.stock.yahoo.com/quote/6005.TW/eps" target="_blank">Yahoo 股市 EPS 季度數據</a> ✦
+    <a href="https://winvest.tw/Stock/Symbol/Comment/2855" target="_blank">Win投資 統一證資料</a>
+  </p>
+
 </section>
 <section id="step6" style="opacity:0.4; pointer-events:none;">
   <h2><span class="step-badge">第 6 步 / 共 6 步</span> 投資決策推理</h2>
