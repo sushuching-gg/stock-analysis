@@ -198,14 +198,14 @@
     <div class="top-meta">
       <span>報告版本 v1.0</span>
       <span>產業：半導體封測（IC測試代工）</span>
-      <span>目前進度：第 1 步／共 6 步</span>
+      <span>目前進度：第 2 步／共 6 步</span>
     </div>
   </div>
 </header>
 
 <nav class="stepnav" id="stepnav">
   <a href="#step1" class="unlocked" data-step="1">① 現金流六大規則</a>
-  <a href="#step2" data-step="2">② 基本資訊</a>
+  <a href="#step2" class="unlocked" data-step="2">② 基本資訊</a>
   <a href="#step3" data-step="3">③ 法說會深入</a>
   <a href="#step4" data-step="4">④ 營收趨勢</a>
   <a href="#step5" data-step="5">⑤ 前瞻本益比</a>
@@ -395,22 +395,76 @@
     </div>
   </div>
 
-  <div class="callout">
-    <div class="lbl">下一步</div>
-    要正式輸出並推送到 GitHub Pages，需要你提供 GitHub Personal Access Token（僅本次對話使用）。若已準備好，我會接著進行第 2 步：查詢股價、EPS、殖利率、近期營收與法說會連結。是否繼續？
-  </div>
 
-  <footer class="meta">
-    <span>2449_kingyoup_analysis.html · v1.0</span>
-    <span id="gentime"></span>
-  </footer>
 </section>
 
-<section id="step2"></section>
+<section id="step2">
+  <div class="stepbadge">第 2 步／共 6 步</div>
+  <h2 class="stitle">基本資訊查詢</h2>
+
+  <div class="callout">
+    <div class="lbl">本步驟結論</div>
+    現金流過關後查詢基本面：目前股價 <b>232.0元</b>（08/21收盤），落在 52 週區間 117.50～367.50 元的中段；<b>2026年第2季EPS 2.04元</b>，季增、年增皆呈雙位數成長；<b>2026年7月合併營收 39.91億元，年增36.75%</b>，維持高速成長動能；本益比 30.41倍，高於同業平均（但同業平均受個別公司獲利基期影響，僅供參考）。近期即將於 <b>2026/08/28</b> 出席法人說明會。
+  </div>
+
+  <div class="panel">
+    <h3>股價與估值</h3>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>項目</th><th>數值</th><th>查詢時間</th></tr></thead>
+      <tbody>
+        <tr><td>收盤價</td><td>232.0元（跌3.00，-1.28%）</td><td>2026/08/21 14:30</td></tr>
+        <tr><td>本益比（同業平均）</td><td>30.41倍（43.31倍）</td><td>2026/08/21</td></tr>
+        <tr><td>52週最高／最低</td><td>367.50 ／ 117.50 元</td><td>2026/08/07 快照</td></tr>
+        <tr><td>每股淨值／股價淨值比</td><td>31.82元 ／ 7.60倍</td><td>2026/08/07 快照</td></tr>
+        <tr><td>總市值</td><td>約2,959億元（依08/07股價242元計算）</td><td>2026/08/07 快照</td></tr>
+        <tr><td>年股利／殖利率</td><td>1.00元 ／ 0.41%（另配發股票股利0.5元，除權息日2026/07/28）</td><td>2026/08/07 快照</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="sourcebox">📎 收盤價、本益比：<a href="https://tw.stock.yahoo.com/quote/2449.TW" target="_blank">Yahoo股市個股頁</a>（2026/08/21 14:30更新）。52週高低、每股淨值、股價淨值比、市值、股利：<a href="https://www.cnyes.com/twstock/2449" target="_blank">Anue鉅亨個股總覽</a>（2026/08/07快照）。<br>⚠️ 以上為「查詢當下」的單一數字快照，非即時報價區間；不同查詢時間點股價不同屬正常現象，正式交易請以看盤軟體／券商App為準。</div>
+  </div>
+
+  <div class="panel">
+    <h3>EPS 概況</h3>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>期間</th><th>EPS（元）</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>2026 Q2（單季，稀釋）</td><td><b>2.04</b></td><td>季增9.7%，年增15.3%（較25Q2的1.77元）</td></tr>
+        <tr><td>2026 Q1（單季）</td><td>1.86～1.87</td><td>季增2%，年減47%（較25Q1，因25Q1有蘇州子公司處分業外收益墊高基期）</td></tr>
+        <tr><td>近四季合計</td><td>7.02</td><td>2026/08/07快照，統計區間為25Q3–26Q2發布前的近四季，Q2財報公布後應已更新</td></tr>
+        <tr><td>2025 全年</td><td>9.01</td><td>與第一步現金流表「稅後EPS」欄位一致，已交叉核對</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--sub); margin-top:8px;">已確認 2449 近期<b>無股票分割或減資</b>，僅於 2026/07/28 除權息時配發 0.5元股票股利（約5%股權稀釋），對已公告之歷史EPS數字比較基礎影響有限，但 2026 年下半年起的股數已因此小幅增加，未來比較單季EPS年增率時需留意此稀釋效果。</p>
+    <div class="sourcebox">📎 <a href="https://winvest.tw/Stock/Symbol/Comment/2449" target="_blank">Win投資個股頁</a>（2025全年EPS、除權息資訊）；<a href="https://poorstock.com/earningcall/2449" target="_blank">散戶鬥嘴鼓法說會整理頁</a>（26Q1/Q2單季EPS，引自公開資訊觀測站法說會簡報）。</div>
+  </div>
+
+  <div class="panel">
+    <h3>近期營收</h3>
+    <p>2026年<b>7月</b>合併營收 <b>39.91億元</b>，較去年同期成長 <b>36.75%</b>（官方公告數字）。6月營收36.22億（月減4.11%、年增28.64%），累計至6月營收213.34億、累計年增36.08%。2025全年營收349.34億元。營收成長動能持續強勁，與第2季法說會揭露的資料處理應用需求暢旺互相呼應。</p>
+    <div class="sourcebox">📎 7月營收（官方公告，經Yahoo股市轉載）：<a href="https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E4%BA%AC%E5%85%83%E9%9B%BB%E5%AD%90-2026%E5%B9%B47%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B639-91%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E36-083430593.html" target="_blank">Yahoo股市／公告新聞</a>（2026/08/07發布）。6月營收、2025全年營收：<a href="https://winvest.tw/Stock/Symbol/Comment/2449" target="_blank">Win投資個股頁</a>。</div>
+  </div>
+
+  <div class="panel">
+    <h3>法人說明會</h3>
+    <p>最近一次（即將舉行）：<b>2026/08/28 15:30</b>，受邀參加富邦企業日，地點台北君悅酒店。前一場已完成的法說會為 <b>2026/06/05</b>（新加坡野村證券投資論壇）。公司投資人關係專區：<a href="https://www.kyec.com.tw/zh-tw/Ir/EarningsCall" target="_blank">京元電子官網 IR</a>。</p>
+    <div class="sourcebox">📎 法說會日期彙整（引用公開資訊觀測站公告）：<a href="https://poorstock.com/earningcall/2449" target="_blank">散戶鬥嘴鼓法說會整理頁</a>。</div>
+  </div>
+
+</section>
+
 <section id="step3"></section>
 <section id="step4"></section>
 <section id="step5"></section>
 <section id="step6"></section>
+
+<footer class="meta" style="max-width:1080px; margin:40px auto 0; padding:18px 20px 40px;">
+  <span>2449_kingyoup_analysis.html · v1.1</span>
+  <span id="gentime"></span>
+</footer>
 
 </main>
 
