@@ -170,7 +170,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
   <nav class="stepnav" id="stepnav">
     <button class="pad" data-target="step1">① 現金流分析</button>
     <button class="pad locked" data-target="step2">② 基本資訊</button>
-    <button class="pad locked" data-target="step3">③ 法說會</button>
+    <button class="pad" data-target="step3">③ 法說會</button>
     <button class="pad locked" data-target="step4">④ 營收趨勢</button>
     <button class="pad locked" data-target="step5">⑤ 前瞻本益比</button>
     <button class="pad locked" data-target="step6">⑥ 投資決策</button>
@@ -753,9 +753,296 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
   </div>
 
 </section>
-<section id="step3" style="opacity:0.4; pointer-events:none;">
+<section id="step3">
   <h2><span class="step-badge">第 3 步 / 共 6 步</span> 法說會深度討論</h2>
-  <p style="color:var(--text3); font-style:italic;">待完成第二步後解鎖……</p>
+
+  <div class="highlight-box" style="margin-bottom:1.5rem;">
+    <strong>本步重點聚焦：</strong>從法說會揭露的業務數字，深入解析群益證的獲利結構，並連結第一步現金流分析中「大量舉債（C大量正值）」的根本原因。
+    <br><br>
+    資料來源：2026/05/25 富果直送法說會摘要 ✦ StockFeel 財務分析 ✦ StatementDog 資產結構
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3-1  收入結構地圖
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:1.5rem;">3-1　收入結構地圖</h3>
+
+  <p>根據法說會公布的業務別拆分，以及 StockFeel 的歷史平均結構，群益證的收入來自四條線：</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>收入類別</th>
+        <th>2026 Q1 占比</th>
+        <th>2026 前 4 月占比</th>
+        <th>歷史平均占比</th>
+        <th>收入特性</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>① 經紀手續費</strong></td>
+        <td class="pos-val">47%</td>
+        <td class="warn-val">39%</td>
+        <td>約 35-40%</td>
+        <td>市場交易量連動，牛市彈性大</td>
+      </tr>
+      <tr>
+        <td><strong>② 自營及債券損益</strong></td>
+        <td class="warn-val">26%</td>
+        <td class="pos-val">38%</td>
+        <td>約 25-33%</td>
+        <td>最不穩定，熊市可能大幅虧損</td>
+      </tr>
+      <tr>
+        <td><strong>③ 利息收入（淨利差）</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>約 19%</td>
+        <td>融資放款利差，相對穩定</td>
+      </tr>
+      <tr>
+        <td><strong>④ 轉投資收益 / 其他</strong></td>
+        <td>18%</td>
+        <td>23%</td>
+        <td>約 10-15%</td>
+        <td>子公司群益期貨、財管業務貢獻</td>
+      </tr>
+      <tr>
+        <td><strong>⑤ 承銷業務</strong></td>
+        <td>9%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>IPO / 增資件數決定，波動</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="border-color:var(--warn); background:var(--tag-warn); color:var(--tag-warn-text); margin-top:1rem;">
+    ⚠️ <strong>結構觀察：三個引擎同時發動才有 Q1 EPS 1.34 元的歷史高點</strong><br>
+    2026 Q1：台股在高檔震盪，交易量仍大（手續費47%）+ 利率環境相對穩定（融資利差穩）+ 自營操作獲利（26%）。三條線齊發，才締造歷史最佳季度。前4月自營占比跳升至38%，顯示自營部位積極操作，這也是雙面刃——上漲時錦上添花，下跌時放大損失。
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3-2  融資放款的商業模式與現金流連結
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:2rem;">3-2　融資放款的商業模式，以及它為何讓現金流這麼難看</h3>
+
+  <p>這是你問的核心：<strong>「他們借了很多款，跟獲利結構有什麼關聯？」</strong>答案是：這兩件事本來就是同一件事的兩面。</p>
+
+  <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:1.2rem 1.5rem; margin:1rem 0;">
+    <strong>券商的資金中介模型（簡化版）：</strong>
+    <div style="margin-top:0.8rem; font-size:0.95rem; line-height:2;">
+      ① 公司向銀行借款 / 發行公司債，利率約 <strong style="color:var(--accent)">1.5 – 2.5%</strong>（這就是 C 大量正值的原因）<br>
+      ② 再將這筆錢以 <strong style="color:var(--pos)">6 – 7%</strong> 放款給融資客戶（客戶用融資買股票）<br>
+      ③ 或以 <strong style="color:var(--warn)">2 – 5%</strong> 進行股票質押貸款（大股東用股票質押換流動性）<br>
+      ④ 剩餘資金投入自營交易部位<br>
+      ⑤ <strong>淨利差 ≈ 3 – 5%</strong>，乘以放款餘額，就是利息收入這條線的主要來源
+    </div>
+  </div>
+
+  <p><strong>規模驗算（2026 Q1 數字）：</strong></p>
+  <table>
+    <thead>
+      <tr><th>項目</th><th>金額</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>總資產</td>
+        <td>3,932 億元</td>
+        <td>年增 23%，顯示資產快速擴張</td>
+      </tr>
+      <tr>
+        <td>股東權益</td>
+        <td>529 億元</td>
+        <td>年增 11%</td>
+      </tr>
+      <tr>
+        <td>財務槓桿倍數</td>
+        <td class="warn-val"><strong>7.4 倍</strong></td>
+        <td>總資產 ÷ 淨值；券商正常範圍，但代表高借款依賴</td>
+      </tr>
+      <tr>
+        <td>分戶帳客戶資金</td>
+        <td>近 600 億元</td>
+        <td>客戶存放在公司的交易保證金，低成本資金來源</td>
+      </tr>
+      <tr>
+        <td>融資餘額市佔率</td>
+        <td class="pos-val">5.06%（全市場第 8 名）</td>
+        <td>推估放款餘額約 150 – 200 億元</td>
+      </tr>
+      <tr>
+        <td>資本適足率</td>
+        <td class="pos-val">272%</td>
+        <td>法定最低 200%，有緩衝</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 視覺化：槓桿結構示意 -->
+  <div style="margin:1.5rem 0;">
+    <div style="font-size:0.85rem; color:var(--text3); margin-bottom:0.5rem;">▌ 資產負債結構示意（2026 Q1，估算）</div>
+    <div style="display:flex; gap:0.5rem; height:120px; align-items:flex-end;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div style="display:flex; flex-direction:column; width:80px; height:110px; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+          <div style="flex:1; background:var(--neg); opacity:0.7; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:#fff; font-weight:600;">負債<br>3,403億</div>
+          <div style="height:15%; background:var(--pos); opacity:0.8; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:#fff; font-weight:600;">淨值529億</div>
+        </div>
+        <span style="font-size:0.75rem; color:var(--text3);">資產側</span>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding-left:1rem; font-size:0.85rem; line-height:1.8; color:var(--text2);">
+        <div>🔴 <strong>負債 ≈ 3,403 億</strong>：銀行借款、公司債、客戶保證金（分戶帳）、應付款</div>
+        <div>🟢 <strong>股東權益 ≈ 529 億</strong>：歸屬母公司淨值</div>
+        <div>⚡ <strong>槓桿 7.4 倍</strong> = 每 1 元自有資本，撐起 7.4 元資產規模</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3-3  現金流與借款的完整鏈條
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:2rem;">3-3　第一步現金流 × 獲利結構：完整鏈條對照</h3>
+
+  <p>把現金流量表的「C（融資活動）」和「A（營業活動）」放在一起看，就能讀出這家公司的策略意圖：</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>現金流項目</th>
+        <th>在財報上看到什麼</th>
+        <th>背後的商業邏輯</th>
+        <th>連結到哪條收入</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>C 大量正值</strong><br>（融資活動大量現金流入）</td>
+        <td>發行公司債、向銀行舉借短期票券</td>
+        <td>籌資，準備放款 / 擴大自營部位</td>
+        <td>→ 利息收入（融資放款）<br>→ 自營損益</td>
+      </tr>
+      <tr>
+        <td><strong>A 大幅負值</strong><br>（營業活動大量現金流出）</td>
+        <td>融資放款餘額增加、自營證券買入</td>
+        <td>把借來的錢「放出去」賺利差、或買券做自營</td>
+        <td>→ 利息收入擴大<br>→ 自營部位建立</td>
+      </tr>
+      <tr>
+        <td><strong>A 大幅正值</strong><br>（營業活動大量現金流入）</td>
+        <td>融資客戶還款、自營部位獲利了結</td>
+        <td>牛市高點或熊市恐慌時客戶去槓桿</td>
+        <td>→ 表面看起來 A 很好看，實際是縮表</td>
+      </tr>
+      <tr>
+        <td><strong>B 持續穩定負值</strong><br>（投資活動穩定流出）</td>
+        <td>子公司增資（群益期貨、海外布局）</td>
+        <td>鞏固垂直整合（期貨 + 財管 + 證券）</td>
+        <td>→ 轉投資收益 / 承銷</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="margin-top:1rem; border-color:var(--accent);">
+    <strong>核心洞察：群益證的現金流量表，其實是一張「商業模式展開圖」</strong><br><br>
+    傳統製造業，C 大量正值代表財務壓力；但對券商來說，C 大量正值 = 業務擴張。他們主動舉債（C 進來）→ 放款給融資客戶或買入自營部位（A 流出）→ 賺取利差和交易損益（損益表上的收入）。這個循環在牛市加速，在熊市急剎車。所以現金流量表在第一步讓規則 5（A > D）失效的根本原因，就是這個業務模式——A 的正負值根本不反映「賺不賺錢」，而是反映「現在在擴張還是收縮放款規模」。
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3-4  三大風險分析
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:2rem;">3-4　獲利結構內藏的三大風險</h3>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">⚡ 風險一：自營部位波動性（占收入約 26-38%）</div>
+    <div class="rule-body">
+      自營比例在 2026 前4月跳升至 38%，是最高的單季。這條線在牛市時超級亮眼，但它本質上是「公司在用自己的資本在市場上賭方向」。一旦市場急跌（例如 2022 年美國升息週期），自營損益瞬間從正轉負，整體獲利可能腰斬。歷史上群益證在 2022 年 EPS 明顯下滑，就是這個機制在運作。<br><br>
+      <strong>觀察重點：</strong>若前4月自營已占 38%，下半年需密切追蹤市場環境。AI 相關題材降溫或台股系統性回調，自營將是第一個受傷的。
+    </div>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">🏦 風險二：資金成本上升（利差壓縮）</div>
+    <div class="rule-body">
+      融資放款的獲利邏輯建立在「借款成本低、放款利率高」的利差上。若央行升息（台灣央行或美聯準會），公司的借款成本上升，但對融資客戶的放款利率調整可能有時差，導致利差壓縮，利息收入這條線（約占 19%）獲利能力下降。<br><br>
+      <strong>現況：</strong>2026 年全球利率環境相對穩定（美國已進入降息軌道），是有利條件。但若通膨再起，這個優勢會消失。
+    </div>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">📉 風險三：融資追繳連鎖效應（市場下跌放大器）</div>
+    <div class="rule-body">
+      融資放款的危險不只是利差，還有信用風險：當市場急跌，融資客戶的擔保品（股票）價值下降，觸發追繳保證金（margin call）。若客戶無力補繳，公司被迫強制停損出售，進一步壓低股價，造成更多追繳——這是市場下跌的放大器。<br><br>
+      群益證融資餘額市佔率 5.06%（第8名），在市場中佔有一定規模。台股歷次崩盤時（2020年3月、2022年下半年），融資斷頭是加速下跌的重要因素，也會造成群益證短期提列信用損失。<br><br>
+      <strong>現況緩解因子：</strong>資本適足率 272% 遠高於法定 200%，有一定緩衝。
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3-5  法說會前瞻策略評估
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:2rem;">3-5　法說會揭示的四大戰略方向</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>戰略方向</th>
+        <th>法說會揭示內容</th>
+        <th>我的評估</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>財富管理深耕</strong></td>
+        <td>高資產客群（HNW）、財管導向轉型</td>
+        <td class="pos-val">✅ 正確方向：財管業務收入穩定、粘性高、不像手續費受市場交易量影響</td>
+      </tr>
+      <tr>
+        <td><strong>AI 雙引擎</strong></td>
+        <td>智能投顧（B2C）+ 自營 AI 交易系統（內部）</td>
+        <td class="warn-val">⚠️ 有潛力但需觀察：AI 投顧是業界共識，差異化不明顯；自營 AI 若成功可提升穩定性</td>
+      </tr>
+      <tr>
+        <td><strong>新業務拓展</strong></td>
+        <td>規劃外幣分戶帳、複委託融資</td>
+        <td class="pos-val">✅ 正面：多元化收入來源，降低對台股交易量的單一依賴</td>
+      </tr>
+      <tr>
+        <td><strong>股利政策轉變</strong></td>
+        <td>現金 0.4 元 + 股票 1.31 元（合計 1.71 元）；調整為強化資本</td>
+        <td class="warn-val">⚠️ 矛盾訊號：管理層說要強化資本，但發股票股利是在「稀釋股東，留住資本」——對小股東來說等於獲利沒有全部拿回來，且未來 EPS 基礎擴大了</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════════════════════════════════════
+       3-6  核心結論
+       ═══════════════════════════════════════════ -->
+  <h3 style="margin-top:2rem;">3-6　第三步核心結論</h3>
+
+  <div style="background:var(--bg2); border:2px solid var(--accent); border-radius:10px; padding:1.4rem 1.8rem; margin-top:0.5rem;">
+    <p style="margin:0 0 0.8rem 0; font-weight:700; font-size:1.05rem;">群益證獲利結構的本質：一部高槓桿的市場參與機器</p>
+    <p style="margin:0 0 0.8rem 0; color:var(--text2);">
+      第一步看到的「C 大量正值、A 大幅波動」，不是財務危機的訊號，而是業務模式的必然呈現。券商就是用低成本資金（借款）→ 放出高成本放款（融資）→ 賺取利差，同時用自有資本做自營交易，再加上手續費收入。整個商業模式的特點是：<strong>牛市槓桿收益超大，熊市三條線同步縮水，且縮水速度比擴張快</strong>。
+    </p>
+    <p style="margin:0 0 0.8rem 0; color:var(--text2);">
+      2026 Q1 EPS 1.34 元歷史新高，是「手續費 × 自營 × 融資利差」三者在牛市環境中同時達到高峰。這個局面能否延續，完全取決於台股市場能否維持高交易量和高位置。
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.8rem;">
+      <span style="background:var(--tag-ok); border:1px solid var(--tag-ok-border); color:var(--tag-ok-text); padding:4px 12px; border-radius:20px; font-size:0.85rem; font-weight:600;">✅ 財務槓桿在同業正常範圍內</span>
+      <span style="background:var(--tag-ok); border:1px solid var(--tag-ok-border); color:var(--tag-ok-text); padding:4px 12px; border-radius:20px; font-size:0.85rem; font-weight:600;">✅ 資本適足率有緩衝（272%）</span>
+      <span style="background:var(--tag-warn); border:1px solid var(--tag-warn-border); color:var(--tag-warn-text); padding:4px 12px; border-radius:20px; font-size:0.85rem; font-weight:600;">⚠️ 自營占比偏高，市場轉向時高風險</span>
+      <span style="background:var(--tag-warn); border:1px solid var(--tag-warn-border); color:var(--tag-warn-text); padding:4px 12px; border-radius:20px; font-size:0.85rem; font-weight:600;">⚠️ 股利政策轉為留資本，對股東短期不利</span>
+    </div>
+  </div>
+
+  <p style="margin-top:1rem; font-size:0.85rem; color:var(--text3);">
+    資料來源：
+    <a href="https://blog.fugle.tw/post/earnings-call-6005-2026-05-25" target="_blank">富果直送法說會摘要 2026/05/25</a> ✦
+    <a href="https://www.stockfeel.com.tw/financial/?stock=6005" target="_blank">StockFeel 業務結構分析</a> ✦
+    <a href="https://statementdog.com/analysis/6005/assets" target="_blank">StatementDog 資產數據 Q1 2026</a>
+  </p>
+
 </section>
 <section id="step4" style="opacity:0.4; pointer-events:none;">
   <h2><span class="step-badge">第 4 步 / 共 6 步</span> 營收趨勢視覺化</h2>
