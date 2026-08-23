@@ -625,10 +625,133 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 
 </section>
 
-<!-- Placeholder sections -->
-<section id="step2" style="opacity:0.4; pointer-events:none;">
+<!-- STEP 2 -->
+<section id="step2">
   <h2><span class="step-badge">第 2 步 / 共 6 步</span> 基本資訊查詢</h2>
-  <p style="color:var(--text3); font-style:italic;">待完成第一步後解鎖……</p>
+
+  <div class="highlight-box">
+    <div class="title">📌 第二步重點提示</div>
+    <p>
+      股價 <strong>30.65元</strong>（2026/08/21），本益比 <strong>8.56倍</strong>（同業平均14.29倍），顯著折價。<br>
+      2026 Q1 單季 EPS <strong>1.34元</strong>，創歷史新高；前七月累計營收 <strong>212.67億</strong>，年增 <strong>+111%</strong>。<br>
+      法說會（2026/05/25）：管理層期望全年獲利<span class="pos">持續向上</span>，首次發放股票股利以強化資本。
+    </p>
+  </div>
+
+  <!-- 股價資訊 -->
+  <div class="rule-block">
+    <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">📈 股價概況</h3>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>項目</th><th>數值</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr><td class="year" style="text-align:left;">收盤價</td><td class="pos-val">30.65 元</td><td>2026/08/21 13:30（非即時報價）</td></tr>
+          <tr><td class="year" style="text-align:left;">漲跌</td><td class="pos-val">+0.30（+0.99%）</td><td>昨收：30.35元</td></tr>
+          <tr><td class="year" style="text-align:left;">當日區間</td><td>30.20 ～ 30.90 元</td><td>振幅 2.31%</td></tr>
+          <tr><td class="year" style="text-align:left;">成交量</td><td>3,657 張</td><td>成交金額 1.12億元</td></tr>
+          <tr><td class="year" style="text-align:left;">本益比（近四季）</td><td class="pos-val">8.56 倍</td><td>同業平均 14.29倍，<span class="pos">折價約40%</span></td></tr>
+          <tr><td class="year" style="text-align:left;">現金殖利率</td><td>約 1.3%</td><td>2025年度配息0.4元現金（計算值）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text3);">資料來源：<a href="https://tw.stock.yahoo.com/quote/6005.TW" target="_blank" style="color:var(--accent);">Yahoo股市 6005.TW</a>（查詢時間：2026/08/21 13:30，非盤中即時價格，正式交易請以自己的看盤軟體為準）</p>
+  </div>
+
+  <!-- EPS -->
+  <div class="rule-block">
+    <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">💰 每股盈餘（EPS）</h3>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>期間</th><th>單季 EPS（元）</th><th>QoQ</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr class="row-peak"><td class="year">2026 Q1</td><td class="pos-val">1.34</td><td class="pos-val">+74%</td><td>創單季歷史新高</td></tr>
+          <tr><td class="year">2025 Q4</td><td>0.77</td><td class="neg-val">-18%</td><td></td></tr>
+          <tr><td class="year">2025 Q3</td><td>0.94</td><td class="pos-val">+77%</td><td></td></tr>
+          <tr><td class="year">2025 Q2</td><td>0.53</td><td class="pos-val">+33%</td><td></td></tr>
+          <tr><td class="year">2025 Q1</td><td>0.40</td><td class="neg-val">-17%</td><td></td></tr>
+          <tr><td class="year">2024 Q4</td><td>0.48</td><td class="neg-val">-16%</td><td></td></tr>
+          <tr><td class="year">2024 Q3</td><td>0.57</td><td class="neg-val">-2%</td><td></td></tr>
+          <tr><td class="year">2024 Q2</td><td>0.58</td><td>—</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="data-table-wrap" style="margin-top:12px;">
+      <table class="data-table">
+        <thead><tr><th>年度</th><th>全年 EPS（元）</th><th>YoY</th></tr></thead>
+        <tbody>
+          <tr><td class="year">2025（全年）</td><td class="pos-val">2.64</td><td class="pos-val">+61%</td></tr>
+          <tr><td class="year">2024（全年）</td><td>1.64</td><td class="neg-val">-32%</td></tr>
+          <tr><td class="year">2023（全年）</td><td>1.90</td><td class="pos-val">+387%</td></tr>
+          <tr><td class="year">2022（全年）</td><td>0.39</td><td class="neg-val">-71%</td></tr>
+          <tr><td class="year">2021（全年）</td><td>2.42</td><td class="pos-val">+48%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; margin-top:6px;"><strong>近四季合計（25Q2+25Q3+25Q4+26Q1）= 3.58元 → 本益比 30.65÷3.58 = 8.56倍</strong>（與Yahoo顯示一致 ✓）</p>
+    <p style="font-size:12px; color:var(--text3);">資料來源：<a href="https://tw.stock.yahoo.com/quote/6005.TW/eps" target="_blank" style="color:var(--accent);">Yahoo股市 EPS頁面</a>（2026/08/21）</p>
+  </div>
+
+  <!-- 股利 -->
+  <div class="rule-block">
+    <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">🎯 股利政策（2025年度盈餘分配）</h3>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>項目</th><th>金額</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td class="year" style="text-align:left;">現金股利</td><td>0.4 元</td><td>現金殖利率約 1.3%（以30.65元計）</td></tr>
+          <tr><td class="year" style="text-align:left;">股票股利</td><td class="warn-val">1.31 元</td><td>自2016年來首次發放，用於強化資本結構</td></tr>
+          <tr><td class="year" style="text-align:left;">合計配發</td><td>1.71 元</td><td>總殖利率約5.6%（含股票股利稀釋效果）</td></tr>
+          <tr><td class="year" style="text-align:left;">配息率</td><td>約 65%</td><td>2025 EPS 2.64元，現金+股票 1.71元</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>⚠️ <strong>注意</strong>：股票股利會增加流通在外股數，有稀釋每股價值的效果。發放股票股利而非現金，反映公司有意留存資本以支持業務規模擴張（配合第一步觀察到的槓桿擴張方向）。</p>
+    <p style="font-size:12px; color:var(--text3);">資料來源：<a href="https://statementdog.com/analysis/6005/dividend-policy" target="_blank" style="color:var(--accent);">財報狗股利政策</a>｜<a href="https://blog.fugle.tw/post/earnings-call-6005-2026-05-25" target="_blank" style="color:var(--accent);">富果直送法說會摘要 2026/05/25</a></p>
+  </div>
+
+  <!-- 近期月營收 -->
+  <div class="rule-block">
+    <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">📊 近期月營收（億元）</h3>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>月份</th><th>月營收（億）</th><th>年增率</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr><td class="year">2026/07</td><td>20.46</td><td class="pos-val">+25.1%</td><td>月增-43.9%，近期低點</td></tr>
+          <tr class="row-peak"><td class="year">2026/06</td><td>36.46</td><td class="pos-val">+101.2%</td><td></td></tr>
+          <tr><td class="year">2026/05</td><td>37.99</td><td class="pos-val">—</td><td>推算值</td></tr>
+          <tr class="row-peak"><td class="year">2026/04</td><td class="pos-val">46.48</td><td class="pos-val">+302%</td><td>月度高峰</td></tr>
+          <tr><td class="year">2026/03</td><td>18.94</td><td>—</td><td>推算值</td></tr>
+          <tr><td class="year">2026/02</td><td>22.48</td><td class="pos-val">+54.5%</td><td></td></tr>
+          <tr><td class="year">2026/01</td><td>29.86</td><td class="pos-val">+130.0%</td><td></td></tr>
+          <tr><td class="year">2025/12</td><td>19.33</td><td class="pos-val">+38.9%</td><td></td></tr>
+          <tr><td class="year">2025/10</td><td>17.39</td><td class="pos-val">+44.0%</td><td></td></tr>
+          <tr><td class="year">2025/09</td><td>17.72</td><td class="pos-val">+25.1%</td><td></td></tr>
+          <tr><td class="year">2025/08</td><td>20.85</td><td class="pos-val">+32.9%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>累計營收：</strong>2026年1–7月累計 <span class="pos-val" style="font-weight:700;">212.67億</span>，年增 <span class="pos-val" style="font-weight:700;">+110.96%</span>。2025全年累計 192.20億（年增+12.05%）。</p>
+    <p>推算值（2026/03、05）由已知1–6月累計192.21億反推，未經官方公告直接確認，僅供參考。</p>
+    <p style="font-size:12px; color:var(--text3);">資料來源：<a href="https://news.cnyes.com/news/id/6568388" target="_blank" style="color:var(--accent);">鉅亨 7月營收</a>｜<a href="https://news.cnyes.com/news/id/6532210" target="_blank" style="color:var(--accent);">鉅亨 6月營收</a>｜<a href="https://news.cnyes.com/news/id/6304684" target="_blank" style="color:var(--accent);">鉅亨 2025/12月營收</a></p>
+  </div>
+
+  <!-- 法說會 -->
+  <div class="rule-block">
+    <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">🎤 最新法說會概要（2026/05/25）</h3>
+    <div class="highlight-box">
+      <div class="title">法說會核心數字</div>
+      <p>
+        Q1稅後淨利 <strong>29.1億元，EPS 1.34元（創單季歷史新高）</strong><br>
+        前四月（1–4月）累計稅後淨利 <strong>52.2億元，EPS 2.40元</strong><br>
+        總資產 <strong>3,932億元</strong>（年增23%）｜股東權益 <strong>529億元</strong>（年增11%）<br>
+        資本適足率 <strong>272%</strong>（法定最低：200%）
+      </p>
+    </div>
+    <p><strong>策略重點：</strong>財富管理、AI驅動智能投顧、外幣分戶帳、複委託融資、深耕高資產客群。管理層表示「期望全年度獲利能持續向上推升」。</p>
+    <p><strong>股利調整意涵：</strong>首次發放股票股利（1.31元），目的是強化資本結構——與第一步觀察到的2024年大規模槓桿擴張直接呼應，公司主動補充資本緩衝。</p>
+    <p style="font-size:12px; color:var(--text3);">資料來源：<a href="https://blog.fugle.tw/post/earnings-call-6005-2026-05-25" target="_blank" style="color:var(--accent);">富果直送法說會備忘錄 2026/05/25</a>（文字摘要，非原始PDF，Claude未讀取官方簡報原文）｜MOPS官方法說會：<a href="https://mopsov.twse.com.tw" target="_blank" style="color:var(--accent);">請使用者自行查閱</a></p>
+  </div>
+
 </section>
 <section id="step3" style="opacity:0.4; pointer-events:none;">
   <h2><span class="step-badge">第 3 步 / 共 6 步</span> 法說會深度討論</h2>
