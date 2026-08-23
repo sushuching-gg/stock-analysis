@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>2439 美律 現金流六大規則分析</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+  :root{
+    --bg:#0f1614; --panel:#161f1c; --panel2:#1b2622;
+    --teal:#2dd4bf; --teal-dim:#1f7a6f; --amber:#f0b955;
+    --text:#e7f0ec; --sub:#9db3ab; --line:#25332e;
+    --pos:#4fd18b; --neg:#f0716a;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;line-height:1.7;}
+  h1,h2,h3{font-family:'Noto Serif TC',serif;}
+  header{padding:30px 24px 16px;border-bottom:1px solid var(--line);}
+  header h1{margin:0 0 6px;font-size:1.4rem;color:var(--teal);}
+  header .sub{color:var(--sub);font-size:.85rem;}
+  nav.stepnav{position:sticky;top:0;background:#0f1614ee;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:6px;overflow-x:auto;z-index:50;}
+  nav.stepnav a{flex-shrink:0;padding:6px 12px;border-radius:16px;font-size:.78rem;color:var(--sub);text-decoration:none;border:1px solid var(--line);white-space:nowrap;}
+  nav.stepnav a.active{color:#04140f;background:var(--teal);border-color:var(--teal);}
+  nav.stepnav a.locked{opacity:.4;pointer-events:none;}
+  main{max-width:900px;margin:0 auto;padding:20px 20px 80px;}
+  section{margin:34px 0;padding:22px;background:var(--panel);border-radius:10px;border:1px solid var(--line);scroll-margin-top:60px;}
+  .callout{border-left:4px solid var(--teal);background:var(--panel2);padding:14px 16px;border-radius:6px;margin-bottom:16px;font-size:.95rem;}
+  .callout b{color:var(--amber);}
+  .callout.warn{border-color:var(--amber);}
+  h2{color:var(--teal);font-size:1.2rem;margin-top:0;}
+  h3{color:var(--amber);font-size:1rem;margin:18px 0 6px;}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem;}
+  th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;}
+  th{color:var(--sub);font-weight:600;}
+  .pos{color:var(--pos);font-weight:600;} .neg{color:var(--neg);font-weight:600;}
+  .rating{display:inline-block;padding:2px 10px;border-radius:14px;font-size:.8rem;font-weight:600;}
+  .r-good{background:rgba(79,209,139,.15);color:var(--pos);}
+  .r-mid{background:rgba(240,185,85,.15);color:var(--amber);}
+  .r-watch{background:rgba(240,113,106,.15);color:var(--neg);}
+  .snap{font-size:.76rem;color:var(--sub);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px;}
+  .totalbox{display:flex;align-items:baseline;gap:14px;background:var(--panel2);border-radius:10px;padding:18px 22px;margin:18px 0;border:1px solid var(--teal-dim);}
+  .totalbox .num{font-size:2.2rem;color:var(--amber);}
+  .totalbox .label{color:var(--sub);font-size:.85rem;}
+  .gatebox{padding:16px 20px;border-radius:8px;margin:18px 0;font-size:.95rem;}
+  .gate-pass{background:rgba(79,209,139,.1);border:1px solid var(--pos);}
+  .gate-watch{background:rgba(240,185,85,.1);border:1px solid var(--amber);}
+  footer{text-align:center;color:var(--sub);font-size:.78rem;padding:30px 0;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<header>
+  <h1>2439｜美律</h1>
+  <div class="sub">現金流優先，基本面在後｜第1步／共6步：現金流量表六大規則分析（盲測階段）</div>
+</header>
+<nav class="stepnav">
+  <a href="#step1" class="active" id="nav1">① 現金流六大規則</a>
+  <a href="#step2" class="locked" id="nav2">② 基本資訊</a>
+  <a href="#step3" class="locked" id="nav3">③ 法說會</a>
+  <a href="#step4" class="locked" id="nav4">④ 營收趨勢</a>
+  <a href="#step5" class="locked" id="nav5">⑤ 前瞻本益比</a>
+  <a href="#step6" class="locked" id="nav6">⑥ 投資決策</a>
+</nav>
+<main>
+
+<section id="step1">
+<h2>【第1步／共6步】現金流量表六大規則分析</h2>
+<div class="callout"><b>盲測聲明：</b>本步驟只根據使用者提供的 Goodinfo 現金流量表截圖數字（2009-2025年度，共17個完整年度，另有Goodinfo標示為「26Q2」的2026年最新一期累計資料）判斷，未查詢股價、EPS、產業背景或新聞。<b>「26Q2」欄位很可能是2026年累計至第二季（上半年）的數字，而非單一季度</b>（比照先前分析慣例的常見標示方式），本步驟先照原始標示呈現、不列入計分，待第2步查證公司正式公告後再確認並訂正標示。</div>
+
+<h3>原始資料（單位：億元）</h3>
+<table>
+<tr><th>年度</th><th>A營業活動</th><th>B投資活動</th><th>C融資活動</th><th>D稅前淨利</th><th>E期末餘額</th></tr>
+<tr style="opacity:.7"><td>26Q2(推測為上半年累計,不計分)</td><td>1.51</td><td>0.45</td><td>-28.9</td><td>5.9</td><td>73.3</td></tr>
+<tr><td>2025</td><td>11.2</td><td>-12.88</td><td>14.9</td><td>21.3</td><td>98.0</td></tr>
+<tr><td>2024</td><td>20.3</td><td>1.0</td><td>7.35</td><td>31.5</td><td>85.9</td></tr>
+<tr><td>2023</td><td>22.2</td><td>-13.5</td><td>-20.2</td><td>18.9</td><td>55.3</td></tr>
+<tr><td>2022</td><td>46.8</td><td>0.67</td><td>-28.2</td><td>20.5</td><td>69.2</td></tr>
+<tr><td>2021</td><td>26.6</td><td>-16.3</td><td>8.44</td><td>15.8</td><td>48.4</td></tr>
+<tr><td class="neg">2020</td><td class="neg">-32.0</td><td>-25.5</td><td>22.0</td><td>17.0</td><td>30.5</td></tr>
+<tr><td>2019</td><td>42.5</td><td>-4.38</td><td>-56.1</td><td>32.5</td><td>65.9</td></tr>
+<tr><td>2018</td><td>16.2</td><td>-19.6</td><td>24.1</td><td>27.3</td><td>85.1</td></tr>
+<tr><td>2017</td><td>20.4</td><td>0.82</td><td>0.56</td><td>42.6</td><td>64.9</td></tr>
+<tr><td>2016</td><td>30.2</td><td>-6.58</td><td>-2.58</td><td>24.7</td><td>44.8</td></tr>
+<tr><td>2015</td><td>13.2</td><td>-11.7</td><td>5.71</td><td>8.13</td><td>25.3</td></tr>
+<tr><td>2014</td><td>15.3</td><td>-9.73</td><td>-9.59</td><td>15.6</td><td>16.7</td></tr>
+<tr><td>2013</td><td>18.7</td><td>-4.84</td><td>-3.25</td><td>12.8</td><td>20.0</td></tr>
+<tr><td>2012</td><td>5.48</td><td>-2.65</td><td>-5.47</td><td>5.88</td><td>9.94</td></tr>
+<tr><td>2011</td><td>4.8</td><td>-3.49</td><td>-6.13</td><td>3.62</td><td>13.5</td></tr>
+<tr><td>2010</td><td>3.71</td><td>2.81</td><td>-7.74</td><td>7.4</td><td>16.1</td></tr>
+<tr><td>2009</td><td>12.2</td><td>-6.05</td><td>-1.23</td><td>6.49</td><td>19.4</td></tr>
+</table>
+<p class="snap">資料來源：使用者提供 Goodinfo 截圖（2439 美律歷年現金流量頁面）。分析聚焦2009-2025共17個完整年度；2000-2008年資料Goodinfo截圖亦有提供，但年代較久遠，本次六大規則計分不納入。</p>
+
+<h3>規則一：A 逐季與逐年成長趨勢</h3>
+<div class="callout warn">17年裡出現過一次A轉為負值的年度（2020年-32.0億，唯一負值），屬於COVID疫情衝擊下的單一異常年度。撇開這一年，長期方向是成長的：從2009年12.2億到2022年高點46.8億，成長近4倍。但<b>最值得留意的是近3年連續下滑：2022年46.8億 → 2023年22.2億 → 2024年20.3億 → 2025年11.2億，累計跌幅逾76%</b>，是連續三年、方向一致的下滑，不是單一年度的雜訊，跟疫情那年「單次衝擊、隔年即回升」的型態不同。</div>
+<svg viewBox="0 0 760 200" style="width:100%;height:auto;">
+<line x1="0" y1="105.0" x2="760" y2="105.0" stroke="#25332e" stroke-width="1"/>
+<rect x="3.0" y="80.3" width="38.7" height="24.8" fill="#4fd18b" rx="2"/><text x="22.4" y="76.3" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">12.2</text><text x="22.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">09</text>
+<rect x="47.7" y="97.5" width="38.7" height="7.5" fill="#4fd18b" rx="2"/><text x="67.1" y="93.5" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">3.7</text><text x="67.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">10</text>
+<rect x="92.4" y="95.3" width="38.7" height="9.7" fill="#4fd18b" rx="2"/><text x="111.8" y="91.3" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">4.8</text><text x="111.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">11</text>
+<rect x="137.1" y="93.9" width="38.7" height="11.1" fill="#4fd18b" rx="2"/><text x="156.5" y="89.9" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">5.5</text><text x="156.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">12</text>
+<rect x="181.8" y="67.1" width="38.7" height="38.0" fill="#4fd18b" rx="2"/><text x="201.2" y="63.1" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">18.7</text><text x="201.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">13</text>
+<rect x="226.5" y="74.0" width="38.7" height="31.1" fill="#4fd18b" rx="2"/><text x="245.9" y="70.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">15.3</text><text x="245.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">14</text>
+<rect x="271.2" y="78.2" width="38.7" height="26.8" fill="#4fd18b" rx="2"/><text x="290.6" y="74.2" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">13.2</text><text x="290.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">15</text>
+<rect x="315.9" y="43.7" width="38.7" height="61.3" fill="#4fd18b" rx="2"/><text x="335.3" y="39.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">30.2</text><text x="335.3" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16</text>
+<rect x="360.6" y="63.6" width="38.7" height="41.4" fill="#4fd18b" rx="2"/><text x="380.0" y="59.6" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20.4</text><text x="380.0" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">17</text>
+<rect x="405.4" y="72.1" width="38.7" height="32.9" fill="#4fd18b" rx="2"/><text x="424.7" y="68.1" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16.2</text><text x="424.7" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">18</text>
+<rect x="450.1" y="18.7" width="38.7" height="86.3" fill="#4fd18b" rx="2"/><text x="469.4" y="14.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">42.5</text><text x="469.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">19</text>
+<rect x="494.8" y="105.0" width="38.7" height="65.0" fill="#f0a7c2" rx="2"/><text x="514.1" y="181.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">-32.0</text><text x="514.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20</text>
+<rect x="539.5" y="51.0" width="38.7" height="54.0" fill="#4fd18b" rx="2"/><text x="558.8" y="47.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">26.6</text><text x="558.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">21</text>
+<rect x="584.2" y="10.0" width="38.7" height="95.0" fill="#f0d98c" rx="2"/><text x="603.5" y="6.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">46.8</text><text x="603.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">22</text>
+<rect x="628.9" y="59.9" width="38.7" height="45.1" fill="#4fd18b" rx="2"/><text x="648.2" y="55.9" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">22.2</text><text x="648.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">23</text>
+<rect x="673.6" y="63.8" width="38.7" height="41.2" fill="#4fd18b" rx="2"/><text x="692.9" y="59.8" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20.3</text><text x="692.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">24</text>
+<rect x="718.3" y="82.3" width="38.7" height="22.7" fill="#4fd18b" rx="2"/><text x="737.6" y="78.3" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">11.2</text><text x="737.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">25</text>
+</svg>
+<p class="snap">評分：<b>55／100</b>（長期方向向上、疫情年單一衝擊尚可理解，但近三年連續、同方向下滑逾76%是明確扣分項，代表本業造血能力正在轉弱）</p>
+
+<h3>規則二：B 投資紀律評估</h3>
+<div class="callout">17年裡有13年B為負值（持續投資），4年為正值（2010、2017、2022、2024，代表當年資產處分/投資收回大於新增投資，非負面訊號）。投資規模波動很大：最溫和的年度僅-2.65億（2012），最重手的則是2020年-25.5億與2018年-19.6億，兩次都超過或接近當年A的水準（2018年B=-19.6億，A僅16.2億，投資金額已超過營業現金流本身）。屬於「有機會就投、規模不固定」的類型，不是穩定漸進式的資本支出節奏。</div>
+<p class="snap">評分：<b>60／100</b>（持續投資本身正常，但2018、2020兩年投資規模明顯超過或逼近當年營業現金流，資源分配的節奏偏波動）</p>
+
+<h3>規則三：B 投資效益分析（核心對照A，非D）</h3>
+<table>
+<tr><th>投資年度</th><th>當年B</th><th>投資後1年A</th><th>投資後2年A</th><th>效益判讀</th></tr>
+<tr><td>2018</td><td>-19.6（當年A僅16.2）</td><td>2019: 42.5（大幅躍升）</td><td>2020: -32.0（轉負，但為COVID衝擊）</td><td class="pos">隔年效益立即顯現，2020年的反轉是外部因素而非投資失敗</td></tr>
+<tr><td>2020</td><td>-25.5（危機中逆勢加碼）</td><td>2021: 26.6（大幅回升）</td><td>2022: 46.8（續強，創新高）</td><td class="pos">逆勢投資效果顯著，2年內轉化為歷史新高</td></tr>
+<tr><td>2021</td><td>-16.3</td><td>2022: 46.8（延續高點）</td><td>2023: 22.2（腰斬）</td><td class="neg">短期延續但2年後大幅回落</td></tr>
+<tr><td>2023</td><td>-13.5</td><td>2024: 20.3（較2022已下滑）</td><td>2025: 11.2（續降）</td><td class="neg">投資後A不升反降，轉化效果不明顯</td></tr>
+<tr><td>2025</td><td>-12.88</td><td>26Q2(半年,僅供參考): 1.51</td><td>—</td><td>資料尚不足以判斷，需待2026全年數字</td></tr>
+</table>
+<p>早期（2018、2020）的重度投資轉化效果非常好，尤其2020年在A本身轉負的逆風環境下仍加碼投資，2年內就帶出歷史新高的46.8億。但<b>2021年之後的投資（2021、2023）轉化效果明顯轉弱</b>，投資後A不僅沒有延續成長，反而持續下滑，跟規則一觀察到的「近三年A連續下滑」互相呼應——顯示近期的投資沒有像過去一樣有效轉化為營業現金流成長。</p>
+<p class="snap">評分：<b>60／100</b>（2018-2020的投資效益優異，但2021年後投資效益明顯轉弱，是近期最需要留意的訊號）</p>
+
+<h3>規則四：C 融資活動合理性（B大幅負值＋C正值的「借錢投資」年度）</h3>
+<svg viewBox="0 0 760 235" style="width:100%;height:auto;">
+<line x1="0" y1="58.1" x2="760" y2="58.1" stroke="#25332e" stroke-width="1"/>
+<rect x="10.0" y="58.1" width="16.1" height="12.1" fill="#f0716a" rx="2"/>
+<rect x="28.1" y="58.1" width="16.1" height="2.5" fill="#2dd4bf" rx="2"/>
+<text x="27.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">09</text>
+<rect x="54.1" y="52.5" width="16.1" height="5.6" fill="#f0716a" rx="2"/>
+<rect x="72.2" y="58.1" width="16.1" height="15.4" fill="#2dd4bf" rx="2"/>
+<text x="71.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">10</text>
+<rect x="98.2" y="58.1" width="16.1" height="7.0" fill="#f0716a" rx="2"/>
+<rect x="116.3" y="58.1" width="16.1" height="12.2" fill="#2dd4bf" rx="2"/>
+<text x="115.3" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">11</text>
+<rect x="142.4" y="58.1" width="16.1" height="5.3" fill="#f0716a" rx="2"/>
+<rect x="160.4" y="58.1" width="16.1" height="10.9" fill="#2dd4bf" rx="2"/>
+<text x="159.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">12</text>
+<rect x="186.5" y="58.1" width="16.1" height="9.7" fill="#f0716a" rx="2"/>
+<rect x="204.5" y="58.1" width="16.1" height="6.5" fill="#2dd4bf" rx="2"/>
+<text x="203.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">13</text>
+<rect x="230.6" y="58.1" width="16.1" height="19.4" fill="#f0716a" rx="2"/>
+<rect x="248.6" y="58.1" width="16.1" height="19.1" fill="#2dd4bf" rx="2"/>
+<text x="247.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">14</text>
+<rect x="271.7" y="10" width="40.1" height="200" fill="#f0b95522"/>
+<rect x="274.7" y="58.1" width="16.1" height="23.3" fill="#f0716a" rx="2"/>
+<rect x="292.8" y="46.7" width="16.1" height="11.4" fill="#2dd4bf" rx="2"/>
+<text x="291.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">15</text>
+<rect x="318.8" y="58.1" width="16.1" height="13.1" fill="#f0716a" rx="2"/>
+<rect x="336.9" y="58.1" width="16.1" height="5.1" fill="#2dd4bf" rx="2"/>
+<text x="335.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16</text>
+<rect x="362.9" y="56.4" width="16.1" height="1.6" fill="#f0716a" rx="2"/>
+<rect x="381.0" y="57.0" width="16.1" height="1.1" fill="#2dd4bf" rx="2"/>
+<text x="380.0" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">17</text>
+<rect x="404.1" y="10" width="40.1" height="200" fill="#f0b95522"/>
+<rect x="407.1" y="58.1" width="16.1" height="39.1" fill="#f0716a" rx="2"/>
+<rect x="425.1" y="10.0" width="16.1" height="48.1" fill="#2dd4bf" rx="2"/>
+<text x="424.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">18</text>
+<rect x="451.2" y="58.1" width="16.1" height="8.7" fill="#f0716a" rx="2"/>
+<rect x="469.2" y="58.1" width="16.1" height="111.9" fill="#2dd4bf" rx="2"/>
+<text x="468.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">19</text>
+<rect x="492.3" y="10" width="40.1" height="200" fill="#f0b95522"/>
+<rect x="495.3" y="58.1" width="16.1" height="50.9" fill="#f0716a" rx="2"/>
+<rect x="513.4" y="14.2" width="16.1" height="43.9" fill="#2dd4bf" rx="2"/>
+<text x="512.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20</text>
+<rect x="536.4" y="10" width="40.1" height="200" fill="#f0b95522"/>
+<rect x="539.4" y="58.1" width="16.1" height="32.5" fill="#f0716a" rx="2"/>
+<rect x="557.5" y="41.2" width="16.1" height="16.8" fill="#2dd4bf" rx="2"/>
+<text x="556.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">21</text>
+<rect x="583.5" y="56.7" width="16.1" height="1.3" fill="#f0716a" rx="2"/>
+<rect x="601.6" y="58.1" width="16.1" height="56.3" fill="#2dd4bf" rx="2"/>
+<text x="600.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">22</text>
+<rect x="627.6" y="58.1" width="16.1" height="26.9" fill="#f0716a" rx="2"/>
+<rect x="645.7" y="58.1" width="16.1" height="40.3" fill="#2dd4bf" rx="2"/>
+<text x="644.7" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">23</text>
+<rect x="671.8" y="56.1" width="16.1" height="2.0" fill="#f0716a" rx="2"/>
+<rect x="689.8" y="43.4" width="16.1" height="14.7" fill="#2dd4bf" rx="2"/>
+<text x="688.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">24</text>
+<rect x="712.9" y="10" width="40.1" height="200" fill="#f0b95522"/>
+<rect x="715.9" y="58.1" width="16.1" height="25.7" fill="#f0716a" rx="2"/>
+<rect x="733.9" y="28.4" width="16.1" height="29.7" fill="#2dd4bf" rx="2"/>
+<text x="732.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">25</text>
+<g transform="translate(0,212)"><rect x="0" y="0" width="10" height="10" fill="#f0716a"/><text x="14" y="9" font-size="10" fill="#9db3ab">B投資活動</text><rect x="90" y="0" width="10" height="10" fill="#2dd4bf"/><text x="104" y="9" font-size="10" fill="#9db3ab">C融資活動</text></g>
+</svg>
+<div class="callout warn"><b>標示區間（淺黃底）為B負值同時C為正值的年度：2015、2018、2020、2021、2025，共5個年度。其中2020年是全樣本最嚴重的警訊：當年A為-32.0億（轉負）、B為-25.5億（重度投資）、C為+22.0億（融資活動同步大幅為正），三個條件同時成立，符合六大規則定義的「最高警戒三重疊加訊號」（A為負＋B重度負值＋C為正數或小幅負值）。</b>這代表2020年本業現金流已經轉負、公司仍持續重度投資，且同一年還透過融資活動淨流入22.0億資金——現金流最緊張的年度，反而是對外籌資最積極的一年。</div>
+<p>本次資料未附融資活動細項（短期借款、公司債、現金增資等拆解），無法判斷2020年那筆22.0億究竟是純舉債還是股權募資，兩者風險程度差異很大，需要在第2、3步查證公司公告或法說會資料確認。2018年的組合（B=-19.6，C=+24.1）規模也不小，但當年A仍為正值（16.2億），風險程度低於2020年。</p>
+<p class="snap">評分：<b>40／100</b>（5次B負C正組合中，2020年同時觸發「A為負」，達成六大規則定義的最高警戒三重疊加訊號，是本次分析最需要優先查證的年度）</p>
+
+<h3>規則五：A &gt; D 現金流品質（嚴格二分法）</h3>
+<table><tr><td>2009</td><td>12.2</td><td>6.49</td><td class='pos'>✓ 通過</td></tr><tr><td>2010</td><td>3.71</td><td>7.4</td><td class='neg'>✗ 不通過</td></tr><tr><td>2011</td><td>4.8</td><td>3.62</td><td class='pos'>✓ 通過</td></tr><tr><td>2012</td><td>5.48</td><td>5.88</td><td class='neg'>✗ 不通過</td></tr><tr><td>2013</td><td>18.7</td><td>12.8</td><td class='pos'>✓ 通過</td></tr><tr><td>2014</td><td>15.3</td><td>15.6</td><td class='neg'>✗ 不通過</td></tr><tr><td>2015</td><td>13.2</td><td>8.13</td><td class='pos'>✓ 通過</td></tr><tr><td>2016</td><td>30.2</td><td>24.7</td><td class='pos'>✓ 通過</td></tr><tr><td>2017</td><td>20.4</td><td>42.6</td><td class='neg'>✗ 不通過</td></tr><tr><td>2018</td><td>16.2</td><td>27.3</td><td class='neg'>✗ 不通過</td></tr><tr><td>2019</td><td>42.5</td><td>32.5</td><td class='pos'>✓ 通過</td></tr><tr><td>2020</td><td>-32.0</td><td>17.0</td><td class='neg'>✗ 不通過</td></tr><tr><td>2021</td><td>26.6</td><td>15.8</td><td class='pos'>✓ 通過</td></tr><tr><td>2022</td><td>46.8</td><td>20.5</td><td class='pos'>✓ 通過</td></tr><tr><td>2023</td><td>22.2</td><td>18.9</td><td class='pos'>✓ 通過</td></tr><tr><td>2024</td><td>20.3</td><td>31.5</td><td class='neg'>✗ 不通過</td></tr><tr><td>2025</td><td>11.2</td><td>21.3</td><td class='neg'>✗ 不通過</td></tr></table>
+<p>17個完整年度中，9年通過（A&gt;D）、8年不通過。不通過年度分布相當平均，不是集中在特定時期，但<b>近3年裡有2年不通過（2024、2025）</b>，加上2023年雖通過但差距很小（22.2 vs 18.9），顯示近期「帳面獲利」與「實際收現」的落差有擴大跡象，跟規則一、規則三觀察到的近期現金流轉弱趨勢一致。</p>
+<p class="snap">評分：<b>52.9／100</b>（9/17年通過，52.9%，落在「需觀察」區間，未達60%及格門檻）</p>
+
+<h3>規則六：E 期末現金餘額穩定性</h3>
+<svg viewBox="0 0 760 200" style="width:100%;height:auto;">
+<line x1="0" y1="170.0" x2="760" y2="170.0" stroke="#25332e" stroke-width="1"/>
+<rect x="3.0" y="138.3" width="38.7" height="31.7" fill="#4fd18b" rx="2"/><text x="22.4" y="134.3" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">19.4</text><text x="22.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">09</text>
+<rect x="47.7" y="143.7" width="38.7" height="26.3" fill="#4fd18b" rx="2"/><text x="67.1" y="139.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16.1</text><text x="67.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">10</text>
+<rect x="92.4" y="148.0" width="38.7" height="22.0" fill="#4fd18b" rx="2"/><text x="111.8" y="144.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">13.5</text><text x="111.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">11</text>
+<rect x="137.1" y="153.8" width="38.7" height="16.2" fill="#f0a7c2" rx="2"/><text x="156.5" y="149.8" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">9.9</text><text x="156.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">12</text>
+<rect x="181.8" y="137.3" width="38.7" height="32.7" fill="#4fd18b" rx="2"/><text x="201.2" y="133.3" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20.0</text><text x="201.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">13</text>
+<rect x="226.5" y="142.7" width="38.7" height="27.3" fill="#4fd18b" rx="2"/><text x="245.9" y="138.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16.7</text><text x="245.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">14</text>
+<rect x="271.2" y="128.7" width="38.7" height="41.3" fill="#4fd18b" rx="2"/><text x="290.6" y="124.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">25.3</text><text x="290.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">15</text>
+<rect x="315.9" y="96.9" width="38.7" height="73.1" fill="#4fd18b" rx="2"/><text x="335.3" y="92.9" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">44.8</text><text x="335.3" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">16</text>
+<rect x="360.6" y="64.0" width="38.7" height="106.0" fill="#4fd18b" rx="2"/><text x="380.0" y="60.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">64.9</text><text x="380.0" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">17</text>
+<rect x="405.4" y="31.1" width="38.7" height="138.9" fill="#4fd18b" rx="2"/><text x="424.7" y="27.1" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">85.1</text><text x="424.7" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">18</text>
+<rect x="450.1" y="62.4" width="38.7" height="107.6" fill="#4fd18b" rx="2"/><text x="469.4" y="58.4" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">65.9</text><text x="469.4" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">19</text>
+<rect x="494.8" y="120.2" width="38.7" height="49.8" fill="#4fd18b" rx="2"/><text x="514.1" y="116.2" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">30.5</text><text x="514.1" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">20</text>
+<rect x="539.5" y="91.0" width="38.7" height="79.0" fill="#4fd18b" rx="2"/><text x="558.8" y="87.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">48.4</text><text x="558.8" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">21</text>
+<rect x="584.2" y="57.0" width="38.7" height="113.0" fill="#4fd18b" rx="2"/><text x="603.5" y="53.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">69.2</text><text x="603.5" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">22</text>
+<rect x="628.9" y="79.7" width="38.7" height="90.3" fill="#4fd18b" rx="2"/><text x="648.2" y="75.7" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">55.3</text><text x="648.2" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">23</text>
+<rect x="673.6" y="29.8" width="38.7" height="140.2" fill="#4fd18b" rx="2"/><text x="692.9" y="25.8" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">85.9</text><text x="692.9" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">24</text>
+<rect x="718.3" y="10.0" width="38.7" height="160.0" fill="#f0d98c" rx="2"/><text x="737.6" y="6.0" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">98.0</text><text x="737.6" y="190" font-size="9" fill="#9db3ab" text-anchor="middle" font-family="IBM Plex Mono">25</text>
+</svg>
+<div class="callout warn">長期方向是明確向上：從2012年低點9.94億成長到2025年98.0億，10年增值近10倍。但過程波動劇烈：2018年高點85.1億後，2019年小跌至65.9億，<b>2020年疫情年再重挫至30.5億，兩年合計跌幅逾64%</b>，是全樣本最劇烈的一次連續下滑；之後2021-2022回升、2023年又跌回55.3億，直到2024-2025才連續兩年創新高。另外Goodinfo標示的26Q2（推測為2026上半年）期末餘額73.3億，較2025年底的98.0億下滑逾25%，這是單期資料僅供參考、不列入計分，但值得在第2步查證後續觀察。</div>
+<p class="snap">評分：<b>62／100</b>（長期方向正確、近兩年創新高，但2019-2020連續兩年重挫逾6成、2023年又見一次明顯回落，穩定度不算理想）</p>
+
+<h3>六大規則總評分</h3>
+<div class="totalbox">
+  <div class="num">57.0</div>
+  <div class="label">六項平均分（55+60+60+40+52.9+62）÷6，等級：<b style="color:#f0716a">需觀察</b>（低於60%門檻）</div>
+</div>
+
+<div class="gatebox gate-watch" style="border-color:var(--neg);background:rgba(240,113,106,.08)">
+<b>關卡判斷：總分57.0% &lt; 60%門檻，且2020年同時觸發「A為負＋B重度負值＋C為正值」的最高警戒三重疊加訊號。</b>依規則建議：<b>這檔現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面。</b><br><br>
+綜合五項觀察，此次分析浮現三個值得留意的重點：第一，<b>近三年（2023-2025）A營業現金流連續下滑逾76%</b>，且規則三顯示2021年後的投資已較難轉化為A的成長，跟2018-2020年「投資後隔年立即見效」的型態明顯不同；第二，<b>2020年是全樣本最嚴重的單一年度風險訊號</b>（A轉負、重度投資、同步大額融資三者疊加），且缺乏融資細項無法判斷資金來源性質；第三，<b>規則五（A&gt;D現金流品質）僅52.9%通過</b>，近兩年（2024、2025）都不通過，代表帳面獲利與實際收現的落差有擴大跡象。<br><br>
+好消息是：長期期末現金餘額（E）確實在成長、2024-2025創下歷史新高，顯示公司整體現金部位並未惡化到危險水位，2020年的風險訊號也可能與COVID這種一次性外部衝擊有關，需要第2、3步查證公司背景與法說會說明後才能更準確判斷是否為結構性問題。
+</div>
+</section>
+
+</main>
+<footer>報告版本 v1.0｜生成時間：2026/08/23｜資料來源：使用者提供 Goodinfo 截圖，本步驟未查詢股價/EPS/產業背景（盲測原則）</footer>
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click', e=>{
+    if(a.classList.contains('locked')){ e.preventDefault(); return; }
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const navLinks = Array.from(document.querySelectorAll('nav.stepnav a')).filter(a=>!a.classList.contains('locked'));
+const sections = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = '#'+entry.target.id;
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+    }
+  });
+}, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
