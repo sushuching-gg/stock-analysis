@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8016 矽創 個股初步分析</title>
+<style>
+:root {
+  --ink:#20262b; --paper:#faf8f4; --line:#e3ddd0;
+  --pos:#2f7d5c; --neg:#c04a4a; --accent:#8a5a3b; --gate-ok:#2f7d5c; --gate-warn:#c04a4a;
+  --peak:#e6c68c; --trough:#e8a3b0;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; background:var(--paper); color:var(--ink); line-height:1.7; }
+header.hero { padding:28px 20px 20px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,var(--paper)); }
+header.hero .eyebrow { font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:700; }
+header.hero h1 { margin:6px 0 4px; font-size:26px; }
+header.hero .meta { font-size:13px; color:#666; }
+nav.stepnav { position:sticky; top:0; z-index:50; display:flex; overflow-x:auto; background:#fff; border-bottom:1px solid var(--line); }
+nav.stepnav a { flex:0 0 auto; padding:12px 14px; font-size:13px; text-decoration:none; color:#999; border-bottom:3px solid transparent; white-space:nowrap; }
+nav.stepnav a.pad { color:var(--ink); cursor:pointer; }
+nav.stepnav a.locked { color:#bbb; cursor:default; }
+nav.stepnav a.active { border-bottom-color:var(--accent); color:var(--accent); font-weight:700; }
+main { max-width:960px; margin:0 auto; padding:0 18px 60px; }
+section { padding:32px 0; border-bottom:1px solid var(--line); }
+section h2 { font-size:20px; margin:0 0 4px; }
+section .step-label { font-size:12px; color:var(--accent); font-weight:700; letter-spacing:.05em; margin-bottom:6px; }
+.callout { border-left:4px solid var(--accent); background:#fff3e6; padding:12px 16px; border-radius:4px; margin:16px 0; font-size:14px; }
+.callout.gate-ok { border-left-color:var(--gate-ok); background:#eaf5ef; }
+.callout.gate-warn { border-left-color:var(--gate-warn); background:#fbeaea; }
+table { width:100%; border-collapse:collapse; font-size:13px; margin:14px 0; }
+th, td { padding:7px 8px; text-align:right; border-bottom:1px solid var(--line); }
+th:first-child, td:first-child { text-align:left; }
+th { background:#f1ece1; font-weight:700; }
+.negv { color:var(--neg); font-weight:600; }
+.q-row td { background:#f6f3ec; font-style:italic; color:#888; }
+.q-tag { font-size:10px; background:#ddd; color:#555; padding:1px 5px; border-radius:3px; margin-left:4px; }
+.pass { color:var(--pos); font-weight:700; }
+.fail { color:var(--neg); font-weight:700; }
+.chart-wrap { margin:18px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px; }
+.chart-svg { width:100%; height:auto; display:block; }
+.chart-val { font-size:11px; fill:#333; }
+.chart-yr { font-size:10px; fill:#777; }
+.legend { display:flex; gap:16px; font-size:12px; margin-top:6px; flex-wrap:wrap; }
+.legend span { display:inline-flex; align-items:center; gap:5px; }
+.legend i { width:12px; height:12px; border-radius:2px; display:inline-block; }
+.score-box { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
+.score-card { flex:1 1 140px; background:#fff; border:1px solid var(--line); border-radius:6px; padding:12px; text-align:center; }
+.score-card .n { font-size:22px; font-weight:800; color:var(--accent); }
+.score-card .l { font-size:12px; color:#777; }
+.total-score { text-align:center; padding:22px; background:#fff; border:1px solid var(--line); border-radius:8px; margin:18px 0; }
+.total-score .big { font-size:44px; font-weight:800; color:var(--gate-ok); }
+.snap-note { font-size:12px; color:#888; margin-top:6px; }
+.snap-note::before { content:"📌 "; }
+footer { text-align:center; padding:26px 18px; font-size:12px; color:#999; }
+p { font-size:14.5px; }
+strong { color:#1a1a1a; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">台股個股初步分析</div>
+  <h1>8016 矽創（Sitronix）</h1>
+  <div class="meta">現金流優先，基本面在後　｜　分析版本 v1　｜　建立日期 2026-08-23</div>
+</header>
+
+<nav class="stepnav">
+  <a href="#step1" class="pad active">① 現金流六大規則</a>
+  <a class="locked">② 基本資訊</a>
+  <a class="locked">③ 法說會</a>
+  <a class="locked">④ 營收趨勢</a>
+  <a class="locked">⑤ 前瞻本益比</a>
+  <a class="locked">⑥ 投資決策</a>
+</nav>
+
+<main>
+
+<section id="step1">
+  <div class="step-label">【第 1 步／共 6 步】現金流量表六大規則分析（盲測階段）</div>
+  <h2>現金流量表六大規則分析</h2>
+
+  <div class="callout">
+    本步驟嚴禁查詢股價、EPS、產業地位等任何其他資訊，僅依現金流量表數字本身進行客觀解讀。資料為使用者提供之 Goodinfo 截圖（2008～2025 年度，另含 2026Q2 單季數字，單季僅供參考不列入計分）。
+  </div>
+
+  <h3>現金流量數據總表（億元）</h3>
+  <table>
+    <thead><tr><th>年度</th><th>A 營業活動</th><th>B 投資活動</th><th>C 融資活動</th><th>D 稅前淨利</th><th>E 期末現金餘額</th></tr></thead>
+    <tbody>
+    <tr><td>2008</td><td class="">4.76</td><td class="negv">-1.68</td><td class="negv">-9.2</td><td>4.95</td><td>5.75</td></tr>
+<tr><td>2009</td><td class="">8.12</td><td class="negv">-1.81</td><td class="negv">-0.98</td><td>4.82</td><td>11.08</td></tr>
+<tr><td>2010</td><td class="">3.01</td><td class="negv">-3.92</td><td class="">2</td><td>5.3</td><td>12.14</td></tr>
+<tr><td>2011</td><td class="">9.49</td><td class="negv">-3.64</td><td class="negv">-5.37</td><td>2.88</td><td>12.64</td></tr>
+<tr><td>2012</td><td class="">4.13</td><td class="negv">-2.13</td><td class="negv">-1.83</td><td>3.61</td><td>12.73</td></tr>
+<tr><td>2013</td><td class="">1.76</td><td class="negv">-2.23</td><td class="negv">-2.51</td><td>5</td><td>9.79</td></tr>
+<tr><td>2014</td><td class="">11.8</td><td class="negv">-11.4</td><td class="">1.45</td><td>8.48</td><td>12</td></tr>
+<tr><td>2015</td><td class="">13.7</td><td class="negv">-2.35</td><td class="negv">-5.98</td><td>10.3</td><td>17.6</td></tr>
+<tr><td>2016</td><td class="">11.2</td><td class="">0.82</td><td class="negv">-8.39</td><td>12.6</td><td>21</td></tr>
+<tr><td>2017</td><td class="">5.85</td><td class="negv">-2.43</td><td class="negv">-9.73</td><td>9.88</td><td>14.2</td></tr>
+<tr><td>2018</td><td class="">10.4</td><td class="negv">-3.08</td><td class="negv">-1.08</td><td>11.2</td><td>20.6</td></tr>
+<tr><td>2019</td><td class="">34</td><td class="negv">-15.3</td><td class="negv">-9.69</td><td>22</td><td>29.3</td></tr>
+<tr><td>2020</td><td class="">30.4</td><td class="negv">-9.9</td><td class="">6.34</td><td>25.2</td><td>55.9</td></tr>
+<tr><td>2021</td><td class="">84.2</td><td class="negv">-45.7</td><td class="negv">-14.7</td><td>83.5</td><td>79.3</td></tr>
+<tr><td>2022</td><td class="">15.2</td><td class="">9.27</td><td class="negv">-48.8</td><td>51.1</td><td>56.6</td></tr>
+<tr><td>2023</td><td class="">43</td><td class="negv">-13.2</td><td class="negv">-31.2</td><td>28.4</td><td>55</td></tr>
+<tr><td>2024</td><td class="">28.4</td><td class="negv">-35</td><td class="negv">-10.6</td><td>28.4</td><td>38.7</td></tr>
+<tr><td>2025</td><td class="">31.1</td><td class="">12.9</td><td class="negv">-25</td><td>24.4</td><td>57.3</td></tr>
+<tr class="q-row"><td>26Q2<span class="q-tag">單季</span></td><td>25.3</td><td class="negv">-11.4</td><td class="negv">-4.14</td><td>20.1</td><td>67.8</td></tr>
+
+    </tbody>
+  </table>
+  <p class="snap-note">使用者提供截圖（Goodinfo 歷年現金流量表，2026/08/23）。E 欄位 2009～2012 年因原圖下緣被介面圖示遮擋，已用「期初餘額＋淨現金流＝期末餘額」逐年連續推算校驗，並與後續年度期初餘額完全吻合（例：推算 2011 年期末 12.64 億，對應 2012 年圖表期初餘額 12.6 億）。</p>
+
+  <h3>規則一：A 逐季與逐年成長趨勢</h3>
+  <div class="chart-wrap"><svg viewBox="0 0 1000 300" class="chart-svg" role="img" aria-label="營業活動現金流量逐年趨勢"><line x1="40" y1="260.0" x2="980" y2="260.0" stroke="#999" stroke-width="1"/><rect x="49.9" y="246.4" width="32.4" height="13.6" fill="#2f7d5c" rx="2"/><text x="66.1" y="242.4" class="chart-val" text-anchor="middle">4.76</text><text x="66.1" y="276.0" class="chart-yr" text-anchor="middle">08</text><rect x="102.1" y="236.9" width="32.4" height="23.1" fill="#2f7d5c" rx="2"/><text x="118.3" y="232.9" class="chart-val" text-anchor="middle">8.12</text><text x="118.3" y="276.0" class="chart-yr" text-anchor="middle">09</text><rect x="154.4" y="251.4" width="32.4" height="8.6" fill="#2f7d5c" rx="2"/><text x="170.6" y="247.4" class="chart-val" text-anchor="middle">3.01</text><text x="170.6" y="276.0" class="chart-yr" text-anchor="middle">10</text><rect x="206.6" y="233.0" width="32.4" height="27.0" fill="#2f7d5c" rx="2"/><text x="222.8" y="229.0" class="chart-val" text-anchor="middle">9.49</text><text x="222.8" y="276.0" class="chart-yr" text-anchor="middle">11</text><rect x="258.8" y="248.2" width="32.4" height="11.8" fill="#2f7d5c" rx="2"/><text x="275.0" y="244.2" class="chart-val" text-anchor="middle">4.13</text><text x="275.0" y="276.0" class="chart-yr" text-anchor="middle">12</text><rect x="311.0" y="255.0" width="32.4" height="5.0" fill="#2f7d5c" rx="2"/><text x="327.2" y="251.0" class="chart-val" text-anchor="middle">1.76</text><text x="327.2" y="276.0" class="chart-yr" text-anchor="middle">13</text><rect x="363.3" y="226.4" width="32.4" height="33.6" fill="#2f7d5c" rx="2"/><text x="379.4" y="222.4" class="chart-val" text-anchor="middle">11.8</text><text x="379.4" y="276.0" class="chart-yr" text-anchor="middle">14</text><rect x="415.5" y="221.0" width="32.4" height="39.0" fill="#2f7d5c" rx="2"/><text x="431.7" y="217.0" class="chart-val" text-anchor="middle">13.7</text><text x="431.7" y="276.0" class="chart-yr" text-anchor="middle">15</text><rect x="467.7" y="228.1" width="32.4" height="31.9" fill="#2f7d5c" rx="2"/><text x="483.9" y="224.1" class="chart-val" text-anchor="middle">11.2</text><text x="483.9" y="276.0" class="chart-yr" text-anchor="middle">16</text><rect x="519.9" y="243.3" width="32.4" height="16.7" fill="#2f7d5c" rx="2"/><text x="536.1" y="239.3" class="chart-val" text-anchor="middle">5.85</text><text x="536.1" y="276.0" class="chart-yr" text-anchor="middle">17</text><rect x="572.1" y="230.4" width="32.4" height="29.6" fill="#2f7d5c" rx="2"/><text x="588.3" y="226.4" class="chart-val" text-anchor="middle">10.4</text><text x="588.3" y="276.0" class="chart-yr" text-anchor="middle">18</text><rect x="624.4" y="163.1" width="32.4" height="96.9" fill="#2f7d5c" rx="2"/><text x="640.6" y="159.1" class="chart-val" text-anchor="middle">34</text><text x="640.6" y="276.0" class="chart-yr" text-anchor="middle">19</text><rect x="676.6" y="173.3" width="32.4" height="86.7" fill="#2f7d5c" rx="2"/><text x="692.8" y="169.3" class="chart-val" text-anchor="middle">30.4</text><text x="692.8" y="276.0" class="chart-yr" text-anchor="middle">20</text><rect x="728.8" y="20.0" width="32.4" height="240.0" fill="#e6c68c" rx="2"/><text x="745.0" y="16.0" class="chart-val" text-anchor="middle">84.2</text><text x="745.0" y="276.0" class="chart-yr" text-anchor="middle">21</text><rect x="781.0" y="216.7" width="32.4" height="43.3" fill="#2f7d5c" rx="2"/><text x="797.2" y="212.7" class="chart-val" text-anchor="middle">15.2</text><text x="797.2" y="276.0" class="chart-yr" text-anchor="middle">22</text><rect x="833.3" y="137.4" width="32.4" height="122.6" fill="#2f7d5c" rx="2"/><text x="849.4" y="133.4" class="chart-val" text-anchor="middle">43</text><text x="849.4" y="276.0" class="chart-yr" text-anchor="middle">23</text><rect x="885.5" y="179.0" width="32.4" height="81.0" fill="#2f7d5c" rx="2"/><text x="901.7" y="175.0" class="chart-val" text-anchor="middle">28.4</text><text x="901.7" y="276.0" class="chart-yr" text-anchor="middle">24</text><rect x="937.7" y="171.4" width="32.4" height="88.6" fill="#2f7d5c" rx="2"/><text x="953.9" y="167.4" class="chart-val" text-anchor="middle">31.1</text><text x="953.9" y="276.0" class="chart-yr" text-anchor="middle">25</text></svg></div>
+  <div class="legend">
+    <span><i style="background:#e6c68c"></i>波段高峰</span>
+    <span><i style="background:#c04a4a"></i>年度數值</span>
+  </div>
+  <p>矽創的營業活動現金流量呈現典型 IC 設計業的<strong>景氣循環型</strong>個性：2008～2013 年低檔震盪（1.76～9.49 億），2014～2018 年緩步墊高至 10 億上下的平台，2019～2021 年因面板驅動 IC 缺貨潮急速攀升，2021 年單年衝上 <strong>84.2 億</strong>的歷史高峰；2022 年隨產業庫存修正急墜至 15.2 億（波段谷底），2023～2025 年則在 28～43 億區間緩步回穩。整體來說是「順風時衝很快、逆風時退得也快」的性格，中長期方向仍是向上，但波動幅度大，不是穩定成長型。</p>
+
+  <h3>規則二：B 投資紀律評估</h3>
+  <p>矽創屬 IC 設計（Fabless）公司，資本支出需求本就低於晶圓廠等資本密集型產業，B 多數年度為溫和負值，僅 2021 年（B=-45.7 億，對比 A=84.2 億，比例約 54%）與 2024 年（B=-35 億，對比 A=28.4 億，|B|＞A）屬於明顯加碼年度。值得留意的是 2022 年與 2025 年 B 轉為正值（+9.27 億、+12.9 億），代表這兩年是「處分金融資產／回收投資」的年度，而非持續擴張，需提醒：投資活動細項原始數據中，真正代表廠房設備等資本支出的項目是「固定資產(增加)減少」，這裡的正負值也可能混雜金融資產買賣，若要更精確判斷資本支出強度，建議後續步驟向使用者索取細項數字。</p>
+
+  <h3>規則三：B 投資效益分析（隔年 A 是否轉強）</h3>
+  <table>
+    <thead><tr><th>投資年度</th><th>當年 B</th><th>隔年 A</th><th>效果判讀</th></tr></thead>
+    <tbody>
+      <tr><td>2013</td><td class="negv">-2.23</td><td>11.8（2014）</td><td class="pass">明顯轉強</td></tr>
+      <tr><td>2019</td><td class="negv">-15.3</td><td>30.4（2020）→ 84.2（2021）</td><td class="pass">延遲兩年後大爆發</td></tr>
+      <tr><td>2021</td><td class="negv">-45.7</td><td>15.2（2022）</td><td class="fail">未轉強（產業下行期）</td></tr>
+      <tr><td>2024</td><td class="negv">-35</td><td>31.1（2025）</td><td>效果尚未明朗（僅小幅回升）</td></tr>
+    </tbody>
+  </table>
+  <p>2013→2014、2019→2021 兩段重度投資都確實在延後 1～2 年後轉化為 A 的成長，符合「效果需要時間發酵」的一般規律；但 2021 年的重度投資在隔年（2022）遇上產業庫存修正，A 不增反減，比較像是外部景氣周期蓋過投資效益，而非公司執行力出問題，需要在後續步驟搭配法說會說法交叉確認。2024 年的投資效益目前只看到 2025 年小幅回升，尚待 2026 年數字驗證。</p>
+
+  <h3>規則四：C 融資活動合理性（含最高警戒訊號檢查）</h3>
+  <div class="chart-wrap"><svg viewBox="0 0 1000 300" class="chart-svg" role="img" aria-label="投資活動與融資活動現金流量對照"><line x1="40" y1="70.2" x2="980" y2="70.2" stroke="#999" stroke-width="1"/><rect x="144.4" y="20" width="52.2" height="240" fill="#fdf1cf" opacity="0.7"/><rect x="353.3" y="20" width="52.2" height="240" fill="#fdf1cf" opacity="0.7"/><rect x="666.7" y="20" width="52.2" height="240" fill="#fdf1cf" opacity="0.7"/><rect x="43.1" y="70.2" width="16.7" height="6.5" fill="#4a72c0" rx="1.5"/><rect x="63.0" y="70.2" width="16.7" height="35.8" fill="#d98a3d" rx="1.5"/><text x="61.4" y="276.0" class="chart-yr" text-anchor="middle">08</text><rect x="95.4" y="70.2" width="16.7" height="7.0" fill="#4a72c0" rx="1.5"/><rect x="115.2" y="70.2" width="16.7" height="3.8" fill="#d98a3d" rx="1.5"/><text x="113.6" y="276.0" class="chart-yr" text-anchor="middle">09</text><rect x="147.6" y="70.2" width="16.7" height="15.2" fill="#4a72c0" rx="1.5"/><rect x="167.4" y="62.4" width="16.7" height="7.8" fill="#d98a3d" rx="1.5"/><text x="165.9" y="276.0" class="chart-yr" text-anchor="middle">10</text><rect x="199.8" y="70.2" width="16.7" height="14.2" fill="#4a72c0" rx="1.5"/><rect x="219.6" y="70.2" width="16.7" height="20.9" fill="#d98a3d" rx="1.5"/><text x="218.1" y="276.0" class="chart-yr" text-anchor="middle">11</text><rect x="252.0" y="70.2" width="16.7" height="8.3" fill="#4a72c0" rx="1.5"/><rect x="271.9" y="70.2" width="16.7" height="7.1" fill="#d98a3d" rx="1.5"/><text x="270.3" y="276.0" class="chart-yr" text-anchor="middle">12</text><rect x="304.2" y="70.2" width="16.7" height="8.7" fill="#4a72c0" rx="1.5"/><rect x="324.1" y="70.2" width="16.7" height="9.8" fill="#d98a3d" rx="1.5"/><text x="322.5" y="276.0" class="chart-yr" text-anchor="middle">13</text><rect x="356.5" y="70.2" width="16.7" height="44.3" fill="#4a72c0" rx="1.5"/><rect x="376.3" y="64.5" width="16.7" height="5.6" fill="#d98a3d" rx="1.5"/><text x="374.7" y="276.0" class="chart-yr" text-anchor="middle">14</text><rect x="408.7" y="70.2" width="16.7" height="9.1" fill="#4a72c0" rx="1.5"/><rect x="428.5" y="70.2" width="16.7" height="23.3" fill="#d98a3d" rx="1.5"/><text x="427.0" y="276.0" class="chart-yr" text-anchor="middle">15</text><rect x="460.9" y="67.0" width="16.7" height="3.2" fill="#4a72c0" rx="1.5"/><rect x="480.8" y="70.2" width="16.7" height="32.6" fill="#d98a3d" rx="1.5"/><text x="479.2" y="276.0" class="chart-yr" text-anchor="middle">16</text><rect x="513.1" y="70.2" width="16.7" height="9.5" fill="#4a72c0" rx="1.5"/><rect x="533.0" y="70.2" width="16.7" height="37.8" fill="#d98a3d" rx="1.5"/><text x="531.4" y="276.0" class="chart-yr" text-anchor="middle">17</text><rect x="565.4" y="70.2" width="16.7" height="12.0" fill="#4a72c0" rx="1.5"/><rect x="585.2" y="70.2" width="16.7" height="4.2" fill="#d98a3d" rx="1.5"/><text x="583.6" y="276.0" class="chart-yr" text-anchor="middle">18</text><rect x="617.6" y="70.2" width="16.7" height="59.5" fill="#4a72c0" rx="1.5"/><rect x="637.4" y="70.2" width="16.7" height="37.7" fill="#d98a3d" rx="1.5"/><text x="635.9" y="276.0" class="chart-yr" text-anchor="middle">19</text><rect x="669.8" y="70.2" width="16.7" height="38.5" fill="#4a72c0" rx="1.5"/><rect x="689.6" y="45.5" width="16.7" height="24.7" fill="#d98a3d" rx="1.5"/><text x="688.1" y="276.0" class="chart-yr" text-anchor="middle">20</text><rect x="722.0" y="70.2" width="16.7" height="177.8" fill="#4a72c0" rx="1.5"/><rect x="741.9" y="70.2" width="16.7" height="57.2" fill="#d98a3d" rx="1.5"/><text x="740.3" y="276.0" class="chart-yr" text-anchor="middle">21</text><rect x="774.2" y="34.1" width="16.7" height="36.1" fill="#4a72c0" rx="1.5"/><rect x="794.1" y="70.2" width="16.7" height="189.8" fill="#d98a3d" rx="1.5"/><text x="792.5" y="276.0" class="chart-yr" text-anchor="middle">22</text><rect x="826.5" y="70.2" width="16.7" height="51.3" fill="#4a72c0" rx="1.5"/><rect x="846.3" y="70.2" width="16.7" height="121.4" fill="#d98a3d" rx="1.5"/><text x="844.7" y="276.0" class="chart-yr" text-anchor="middle">23</text><rect x="878.7" y="70.2" width="16.7" height="136.1" fill="#4a72c0" rx="1.5"/><rect x="898.5" y="70.2" width="16.7" height="41.2" fill="#d98a3d" rx="1.5"/><text x="897.0" y="276.0" class="chart-yr" text-anchor="middle">24</text><rect x="930.9" y="20.0" width="16.7" height="50.2" fill="#4a72c0" rx="1.5"/><rect x="950.8" y="70.2" width="16.7" height="97.2" fill="#d98a3d" rx="1.5"/><text x="949.2" y="276.0" class="chart-yr" text-anchor="middle">25</text></svg></div>
+  <div class="legend">
+    <span><i style="background:#4a72c0"></i>B 投資活動</span>
+    <span><i style="background:#d98a3d"></i>C 融資活動</span>
+    <span><i style="background:#fdf1cf"></i>B負值+C正值 年度</span>
+  </div>
+  <div class="callout gate-ok">
+    <strong>最高警戒訊號（A為負＋C同時為正/小幅負）在 2008～2025 全期間從未出現</strong>——矽創這 18 年 A 始終為正值，本業現金流從未斷炊，是這次盲測中最正面的訊號。
+  </div>
+  <p>「B 負值＋C 正值」（借錢投資）組合出現在 2010、2014、2020 三個年度，頻率為 18 年中 3 次，且這三年 A 都同時維持強勁正值（3.01～30.4 億），比較像是資金結構的正常搭配、而非依賴舉債撐現金流的「寅吃卯糧」型；2022 年、2025 年 C 大幅為負（-48.8 億、-25 億）同時 B 為正，反而是處分投資、償還融資或加碼配息的年度，屬於財務穩健表現。整體 C 的運用看不出重複性的過度舉債模式。</p>
+
+  <h3>規則五：A ＞ D 現金流品質（嚴格二分法）</h3>
+  <table>
+    <thead><tr><th>年度</th><th>A</th><th>D 稅前淨利</th><th>判定</th></tr></thead>
+    <tbody>
+    <tr><td>2008</td><td>4.76</td><td>4.95</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2009</td><td>8.12</td><td>4.82</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2010</td><td>3.01</td><td>5.3</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2011</td><td>9.49</td><td>2.88</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2012</td><td>4.13</td><td>3.61</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2013</td><td>1.76</td><td>5</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2014</td><td>11.8</td><td>8.48</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2015</td><td>13.7</td><td>10.3</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2016</td><td>11.2</td><td>12.6</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2017</td><td>5.85</td><td>9.88</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2018</td><td>10.4</td><td>11.2</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2019</td><td>34</td><td>22</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2020</td><td>30.4</td><td>25.2</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2021</td><td>84.2</td><td>83.5</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2022</td><td>15.2</td><td>51.1</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2023</td><td>43</td><td>28.4</td><td><span class="pass">✓ 通過</span></td></tr>
+<tr><td>2024</td><td>28.4</td><td>28.4</td><td><span class="fail">✗ 不通過</span></td></tr>
+<tr><td>2025</td><td>31.1</td><td>24.4</td><td><span class="pass">✓ 通過</span></td></tr>
+
+    </tbody>
+  </table>
+  <p>18 個年度中有 10 年 A ＞ D，通過率 <strong>55.6%</strong>，屬六項規則中偏弱的一項。特別點名 <strong>2022 年（A=15.2 億 vs D=51.1 億）</strong>是全期落差最大的一年，稅前淨利遠高於實際營業現金流入，可能與應收帳款增加、存貨堆積或業外收益認列有關，屬於「膨風灌水」型態的警訊年度，建議後續步驟查證該年度應收/存貨變化與業外損益細項；2024 年 A 與 D 恰好相等（28.4=28.4），依嚴格規則（須「大於」而非「大於等於」）判定為不通過。</p>
+
+  <h3>規則六：E 期末現金餘額穩定性</h3>
+  <div class="chart-wrap"><svg viewBox="0 0 1000 300" class="chart-svg" role="img" aria-label="期末現金餘額逐年趨勢"><line x1="40" y1="260.0" x2="980" y2="260.0" stroke="#999" stroke-width="1"/><rect x="49.9" y="242.6" width="32.4" height="17.4" fill="#2f7d5c" rx="2"/><text x="66.1" y="238.6" class="chart-val" text-anchor="middle">5.75</text><text x="66.1" y="276.0" class="chart-yr" text-anchor="middle">08</text><rect x="102.1" y="226.5" width="32.4" height="33.5" fill="#2f7d5c" rx="2"/><text x="118.3" y="222.5" class="chart-val" text-anchor="middle">11.08</text><text x="118.3" y="276.0" class="chart-yr" text-anchor="middle">09</text><rect x="154.4" y="223.3" width="32.4" height="36.7" fill="#2f7d5c" rx="2"/><text x="170.6" y="219.3" class="chart-val" text-anchor="middle">12.14</text><text x="170.6" y="276.0" class="chart-yr" text-anchor="middle">10</text><rect x="206.6" y="221.7" width="32.4" height="38.3" fill="#2f7d5c" rx="2"/><text x="222.8" y="217.7" class="chart-val" text-anchor="middle">12.64</text><text x="222.8" y="276.0" class="chart-yr" text-anchor="middle">11</text><rect x="258.8" y="221.5" width="32.4" height="38.5" fill="#2f7d5c" rx="2"/><text x="275.0" y="217.5" class="chart-val" text-anchor="middle">12.73</text><text x="275.0" y="276.0" class="chart-yr" text-anchor="middle">12</text><rect x="311.0" y="230.4" width="32.4" height="29.6" fill="#2f7d5c" rx="2"/><text x="327.2" y="226.4" class="chart-val" text-anchor="middle">9.79</text><text x="327.2" y="276.0" class="chart-yr" text-anchor="middle">13</text><rect x="363.3" y="223.7" width="32.4" height="36.3" fill="#2f7d5c" rx="2"/><text x="379.4" y="219.7" class="chart-val" text-anchor="middle">12</text><text x="379.4" y="276.0" class="chart-yr" text-anchor="middle">14</text><rect x="415.5" y="206.7" width="32.4" height="53.3" fill="#2f7d5c" rx="2"/><text x="431.7" y="202.7" class="chart-val" text-anchor="middle">17.6</text><text x="431.7" y="276.0" class="chart-yr" text-anchor="middle">15</text><rect x="467.7" y="196.4" width="32.4" height="63.6" fill="#2f7d5c" rx="2"/><text x="483.9" y="192.4" class="chart-val" text-anchor="middle">21</text><text x="483.9" y="276.0" class="chart-yr" text-anchor="middle">16</text><rect x="519.9" y="217.0" width="32.4" height="43.0" fill="#2f7d5c" rx="2"/><text x="536.1" y="213.0" class="chart-val" text-anchor="middle">14.2</text><text x="536.1" y="276.0" class="chart-yr" text-anchor="middle">17</text><rect x="572.1" y="197.7" width="32.4" height="62.3" fill="#2f7d5c" rx="2"/><text x="588.3" y="193.7" class="chart-val" text-anchor="middle">20.6</text><text x="588.3" y="276.0" class="chart-yr" text-anchor="middle">18</text><rect x="624.4" y="171.3" width="32.4" height="88.7" fill="#2f7d5c" rx="2"/><text x="640.6" y="167.3" class="chart-val" text-anchor="middle">29.3</text><text x="640.6" y="276.0" class="chart-yr" text-anchor="middle">19</text><rect x="676.6" y="90.8" width="32.4" height="169.2" fill="#2f7d5c" rx="2"/><text x="692.8" y="86.8" class="chart-val" text-anchor="middle">55.9</text><text x="692.8" y="276.0" class="chart-yr" text-anchor="middle">20</text><rect x="728.8" y="20.0" width="32.4" height="240.0" fill="#e6c68c" rx="2"/><text x="745.0" y="16.0" class="chart-val" text-anchor="middle">79.3</text><text x="745.0" y="276.0" class="chart-yr" text-anchor="middle">21</text><rect x="781.0" y="88.7" width="32.4" height="171.3" fill="#2f7d5c" rx="2"/><text x="797.2" y="84.7" class="chart-val" text-anchor="middle">56.6</text><text x="797.2" y="276.0" class="chart-yr" text-anchor="middle">22</text><rect x="833.3" y="93.5" width="32.4" height="166.5" fill="#2f7d5c" rx="2"/><text x="849.4" y="89.5" class="chart-val" text-anchor="middle">55</text><text x="849.4" y="276.0" class="chart-yr" text-anchor="middle">23</text><rect x="885.5" y="142.9" width="32.4" height="117.1" fill="#2f7d5c" rx="2"/><text x="901.7" y="138.9" class="chart-val" text-anchor="middle">38.7</text><text x="901.7" y="276.0" class="chart-yr" text-anchor="middle">24</text><rect x="937.7" y="86.6" width="32.4" height="173.4" fill="#2f7d5c" rx="2"/><text x="953.9" y="82.6" class="chart-val" text-anchor="middle">57.3</text><text x="953.9" y="276.0" class="chart-yr" text-anchor="middle">25</text></svg></div>
+  <p>期末現金餘額從 2008 年的 5.75 億，長期成長到 2025 年的 57.3 億（2026Q2 進一步升至 67.8 億），中長期方向明確向上。但近三年出現一段明顯震盪：2021 年高點 79.3 億後，2022～2024 年連續三年下滑至 38.7 億（累計約 -51%），2025 年才強力回升 48% 至 57.3 億。這段震盪與規則一、五觀察到的「2022 年獲利與現金流品質同步轉弱」互相呼應，屬於同一段產業下行周期的現金面反映，2025 年的回升則是體質回穩的正面訊號，值得在後續步驟（法說會、營收趨勢）進一步確認回穩的持續性。</p>
+
+  <h3>六大規則總分</h3>
+  <div class="score-box">
+    <div class="score-card"><div class="n">75</div><div class="l">規則一｜A趨勢</div></div>
+    <div class="score-card"><div class="n">78</div><div class="l">規則二｜B紀律</div></div>
+    <div class="score-card"><div class="n">68</div><div class="l">規則三｜B效益</div></div>
+    <div class="score-card"><div class="n">85</div><div class="l">規則四｜C合理性</div></div>
+    <div class="score-card"><div class="n">55.6</div><div class="l">規則五｜A&gt;D品質</div></div>
+    <div class="score-card"><div class="n">72</div><div class="l">規則六｜E穩定性</div></div>
+  </div>
+
+  <div class="total-score">
+    <div class="big">72.3%</div>
+    <div>六大規則平均分（評等：良好，60～79% 區間）</div>
+  </div>
+
+  <div class="callout gate-ok">
+    <strong>關卡判斷：總分 72.3% ≥ 60%，現金流體質可以繼續看下去。</strong>本業造血能力穩健（A 全期間從未轉負，最高警戒訊號從未觸發），主要待觀察的弱點集中在 2022 年「獲利品質」（A遠低於D）與 2022～2024 年現金餘額的波段回落，建議進入第二步查證股價、EPS、產業背景後，再回頭比對這段震盪是否已隨 2025 年數字回穩。
+  </div>
+
+  <p class="snap-note">本頁僅完成第 1 步。資料來源：使用者提供之 Goodinfo 歷年現金流量表截圖，非本次搜尋所得；E 欄位 2009～2012 年為依連續推算校驗補全，已標註於上方表格說明。</p>
+</section>
+
+</main>
+
+<footer>
+  8016 矽創 個股初步分析報告　｜　版本 v1　｜　產出時間 2026-08-23　｜　依「現金流優先，基本面在後」六步驟框架　｜　目前完成度：第 1／6 步
+</footer>
+
+<script>
+(function() {
+  var links = document.querySelectorAll('nav.stepnav a.pad');
+  links.forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  var sections = document.querySelectorAll('main section[id]');
+  var navMap = {};
+  links.forEach(function(a) { navMap[a.getAttribute('href').slice(1)] = a; });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        links.forEach(function(a) { a.classList.remove('active'); });
+        var link = navMap[entry.target.id];
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach(function(s) { observer.observe(s); });
+})();
+</script>
+
+</body>
+</html>
