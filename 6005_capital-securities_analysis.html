@@ -171,7 +171,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
     <button class="pad" data-target="step1">① 現金流分析</button>
     <button class="pad locked" data-target="step2">② 基本資訊</button>
     <button class="pad" data-target="step3">③ 法說會</button>
-    <button class="pad locked" data-target="step4">④ 營收趨勢</button>
+    <button class="pad" data-target="step4">④ 營收趨勢</button>
     <button class="pad locked" data-target="step5">⑤ 前瞻本益比</button>
     <button class="pad locked" data-target="step6">⑥ 投資決策</button>
   </nav>
@@ -1044,9 +1044,294 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
   </p>
 
 </section>
-<section id="step4" style="opacity:0.4; pointer-events:none;">
+<section id="step4">
   <h2><span class="step-badge">第 4 步 / 共 6 步</span> 營收趨勢視覺化</h2>
-  <p style="color:var(--text3); font-style:italic;">待完成第三步後解鎖……</p>
+
+  <style>
+    /* Rev chart styles — scoped to step4 */
+    .rev-bar-normal { fill: var(--accent); }
+    .rev-bar-est    { fill: var(--accent); opacity: 0.35; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 3; }
+    .rev-bar-peak   { fill: var(--peak); }
+    .rev-bar-na     { fill: none; stroke: currentColor; stroke-opacity: 0.2; stroke-dasharray: 4 3; }
+    .rev-grid-line  { stroke: currentColor; stroke-opacity: 0.1; stroke-width: 1; }
+    .rev-axis-line  { stroke: currentColor; stroke-opacity: 0.3; stroke-width: 1; }
+    .rev-val-label  { font-size: 10px; text-anchor: middle; fill: currentColor; opacity: 0.8; }
+    .rev-val-peak   { font-size: 10px; text-anchor: middle; fill: var(--peak); font-weight: 700; }
+    .rev-val-est    { font-size: 10px; text-anchor: middle; fill: currentColor; opacity: 0.45; }
+    .rev-yoy-label  { font-size: 9px; text-anchor: middle; fill: var(--pos); opacity: 0.85; }
+    .rev-x-label    { font-size: 9px; text-anchor: middle; fill: currentColor; opacity: 0.65; }
+    .rev-grid-text  { font-size: 9px; text-anchor: end; fill: currentColor; opacity: 0.45; }
+    .rev-ann-text   { font-size: 9px; text-anchor: middle; fill: var(--peak); font-weight: 700; }
+    .rev-tooltip-box {
+      position: absolute; display: none; pointer-events: none; z-index: 20;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 9px 13px; font-size: 12.5px; line-height: 1.65;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18); min-width: 155px;
+    }
+    .phase-band {
+      display: inline-block; padding: 3px 10px; border-radius: 12px;
+      font-size: 0.8rem; font-weight: 600; margin: 3px 4px;
+    }
+  </style>
+
+  <!-- ── KPI 統計磚 ───────────────────────────── -->
+  <div class="score-cards" style="margin-bottom:1.4rem;">
+    <div class="score-card" style="border-color:var(--pos);">
+      <div class="score-val" style="color:var(--pos); font-size:1.5rem;">212.67億</div>
+      <div class="score-label">2026 前 7 月累計營收</div>
+    </div>
+    <div class="score-card" style="border-color:var(--pos);">
+      <div class="score-val" style="color:var(--pos); font-size:1.5rem;">+111%</div>
+      <div class="score-label">前 7 月 YoY 年增率</div>
+    </div>
+    <div class="score-card" style="border-color:var(--peak);">
+      <div class="score-val" style="color:var(--peak); font-size:1.5rem;">46.48億</div>
+      <div class="score-label">單月高峰（2026/04）</div>
+    </div>
+    <div class="score-card" style="border-color:var(--accent);">
+      <div class="score-val" style="color:var(--accent); font-size:1.4rem;">已超全年2025</div>
+      <div class="score-label">僅用 7 個月（+10.6%）</div>
+    </div>
+  </div>
+
+  <!-- ── 月營收趨勢互動圖 ──────────────────────── -->
+  <div class="chart-wrap" style="position:relative; overflow:visible;">
+    <div class="chart-title">月營收（億元）｜2025/08 – 2026/07　<span style="font-size:0.8rem; font-weight:400; color:var(--text3);">（滑鼠移至長條查看詳情）</span></div>
+    <div id="revTooltip" class="rev-tooltip-box"></div>
+    <svg id="revChart" viewBox="0 0 900 310" width="100%" style="max-width:900px; display:block; overflow:visible;"></svg>
+
+    <!-- Legend -->
+    <div style="display:flex; gap:16px; align-items:center; margin-top:6px; font-size:12px; color:var(--text3); flex-wrap:wrap;">
+      <span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" class="rev-bar-normal" opacity="0.85" rx="2"/></svg> 實際值</span>
+      <span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" class="rev-bar-peak" opacity="0.9" rx="2"/></svg> 月度高峰</span>
+      <span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" class="rev-bar-est" rx="2"/></svg> 推算值</span>
+      <span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" class="rev-bar-na" rx="2"/></svg> 資料缺漏</span>
+    </div>
+  </div>
+
+  <!-- ── YoY 年增率一覽表 ─────────────────────── -->
+  <h3 style="margin-top:2rem;">各月 YoY 年增率</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>月份</th><th>月營收（億）</th><th>年增率</th><th>MoM 月增率</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="year">2025/08</td><td>20.85</td><td class="pos-val">+32.9%</td><td>—</td><td>觀察起點</td></tr>
+        <tr><td class="year">2025/09</td><td>17.72</td><td class="pos-val">+25.1%</td><td class="neg-val">-15.0%</td><td></td></tr>
+        <tr><td class="year">2025/10</td><td>17.39</td><td class="pos-val">+44.0%</td><td>-1.9%</td><td></td></tr>
+        <tr><td class="year">2025/11</td><td style="color:var(--text3); font-style:italic;">N/A</td><td>—</td><td>—</td><td>資料缺漏</td></tr>
+        <tr><td class="year">2025/12</td><td>19.33</td><td class="pos-val">+38.9%</td><td>—</td><td></td></tr>
+        <tr><td class="year">2026/01</td><td>29.86</td><td class="pos-val">+130.0%</td><td class="pos-val">+54.5%</td><td>加速起點，年增率跳升</td></tr>
+        <tr><td class="year">2026/02</td><td>22.48</td><td class="pos-val">+54.5%</td><td class="neg-val">-24.7%</td><td>農曆年假效應</td></tr>
+        <tr><td class="year">2026/03</td><td style="color:var(--text3);">18.94</td><td>—</td><td class="neg-val">-15.8%</td><td>推算值</td></tr>
+        <tr class="row-peak"><td class="year">2026/04</td><td class="pos-val"><strong>46.48</strong></td><td class="pos-val"><strong>+302%</strong></td><td class="pos-val">+145.4%</td><td>🏆 月度高峰</td></tr>
+        <tr><td class="year">2026/05</td><td style="color:var(--text3);">37.99</td><td>—</td><td class="neg-val">-18.3%</td><td>推算值</td></tr>
+        <tr><td class="year">2026/06</td><td>36.46</td><td class="pos-val">+101.2%</td><td>-4.0%</td><td></td></tr>
+        <tr><td class="year">2026/07</td><td>20.46</td><td class="pos-val">+25.1%</td><td class="neg-val">-43.9%</td><td>⚠️ 明顯拉回</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 三段式趨勢分析 ─────────────────────── -->
+  <h3 style="margin-top:2rem;">趨勢分析：三個階段</h3>
+
+  <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1rem;">
+    <span class="phase-band" style="background:var(--bg3); border:1px solid var(--border); color:var(--text2);">📊 第一段 2025/08–12：溫和增長（+25~44% YoY）</span>
+    <span class="phase-band" style="background:var(--tag-ok); border:1px solid var(--tag-ok-border); color:var(--tag-ok-text);">🚀 第二段 2026/01–04：爆發加速（+54~302% YoY）</span>
+    <span class="phase-band" style="background:var(--tag-warn); border:1px solid var(--tag-warn-border); color:var(--tag-warn-text);">⚠️ 第三段 2026/05–07：高原拉回（+25~101% YoY，MoM-44%）</span>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">📊 第一段（2025/08–12）：溫和基期增長</div>
+    <div class="rule-body">
+      月均營收約 18–21 億元，YoY 穩定維持在 +25% 至 +44% 之間。這個階段對應台股在 2025 年上半年修正後逐步回穩的過程，手續費收入緩步回升，沒有明顯觸媒。2025 全年累計 192.20 億元（年增 +12.05%），顯示這一整年都是穩健成長但不算驚人的狀態。
+    </div>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">🚀 第二段（2026/01–04）：三條收入線同步爆發</div>
+    <div class="rule-body">
+      2026 年元月起 YoY 年增率跳升至 +130%，2026/04 更一舉達到 <strong>46.48 億元（YoY +302%）</strong>，這正是法說會揭示的季度高峰背景：台股行情急漲、交易量大幅擴增、融資餘額同步膨脹、自營部位也在高位獲利。<br><br>
+      特別值得注意的是，2026/01 月增 +54.5%（不含農曆年因素），這遠超季節性規律，代表市場結構性行情真正啟動。4 月高峰對應「科技股 / AI 相關類股」在這波多頭的最旺時點。
+    </div>
+  </div>
+
+  <div class="rule-block" style="margin-bottom:1rem;">
+    <div class="rule-header">⚠️ 第三段（2026/05–07）：高位拉回，7 月降幅需觀察</div>
+    <div class="rule-body">
+      從 4 月高峰到 7 月，月營收從 46.48 億急速回落至 20.46 億（-56%），但 YoY 仍維持 +25%，顯示這是「高位正常修正」而非業務崩壞。關鍵問題是：7 月的 20.46 億，只比 2025/08–12 的月均水準略高，意味著市場熱度已大幅降溫。<br><br>
+      <strong>若 8 月以後月營收無法回到 30 億以上，2026 下半年 EPS 的成長動能將顯著減弱。</strong>目前 1–7 月累計 EPS 估計約 2.4–2.6 元，全年是否能超越去年 2.64 元仍有不確定性。
+    </div>
+  </div>
+
+  <div style="background:var(--bg2); border:2px solid var(--accent); border-radius:10px; padding:1.2rem 1.6rem; margin-top:1rem;">
+    <strong>第四步結論：前七月是「三線同發的結構性牛市」，下半年是關鍵分水嶺</strong><br><br>
+    <span style="color:var(--text2);">2026 前 7 月累計 212.67 億元已超過 2025 全年，是最明確的正面訊號。但 7 月月營收僅 20.46 億，MoM 驟降 43.9%，須持續追蹤 8–9 月是否只是淡季、還是市場熱度系統性退場。這個觀察點將直接影響本益比的合理性判斷（第五步）。</span>
+  </div>
+
+  <p style="margin-top:1rem; font-size:0.8rem; color:var(--text3);">
+    資料來源：
+    <a href="https://news.cnyes.com/news/id/6568388" target="_blank">鉅亨 2026/07 營收</a> ✦
+    <a href="https://news.cnyes.com/news/id/6532210" target="_blank">鉅亨 2026/06 營收</a> ✦
+    Yahoo股市月營收頁面（2026/08/21 查詢）。推算值（2026/03、05）為由已知累計值反推，非官方公告。
+  </p>
+
+  <script>
+  (function(){
+    var SVG_NS = 'http://www.w3.org/2000/svg';
+    var chartEl = document.getElementById('revChart');
+    var tipEl   = document.getElementById('revTooltip');
+    if (!chartEl || !tipEl) return;
+
+    var data = [
+      {label:'25/08', full:'2025年8月',  rev:20.85, yoy:'+32.9%', mom:null,    est:false, peak:false, na:false, note:''},
+      {label:'25/09', full:'2025年9月',  rev:17.72, yoy:'+25.1%', mom:'-15.0%',est:false, peak:false, na:false, note:''},
+      {label:'25/10', full:'2025年10月', rev:17.39, yoy:'+44.0%', mom:'-1.9%', est:false, peak:false, na:false, note:''},
+      {label:'25/11', full:'2025年11月', rev:null,  yoy:null,     mom:null,    est:false, peak:false, na:true,  note:'資料缺漏'},
+      {label:'25/12', full:'2025年12月', rev:19.33, yoy:'+38.9%', mom:null,    est:false, peak:false, na:false, note:''},
+      {label:'26/01', full:'2026年1月',  rev:29.86, yoy:'+130.0%',mom:'+54.5%',est:false, peak:false, na:false, note:'加速啟動'},
+      {label:'26/02', full:'2026年2月',  rev:22.48, yoy:'+54.5%', mom:'-24.7%',est:false, peak:false, na:false, note:'農曆年假'},
+      {label:'26/03', full:'2026年3月',  rev:18.94, yoy:null,     mom:'-15.8%',est:true,  peak:false, na:false, note:'推算值'},
+      {label:'26/04', full:'2026年4月',  rev:46.48, yoy:'+302%',  mom:'+145%', est:false, peak:true,  na:false, note:'單月歷史高峰'},
+      {label:'26/05', full:'2026年5月',  rev:37.99, yoy:null,     mom:'-18.3%',est:true,  peak:false, na:false, note:'推算值'},
+      {label:'26/06', full:'2026年6月',  rev:36.46, yoy:'+101.2%',mom:'-4.0%', est:false, peak:false, na:false, note:''},
+      {label:'26/07', full:'2026年7月',  rev:20.46, yoy:'+25.1%', mom:'-43.9%',est:false, peak:false, na:false, note:'⚠ 明顯拉回'},
+    ];
+
+    var W=900, H=310;
+    var pL=55, pR=20, pT=38, pB=50;
+    var cW=W-pL-pR, cH=H-pT-pB;
+    var n=data.length;
+    var slotW=cW/n, barW=Math.min(46, slotW*0.68);
+    var maxVal=46.48, scale=cH/(maxVal*1.06);
+    var base=pT+cH;
+
+    function cx(i){ return pL+(i+0.5)*slotW; }
+    function bh(v){ return v*scale; }
+    function by(v){ return base-bh(v); }
+
+    function mk(tag,attrs,txt){
+      var e=document.createElementNS(SVG_NS,tag);
+      for(var k in attrs) e.setAttribute(k,attrs[k]);
+      if(txt!==undefined) e.textContent=txt;
+      return e;
+    }
+
+    // defs (gradient for peak bar)
+    var defs=mk('defs',{});
+    var grad=mk('linearGradient',{id:'peakGrad',x1:'0',y1:'0',x2:'0',y2:'1'});
+    grad.appendChild(mk('stop',{'offset':'0%','stop-color':'var(--peak)','stop-opacity':'1'}));
+    grad.appendChild(mk('stop',{'offset':'100%','stop-color':'var(--peak)','stop-opacity':'0.7'}));
+    defs.appendChild(grad);
+    var accentGrad=mk('linearGradient',{id:'accentGrad',x1:'0',y1:'0',x2:'0',y2:'1'});
+    accentGrad.appendChild(mk('stop',{'offset':'0%','stop-color':'var(--accent)','stop-opacity':'0.9'}));
+    accentGrad.appendChild(mk('stop',{'offset':'100%','stop-color':'var(--accent)','stop-opacity':'0.6'}));
+    defs.appendChild(accentGrad);
+    chartEl.appendChild(defs);
+
+    // Grid lines
+    [10,20,30,40].forEach(function(v){
+      var y=by(v);
+      chartEl.appendChild(mk('line',{x1:pL,y1:y,x2:W-pR,y2:y,'class':'rev-grid-line'}));
+      chartEl.appendChild(mk('text',{x:pL-6,y:y+3.5,'class':'rev-grid-text'},v+'億'));
+    });
+
+    // Baseline
+    chartEl.appendChild(mk('line',{x1:pL,y1:base,x2:W-pR,y2:base,'class':'rev-axis-line'}));
+
+    // Phase background bands
+    var phases=[
+      {i0:0,i1:4, label:'第一段', color:'rgba(100,100,100,0.04)'},
+      {i0:5,i1:8, label:'第二段', color:'rgba(34,197,94,0.07)'},
+      {i0:9,i1:11,label:'第三段', color:'rgba(251,191,36,0.07)'},
+    ];
+    phases.forEach(function(p){
+      var x0=pL+p.i0*slotW, x1=pL+(p.i1+1)*slotW;
+      chartEl.insertBefore(mk('rect',{x:x0,y:pT,width:x1-x0,height:cH,fill:p.color,rx:0}), chartEl.firstChild.nextSibling);
+      chartEl.appendChild(mk('text',{x:(x0+x1)/2,y:pT-8,'text-anchor':'middle','font-size':8,fill:'currentColor',opacity:'0.4'},p.label));
+    });
+
+    // Bars & labels
+    data.forEach(function(d,i){
+      var x=cx(i), xl=x-barW/2, g=mk('g',{});
+
+      if(d.na){
+        g.appendChild(mk('rect',{x:xl,y:base-18,width:barW,height:18,'class':'rev-bar-na',rx:2}));
+        g.appendChild(mk('text',{x:x,y:base-5,'text-anchor':'middle','font-size':8,fill:'currentColor',opacity:'0.3'},'N/A'));
+      } else {
+        var h=bh(d.rev), yt=by(d.rev);
+        var barCls=d.peak?'rev-bar-peak':d.est?'rev-bar-est':'rev-bar-normal';
+        var barFill=d.peak?'url(#peakGrad)':d.est?'var(--accent)':'url(#accentGrad)';
+        var rect=mk('rect',{x:xl,y:yt,width:barW,height:h,'class':barCls,rx:3,fill:barFill});
+        if(d.est){ rect.setAttribute('fill','var(--accent)'); }
+        g.appendChild(rect);
+
+        // Value label above bar
+        var valCls=d.peak?'rev-val-peak':d.est?'rev-val-est':'rev-val-label';
+        g.appendChild(mk('text',{x:x,y:yt-5,'class':valCls},d.rev.toFixed(1)));
+
+        // YoY label above value (only for notable months)
+        if(d.yoy && (i===0||i===5||i===8||i===10||i===11)){
+          g.appendChild(mk('text',{x:x,y:yt-17,'class':'rev-yoy-label'},d.yoy));
+        }
+
+        // Peak annotation
+        if(d.peak){
+          g.appendChild(mk('text',{x:x,y:yt-26,'class':'rev-ann-text'},'▲ 月度高峰'));
+        }
+
+        // 7月警示
+        if(i===11){
+          g.appendChild(mk('text',{x:x,y:yt-26,'class':'rev-ann-text',fill:'var(--warn)','font-size':8},'⚠ 拉回'));
+        }
+
+        // Invisible hit area for tooltip
+        var hitH=Math.max(h,20)+50, hitY=yt-25;
+        var hit=mk('rect',{x:xl-6,y:hitY,width:barW+12,height:hitH+25,fill:'transparent',style:'cursor:pointer'});
+        (function(dd){
+          hit.addEventListener('mouseenter',function(e){ showTip(e,dd); });
+          hit.addEventListener('mousemove', function(e){ moveTip(e); });
+          hit.addEventListener('mouseleave',hideTip);
+        })(d);
+        g.appendChild(hit);
+      }
+
+      // X-axis label
+      var xl2=mk('text',{x:x,y:base+14,'class':'rev-x-label'},d.label);
+      // Bold boundary months
+      if(i===0||i===4||i===8||i===11) xl2.setAttribute('font-weight','600');
+      g.appendChild(xl2);
+
+      chartEl.appendChild(g);
+    });
+
+    // Tooltip
+    function showTip(e,d){
+      var rows=[
+        '<strong>'+d.full+'</strong>',
+        '月營收：<strong>'+d.rev.toFixed(2)+'</strong> 億元',
+      ];
+      if(d.yoy) rows.push('YoY：<span style="color:var(--pos)">'+d.yoy+'</span>');
+      if(d.mom) rows.push('MoM：'+d.mom);
+      if(d.est) rows.push('<span style="color:var(--warn); font-size:11px;">⚠ 推算值（非官方公告）</span>');
+      if(d.note) rows.push('<em style="font-size:11px; color:var(--text3);">'+d.note+'</em>');
+      tipEl.innerHTML=rows.join('<br>');
+      tipEl.style.display='block';
+      moveTip(e);
+    }
+    function moveTip(e){
+      var box=tipEl.parentElement.getBoundingClientRect();
+      var tx=e.clientX-box.left+14, ty=e.clientY-box.top-80;
+      if(tx+170>box.width) tx=e.clientX-box.left-180;
+      if(ty<0) ty=5;
+      tipEl.style.left=tx+'px';
+      tipEl.style.top=ty+'px';
+    }
+    function hideTip(){ tipEl.style.display='none'; }
+  })();
+  </script>
+
 </section>
 <section id="step5" style="opacity:0.4; pointer-events:none;">
   <h2><span class="step-badge">第 5 步 / 共 6 步</span> 前瞻本益比／EPS 預估</h2>
