@@ -191,7 +191,7 @@
 
 <nav class="stepnav">
   <a href="#step1" id="nav1" class="active">① 現金流盲測</a>
-  <a href="#step2" id="nav2" class="locked">② 基本資訊</a>
+  <a href="#step2" id="nav2">② 基本資訊</a>
   <a href="#step3" id="nav3" class="locked">③ 法說會</a>
   <a href="#step4" id="nav4" class="locked">④ 營收趨勢</a>
   <a href="#step5" id="nav5" class="locked">⑤ 前瞻估值</a>
@@ -531,6 +531,55 @@
     ✅ <strong>現金流體質可以繼續看下去</strong>——本業造血能力真實（A&gt;D通過率93%）、從未出現「本業現金流為負＋持續舉債」的最高警戒訊號，長期現金餘額穩健成長；但投資效益轉化率約六成、且頻繁出現「借錢投資」組合（7/14年），代表資金運用效率與融資依賴度是後續步驟需要留意的觀察重點。</p>
   </div>
   <p class="snap-note">評分為 Claude 依 tw-stock-initial-analysis 框架之六大規則盲測結果，尚未參考股價、EPS、產業地位等任何資訊。</p>
+</section>
+
+<section id="step2">
+  <span class="step-label">【第 2 步／共 6 步：基本資訊查詢】</span>
+  <div class="callout">
+    現金流通過關卡（74.3分），以下開始查詢股價、EPS、殖利率、法說會等基本資訊，所有數字均附來源連結。<strong>即時報價類數字（股價、本益比、成交量）僅代表查詢當下的單一快照，非官方公布之區間</strong>，正式交易請以看盤軟體為準。
+  </div>
+
+  <div class="rule-block">
+    <div class="rule-title">股價與評價指標</div>
+    <table>
+      <tr><th>項目</th><th>數值</th><th>備註</th></tr>
+      <tr><td>收盤價</td><td class="posv">100.00 元</td><td>2026/08/24 查詢當下快照</td></tr>
+      <tr><td>本益比 PER</td><td>82.64 倍</td><td>同上快照</td></tr>
+      <tr><td>股價淨值比 PBR</td><td>5.57 倍</td><td>同上快照</td></tr>
+      <tr><td>每股淨值</td><td>16.97 元</td><td>2026/3/31 財報（Q1法說會簡報）</td></tr>
+      <tr><td>近四季EPS（合計）</td><td>0.41 元</td><td>26Q1(0.35)+25Q4(0.16)+25Q3(0.05)+25Q2(-0.15)</td></tr>
+      <tr><td>2025年度EPS</td><td>0.07 元</td><td>年度累計，非四季合計，兩者計算基礎不同</td></tr>
+      <tr><td>2024年度EPS</td><td>0.92 元</td><td></td></tr>
+      <tr><td>2023年度EPS</td><td>0.57 元</td><td></td></tr>
+      <tr><td>2022年度EPS</td><td>2.38 元</td><td></td></tr>
+      <tr><td>2025年度現金股利</td><td>0.4969 元</td><td>已調整（因可轉債轉換股數變動）</td></tr>
+      <tr><td>現金殖利率（估）</td><td>約 0.5%</td><td>以現金股利0.4969元 ÷ 收盤價100元 推算，為推算數字非直接查得</td></tr>
+      <tr><td>董監持股比例</td><td>52.51%</td><td></td></tr>
+    </table>
+    <p class="snap-note">股價/PER/PBR：<cite>使用者提供之 Goodinfo 個股頁面截圖（2026/08/24 18:07 上傳）</cite>。每股淨值、近四季EPS、董監持股比例、年度EPS：<cite>Yahoo股市「嘉晶(3016.TW) 基本資料」頁面（資料時間 2026/07/28，網址 https://tw.stock.yahoo.com/quote/3016.TW/profile）</cite>。2025年度現金股利：<cite>Yahoo股市「嘉晶(3016.TW) 個股公告」頁面，公司於2026/06/09公告調整現金股利配息率（因國內第五次無擔保轉換公司債債權人轉換1,815,084股，致流通股數異動），網址 https://tw.stock.yahoo.com/quote/3016/announcement</cite>。</p>
+  </div>
+
+  <div class="rule-block">
+    <div class="rule-title">公司基本資料</div>
+    <table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>產業類別</td><td>半導體</td></tr>
+      <tr><td>主要經營業務</td><td>矽磊晶、化合物半導體磊晶晶圓之開發、製造與銷售</td></tr>
+      <tr><td>成立時間</td><td>1998/11/09</td></tr>
+      <tr><td>上市掛牌日期</td><td>2002/12/24</td></tr>
+      <tr><td>董事長</td><td>徐建華</td></tr>
+      <tr><td>總經理</td><td>溫錦祥</td></tr>
+      <tr><td>股本</td><td>28.85 億元（已發行普通股數 288,541,819股）</td></tr>
+    </table>
+    <p class="snap-note">來源：<cite>Yahoo股市「嘉晶(3016.TW) 基本資料」頁面，資料時間 2026/07/28</cite>，網址 https://tw.stock.yahoo.com/quote/3016.TW/profile。</p>
+  </div>
+
+  <div class="rule-block">
+    <div class="rule-title">最新法說會摘要（2026/04/29，2026 Q1）</div>
+    <p>嘉晶 2026 Q1 單季合併營收 <strong>10.58億元</strong>（年增18%），毛利率大幅躍升至 <strong>18%</strong>（去年同期僅6%），營業損益、稅前損益由虧轉盈，EPS達 <strong>0.35元</strong>，創近三年單季最佳表現。轉盈主因是8吋矽磊晶產能利用率提升（矽磊晶營收中8吋佔比從2025Q1的55%拉高到2026Q1的70%）、GaN磊晶需求回溫（單季營收季增73%，轉虧為盈）。公司在法說會中宣布一項新業務突破：矽光子（Silicon Photonics，鍺矽Ge/Si磊晶代工）已通過國際一線客戶驗證，2026年第一季末開始小量量產，正式切入AI高速光通訊供應鏈，被視為未來重要成長動能。</p>
+    <p>公司財測指引 2026 Q2 營收將季增超過20%，下半年營運可望優於上半年，並為滿足客戶需求將資本支出追加至原預算三倍（主要投入8吋矽磊晶及矽光子機台擴充）。同時公司宣布<strong>未來法說會將改為每年僅召開兩次</strong>。截至2026/08/24查詢當下，尚未查到2026 Q2（次一場）法說會的實際召開資料；2026年第二季財務報告董事會預計召開日期為 <strong>2026/07/28</strong>。另外，公司於2026/06/30公告董事會決議<strong>現金增資發行新股</strong>及<strong>發行國內第六次無擔保轉換公司債</strong>，這與規則四觀察到的融資活動可能有關，但本次尚未取得細部金額拆解。</p>
+    <p class="snap-note">來源：<cite>散戶鬥嘴鼓「嘉晶（3016）法說會日期、內容、AI重點整理」頁面，整理自公開資訊觀測站2026/04/29法說會簡報</cite>，網址 https://poorstock.com/earningcall/3016（原始官方PDF簡報：https://mopsov.twse.com.tw/nas/STR/301620260429M001.pdf，該連結因robots.txt限制無法直接讀取，僅供使用者自行開啟）。財測與董事會日期另參考：<cite>Goodinfo「3016 嘉晶 股價行情概況」頁面公告訊息欄，網址 https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=3016</cite>。</p>
+  </div>
 </section>
 
 </main>
